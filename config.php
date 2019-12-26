@@ -21,4 +21,9 @@ return [
         'password' => 'xxxxxx', // 邮箱密码
         'debug' => 0, // debug，当邮件无法发送的情况下开启此项观察命令行界面提示信息，正式环境应关闭 0：关闭 1：客户端信息 2：客户端和服务端信息
     ],
+    'telegram' => [
+        'enable' => 'true',
+        'chatid' => '',
+        'token' => '',
+    ],
 ];
