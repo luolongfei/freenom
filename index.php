@@ -272,19 +272,30 @@ class FREENOM
             }
 
             $this->domainsInfo .= sprintf('<a href="http://%s/" rel="noopener" target="_blank">%s</a>' . '还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain[1], $domain[1], intval($domain[4]));
+            $this->sendTelegram($domain[1].' left '.$domain[4]);
         }
 
         system_log($renew_log ?: sprintf("在%s这个时刻，并没有需要续期的域名，写这条日志是为了证明我确实执行了。今次取得的域名信息如是：\n%s", date('Y-m-d H:i:s'), var_export($domains, true)));
         if ($this->notRenewed || $this->renewed) {
-            $this->sendEmail(
-                '主人，我刚刚帮你续期域名啦~',
-                [
-                    $this->renewed ? '续期成功：' . $this->renewed . '<br>' : '',
-                    $this->notRenewed ? '续期出错：' . $this->notRenewed . '<br>' : '',
-                    $this->domainsInfo ?: '啊咧~没看到其它域名呢。'
-                ]
-            );
-        }
+		if (static::$config['telegram']['enable'] == 'true') {
+			$this->sendTelegram(
+		[
+	                    $this->renewed ? '续期成功：' . $this->renewed . '<br>' : '',
+	                    $this->notRenewed ? '续期出错：' . $this->notRenewed . '<br>' : '',
+	                    $this->domainsInfo ?: '啊咧~没看到其它域名呢。'
+	                ]
+			);
+		} else {
+				$this->sendEmail(
+	                '主人，我刚刚帮你续期域名啦~',
+	                [
+	                    $this->renewed ? '续期成功：' . $this->renewed . '<br>' : '',
+	                    $this->notRenewed ? '续期出错：' . $this->notRenewed . '<br>' : '',
+	                    $this->domainsInfo ?: '啊咧~没看到其它域名呢。'
+	                ]
+	            );
+		}		
+	}
 
         $curl->close();
 
@@ -356,6 +367,18 @@ class FREENOM
 
         if (!$mail->send()) throw new \Exception($mail->ErrorInfo);
     }
+    
+    public function sendTelegram($text)
+    {
+            $token = static::$config['telegram']['token'];
+            $chatid = static::$config['telegram']['chatid'];
+            $curl = new Curl();
+            if (!is_string($text)) {
+                    $text=var_export($text,true);
+            }
+            $curl->get('https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$chatid.'&text='.$text);
+            $curl->close();
+    }
 }
 
 try {
@@ -370,12 +393,18 @@ try {
     FREENOM::instance()->renewDomains();
 } catch (LlfException $e) {
     system_log($e->getMessage());
-    FREENOM::instance()->sendEmail(
-        '主人，' . $e->getMessage(),
-        sprintf('具体是在%s文件的%d行，抛出了一个异常。异常的内容是%s，快去看看吧。', $e->getFile(), $e->getLine(), $e->getMessage()),
-        '',
-        'llfexception'
-    );
+if (static::$config['telegram']['enable'] == 'true') {
+	FREENOM::instance()->sendTelegram(
+		[$e->getMessage(),$e->getFile(),$e->getLine(),$e->getMessage()]
+	);
+} else {
+	    FREENOM::instance()->sendEmail(
+	        '主人，' . $e->getMessage(),
+	        sprintf('具体是在%s文件的%d行，抛出了一个异常。异常的内容是%s，快去看看吧。', $e->getFile(), $e->getLine(), $e->getMessage()),
+	        '',
+	        'llfexception'
+	    );
+	}
 } catch (\Exception $e) {
     system_log(sprintf('#%d - %s', $e->getCode(), $e->getMessage()));
 }
