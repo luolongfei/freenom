@@ -20,9 +20,13 @@
 然后丢服务器上，创建crontab定时任务每天自动执行。
 
 #### 原料准备
-- Gmail邮箱（最好是申请一个新的gmail小号，别用自己的主力邮箱账户）
+- Gmail邮箱（最好是申请一个新的gmail小号，别用自己的主力邮箱账户）或telegram bot
 - 本项目源码
 - 一台VPS
+
+#### telegram bot
+把config.php中telegram下的token改成你bot的token，chatid改成你telegram的id（一串数字）即可
+
 
 #### Gmail邮箱
 *实际上用其它邮箱也行，不过其它邮箱需要改的东西不一样，需要你自己谷歌一下。推荐使用gmail，只需两步。*
