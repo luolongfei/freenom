@@ -103,6 +103,38 @@ $ crontab -l
 执行程序理论上会收到登录出错或者其它错误的通知邮件的，测完后记得改正确。
 **有很多人问我为什么执行成功了也没收到邮件：因为没有需要续期的域名，程序执行也没出错。**
 
+#### 使用systemd-timer代替cron
+新建`/etc/systemd/system/freenom.service`
+```
+[Unit]
+Description=Renew freenom domains
+After=network-online.target
+
+[Service]
+User=freenom
+Group=freenom
+NoNewPrivileges=yes
+Type=oneshot
+WorkingDirectory=此项目于本地的路径
+ExecStart=php的路径 index.php的路径
+```
+新建`/etc/systemd/system/freenom.timer`
+```
+[Unit]
+Description=Daily renewal of freenom domains
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+使用`systemctl start freenom.service`测试能否正常工作  
+使用`systemctl start freenom.timer`启动计时器  
+使用`systemctl enable freenom.timer`启动计时器的开机启动  
+使用`systemctl list-timers --all`检查计时器运行情况  
+
 遇到任何问题或bug欢迎提[issues](https://github.com/luolongfei/freenom/issues)，如果freenom改变算法导致此项目失效，
 请提[issues](https://github.com/luolongfei/freenom/issues)告知，我会及时修复，本项目长期维护。欢迎star~
 
