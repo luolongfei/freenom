@@ -109,13 +109,21 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/mast
 
 #### Telegram bot
 ***
-上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`config.php`文件中，将`telegram`下的
-`enable`的值改为`true`，即可启用 Telegram bot，同样的，将`mail`下的`enable`的值改为`false`即可关闭邮件推送方式。
+上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`.env`文件中，将
+`TELEGRAM_BOT_ENABLE`的值改为`true`，即可启用 Telegram bot，同样的，将`MAIL_ENABLE`下的值改为`false`即可关闭邮件推送方式。
 Telegram bot 对应两个配置值，一个是`chatID`，通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，另一个是
 `token`，你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，不多赘述。
 如何创建一个 Telegram bot 请参考官方文档：[点我了解](https://core.telegram.org/bots#6-botfather)
 
-*与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
+##### 第三方Telegram bot
+
+除自行配置 Telegram Bot 外，还可以调用第三方 Telegram Bot 提供推送链接。在`.env`文件中，将`telegram 3rd party bot`下的
+`TELEGRAM_3rdBOT_ENABLE`的值改为`true`，即可启用第三方 Telegram bot，同样的，将`MAIL_ENABLE`的值改为`false`即可关闭邮件推送方式。
+Telegram 3rd party bot 只填写一个配置值：`TELEGRAM_BOT_URL`，通过使用你的 Telegram 账户发送 `/start` 给 [`@notificationme_bot`](https://t.me/notificationme_bot)即可以获取自己的推送链接。
+
+有关第三方推送 Telegram bot 的更多内容请参考作者项目: [Fndroid/tg_push_bot](https://github.com/Fndroid/tg_push_bot)
+
+### *与通知相关的设置到此就完成了，下面可以愉快的配置本程序了* :)
 
 ### 🚧 配置脚本
 所有操作均在Centos7系统下进行，其它Linux发行版大同小异
