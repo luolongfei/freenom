@@ -46,6 +46,7 @@ class TelegramBot
             ],
             'cookies' => false,
             'timeout' => self::TIMEOUT,
+            'verify' => config('verifySSL'),
 //            'http_errors' => false,
             'debug' => config('debug')
         ]);
@@ -65,6 +66,7 @@ class TelegramBot
      *
      * @param string $content 支持markdown语法，但记得对非标记部分进行转义
      * @param string $chatID 可单独指定chat_id参数
+     * @param bool $isMarkdown 默认内容为Markdown格式，传否则为Html格式
      * @desc 注意对markdown标记占用的字符进行转义，否则无法正确发送，根据官方说明，以下字符如果不想被 Telegram Bot 识别为markdown标记，
      * 应转义后传入，官方说明如下：
      * In all other places characters '_‘, ’*‘, ’[‘, ’]‘, ’(‘, ’)‘, ’~‘, ’`‘, ’>‘, ’#‘, ’+‘, ’-‘, ’=‘, ’|‘,
@@ -92,7 +94,7 @@ class TelegramBot
      *
      * @return bool
      */
-    public static function send(string $content, $chatID = '')
+    public static function send(string $content, $chatID = '', $isMarkdown = true)
     {
         if (config('telegram.enable') === false) {
             system_log('由于没有启用 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。');
@@ -100,8 +102,10 @@ class TelegramBot
             return false;
         }
 
-        // 这几个我可能用不上的markdown关键字我就直接干掉了
-        $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
+        if ($isMarkdown) {
+            // 这几个我可能用不上的markdown关键字我就直接干掉了
+            $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
+        }
 
         $telegramBot = self::instance();
 
@@ -111,7 +115,7 @@ class TelegramBot
                 'form_params' => [
                     'chat_id' => $chatID ? $chatID : $telegramBot->chatID,
                     'text' => $content,
-                    'parse_mode' => 'MarkdownV2',
+                    'parse_mode' => $isMarkdown ? 'MarkdownV2' : 'HTML',
                     'disable_web_page_preview' => true,
                     'disable_notification' => false
                 ],
