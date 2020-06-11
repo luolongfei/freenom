@@ -36,7 +36,7 @@ return [
     ],
     'telegram3rd' => [
         'botURL' => env('TELEGRAM_BOT_URL'), // 你的push url，通过发送“/start”给@notificationme_bot可以获取自己的url
-        'enable' => env('TELEGRAM_BOT_ENABLE') // 是否启用，默认不启用
+        'enable' => env('TELEGRAM_3rdBOT_ENABLE') // 是否启用，默认不启用
     ],
 
     'locale' => 'zh', // 指定语言包，位于resources/lang/目录下

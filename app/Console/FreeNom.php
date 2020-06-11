@@ -16,6 +16,7 @@ use GuzzleHttp\Cookie\CookieJar;
 use Luolongfei\Lib\Log;
 use Luolongfei\Lib\Mail;
 use Luolongfei\Lib\TelegramBot;
+use Luolongfei\Lib\Telegram3rdBot;
 
 class FreeNom
 {
@@ -220,6 +221,12 @@ class FreeNom
                 $notRenewedTG ? sprintf("续期失败：%s\n", $notRenewedTG) : '',
                 $domainInfoTG
             ));
+            Telegram3rdBot::send(sprintf(
+                "主人，我刚刚帮你续期域名啦~\n\n%s%s\n另外，%s",
+                $renewedTG ? sprintf("续期成功：%s\n", $renewedTG) : '',
+                $notRenewedTG ? sprintf("续期失败：%s\n", $notRenewedTG) : '',
+                $domainInfoTG
+            ));
             system_log(sprintf("%s：续期结果如下：\n%s", $this->username, $result));
         } else {
             if (config('noticeFreq') == 1) {
@@ -233,6 +240,7 @@ class FreeNom
                     'notice'
                 );
                 TelegramBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
+                Telegram3rdBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
             } else {
                 system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
             }
@@ -334,6 +342,14 @@ class FreeNom
         );
 
         TelegramBot::send(sprintf(
+            '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
+            $e->getFile(),
+            $e->getLine(),
+            $e->getMessage(),
+            $this->username
+        ), '', false);
+        
+        Telegram3rdBot::send(sprintf(
             '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
             $e->getFile(),
             $e->getLine(),

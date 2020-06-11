@@ -88,7 +88,7 @@ class Telegram3rdBot
      *
      * @return bool
      */
-    public static function send(string $content)
+    public static function send(string $content  , $isMarkdown = true)
     {
         if (config('telegram3rd.enable') === false) {
             system_log('由于没有启用第三方 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。');
@@ -102,13 +102,13 @@ class Telegram3rdBot
         }
 
         $telegram3rdBot = self::instance();
-
+        system_log($telegram3rdBot->botURL);
         $response = $telegram3rdBot->client->post(
-            sprintf( $telegram3rdBot->botURL),
+            sprintf($telegram3rdBot->botURL),
             [
                 'form_params' => [
                     'text' => $content,
-                    'parse_mode' => 'MarkdownV2'
+                    'parse_mode' => 'Markdown'  ? 'MarkdownV2' : 'HTML'
                 ],
             ]
         );
