@@ -102,7 +102,6 @@ class Telegram3rdBot
         }
 
         $telegram3rdBot = self::instance();
-        system_log($telegram3rdBot->botURL);
         $response = $telegram3rdBot->client->post(
             sprintf($telegram3rdBot->botURL),
             [
