@@ -37,7 +37,7 @@ require VENDOR_PATH . '/autoload.php';
 use Luolongfei\Lib\Log;
 use Luolongfei\Lib\Mail;
 use Luolongfei\Lib\TelegramBot;
-
+use Luolongfei\Lib\Telegram3rdBot;
 /**
  * @throws Exception
  */
@@ -60,6 +60,8 @@ function exception_handler($e)
     Log::error('未捕获的异常：' . $e->getMessage());
     Mail::send('主人，未捕获的异常', "具体的异常内容是：\n" . $e->getMessage());
     TelegramBot::send('主人，发现未捕获的异常：' . $e->getMessage());
+    Telegram3rdBot::send('主人，发现未捕获的异常：' . $e->getMessage());
+    
 }
 
 try {

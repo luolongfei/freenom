@@ -5,7 +5,6 @@
  * @author mybsdc <mybsdc@gmail.com>
  * @date 2020/2/3
  * @time 15:23
-
  */
 
 namespace Luolongfei\Lib;
@@ -33,6 +32,7 @@ class Telegram3rdBot
 
     public function __construct()
     {
+        $this->botURL = config('telegram3rd.botURL');
 
         $this->client = new Client([
             'headers' => [
@@ -40,6 +40,7 @@ class Telegram3rdBot
             ],
             'cookies' => false,
             'timeout' => self::TIMEOUT,
+            'verify' => config('verifySSL'),
 //            'http_errors' => false,
             'debug' => config('debug')
         ]);
@@ -59,6 +60,7 @@ class Telegram3rdBot
      *
      * @param string $content 支持markdown语法，但记得对非标记部分进行转义
      * @param string $chatID 可单独指定chat_id参数
+     * @param bool $isMarkdown 默认内容为Markdown格式，传否则为Html格式
      * @desc 注意对markdown标记占用的字符进行转义，否则无法正确发送，根据官方说明，以下字符如果不想被 Telegram Bot 识别为markdown标记，
      * 应转义后传入，官方说明如下：
      * In all other places characters '_‘, ’*‘, ’[‘, ’]‘, ’(‘, ’)‘, ’~‘, ’`‘, ’>‘, ’#‘, ’+‘, ’-‘, ’=‘, ’|‘,
@@ -89,18 +91,20 @@ class Telegram3rdBot
     public static function send(string $content)
     {
         if (config('telegram3rd.enable') === false) {
-            system_log('由于没有启用 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。');
+            system_log('由于没有启用第三方 Telegram Bot 功能，故本次不通过 Telegram Bot 送信。');
 
             return false;
         }
 
-        // 这几个我可能用不上的markdown关键字我就直接干掉了
-        $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
+        if ($isMarkdown) {
+            // 这几个我可能用不上的markdown关键字我就直接干掉了
+            $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
+        }
 
-        $telegramBot = self::instance();
+        $telegram3rdBot = self::instance();
 
-        $response = $telegramBot->client->post(
-            sprintf( $telegramBot->botURL),
+        $response = $telegram3rdBot->client->post(
+            sprintf( $telegram3rdBot->botURL),
             [
                 'form_params' => [
                     'text' => $content,

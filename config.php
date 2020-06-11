@@ -34,6 +34,10 @@ return [
         'token' => env('TELEGRAM_BOT_TOKEN'), // Telegram Bot 的 token
         'enable' => env('TELEGRAM_BOT_ENABLE') // 是否启用，默认不启用
     ],
+    'telegram3rd' => [
+        'botURL' => env('TELEGRAM_BOT_URL'), // 你的push url，通过发送“/start”给@notificationme_bot可以获取自己的url
+        'enable' => env('TELEGRAM_BOT_ENABLE') // 是否启用，默认不启用
+    ],
 
     'locale' => 'zh', // 指定语言包，位于resources/lang/目录下
     'noticeFreq' => env('NOTICE_FREQ'), // 通知频率 0：仅当有续期操作的时候 1：每次执行
