@@ -6,7 +6,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
 
 ### 前言
-众所周知，freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
+众所周知，freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，ddddddd
 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。        顶顶顶顶顶顶顶顶顶顶顶顶顶           顶顶顶顶顶顶顶顶ddddddddddddddd
 
 ### 效果
