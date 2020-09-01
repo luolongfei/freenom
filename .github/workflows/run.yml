@@ -12,7 +12,7 @@
 #
 ######  end 说明  ######
 
-name: Run it on action
+name: freenom
 
 on:
   push:
