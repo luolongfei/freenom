@@ -16,8 +16,7 @@ name: Run it on action
 
 on:
   push:
-    branches:
-      - old
+    branches: [ old ]
   schedule:
     - cron: 00 02 * * *
 jobs:
