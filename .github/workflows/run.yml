@@ -1,0 +1,55 @@
+######  说明  ######
+# 1、Fork 本仓库
+# 2、在你 Fork 的本仓库下的 Settings > Secrets 画面追加以下几个 secret 变量：
+# FREENOM_USERNAME、FREENOM_PASSWORD、MULTIPLE_ACCOUNTS、MAIL_USERNAME、MAIL_PASSWORD、TO、MAIL_ENABLE、TELEGRAM_CHAT_ID、
+# TELEGRAM_BOT_TOKEN、TELEGRAM_BOT_ENABLE、NOTICE_FREQ
+# （注：此处列出了所有可用变量，你只用追加你需要用到的变量，变量的具体含义请参考本项目的 .env 文件中的说明，一般情况下，.env 文件中的某些
+#  项存在默认值，如果默认值满足你的需求则可不追加到 Secrets，它们会保持默认）
+#
+# 下面定时任务中的时间是世界时间，每天 10:00 执行，由于创建虚拟环境会消耗时间，故任务会延迟 30 秒左右执行
+#
+# @Author of yml configuration file: RouRouX <https://github.com/RouRouX> & mybsdc <mybsdc@gmail.com>
+#
+######  end 说明  ######
+
+name: Run it on action
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: 00 02 * * *
+jobs:
+  run-it:
+    runs-on: ubuntu-18.04
+    name: Run it on action
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.2'
+      - name: Setting
+        run: |
+          echo 'Renew freenom domain name automatically.'
+          echo '@Author of yml configuration file: RouRouX <https://github.com/RouRouX> & mybsdc <mybsdc@gmail.com>'
+          echo '@Url: https://github.com/luolongfei/freenom'
+          cp .env.example .env
+          if [[ ('${{ secrets.FREENOM_USERNAME }}' == '' || '${{ secrets.FREENOM_PASSWORD }}' == '') && '${{ secrets.MULTIPLE_ACCOUNTS }}' == '' ]]; then echo '你在 Github 的当前项目的 Settings > Secrets 画面没有设置任何与账户信息相关的 secret 值，无法正常运行，请添加新的 secret 值，设置 FREENOM_USERNAME 与 FREENOM_PASSWORD，或者设置 MULTIPLE_ACCOUNTS，以及 .env 文件中其它必要项，各项的具体含义与格式参考本项目 .env 文件中的说明。'; fi
+          if [ '${{ secrets.FREENOM_USERNAME }}' != '' ]; then sed -i "s/^FREENOM_USERNAME=.*$/FREENOM_USERNAME='${{ secrets.FREENOM_USERNAME }}'/" .env; fi
+          if [ '${{ secrets.FREENOM_PASSWORD }}' != '' ]; then sed -i "s/^FREENOM_PASSWORD=.*$/FREENOM_PASSWORD='${{ secrets.FREENOM_PASSWORD }}'/" .env; fi
+          if [ '${{ secrets.MULTIPLE_ACCOUNTS }}' != '' ]; then sed -i "s/^MULTIPLE_ACCOUNTS=.*$/MULTIPLE_ACCOUNTS='${{ secrets.MULTIPLE_ACCOUNTS }}'/" .env; fi
+          if [ '${{ secrets.MAIL_USERNAME }}' != '' ]; then sed -i "s/^MAIL_USERNAME=.*$/MAIL_USERNAME='${{ secrets.MAIL_USERNAME }}'/" .env; fi
+          if [ '${{ secrets.MAIL_PASSWORD }}' != '' ]; then sed -i "s/^MAIL_PASSWORD=.*$/MAIL_PASSWORD='${{ secrets.MAIL_PASSWORD }}'/" .env; fi
+          if [ '${{ secrets.TO }}' != '' ]; then sed -i "s/^TO=.*$/TO='${{ secrets.TO }}'/" .env; fi
+          if [ '${{ secrets.MAIL_ENABLE }}' != '' ]; then sed -i "s/^MAIL_ENABLE=.*$/MAIL_ENABLE='${{ secrets.MAIL_ENABLE }}'/" .env; fi
+          if [ '${{ secrets.TELEGRAM_CHAT_ID }}' != '' ]; then sed -i "s/^TELEGRAM_CHAT_ID=.*$/TELEGRAM_CHAT_ID='${{ secrets.TELEGRAM_CHAT_ID }}'/" .env; fi
+          if [ '${{ secrets.TELEGRAM_BOT_TOKEN }}' != '' ]; then sed -i "s/^TELEGRAM_BOT_TOKEN=.*$/TELEGRAM_BOT_TOKEN='${{ secrets.TELEGRAM_BOT_TOKEN }}'/" .env; fi
+          if [ '${{ secrets.TELEGRAM_BOT_ENABLE }}' != '' ]; then sed -i "s/^TELEGRAM_BOT_ENABLE=.*$/TELEGRAM_BOT_ENABLE='${{ secrets.TELEGRAM_BOT_ENABLE }}'/" .env; fi
+          if [ '${{ secrets.NOTICE_FREQ }}' != '' ]; then sed -i "s/^NOTICE_FREQ=.*$/NOTICE_FREQ='${{ secrets.NOTICE_FREQ }}'/" .env; fi
+          sed -i "s/^ON_GITHUB_ACTIONS=.*$/ON_GITHUB_ACTIONS=true/" .env
+      - name: Run
+        run: |
+          php run
