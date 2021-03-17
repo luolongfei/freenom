@@ -6,7 +6,7 @@
 # （注：此处列出了所有可用变量，你只用追加你需要用到的变量，变量的具体含义请参考本项目的 .env 文件中的说明，一般情况下，.env 文件中的某些
 #  项存在默认值，如果默认值满足你的需求则可不追加到 Secrets，它们会保持默认）
 #
-# 下面定时任务,每星期周一00:00和12:00执行，由于创建虚拟环境会消耗时间，故任务会延迟 30 秒左右执行
+# 下面定时任务,因为14天内到期续费,所以设置为每13天 00:00和12:00执行，由于创建虚拟环境会消耗时间，故任务会延迟 30 秒左右执行
 #
 # @Author of yml configuration file: RouRouX <https://github.com/RouRouX> & mybsdc <mybsdc@gmail.com>
 #
@@ -19,7 +19,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 0 */12 * * 1
+    - cron: 0 */12 */13 * *
 jobs:
   build:
     runs-on: ubuntu-18.04
