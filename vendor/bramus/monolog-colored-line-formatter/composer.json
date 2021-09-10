@@ -1,0 +1,25 @@
+{
+    "name": "bramus/monolog-colored-line-formatter",
+    "description": "Colored Line Formatter for Monolog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bramus Van Damme",
+            "email": "bramus@bram.us",
+            "homepage": "https://www.bram.us/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "bramus/ansi-php": "~3.0"
+    },
+    "require-dev": {
+        "monolog/monolog": "~1.0",
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bramus\\Monolog\\": "src/"
+        }
+    }
+}

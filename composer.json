@@ -1,0 +1,37 @@
+{
+  "name": "luolongfei/freenom",
+  "description": "freenom域名自动续期。",
+  "type": "project",
+  "require": {
+    "php": ">=7.1.0",
+    "ext-curl": "*",
+    "ext-openssl": "*",
+    "guzzlehttp/guzzle": "^6.3",
+    "monolog/monolog": "^1.24",
+    "bramus/monolog-colored-line-formatter": "~2.0",
+    "phpmailer/phpmailer": "^6.0",
+    "vlucas/phpdotenv": "^3.3",
+    "predis/predis": "^1.1",
+    "ext-json": "*",
+    "ext-bcmath": "*",
+    "ext-pdo": "*",
+    "kevinlebrun/colors.php": "^1.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "luolongfei",
+      "email": "mybsdc@gmail.com",
+      "homepage": "https://github.com/luolongfei/freenom"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Luolongfei\\Lib\\": "libs",
+      "Luolongfei\\App\\": "app"
+    },
+    "files": [
+      "app/helpers.php"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "name": "bramus/ansi-php",
+    "description": "ANSI Control Functions and ANSI Control Sequences (Colors, Erasing, etc.) for PHP CLI Apps",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bramus Van Damme",
+            "email": "bramus@bram.us",
+            "homepage": "https://www.bram.us/"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bramus\\Ansi\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    }
+}
