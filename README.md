@@ -45,7 +45,7 @@ Documentation: [English version](https://github.com/luolongfei/next-freenom/blob
 
 [🥝  开源协议](#--开源协议)
 
-<h3>注意：由于我之前的仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与之前的 GitHub Action 有关，正在申诉重审。
+<h3>注意：由于我前仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与早前的 GitHub Action 事件有关，正在申诉重审。
 故将原项目迁移至此，接下来的开发与维护将在此仓库进行。Docker 仓库（ https://hub.docker.com/r/luolongfei/freenom ）不受影响。推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署。本项目依然长期维护。</h3>
 
 ### 📃  前言
@@ -502,20 +502,20 @@ cd /data/wwwroot/freenom/ && php run
 
 - 追加 Docker 版本，支持通过 Docker 方式部署，简化部署流程
 
-#### [v0.2.5](https://github.com/luolongfei/next-freenom/releases/tag/v0.2.5) - 2020-06-23
+#### v0.2.5 - 2020-06-23
 
 ##### Added
 
 - 支持在 Github Actions 上执行（应 GitHub 官方要求，已移除此功能）
 
-#### [v0.2.2](https://github.com/luolongfei/next-freenom/releases/tag/v0.2.2) - 2020-02-06
+#### v0.2.2 - 2020-02-06
 
 ##### Added
 
 - 新增通过 Telegram bot 送信
 - 各种送信方式支持单独开关
 
-#### [v0.2](https://github.com/luolongfei/next-freenom/releases/tag/v0.2) - 2020-02-01
+#### v0.2 - 2020-02-01
 
 ##### Added
 
@@ -529,7 +529,7 @@ cd /data/wwwroot/freenom/ && php run
 
 *（版本在 v0.1 到 v0.2 期间代码有过很多次变更，之前没有发布版本，故此处不再赘述相关变更日志）*
 
-#### [v0.1](https://github.com/luolongfei/next-freenom/releases/tag/v0.1) - 2018-8-13
+#### v0.1 - 2018-8-13
 
 ##### Added
 
