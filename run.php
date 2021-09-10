@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * 入口文件
@@ -62,13 +61,20 @@ function exception_handler($e)
     TelegramBot::send('主人，发现未捕获的异常：' . $e->getMessage());
 }
 
-try {
-    system_check();
+function main_handler($event, $context)
+{
+    try {
+        system_check();
 
-    $class = sprintf('Luolongfei\App\Console\%s', get_argv('c', 'FreeNom'));
-    $fn = get_argv('m', 'handle');
+        $class = sprintf('Luolongfei\App\Console\%s', get_argv('c', 'FreeNom'));
+        $fn = get_argv('m', 'handle');
 
-    $class::instance()->$fn();
-} catch (\Exception $e) {
-    system_log(sprintf('执行出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
+        $class::instance()->$fn();
+
+        return '云函数执行成功。';
+    } catch (\Exception $e) {
+        system_log(sprintf('执行出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
+    }
+
+    return '云函数执行失败。';
 }
