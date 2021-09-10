@@ -45,9 +45,8 @@ Documentation: [English version](https://github.com/luolongfei/next-freenom/blob
 
 [🥝  开源协议](#--开源协议)
 
-<h5>注意：GitHub 官方不允许使用 GitHub Action 做签到或者续期类应用，否则会封禁项目甚至封号，故为项目能长期维护下去，应 GitHub 官方要求，
-本项目已经移除 Action 方式的应用，望周知。已经 fork 使用的，可以尽快将项目转移到自己的 VPS 上，推荐通过 Docker 部署，
-或者直接搬运到腾讯云函数部署。本项目依然长期维护。</h5>
+<h3>注意：由于我之前的仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与之前的 GitHub Action 有关，正在申诉重审。
+故将原项目迁移至此，接下来的开发与维护将在此仓库进行。Docker 仓库（ https://hub.docker.com/r/luolongfei/freenom ）不受影响。推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署。本项目依然长期维护。</h3>
 
 ### 📃  前言
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
@@ -313,7 +312,7 @@ docker stats --no-stream
 
 #### 1、下载 SCF 版本的压缩包
 
-此版本为特别版，支持通过腾讯云函数部署，与主分支版本不兼容，版本号为`v0.3_scf`，下载地址：
+此版本为特别版，支持通过腾讯云函数部署，并且将与主分支同步维护更新，推荐没有自己 VPS 服务器的用户使用，最新版本号为`v0.3_scf`。下载地址：
 [https://github.com/luolongfei/next-freenom/archive/refs/tags/v0.3_scf.zip](https://github.com/luolongfei/next-freenom/archive/refs/tags/v0.3_scf.zip)
 
 下载后解压到你能找到的任意目录，你将得到一个文件夹，后期将通过文件夹的形式上传到腾讯云函数。
