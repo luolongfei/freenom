@@ -4,9 +4,9 @@
 [![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
 [![Php Version](https://img.shields.io/badge/php-%3E=7.2-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/next-freenom/blob/main/LICENSE)
 
-Documentation: English version | [中文版](https://github.com/luolongfei/freenom)
+Documentation: English version | [中文版](https://github.com/luolongfei/next-freenom)
 </div>
 
 [📃  Why write this script](#--Why-write-this-script)
@@ -89,7 +89,7 @@ $ mkdir -p /data/wwwroot/freenom
 $ cd /data/wwwroot/freenom
 
 # clone the repository source
-$ git clone https://github.com/luolongfei/freenom.git ./
+$ git clone https://github.com/luolongfei/next-freenom.git ./
 ```
 
 #### Configuration process
@@ -174,8 +174,8 @@ $ cd /data/wwwroot/freenom/ && php run
 ```
 If nothing else, you will receive an email about the domain name.
 
-If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/freenom/issues). If freenom changes the algorithm and causes this project to fail,
-Please mention [issues](https://github.com/luolongfei/freenom/issues) to inform me that I will fix it in time and maintain this project for a long time. Welcome star ~
+If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/next-freenom/issues). If freenom changes the algorithm and causes this project to fail,
+Please mention [issues](https://github.com/luolongfei/next-freenom/issues) to inform me that I will fix it in time and maintain this project for a long time. Welcome star ~
 
 ### ❤  Donate
 
