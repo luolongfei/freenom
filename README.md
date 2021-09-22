@@ -45,7 +45,7 @@ Documentation: [English version](https://github.com/luolongfei/next-freenom/blob
 
 [🥝  开源协议](#--开源协议)
 
-<h3>注意：由于我前仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与早前的 GitHub Action 事件有关，正在申诉重审。
+<h3>注意：由于我前仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与早前的 GitHub Action 事件有关。
 故将原项目迁移至此，接下来的开发与维护将在此仓库进行。Docker 仓库（ https://hub.docker.com/r/luolongfei/freenom ）不受影响。推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署。本项目依然长期维护。</h3>
 
 ### 📃  前言
@@ -468,7 +468,7 @@ cd /data/wwwroot/freenom/ && php run
 | :---: | :--- | :--- |
 | 搬瓦工 | [https://bwh81.net/aff.php?aff=24499&pid=104](https://bwh81.net/aff.php?aff=24499&pid=104) （日本软银 VPS 限量版，`65美元`一年，优惠码：`BWH3HYATVBJW`） <br> [https://bwh81.net/aff.php?aff=24499&pid=94](https://bwh81.net/aff.php?aff=24499&pid=94) （CN2 GIA LIMITED EDITION，`DC 6`机房，`46.8美元`一年） <br> [https://bwh81.net/aff.php?aff=24499&pid=71](https://bwh81.net/aff.php?aff=24499&pid=71) （CN2 GIA 丐版，`DC 9`机房，`37.79美元`一年） | 稳定大厂，它们家`限量版 GIA`很香。目前是我的主力机型。 |
 | Vultr | [https://www.vultr.com/?ref=7429134](https://www.vultr.com/?ref=7429134) （最低`2.5美元`每月） <br> [https://www.vultr.com/?ref=8399703-6G](https://www.vultr.com/?ref=8399703-6G) （新用户可得`100美元`体验金） | 随开随停，很方便。 |
-| PacificRack | [https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。此地址下每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
+| PacificRack | [https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。点击左边的地址所进入的画面，会每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
 
 ### 🍺  信仰
 
