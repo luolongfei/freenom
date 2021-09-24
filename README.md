@@ -462,12 +462,11 @@ cd /data/wwwroot/freenom/ && php run
 
 ### 🚁  我正在用的 VPS
 
-走我的 Aff 地址购买，我可以获得一点返利，并且你不需要多支付任何一分钱。这也算是一种支持方式，介意者复制官网地址访问即可。
+走我的 Aff 地址购买，我可以获得一点返利，并且你的购买价格不变，不会多支付任何一分钱。这也算是一种支持方式，介意者复制官网地址访问即可。
 
 | 名称 | 购买地址 | 备注 |
 | :---: | :--- | :--- |
-| 搬瓦工 | [https://bwh81.net/aff.php?aff=24499&pid=104](https://bwh81.net/aff.php?aff=24499&pid=104) （日本软银 VPS 限量版，`65美元`一年，优惠码：`BWH3HYATVBJW`） <br> [https://bwh81.net/aff.php?aff=24499&pid=94](https://bwh81.net/aff.php?aff=24499&pid=94) （CN2 GIA LIMITED EDITION，`DC 6`机房，`46.8美元`一年） <br> [https://bwh81.net/aff.php?aff=24499&pid=71](https://bwh81.net/aff.php?aff=24499&pid=71) （CN2 GIA 丐版，`DC 9`机房，`37.79美元`一年） | 稳定大厂，它们家`限量版 GIA`很香。目前是我的主力机型。 |
-| Vultr | [https://www.vultr.com/?ref=7429134](https://www.vultr.com/?ref=7429134) （最低`2.5美元`每月） <br> [https://www.vultr.com/?ref=8399703-6G](https://www.vultr.com/?ref=8399703-6G) （新用户可得`100美元`体验金） | 随开随停，很方便。 |
+| 搬瓦工 | [链接](https://bwh81.net/aff.php?aff=24499&pid=104) （日本软银 VPS 限量版，`65美元`一年，优惠码：`BWH3HYATVBJW`） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=94) （CN2 GIA LIMITED EDITION，`DC 6`机房，`46.8美元`一年） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=71) （CN2 GIA 丐版，`DC 9`机房，`37.79美元`一年） | 稳定大厂，它们家`限量版 GIA`很香。目前是我的主力机型。经常没货。 |
 | PacificRack | [https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。如果是特殊用途，一定要记得套`Cloudflare CDN`，优选`IP`后，速度上可以媲美`CN2 GIA`，具体的做法请以`VPS 优选IP 套CDN`为关键字自行谷歌。点击左边的地址所进入的画面，会每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
 
 ### 🍺  信仰
