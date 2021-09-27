@@ -7,7 +7,7 @@
  * @time 16:38
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 use Luolongfei\App\Exceptions\LlfException;
 use PHPMailer\PHPMailer\PHPMailer;

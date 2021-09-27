@@ -7,7 +7,7 @@
  * @time 16:30
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 class Lang
 {
