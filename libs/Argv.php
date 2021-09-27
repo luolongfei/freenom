@@ -7,7 +7,7 @@
  * @time 16:32
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 class Argv
 {

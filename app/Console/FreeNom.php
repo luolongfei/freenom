@@ -13,9 +13,9 @@ namespace Luolongfei\App\Console;
 use Luolongfei\App\Exceptions\LlfException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
-use Luolongfei\Lib\Log;
-use Luolongfei\Lib\Mail;
-use Luolongfei\Lib\TelegramBot;
+use Luolongfei\Libs\Log;
+use Luolongfei\Libs\Mail;
+use Luolongfei\Libs\TelegramBot;
 
 class FreeNom
 {

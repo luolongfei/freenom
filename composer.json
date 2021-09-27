@@ -21,13 +21,13 @@
   "authors": [
     {
       "name": "luolongfei",
-      "email": "mybsdc@gmail.com",
-      "homepage": "https://github.com/luolongfei/freenom"
+      "email": "luolongf@gmail.com",
+      "homepage": "https://github.com/luolongfei/next-freenom"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Luolongfei\\Lib\\": "libs",
+      "Luolongfei\\Libs\\": "libs",
       "Luolongfei\\App\\": "app"
     },
     "files": [

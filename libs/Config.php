@@ -7,7 +7,7 @@
  * @time 16:41
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 class Config
 {

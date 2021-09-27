@@ -8,12 +8,12 @@
  */
 
 use Luolongfei\App\Exceptions\LlfException;
-use Luolongfei\Lib\Argv;
-use Luolongfei\Lib\Config;
-use Luolongfei\Lib\Log;
-use Luolongfei\Lib\Env;
-use Luolongfei\Lib\Lang;
-use Luolongfei\Lib\PhpColor;
+use Luolongfei\Libs\Argv;
+use Luolongfei\Libs\Config;
+use Luolongfei\Libs\Log;
+use Luolongfei\Libs\Env;
+use Luolongfei\Libs\Lang;
+use Luolongfei\Libs\PhpColor;
 
 if (!function_exists('config')) {
     /**

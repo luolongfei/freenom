@@ -9,7 +9,7 @@
  * @time 10:52
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 use Colors\Color;
 

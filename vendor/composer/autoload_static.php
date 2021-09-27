@@ -34,7 +34,7 @@ class ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba
         ),
         'L' => 
         array (
-            'Luolongfei\\Lib\\' => 15,
+            'Luolongfei\\Libs\\' => 16,
             'Luolongfei\\App\\' => 15,
         ),
         'G' => 
@@ -83,7 +83,7 @@ class ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Luolongfei\\Lib\\' => 
+        'Luolongfei\\Libs\\' => 
         array (
             0 => __DIR__ . '/../..' . '/libs',
         ),
@@ -127,12 +127,17 @@ class ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit99b73a665e0d2066a2cb8dd066883cba::$classMap;
 
         }, null, ClassLoader::class);
     }

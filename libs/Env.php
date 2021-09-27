@@ -7,7 +7,7 @@
  * @time 17:28
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 use Dotenv\Dotenv;
 

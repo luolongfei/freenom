@@ -7,7 +7,7 @@
  * @time 15:23
  */
 
-namespace Luolongfei\Lib;
+namespace Luolongfei\Libs;
 
 use GuzzleHttp\Client;
 
