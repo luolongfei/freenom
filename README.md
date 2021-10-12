@@ -4,9 +4,9 @@
 [![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
 [![Php Version](https://img.shields.io/badge/php-%3E=7.2-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/next-freenom/blob/main/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
-Documentation: [English version](https://github.com/luolongfei/next-freenom/blob/main/README_EN.md) | 中文版
+Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
 [📃  前言](#--前言)
@@ -313,14 +313,14 @@ docker stats --no-stream
 #### 1、下载 SCF 版本的压缩包
 
 此版本为特别版，支持通过腾讯云函数部署，并且将与主分支同步维护更新，推荐没有自己 VPS 服务器的用户使用，最新版本号为`v0.3_scf`。下载地址：
-[https://github.com/luolongfei/next-freenom/archive/refs/tags/v0.3_scf.zip](https://github.com/luolongfei/next-freenom/archive/refs/tags/v0.3_scf.zip)
+[https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip](https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip)
 
 下载后解压到你能找到的任意目录，你将得到一个文件夹，后期将通过文件夹的形式上传到腾讯云函数。
 
 #### 2、创建腾讯云函数
 
 直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create](https://console.cloud.tencent.com/scf/list-create) ，
-按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/next-freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/next-freenom/blob/main/resources/screenshot/scf.png) 
+按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png) 
 或者 [https://z3.ax1x.com/2021/06/01/2nKCF0.png](https://z3.ax1x.com/2021/06/01/2nKCF0.png) 查看原图。 
 
 [![scf01](https://z3.ax1x.com/2021/06/01/2nKCF0.png)](https://imgtu.com/i/2nKCF0)
@@ -344,7 +344,7 @@ mkdir -p /data/wwwroot/freenom && cd /data/wwwroot/freenom
 ```
 clone 本仓库源码
 ```shell script
-git clone https://github.com/luolongfei/next-freenom.git ./
+git clone https://github.com/luolongfei/freenom.git ./
 ```
 
 #### 2、修改配置
@@ -441,12 +441,12 @@ cd /data/wwwroot/freenom/ && php run
 
 ***
 
-遇到任何问题或 Bug 欢迎提 [issue](https://github.com/luolongfei/next-freenom/issues) （请按模板格式提`issue`，以便我快速复现你的问题，否则问题会被忽略），
-如果`Freenom`改变算法导致此项目失效，请提 [issue](https://github.com/luolongfei/next-freenom/issues) 告知，我会及时修复，本项目长期维护。
+遇到任何问题或 Bug 欢迎提 [issue](https://github.com/luolongfei/freenom/issues) （请按模板格式提`issue`，以便我快速复现你的问题，否则问题会被忽略），
+如果`Freenom`改变算法导致此项目失效，请提 [issue](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。
 欢迎`star`~
 
 ### 📋  捐赠名单 Donate List
-非常感谢「 [这些用户](https://github.com/luolongfei/next-freenom/wiki/Donate-List) 」对本项目的捐赠支持！
+非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donate-List) 」对本项目的捐赠支持！
 
 ### ❤  捐赠 Donate
 如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的捐赠。
@@ -467,7 +467,7 @@ cd /data/wwwroot/freenom/ && php run
 | 名称 | 地址 | 备注 |
 | :---: | --- | --- |
 | 搬瓦工 | [链接](https://bwh81.net/aff.php?aff=24499&pid=104) （日本软银 VPS 限量版，`65美元`一年，优惠码：`BWH3HYATVBJW`） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=94) （CN2 GIA LIMITED EDITION，`DC 6`机房，`46.8美元`一年） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=71) （CN2 GIA 丐版，`DC 9`机房，`37.79美元`一年） | 稳定大厂，它们家`限量版 GIA`很香。目前是我的主力机型。经常没货。 |
-| PacificRack | [https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/next-freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。<br><br>如果是特殊用途，一定要记得套`Cloudflare CDN`，优选`IP`后，速度上可以媲美`CN2 GIA`，具体的做法请以`VPS 优选IP 套CDN`为关键字自行谷歌。<br><br>点击左边的地址所进入的画面，会每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
+| PacificRack | [https://github.com/luolongfei/freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。<br><br>如果是特殊用途，一定要记得套`Cloudflare CDN`，优选`IP`后，速度上可以媲美`CN2 GIA`，具体的做法请以`VPS 优选IP 套CDN`为关键字自行谷歌。<br><br>点击左边的地址所进入的画面，会每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
 
 ### 🍺  信仰
 
@@ -495,7 +495,7 @@ cd /data/wwwroot/freenom/ && php run
 - 整合各种送信方式，优化相关逻辑
 - 支持交互式安装，免去手动修改配置的繁琐操作
 
-#### [v0.3](https://github.com/luolongfei/next-freenom/releases/tag/v0.3) - 2021-05-27
+#### [v0.3](https://github.com/luolongfei/freenom/releases/tag/v0.3) - 2021-05-27
 
 ##### Added
 
