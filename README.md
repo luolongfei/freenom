@@ -9,6 +9,8 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
+[📢  注意](#--注意)
+
 [📃  前言](#--前言)
 
 [🍭  效果](#--效果)
@@ -17,8 +19,6 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📪  配置发信邮箱](#--配置发信邮箱)
 
-<hr>
-
 *（下面三种部署方式，选择其中一种即可）*
 
 [⛵  通过 Docker 方式部署](#--方式一通过-docker-部署最简单的方式)（最简单的方式，推荐）
@@ -26,8 +26,6 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 [🕹  通过腾讯云函数（SCF）部署](#--方式二通过腾讯云函数scf部署)
 
 [🚧  直接拉取源码部署](#--方式三直接拉取源码部署)
-
-<hr>
 
 [📋  捐赠名单 Donate List](#--捐赠名单-donate-list)
 
@@ -45,8 +43,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🥝  开源协议](#--开源协议)
 
-<h3>注意：由于我前仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与早前的 GitHub Action 事件有关。
-故将原项目迁移至此，接下来的开发与维护将在此仓库进行。Docker 仓库（ https://hub.docker.com/r/luolongfei/freenom ）不受影响。推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署。本项目依然长期维护。</h3>
+### 📢  注意
+- 之前因为 GitHub Action 事件导致本项目被封禁，而后我短暂将项目转移到了 https://github.com/luolongfei/next-freenom 仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
+- 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
+- 本次封禁导致的直接后果是以前的 issues 全部丢失，以及 star 数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
+- 推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署，腾讯云函数不需要有自己的服务器。
 
 ### 📃  前言
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
