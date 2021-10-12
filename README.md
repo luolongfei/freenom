@@ -9,15 +9,15 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-[📃  前言](#--前言)
+[📢  注意](#--注意)
+
+[📃  引言](#--引言)
 
 [🍭  效果](#--效果)
 
 [🎁  事前准备](#--事前准备)
 
 [📪  配置发信邮箱](#--配置发信邮箱)
-
-<hr>
 
 *（下面三种部署方式，选择其中一种即可）*
 
@@ -27,13 +27,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚧  直接拉取源码部署](#--方式三直接拉取源码部署)
 
-<hr>
-
 [📋  捐赠名单 Donate List](#--捐赠名单-donate-list)
 
 [❤  捐赠 Donate](#--捐赠-donate)
-
-[🚁  我正在用的 VPS](#--我正在用的-VPS)
 
 [🍺  信仰](#--信仰)
 
@@ -45,10 +41,13 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🥝  开源协议](#--开源协议)
 
-<h3>注意：由于我前仓库 https://github.com/luolongfei/freenom 不明原因被封，估计是与早前的 GitHub Action 事件有关。
-故将原项目迁移至此，接下来的开发与维护将在此仓库进行。Docker 仓库（ https://hub.docker.com/r/luolongfei/freenom ）不受影响。推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署。本项目依然长期维护。</h3>
+### 📢  注意
+- 之前因为 GitHub Action 事件导致本项目被封禁，而后我短暂将项目转移到了 https://github.com/luolongfei/next-freenom 仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
+- 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
+- 本次封禁导致的直接后果是以前的 issues 全部丢失，以及 star 数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
+- 推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署，腾讯云函数不需要有自己的服务器。
 
-### 📃  前言
+### 📃  引言
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
 
@@ -61,7 +60,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 ### 🎁  事前准备
 - 发信邮箱：为了方便理解又称机器人邮箱，用于发送通知邮件。目前支持`Gmail`、`QQ邮箱`以及`163邮箱`，程序会自动判断发信邮箱类型并使用合适的配置。
 - 收信邮箱：用于接收机器人发出的通知邮件。推荐使用`QQ邮箱`，`QQ邮箱`唯一的好处只是收到邮件会在`QQ`弹出消息。
-- VPS：随便一台服务器都行，系统推荐`Centos7`，另外PHP版本需在`php7.2`及以上。如果你没有 VPS，可以考虑一下 [🚁  我正在用的 VPS](#--我正在用的-VPS) ，最便宜的机器`9.9美元`一年。
+- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到腾讯云函数。
 - 没有了
 
 ### 📪  配置发信邮箱
@@ -460,14 +459,7 @@ cd /data/wwwroot/freenom/ && php run
 **你的 star 或者`小额打赏`是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。
 另外，将本项目推荐给更多的人，也是一种支持的方式，用的人越多更新的动力越足。**
 
-### 🚁  我正在用的 VPS
-
-下面都是我正在使用的厂商，口碑、价格以及稳定性方面都还不错。
-
-| 名称 | 地址 | 备注 |
-| :---: | --- | --- |
-| 搬瓦工 | [链接](https://bwh81.net/aff.php?aff=24499&pid=104) （日本软银 VPS 限量版，`65美元`一年，优惠码：`BWH3HYATVBJW`） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=94) （CN2 GIA LIMITED EDITION，`DC 6`机房，`46.8美元`一年） <br> [链接](https://bwh81.net/aff.php?aff=24499&pid=71) （CN2 GIA 丐版，`DC 9`机房，`37.79美元`一年） | 稳定大厂，它们家`限量版 GIA`很香。目前是我的主力机型。经常没货。 |
-| PacificRack | [https://github.com/luolongfei/freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/freenom/wiki/PacificRack-VPS) （`9.9美元`一年） | 最便宜的机型`9.9美元`一年，QuadraNet 机房，我用了两年了目前感觉很稳。<br><br>如果是特殊用途，一定要记得套`Cloudflare CDN`，优选`IP`后，速度上可以媲美`CN2 GIA`，具体的做法请以`VPS 优选IP 套CDN`为关键字自行谷歌。<br><br>点击左边的地址所进入的画面，会每 5 分钟自动更新一次 PacificRack 最新的促销消息。 |
+另外还可以通过走我的 Aff 链接的形式捐赠： [https://github.com/luolongfei/freenom/wiki/PacificRack-VPS](https://github.com/luolongfei/freenom/wiki/PacificRack-VPS) ，你不会因此多花一分钱，但厂商会给推荐者一点奖励。
 
 ### 🍺  信仰
 
