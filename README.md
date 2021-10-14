@@ -45,7 +45,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 - 之前因为 GitHub Action 事件导致本项目被封禁，而后我短暂将项目转移到了 https://github.com/luolongfei/next-freenom 仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
 - 本次封禁导致的直接后果是以前的 issues 全部丢失，以及 star 数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
-- 推荐通过 Docker 部署，或者参考下方文档直接搬运到腾讯云函数部署，腾讯云函数不需要有自己的服务器。
+- 推荐通过 Docker 部署，或者参考下方文档直接搬运到 [腾讯云函数](#--方式二通过腾讯云函数scf部署) 部署，腾讯云函数不需要有自己的服务器。
 
 ### 📃  引言
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的，
@@ -322,12 +322,12 @@ docker stats --no-stream
 按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png) 
 或者 [https://z3.ax1x.com/2021/10/14/5lMweU.png](https://z3.ax1x.com/2021/10/14/5lMweU.png) 查看原图。 
 
-![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)
+[![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
 
-按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志，
+按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面点击函数代码，然后往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志，
 根据输出日志判断配置以及部署是否正确。
 
-[![scf02](https://z3.ax1x.com/2021/06/01/2nGZ3q.png)](https://imgtu.com/i/2nGZ3q)
+[![scf02](https://z3.ax1x.com/2021/10/14/5l3oHf.png)](https://z3.ax1x.com/2021/10/14/5l3oHf.png)
 
 *有关腾讯云函数部署的内容结束。*
 
