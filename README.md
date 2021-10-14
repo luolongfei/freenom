@@ -311,18 +311,18 @@ docker stats --no-stream
 
 #### 1、下载 SCF 版本的压缩包
 
-此版本为特别版，支持通过腾讯云函数部署，并且将与主分支同步维护更新，推荐没有自己 VPS 服务器的用户使用，最新版本号为`v0.3_scf`。下载地址：
-[https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip](https://github.com/luolongfei/freenom/archive/refs/tags/v0.3_scf.zip)
+此版本为特别版，支持通过腾讯云函数部署，并且将与主分支同步维护更新，推荐没有自己 VPS 服务器的用户使用，最新版本号为`v0.3.1_scf`。下载地址：
+[https://github.com/luolongfei/freenom/releases/download/v0.3.1_scf/freenom-0.3.1_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.3.1_scf/freenom-0.3.1_scf.zip)
 
-下载后解压到你能找到的任意目录，你将得到一个文件夹，后期将通过文件夹的形式上传到腾讯云函数。
+下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
 
 #### 2、创建腾讯云函数
 
 直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create](https://console.cloud.tencent.com/scf/list-create) ，
 按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png) 
-或者 [https://z3.ax1x.com/2021/06/01/2nKCF0.png](https://z3.ax1x.com/2021/06/01/2nKCF0.png) 查看原图。 
+或者 [https://z3.ax1x.com/2021/10/14/5lMweU.png](https://z3.ax1x.com/2021/10/14/5lMweU.png) 查看原图。 
 
-[![scf01](https://z3.ax1x.com/2021/06/01/2nKCF0.png)](https://imgtu.com/i/2nKCF0)
+![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)
 
 按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志，
 根据输出日志判断配置以及部署是否正确。
