@@ -37,7 +37,7 @@ class TelegramBot
 
     public function __construct()
     {
-        $this->chatID = config('telegram.chatID');
+        $this->chatID = config('telegram.chat_id');
         $this->token = config('telegram.token');
 
         $this->client = new Client([
@@ -46,7 +46,7 @@ class TelegramBot
             ],
             'cookies' => false,
             'timeout' => self::TIMEOUT,
-            'verify' => config('verifySSL'),
+            'verify' => config('verify_ssl'),
 //            'http_errors' => false,
             'debug' => config('debug')
         ]);
