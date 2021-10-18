@@ -77,7 +77,7 @@ class FreeNom
             'timeout' => self::TIMEOUT,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_AUTOREFERER => true,
-            'verify' => config('verifySSL'),
+            'verify' => config('verify_ssl'),
             'debug' => config('debug')
         ]);
 
@@ -224,7 +224,7 @@ class FreeNom
             ));
             system_log(sprintf("%s：续期结果如下：\n%s", $this->username, $result));
         } else {
-            if (config('noticeFreq') == 1) {
+            if (config('notice_freq') == 1) {
                 Mail::send(
                     '报告，今天没有域名需要续期',
                     [

@@ -54,7 +54,13 @@ class Mail
                 $secure = 'starttls';
                 $port = 587;
             } else {
-                throw new \Exception('不受支持的邮箱。目前仅支持谷歌邮箱、QQ邮箱以及163邮箱，推荐使用谷歌邮箱。');
+                $host = config('mail.host');
+                $secure = config('mail.encryption');
+                $port = (int)config('mail.port');
+                if (!($host && $secure && $port)) {
+                    throw new MailException('目前支持Gmail、QQ邮箱、163邮箱以及Outlook邮箱自动识别配置，其它类型的邮箱或者自建邮箱，'
+                        . '请追加配置 .env 文件中“自定义邮箱配置”的所有相关项，否则无法使用邮件服务。');
+                }
             }
 
             self::$mail->SMTPDebug = config('debug') ? 2 : 0; // Debug 0：关闭 1：客户端信息 2：客户端和服务端信息
@@ -97,8 +103,8 @@ class Mail
             throw new LlfException(env('ON_GITHUB_ACTIONS') ? 34520011 : 34520012);
         }
 
-        self::mail()->addAddress($to, config('mail.toName', '主人')); // 添加收件人，参数2选填
-        self::mail()->addReplyTo(config('mail.replyTo', 'mybsdc@qq.com'), config('mail.replyToName', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址
+        self::mail()->addAddress($to, config('mail.recipient_name', '主人')); // 添加收件人，参数2选填
+        self::mail()->addReplyTo(config('mail.reply_to', 'mybsdc@qq.com'), config('mail.reply_to_name', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址
 
         /**
          * 抄送和密送都是添加收件人，抄送方式下，被抄送者知道除被密送者外的所有的收件人，密送方式下，

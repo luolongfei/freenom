@@ -142,7 +142,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`.env`文件中，
 将`TELEGRAM_BOT_ENABLE`的值改为`true`，即可启用 Telegram bot，同样的，将`MAIL_ENABLE`的值改为`false`即可关闭邮件推送方式。
-Telegram bot 有两个配置项，一个是`chatID`（对应`.env`文件中的`TELEGRAM_CHAT_ID`），
+Telegram bot 有两个配置项，一个是`chat_id`（对应`.env`文件中的`TELEGRAM_CHAT_ID`），
 通过使用你的 Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id，
 另一个是`token`（对应`.env`文件中的`TELEGRAM_BOT_TOKEN`），你的 Telegram bot 令牌，你会创建 Telegram bot 就知道怎么获取，
 不多赘述。如何创建一个 Telegram bot 请参考：[官方文档](https://core.telegram.org/bots#6-botfather)

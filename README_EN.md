@@ -73,7 +73,7 @@ After logging in to Google Mail, go to [this page](https://accounts.google.com/b
 If you don't want to use email push, you can also use Telegram bot. In the `.env` file,
 Change the value of `TELEGRAM_BOT_ENABLE` to `true` to enable the Telegram bot.
 Similarly, change the value of `MAIL_ENABLE` to `false` to disable the mail push method.
-Telegram bot has two configuration items, one is `chatID` (corresponding to `TELEGRAM_CHAT_ID` in `.env` file),
+Telegram bot has two configuration items, one is `chat_id` (corresponding to `TELEGRAM_CHAT_ID` in `.env` file),
 You can get your own id by sending `/start` to `@userinfobot` using your Telegram account,
 The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.env` file), 
 your Telegram bot token, how to create a Telegram bot and how to get the token please refer to: 
