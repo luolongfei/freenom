@@ -26,7 +26,7 @@ if (!function_exists('config')) {
      */
     function config($key = '', $default = null)
     {
-        return Config::instance()->get($key, $default);
+        return Config::getInstance()->get($key, $default);
     }
 }
 
@@ -40,7 +40,7 @@ if (!function_exists('lang')) {
      */
     function lang($key = '')
     {
-        return Lang::instance()->get($key);
+        return Lang::getInstance()->get($key);
     }
 }
 
@@ -89,7 +89,7 @@ if (!function_exists('system_log')) {
             }
 
             // 尝试为消息着色
-            $c = PhpColor::instance()->getColorInstance();
+            $c = PhpColor::getInstance()->getColorInstance();
             echo $c($msg)->colorize();
 
             // 干掉着色标签
@@ -201,7 +201,7 @@ if (!function_exists('env')) {
      */
     function env($key = '', $default = null)
     {
-        return Env::instance()->get($key, $default);
+        return Env::getInstance()->get($key, $default);
     }
 }
 
@@ -216,7 +216,7 @@ if (!function_exists('get_argv')) {
      */
     function get_argv(string $name, string $default = '')
     {
-        return Argv::instance()->get($name, $default);
+        return Argv::getInstance()->get($name, $default);
     }
 }
 
@@ -224,21 +224,26 @@ if (!function_exists('system_check')) {
     /**
      * 检查环境是否满足要求
      *
+     * @param bool $isSCF 是否腾讯云函数
+     *
      * @throws LlfException
      */
-    function system_check()
+    function system_check($isSCF = false)
     {
-        if (!function_exists('putenv')) {
-            throw new LlfException(34520005);
-        }
-
         if (version_compare(PHP_VERSION, '7.0.0') < 0) {
             throw new LlfException(34520006);
         }
 
-        $envFile = ROOT_PATH . '/.env';
-        if (!file_exists($envFile)) {
-            throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
+        // 如果是在腾讯云函数部署，则不需要检查这几项
+        if (!$isSCF) {
+            if (!function_exists('putenv')) {
+                throw new LlfException(34520005);
+            }
+
+            $envFile = ROOT_PATH . '/.env';
+            if (!file_exists($envFile)) {
+                throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
+            }
         }
 
         if (!extension_loaded('curl')) {

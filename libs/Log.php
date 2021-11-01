@@ -13,7 +13,7 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Bramus\Monolog\Formatter\ColoredLineFormatter;
 
-class Log
+class Log extends Base
 {
     /**
      * @var Logger

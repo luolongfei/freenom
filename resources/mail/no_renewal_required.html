@@ -340,7 +340,12 @@
             <div class="mmsgLetterContent" style="text-align:left;padding: 0 30px;font-size:14px;line-height:1.5;/*background:url('images/ting.jpg') no-repeat top right;background-size: 224px 224px;*/">
                 <div>
                     <p>
-                        %s
+                        <br>我刚刚帮小主看了一下，账户 <a href="#" rel="noopener">%s</a> 今天并没有需要续期的域名。所有域名情况如下：
+                        <br>
+                        <br><span class="domainDays">%s</span>
+                        <br><br>更多信息可以参考 <a href="https://my.freenom.com/domains.php?a=renewals" target="_blank" rel="noopener">Freenom官网</a> 哦~
+                        <br>
+                        <br>（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）
                     </p>
                 </div>
                 <div class="mmsgLetterInscribe" style="padding:40px 0 0;">

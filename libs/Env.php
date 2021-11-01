@@ -11,35 +11,21 @@ namespace Luolongfei\Libs;
 
 use Dotenv\Dotenv;
 
-class Env
+class Env extends Base
 {
-    /**
-     * @var Env
-     */
-    protected static $instance;
-
     /**
      * @var array 环境变量值
      */
     protected $allValues;
 
-    public function __construct($fileName)
+    public function init($fileName = '.env')
     {
-        $this->allValues = Dotenv::create(ROOT_PATH, $fileName)->load();
-    }
-
-    public static function instance($fileName = '.env')
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self($fileName);
-        }
-
-        return self::$instance;
+        $this->allValues = file_exists($fileName) ? Dotenv::create(ROOT_PATH, $fileName)->load() : [];
     }
 
     public function get($key = '', $default = null)
     {
-        if (!strlen($key)) { // 不传key则返回所有环境变量
+        if (!strlen($key)) { // 不传 key 则返回所有环境变量
             return $this->allValues;
         }
 

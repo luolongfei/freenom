@@ -35,8 +35,7 @@ set_exception_handler('exception_handler');
 require VENDOR_PATH . '/autoload.php';
 
 use Luolongfei\Libs\Log;
-use Luolongfei\Libs\Mail;
-use Luolongfei\Libs\TelegramBot;
+use Luolongfei\Libs\Message;
 
 /**
  * @throws Exception
@@ -45,8 +44,7 @@ function customize_error_handler()
 {
     if (!is_null($error = error_get_last())) {
         Log::error('程序意外终止', $error);
-//        Mail::send('主人，程序意外终止', '具体情况我也不清楚，请查看服务器日志定位问题。');
-//        TelegramBot::send('主人，程序意外终止，具体情况我也不清楚，请查看服务器日志定位问题。');
+        Message::send('具体情况我也不清楚，请查看服务器日志定位问题。', '主人，程序意外终止');
     }
 }
 
@@ -58,8 +56,7 @@ function customize_error_handler()
 function exception_handler($e)
 {
     Log::error('未捕获的异常：' . $e->getMessage());
-    Mail::send('主人，未捕获的异常', "具体的异常内容是：\n" . $e->getMessage());
-    TelegramBot::send('主人，发现未捕获的异常：' . $e->getMessage());
+    Message::send("具体的异常内容是：\n" . $e->getMessage(), '主人，未捕获的异常');
 }
 
 try {
@@ -68,7 +65,8 @@ try {
     $class = sprintf('Luolongfei\App\Console\%s', get_argv('c', 'FreeNom'));
     $fn = get_argv('m', 'handle');
 
-    $class::instance()->$fn();
+    $class::getInstance()->$fn();
 } catch (\Exception $e) {
     system_log(sprintf('执行出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
+    Message::send("执行出错：\n" . $e->getMessage(), '主人，捕获异常');
 }
