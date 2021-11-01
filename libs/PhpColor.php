@@ -13,19 +13,14 @@ namespace Luolongfei\Libs;
 
 use Colors\Color;
 
-class PhpColor
+class PhpColor extends Base
 {
-    /**
-     * @var PhpColor
-     */
-    protected static $instance;
-
     /**
      * @var Color
      */
     protected $colorInstance;
 
-    public function __construct()
+    public function init()
     {
         $this->colorInstance = new Color();
 
@@ -33,18 +28,6 @@ class PhpColor
         $this->colorInstance->setUserStyles([
 //                '自定义标签' => 'red',
         ]);
-    }
-
-    /**
-     * @return PhpColor
-     */
-    public static function instance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     /**
