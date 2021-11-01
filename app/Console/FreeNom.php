@@ -88,7 +88,7 @@ class FreeNom
     /**
      * @return FreeNom
      */
-    public static function instance()
+    public static function getInstance()
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self();

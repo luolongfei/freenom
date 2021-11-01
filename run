@@ -65,7 +65,7 @@ try {
     $class = sprintf('Luolongfei\App\Console\%s', get_argv('c', 'FreeNom'));
     $fn = get_argv('m', 'handle');
 
-    $class::instance()->$fn();
+    $class::getInstance()->$fn();
 } catch (\Exception $e) {
     system_log(sprintf('执行出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
     Message::send("执行出错：\n" . $e->getMessage(), '主人，捕获异常');
