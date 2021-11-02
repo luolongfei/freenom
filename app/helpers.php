@@ -224,18 +224,16 @@ if (!function_exists('system_check')) {
     /**
      * 检查环境是否满足要求
      *
-     * @param bool $isSCF 是否腾讯云函数
-     *
      * @throws LlfException
      */
-    function system_check($isSCF = false)
+    function system_check()
     {
         if (version_compare(PHP_VERSION, '7.0.0') < 0) {
             throw new LlfException(34520006);
         }
 
         // 如果是在腾讯云函数部署，则不需要检查这几项
-        if ($isSCF) {
+        if (IS_SCF) {
             system_log('检测到运行环境为腾讯云函数，所有环境变量将直接从环境中读取，如果 .env 文件存在的话，则优先使用 .env 文件中的环境变量');
         } else {
             if (!function_exists('putenv')) {
