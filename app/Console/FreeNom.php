@@ -261,8 +261,6 @@ class FreeNom
                 'domainStatusArr' => $domainStatusArr,
             ];
             Message::send('', '报告，今天没有域名需要续期', 3, $data);
-
-            system_log('域名状态信息已送信成功，请注意查收');
         } else {
             system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
         }
