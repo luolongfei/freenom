@@ -92,6 +92,10 @@ class TelegramBot extends MessageGateway
      */
     public function genDomainStatusMarkDownText(array $domainStatus)
     {
+        if (empty($domainStatus)) {
+            return "无数据。\n";
+        }
+
         $domainStatusMarkDownText = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
@@ -103,6 +107,16 @@ class TelegramBot extends MessageGateway
         return $domainStatusMarkDownText;
     }
 
+    /**
+     * 生成域名续期结果 MarkDown 文本
+     *
+     * @param string $username
+     * @param array $renewalSuccessArr
+     * @param array $renewalFailuresArr
+     * @param array $domainStatus
+     *
+     * @return string
+     */
     public function genDomainRenewalResultsMarkDownText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
         $text = sprintf("账户 [%s](#) 这次续期的结果如下\n\n", $username);
@@ -215,13 +229,7 @@ class TelegramBot extends MessageGateway
      */
     public function send(string $content, string $subject = '', int $type = 1, array $data = [], ?string $recipient = null, ...$params)
     {
-        if ($content === '' && empty($data)) {
-            throw new \Exception(lang('error_msg.100002'));
-        }
-
-        if ($content !== '' && $data) {
-            throw new \Exception(lang('error_msg.100004'));
-        }
+        $this->check($content, $data);
 
         if ($type === 1) {
             // Do nothing

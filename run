@@ -18,6 +18,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', realpath(__DIR__));
 define('VENDOR_PATH', realpath(ROOT_PATH . '/vendor'));
 define('APP_PATH', realpath(ROOT_PATH . '/app'));
+define('DATA_PATH', realpath(ROOT_PATH . '/app/Data'));
 define('RESOURCES_PATH', realpath(ROOT_PATH . '/resources'));
 
 date_default_timezone_set('Asia/Shanghai');
