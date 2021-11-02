@@ -23,4 +23,23 @@ abstract class MessageGateway implements MessageServiceInterface
 
         return call_user_func_array('sprintf', $data);
     }
+
+    /**
+     * 参数数据检查
+     *
+     * @param string $content
+     * @param array $data
+     *
+     * @throws \Exception
+     */
+    public function check(string $content, array $data)
+    {
+        if ($content === '' && empty($data)) {
+            throw new \Exception(lang('error_msg.100002'));
+        }
+
+        if ($content !== '' && $data) {
+            throw new \Exception(lang('error_msg.100004'));
+        }
+    }
 }

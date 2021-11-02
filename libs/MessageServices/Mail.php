@@ -127,6 +127,10 @@ class Mail extends MessageGateway
      */
     public function genDomainStatusHtml(array $domainStatus)
     {
+        if (empty($domainStatus)) {
+            return "无数据。";
+        }
+
         $domainStatusHtml = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
@@ -160,13 +164,7 @@ class Mail extends MessageGateway
             throw new LlfException(34520012);
         }
 
-        if ($content === '' && empty($data)) {
-            throw new \Exception(lang('error_msg.100002'));
-        }
-
-        if ($content !== '' && $data) {
-            throw new \Exception(lang('error_msg.100004'));
-        }
+        $this->check($content, $data);
 
         $this->phpMailerInstance->addAddress($recipient, config('message.mail.recipient_name', '主人')); // 添加收件人，参数2选填
         $this->phpMailerInstance->addReplyTo(config('message.mail.reply_to', 'mybsdc@qq.com'), config('message.mail.reply_to_name', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址

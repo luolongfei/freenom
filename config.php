@@ -47,6 +47,19 @@ return [
 
             'proxy' => env('TELEGRAM_PROXY'),
         ],
+
+        /**
+         * 企业微信
+         */
+        'wechat' => [
+            'corp_id' => env('WECHAT_CORP_ID'), // 企业 ID
+            'corp_secret' => env('WECHAT_CORP_SECRET'), // 企业微信应用的凭证密钥
+            'agent_id' => (int)env('WECHAT_AGENT_ID'), // 企业微信应用 ID
+            'enable' => (int)env('WECHAT_ENABLE'), // 是否启用，默认不启用
+
+            'class' => \Luolongfei\Libs\MessageServices\WeChat::class,
+            'name' => '企业微信',
+        ],
     ],
 
     'locale' => 'zh', // 指定语言包，位于resources/lang/目录下
