@@ -13,12 +13,13 @@ error_reporting(E_ERROR);
 ini_set('display_errors', 1);
 set_time_limit(0);
 
+define('IS_SCF', false); // 是否腾讯云函数环境
 define('IS_CLI', PHP_SAPI === 'cli');
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', realpath(__DIR__));
 define('VENDOR_PATH', realpath(ROOT_PATH . '/vendor'));
 define('APP_PATH', realpath(ROOT_PATH . '/app'));
-define('DATA_PATH', realpath(ROOT_PATH . '/app/Data'));
+define('DATA_PATH', IS_SCF ? '/tmp' : realpath(ROOT_PATH . '/app/Data')); // 腾讯云函数只有 /tmp 目录的读写权限
 define('RESOURCES_PATH', realpath(ROOT_PATH . '/resources'));
 
 date_default_timezone_set('Asia/Shanghai');

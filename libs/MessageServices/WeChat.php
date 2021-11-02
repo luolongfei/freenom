@@ -60,6 +60,9 @@ class WeChat extends MessageGateway
     /**
      * 获取 access_token 缓存
      *
+     * 由于腾讯云函数环境中只有 /tmp 目录的读写权限，且每次运行结束后写入的内容不会被保留，故腾讯云函数无法真正做到通过文件缓存 access_token
+     * 参考：https://cloud.tencent.com/document/product/583/9180
+     *
      * @return string|null
      */
     protected function getAccessTokenCache()
