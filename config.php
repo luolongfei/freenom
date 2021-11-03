@@ -60,6 +60,17 @@ return [
             'class' => \Luolongfei\Libs\MessageServices\WeChat::class,
             'name' => '企业微信',
         ],
+
+        /**
+         * Server 酱
+         */
+        'sct' => [
+            'sct_send_key' => env('SCT_SEND_KEY'), // SendKey
+            'enable' => (int)env('SCT_ENABLE'), // 是否启用，默认不启用
+
+            'class' => \Luolongfei\Libs\MessageServices\ServerChan::class,
+            'name' => 'Server 酱',
+        ],
     ],
 
     'locale' => 'zh', // 指定语言包，位于resources/lang/目录下
