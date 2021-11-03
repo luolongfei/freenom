@@ -26,7 +26,9 @@ abstract class Message extends Base
     {
         foreach (config('message') as $conf) {
             if ($conf['enable'] !== 1) {
-                system_log(sprintf('由于没有启用「%s」功能，故本次不通过「%s」送信。', $conf['name'], $conf['name']));
+                if ($conf['not_enabled_tips']) { // 仅在存在配置的送信项未启用的情况下提醒
+                    system_log(sprintf('由于没有启用「%s」功能，故本次不通过「%s」送信，尽管检测到相关配置。', $conf['name'], $conf['name']));
+                }
 
                 continue;
             }

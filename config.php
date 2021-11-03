@@ -23,6 +23,8 @@ return [
             'password' => env('MAIL_PASSWORD'), // 机器人邮箱密码或授权码
             'enable' => (int)env('MAIL_ENABLE'), // 是否启用，默认启用
 
+            'not_enabled_tips' => env('MAIL_USERNAME') && env('MAIL_PASSWORD'), // 提醒未启用
+
             // 'reply_to' => 'mybsdc@qq.com', // 接收回复的邮箱
             // 'reply_to_name' => '作者', // 接收回复的人名
 
@@ -42,6 +44,8 @@ return [
             'token' => env('TELEGRAM_BOT_TOKEN'), // Telegram Bot 的 token
             'enable' => (int)env('TELEGRAM_BOT_ENABLE'), // 是否启用，默认不启用
 
+            'not_enabled_tips' => env('TELEGRAM_CHAT_ID') && env('TELEGRAM_BOT_TOKEN'), // 提醒未启用
+
             'class' => \Luolongfei\Libs\MessageServices\TelegramBot::class,
             'name' => 'Telegram Bot',
 
@@ -57,6 +61,8 @@ return [
             'agent_id' => (int)env('WECHAT_AGENT_ID'), // 企业微信应用 ID
             'enable' => (int)env('WECHAT_ENABLE'), // 是否启用，默认不启用
 
+            'not_enabled_tips' => env('WECHAT_CORP_ID') && env('WECHAT_CORP_SECRET') && env('WECHAT_AGENT_ID'), // 提醒未启用
+
             'class' => \Luolongfei\Libs\MessageServices\WeChat::class,
             'name' => '企业微信',
         ],
@@ -68,8 +74,29 @@ return [
             'sct_send_key' => env('SCT_SEND_KEY'), // SendKey
             'enable' => (int)env('SCT_ENABLE'), // 是否启用，默认不启用
 
+            'not_enabled_tips' => (bool)env('SCT_SEND_KEY'), // 提醒未启用
+
             'class' => \Luolongfei\Libs\MessageServices\ServerChan::class,
             'name' => 'Server 酱',
+        ],
+
+        /**
+         * Bark 送信
+         */
+        'bark' => [
+            'bark_key' => env('BARK_KEY'), // 打开 Bark App，注册设备后看到的 Key
+            'bark_url' => (string)env('BARK_URL'), // Bark 域名
+            'bark_is_archive' => env('BARK_IS_ARCHIVE') === '' ? null : (int)env('BARK_IS_ARCHIVE'),
+            'bark_group' => env('BARK_GROUP') === '' ? null : env('BARK_GROUP'),
+            'bark_level' => env('BARK_LEVEL'),
+            'bark_icon' => env('BARK_ICON') === '' ? null : env('BARK_ICON'),
+            'bark_jump_url' => env('BARK_JUMP_URL') === '' ? null : env('BARK_JUMP_URL'),
+            'enable' => (int)env('BARK_ENABLE'), // 是否启用，默认不启用
+
+            'not_enabled_tips' => env('BARK_KEY') && env('BARK_URL'), // 提醒未启用
+
+            'class' => \Luolongfei\Libs\MessageServices\Bark::class,
+            'name' => 'Bark',
         ],
     ],
 
