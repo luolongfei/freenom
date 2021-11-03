@@ -175,6 +175,8 @@ class ServerChan extends MessageGateway
             throw new \Exception(lang('error_msg.100003'));
         }
 
+        $subject = $subject === '' ? mb_substr($content, 0, 12) . '...' : $subject;
+
         try {
             $resp = $this->client->post(
                 sprintf('https://sctapi.ftqq.com/%s.send', $this->sendKey),
