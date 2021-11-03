@@ -235,6 +235,7 @@ if (!function_exists('system_check')) {
         // 如果是在腾讯云函数部署，则不需要检查这几项
         if (IS_SCF) {
             system_log('检测到运行环境为腾讯云函数，所有环境变量将直接从环境中读取，如果 .env 文件存在的话，则优先使用 .env 文件中的环境变量');
+            system_log('在腾讯云函数，可以参考此处修改或新增环境变量，无需重建：https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf_env_modify.png');
         } else {
             if (!function_exists('putenv')) {
                 throw new LlfException(34520005);
