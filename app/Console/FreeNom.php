@@ -15,10 +15,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Luolongfei\Libs\Log;
 use Luolongfei\Libs\Message;
-use Luolongfei\Libs\MessageServices\Mail;
-use Luolongfei\Libs\MessageServices\TelegramBot;
 
-class FreeNom
+class FreeNom extends Base
 {
     const VERSION = 'v0.4';
 
@@ -43,11 +41,6 @@ class FreeNom
     const LOGIN_STATUS_REGEX = '/<li.*?Logout.*?<\/li>/i';
 
     /**
-     * @var FreeNom
-     */
-    protected static $instance;
-
-    /**
      * @var Client
      */
     protected $client;
@@ -67,7 +60,24 @@ class FreeNom
      */
     protected $password;
 
-    public function __construct()
+    /**
+     * @var FreeNom
+     */
+    private static $instance;
+
+    /**
+     * @return FreeNom
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof self) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $this->client = new Client([
             'headers' => [
@@ -85,16 +95,8 @@ class FreeNom
         system_log(sprintf('当前程序版本 %s', self::VERSION));
     }
 
-    /**
-     * @return FreeNom
-     */
-    public static function getInstance()
+    private function __clone()
     {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     /**

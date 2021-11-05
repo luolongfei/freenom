@@ -16,11 +16,13 @@ class Env extends Base
     /**
      * @var array 环境变量值
      */
-    protected $allValues;
+    protected $allValues = [];
 
-    public function init($fileName = '.env')
+    public function init($fileName = '.env', $overload = false)
     {
-        $this->allValues = file_exists($fileName) ? Dotenv::create(ROOT_PATH, $fileName)->load() : [];
+        if (file_exists(ROOT_PATH . DS . $fileName)) {
+            $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
+        }
     }
 
     public function get($key = '', $default = null)
