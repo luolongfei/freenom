@@ -14,6 +14,7 @@ use Luolongfei\Libs\Log;
 use Luolongfei\Libs\Env;
 use Luolongfei\Libs\Lang;
 use Luolongfei\Libs\PhpColor;
+use Luolongfei\App\Console\MigrationEnvFile;
 
 if (!function_exists('config')) {
     /**
@@ -245,6 +246,9 @@ if (!function_exists('system_check')) {
             if (!file_exists($envFile)) {
                 throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
             }
+
+            // 检查当前 .env 文件版本是否过低，过低自动升级
+            MigrationEnvFile::getInstance()->handle();
         }
 
         if (!extension_loaded('curl')) {
