@@ -406,6 +406,9 @@ class FreeNom extends Base
     public function handle()
     {
         $accounts = $this->getAccounts();
+
+        system_log(sprintf('共发现 <green>%d</green> 个账户，正在处理...', count($accounts)));
+
         foreach ($accounts as $account) {
             try {
                 $this->username = $account['username'];
