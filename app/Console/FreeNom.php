@@ -18,7 +18,7 @@ use Luolongfei\Libs\Message;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.4';
+    const VERSION = 'v0.4.1';
 
     const TIMEOUT = 33;
 
@@ -243,12 +243,13 @@ class FreeNom extends Base
                 'renewalFailuresArr' => $renewalFailuresArr,
                 'domainStatusArr' => $domainStatusArr,
             ];
-            Message::send('', '主人，我刚刚帮你续期域名啦~', 2, $data);
+            $result = Message::send('', '主人，我刚刚帮你续期域名啦~', 2, $data);
 
             system_log(sprintf(
-                '恭喜，成功续期 <green>%d</green> 个域名，失败 <green>%d</green> 个域名，详细的续期结果已送信成功，请注意查收',
+                '恭喜，成功续期 <green>%d</green> 个域名，失败 <green>%d</green> 个域名。%s',
                 count($renewalSuccessArr),
-                count($renewalFailuresArr)
+                count($renewalFailuresArr),
+                $result ? '详细的续期结果已送信成功，请注意查收。' : ''
             ));
 
             Log::info(sprintf("账户：%s\n续期结果如下：\n", $this->username), $data);

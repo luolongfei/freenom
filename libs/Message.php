@@ -20,10 +20,13 @@ abstract class Message extends Base
      * @param $method
      * @param $params
      *
+     * @return bool
      * @throws \Exception
      */
     public static function __callStatic($method, $params)
     {
+        $result = false;
+
         foreach (config('message') as $conf) {
             if ($conf['enable'] !== 1) {
                 if ($conf['not_enabled_tips']) { // 仅在存在配置的送信项未启用的情况下提醒
@@ -39,7 +42,11 @@ abstract class Message extends Base
                 throw new \Exception(sprintf('消息服务类 %s 必须继承并实现 MessageServiceInterface 接口', $conf['class']));
             }
 
-            $serviceInstance->$method(...$params);
+            if ($serviceInstance->$method(...$params) && !$result) { // 任一方式送信成功即为成功
+                $result = true;
+            }
         }
+
+        return $result;
     }
 }
