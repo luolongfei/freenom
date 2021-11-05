@@ -11,7 +11,7 @@ namespace Luolongfei\App\Console;
 
 use Luolongfei\Libs\Env;
 
-class MigrationEnvFile extends Base
+class MigrateEnvFile extends Base
 {
     /**
      * @var array 当前已有的环境变量数据
@@ -24,12 +24,12 @@ class MigrationEnvFile extends Base
     public $migrateNum = 0;
 
     /**
-     * @var FreeNom
+     * @var MigrateEnvFile
      */
     private static $instance;
 
     /**
-     * @return FreeNom
+     * @return MigrateEnvFile
      */
     public static function getInstance()
     {
@@ -87,7 +87,7 @@ class MigrationEnvFile extends Base
      * @return bool
      * @throws \Exception
      */
-    public function isNeedMigration()
+    public function needToMigrate()
     {
         $envVer = $this->getEnvFileVer();
 
@@ -251,7 +251,7 @@ class MigrationEnvFile extends Base
     public function handle()
     {
         try {
-            if (!$this->isNeedMigration()) {
+            if (!$this->needToMigrate()) {
                 return true;
             }
 
