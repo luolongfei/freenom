@@ -226,7 +226,8 @@ class Upgrade extends Base
                 $result = Message::send(
                     $this->genMsgContent(),
                     sprintf('主人，FreeNom 续期工具有新的版本（v%s）可用，新版相关情况已给到你', $this->latestVer),
-                    4
+                    4,
+                    $this->releaseInfo
                 );
 
                 if ($result) {

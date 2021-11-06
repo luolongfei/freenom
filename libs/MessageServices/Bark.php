@@ -57,6 +57,8 @@ class Bark extends MessageGateway
     protected $jumpUrl;
 
     /**
+     * IOS14.5 之后长按或下拉推送即可触发自动复制，IOS14.5 之前无需任何操作即可自动复制
+     *
      * @var integer 携带参数 automaticallyCopy=1， 收到推送时，推送内容会自动复制到粘贴板（如发现不能自动复制，可尝试重启一下手机）
      */
     protected $automaticallyCopy = 1;
@@ -65,6 +67,11 @@ class Bark extends MessageGateway
      * @var string 携带 copy 参数， 则上面两种复制操作，将只复制 copy 参数的值
      */
     protected $copy = 'https://my.freenom.com/domains.php?a=renewals';
+
+    /**
+     * @var string 通知铃声
+     */
+    protected $sound;
 
     /**
      * @var Client
@@ -81,6 +88,7 @@ class Bark extends MessageGateway
         $this->level = config('message.bark.bark_level');
         $this->icon = config('message.bark.bark_icon');
         $this->jumpUrl = config('message.bark.bark_jump_url');
+        $this->sound = config('message.bark.bark_sound');
 
         $this->client = new Client([
             'cookies' => false,
@@ -230,7 +238,7 @@ class Bark extends MessageGateway
         $query = [
             'level' => $this->level,
             'automaticallyCopy' => $this->automaticallyCopy, // 携带参数 automaticallyCopy=1， 收到推送时，推送内容会自动复制到粘贴板（如发现不能自动复制，可尝试重启一下手机）
-            'copy' => $this->copy, // 携带 copy 参数，则上面的复制操作，将只复制 copy 参数的值
+            'copy' => isset($data['html_url']) ? $data['html_url'] : $this->copy, // 携带 copy 参数，则上面的复制操作，将只复制 copy 参数的值
         ];
 
         if ($this->isArchive !== null) {
@@ -244,6 +252,12 @@ class Bark extends MessageGateway
         }
         if ($this->jumpUrl !== null) {
             $query['url'] = $this->jumpUrl;
+        }
+        if ($this->sound !== null) {
+            $query['sound'] = $this->sound;
+        }
+        if (isset($data['badge'])) { // 设置角标
+            $query['badge'] = $data['badge'];
         }
 
         $formParams = [
