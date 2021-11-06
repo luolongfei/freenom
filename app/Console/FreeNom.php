@@ -18,7 +18,7 @@ use Luolongfei\Libs\Message;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.4.2';
+    const VERSION = 'v0.4.3';
 
     const TIMEOUT = 33;
 
@@ -409,7 +409,7 @@ class FreeNom extends Base
     {
         $accounts = $this->getAccounts();
 
-        system_log(sprintf('共发现 <green>%d</green> 个账户，处理中', count($accounts)));
+        system_log(sprintf('共发现 <green>%d</green> 个 freenom 账户，处理中', count($accounts)));
 
         foreach ($accounts as $account) {
             try {

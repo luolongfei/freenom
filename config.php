@@ -91,6 +91,7 @@ return [
             'bark_level' => env('BARK_LEVEL'),
             'bark_icon' => env('BARK_ICON') === '' ? null : env('BARK_ICON'),
             'bark_jump_url' => env('BARK_JUMP_URL') === '' ? null : env('BARK_JUMP_URL'),
+            'bark_sound' => env('BARK_SOUND') === '' ? null : env('BARK_SOUND'),
             'enable' => (int)env('BARK_ENABLE'), // 是否启用，默认不启用
 
             'not_enabled_tips' => env('BARK_KEY') && env('BARK_URL'), // 提醒未启用
