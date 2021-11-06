@@ -220,7 +220,7 @@ class TelegramBot extends MessageGateway
      * 需要注意的是，普通 markdown 语法中加粗字体使用的是“**正文**”的形式，但是 Telegram Bot 中是“*加粗我*”的形式
      * 更多相关信息请参考官网：https://core.telegram.org/bots/api#sendmessage
      * 另外我干掉了“_”、“~”、“-”、“.”和“>”关键字，分别对应斜体、删除线、无序列表、有序列表和引用符号，因为这几个比较容易在正常文本里出现，而
-     * 我又不想每次都手动转义传入，故做了自动转义处理
+     * 我又不想每次都手动转义传入，故做了自动转义处理，况且 telegram 大多不支持
      *
      * 由于 telegram bot 的 markdown 语法不支持表格（https://core.telegram.org/bots/api#markdownv2-style），故表格部分由我自行解析
      * 为字符形式的表格，坐等 telegram bot 支持表格
@@ -231,7 +231,7 @@ class TelegramBot extends MessageGateway
     {
         $this->check($content, $data);
 
-        if ($type === 1) {
+        if ($type === 1 || $type === 4) {
             // Do nothing
         } else if ($type === 2) {
             $content = $this->genDomainRenewalResultsMarkDownText($data['username'], $data['renewalSuccessArr'], $data['renewalFailuresArr'], $data['domainStatusArr']);
@@ -254,7 +254,7 @@ class TelegramBot extends MessageGateway
 
         if ($isMarkdown) {
             // 这几个比较容易在正常文本里出现，而我不想每次都手动转义传入，所以直接干掉了
-            $content = preg_replace('/([.>~_-])/i', '\\\\$1', $content);
+            $content = preg_replace('/([.>~_-])/u', '\\\\$1', $content);
 
             // 转义非链接格式的 [] 以及 ()
             $content = preg_replace_callback_array(

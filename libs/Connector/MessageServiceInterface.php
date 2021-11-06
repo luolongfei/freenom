@@ -18,7 +18,7 @@ interface MessageServiceInterface
      *
      * @param string $content
      * @param string $subject
-     * @param integer $type 消息类型 1：普通消息 2：域名续期结果 3：无需续期，域名状态信件
+     * @param integer $type 消息类型 1：普通消息 2：域名续期结果 3：无需续期，域名状态信件 4：升级通知
      * @param array $data
      * @param string|null $recipient
      * @param ...$params

@@ -213,6 +213,9 @@ class Mail extends MessageGateway
                 $this->genDomainStatusHtml($data['domainStatusArr'])
             ];
             $message = $this->genMessageContent($realData, $template);
+        } else if ($type === 4) {
+            $template = file_get_contents(RESOURCES_PATH . '/mail/notice.html');
+            $message = sprintf($template, $this->newLine2Br($content));
         } else {
             throw new \Exception(lang('error_msg.100003'));
         }

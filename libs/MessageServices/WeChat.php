@@ -263,7 +263,7 @@ class WeChat extends MessageGateway
     {
         $this->check($content, $data);
 
-        if ($type === 1) {
+        if ($type === 1 || $type === 4) {
             // Do nothing
         } else if ($type === 2) {
             $content = $this->genDomainRenewalResultsText($data['username'], $data['renewalSuccessArr'], $data['renewalFailuresArr'], $data['domainStatusArr']);

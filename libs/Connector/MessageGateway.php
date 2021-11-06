@@ -42,4 +42,16 @@ abstract class MessageGateway implements MessageServiceInterface
             throw new \Exception(lang('error_msg.100004'));
         }
     }
+
+    /**
+     * 换行转 <br>
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    public function newLine2Br(string $content)
+    {
+        return preg_replace("/\n/u", '<br>', $content);
+    }
 }
