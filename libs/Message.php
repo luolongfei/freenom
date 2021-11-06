@@ -17,6 +17,11 @@ use Luolongfei\Libs\Connector\MessageServiceInterface;
 abstract class Message extends Base
 {
     /**
+     * @var bool 防止同一个执行周期里每次送信都提示未启用
+     */
+    protected static $notEnabledTips = true;
+
+    /**
      * @param $method
      * @param $params
      *
@@ -29,7 +34,7 @@ abstract class Message extends Base
 
         foreach (config('message') as $conf) {
             if ($conf['enable'] !== 1) {
-                if ($conf['not_enabled_tips']) { // 仅在存在配置的送信项未启用的情况下提醒
+                if ($conf['not_enabled_tips'] && self::$notEnabledTips) { // 仅在存在配置的送信项未启用的情况下提醒
                     system_log(sprintf('由于没有启用「%s」功能，故本次不通过「%s」送信，尽管检测到相关配置。', $conf['name'], $conf['name']));
                 }
 
@@ -46,6 +51,8 @@ abstract class Message extends Base
                 $result = true;
             }
         }
+
+        self::$notEnabledTips = false;
 
         return $result;
     }

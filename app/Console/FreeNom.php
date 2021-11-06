@@ -18,7 +18,7 @@ use Luolongfei\Libs\Message;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.4.1';
+    const VERSION = 'v0.4.2';
 
     const TIMEOUT = 33;
 
@@ -89,7 +89,8 @@ class FreeNom extends Base
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_AUTOREFERER => true,
             'verify' => config('verify_ssl'),
-            'debug' => config('debug')
+            'debug' => config('debug'),
+            'proxy' => config('freenom_proxy'),
         ]);
 
         system_log(sprintf('当前程序版本 %s', self::VERSION));
@@ -268,7 +269,7 @@ class FreeNom extends Base
             system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
         }
 
-        system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名</green>', $this->username));
+        system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名。</green>', $this->username));
 
         return true;
     }
@@ -408,7 +409,7 @@ class FreeNom extends Base
     {
         $accounts = $this->getAccounts();
 
-        system_log(sprintf('共发现 <green>%d</green> 个账户，正在处理...', count($accounts)));
+        system_log(sprintf('共发现 <green>%d</green> 个账户，处理中', count($accounts)));
 
         foreach ($accounts as $account) {
             try {

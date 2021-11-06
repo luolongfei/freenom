@@ -15,6 +15,7 @@ use Luolongfei\Libs\Env;
 use Luolongfei\Libs\Lang;
 use Luolongfei\Libs\PhpColor;
 use Luolongfei\App\Console\MigrateEnvFile;
+use Luolongfei\App\Console\Upgrade;
 
 if (!function_exists('config')) {
     /**
@@ -249,6 +250,13 @@ if (!function_exists('system_check')) {
 
             // 检查当前 .env 文件版本是否过低，过低自动升级
             MigrateEnvFile::getInstance()->handle();
+        }
+
+        // 是否有新版可用
+        if (config('new_version_detection')) {
+            Upgrade::getInstance()->handle();
+        } else {
+            system_log('由于你没有开启升级提醒功能，故无法在有新版本可用时第一时间收到通知。将 .env 文件中 NEW_VERSION_DETECTION 的值改为 1 即可重新开启相关功能。');
         }
 
         if (!extension_loaded('curl')) {
