@@ -47,7 +47,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐通过 Docker 部署，或者参考下方文档直接搬运到 [腾讯云函数](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) 部署，腾讯云函数不需要有自己的服务器。
+- 推荐 [通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，或者参考下方文档直接搬运到 [腾讯云函数部署](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) ，腾讯云函数不需要有自己的服务器。
 
 ### 📃 引言
 
@@ -330,25 +330,28 @@ docker stats --no-stream
 
 <hr>
 
-#### 1、下载 SCF 版本的压缩包
+#### 1、下载腾讯云函数版的压缩包
 
-此版本为特别版，支持通过腾讯云函数部署，并且将与主分支同步维护更新，推荐没有自己 VPS 服务器的用户使用，最新版本号为`v0.3.1_scf`。下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.3.1_scf/freenom-0.3.1_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.3.1_scf/freenom-0.3.1_scf.zip)
+腾讯云函数版将与主版同步维护更新，推荐没有自己服务器的用户使用，最新版本号为`v0.4.3`。下载地址：
+[https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip)
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
 
 #### 2、创建腾讯云函数
 
-直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create](https://console.cloud.tencent.com/scf/list-create)
-，
-按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png)
-或者 [https://z3.ax1x.com/2021/10/14/5lMweU.png](https://z3.ax1x.com/2021/10/14/5lMweU.png) 查看原图。
+直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty](https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty)
+，按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png)
+或者 [https://z3.ax1x.com/2021/10/14/5lMweU.png](https://z3.ax1x.com/2021/10/14/5lMweU.png) 查看原图，也可以直接点击图片查看原图。
 
 [![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
 
 按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面点击函数代码，然后往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志， 根据输出日志判断配置以及部署是否正确。
 
 [![scf02](https://z3.ax1x.com/2021/10/14/5l3oHf.png)](https://z3.ax1x.com/2021/10/14/5l3oHf.png)
+
+如果你在创建腾讯云函数的时候，某些环境变量忘记填了，或者在创建腾讯云函数后想要修改或者新增某些环境变量，可以参考这里操作，无需重建：
+
+[![scf03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://imgtu.com/i/I13Ku8)
 
 *有关腾讯云函数部署的内容结束。*
 
@@ -524,13 +527,28 @@ cd /data/wwwroot/freenom/ && php run
 
 ##### Added
 
-- 支持通过 Server酱 以及 企业微信 推送通知
+- 支持交互式安装，免去手动修改配置的繁琐操作
+- 支持自动升级
 
 ##### Changed
 
 - 多个账户的续期结果通知合并为同一条消息
-- 整合各种送信方式，优化相关逻辑
-- 支持交互式安装，免去手动修改配置的繁琐操作
+
+#### [v0.4.3](https://github.com/luolongfei/freenom/releases/tag/v0.4.3) - 2021-11-07
+
+##### Added
+
+- 增加了 企业微信 / Server 酱 / Bark 等送信方式
+- Telegram Bot 支持使用代理，应对国内网络环境问题
+- Freenom 账户支持使用代理，应对国内网络环境问题
+- 支持检测新版，有新版本可用时能第一时间收到通知
+- 支持自动热更新 .env 文件内容，免去每次更新后手动复制配置的繁琐步骤
+
+##### Changed
+
+- 重构了核心续期代码
+- 重构了送信模块
+- 简化 .env 文件中的配置项
 
 #### [v0.3](https://github.com/luolongfei/freenom/releases/tag/v0.3) - 2021-05-27
 
