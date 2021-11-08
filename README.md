@@ -9,7 +9,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-[📢 注意](#-注意)
+[📢 我说](#-我说)
 
 [📃 引言](#-引言)
 
@@ -17,7 +17,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🎁 事前准备](#-事前准备)
 
-[📪 配置发信邮箱](#-配置发信邮箱)
+[📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
 
 *（下面三种部署方式，选择其中一种即可）*
 
@@ -41,7 +41,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🥝 开源协议](#-开源协议)
 
-### 📢 注意
+### 📢 我说
 
 - 之前因为 GitHub Action 事件导致本项目被封禁，而后我短暂将项目转移到了 https://github.com/luolongfei/next-freenom
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
@@ -61,17 +61,38 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🎁 事前准备
 
-- 发信邮箱：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断发信邮箱类型并使用合适的配置。
+- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到 [腾讯云函数](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) 。
+- 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
-- 收信邮箱：用于接收机器人发出的通知邮件。推荐使用`QQ邮箱`，`QQ邮箱`唯一的好处只是收到邮件会在`QQ`弹出消息。
-- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到 [腾讯云函数](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) 。
-- 没有了
+- 收信邮箱（可选）：用于接收机器人发出的通知邮件。
+- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`等送信方式，仅当你使用`邮件送信`的时候，`送信邮箱`和`收信邮箱`
+  才是必须的，其它送信方式所需请参考下面的 [配置送信功能](#-配置送信功能) 。
+- 耐心。
 
-### 📪 配置发信邮箱
+### 📪 配置送信功能
 
-下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
-`谷歌邮箱`使用账户加密码的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
+此处会分别介绍`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`送信方式的配置方法，以及其所需的资料，你可以任选一种送信方式进行配置，直接跳到对应的文档查看即可。 如果你是 IOS
+用户，推荐使用 `Bark`
+送信方式，一切尽在掌握的感觉很好。其它平台的用户根据自己喜好选择可接受的送信方式即可。这里非常不推荐使用`Server 酱`送信，`Server 酱`每日送信条数的限制，以及需要开会员才能直接看到送信内容，否则需要跳到 `Server 酱`
+网站才能查看内容，都是不推荐的原因。同样的配置完全可以直接使用`企业微信`送信方式，`企业微信`送信直接在普通微信客户端就能看到信件内容。
+
+*快速到文档指定位置：*
+
+[邮件送信](#邮件送信)
+
+[Telegram Bot](#Telegram-Bot)
+
+[企业微信](#企业微信)
+
+[Server 酱](#Server-酱)（不推荐）
+
+[Bark 送信](#Bark-送信)
+
+#### 邮件送信
+
+下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用`账户加授权码`的方式登录，
+`谷歌邮箱`使用`账户加密码`或者`账户加授权码`的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
 
 *（点击即可展开或收起）*
 
@@ -145,16 +166,104 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 </details>
 
-#### Telegram bot
+上面介绍了三种邮箱的设置方法，如果你不想使用邮件送信，而**由于程序默认启用邮件送信方式，故不配置邮件送信的话，一定要记得关闭邮件推送方式。**
+将根目录下的`.env`文件中的`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。
 
-上面介绍了三种邮箱的设置方法，如果你不想使用邮件推送，也可以使用 Telegram bot，灵活配置。在`.env`文件中， 将`TELEGRAM_BOT_ENABLE`的值改为`1`，即可启用 Telegram
-bot，同样的，将`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。 Telegram bot 有两个配置项，一个是`chat_id`（对应`.env`文件中的`TELEGRAM_CHAT_ID`）， 通过使用你的
-Telegram 账户发送`/start`给`@userinfobot`即可以获取自己的id， 另一个是`token`（对应`.env`文件中的`TELEGRAM_BOT_TOKEN`），你的 Telegram bot 令牌，你会创建
-Telegram bot 就知道怎么获取， 不多赘述。如何创建一个 Telegram bot 请参考：[官方文档](https://core.telegram.org/bots#6-botfather)
+*邮件 送信部分完。*
+
+#### Telegram Bot
+
+1、将`.env`文件中的`TELEGRAM_BOT_ENABLE`的值改为`1`，即可启用 Telegram Bot 送信功能
+
+2、在 Telegram 客户端中搜索`@userinfobot`，并打开聊天窗口
+
+3、发送`/start`给`@userinfobot`即可以获取自己的 Id，将`.env`文件中的`TELEGRAM_CHAT_ID`的值改为前面获取到的 Id
+
+4、在 Telegram 客户端中搜索`@BotFather`，并打开聊天窗口
+
+5、发送`/newbot`给`@BotFather`，然后根据提示创建，创建完成后根据图示操作获取`token`
+
+[![I1gpFA.png](https://z3.ax1x.com/2021/11/07/I1gpFA.png)](https://imgtu.com/i/I1gpFA)
+
+6、将`.env`文件中的`TELEGRAM_BOT_TOKEN`的值改为上一步获取的`token`值
+
+7、在 Telegram 客户端中搜索你创建的机器人的账户，上面示例中机器人账户为`@fat_tiger_bot`，请替换为你自己的。找到机器人账户并打开聊天对话框，点击聊天输入框中的 `/start`
+按钮或者直接给机器人发送 `/start`，以启用机器人
+
+8、（可选）为 Telegram Bot 设置代理。针对国内网络环境，可将`.env`文件中的`TELEGRAM_PROXY`的值改为代理值，具体参考`.env`文件中的注释
+
+更多与 Telegram Bot 相关内容请参考：[官方文档](https://core.telegram.org/bots#6-botfather)
+
+*Telegram bot 送信部分完。*
+
+#### 企业微信
+
+1、在电脑上打开 [https://work.weixin.qq.com](https://work.weixin.qq.com) ，注册一个企业。注册的过程需要填的信息，腾讯已经做了详尽的说明，根据提示操作即可
+
+2、注册成功后，会跳到注册成功画面，点击页面最下方的`进入管理后台`按钮，将打开管理后台画面
+
+3、在管理后台，点击`应用管理`，然后往下翻，在`自建`部分找到并点击`创建应用`
+
+[![wechat_01.png](https://z3.ax1x.com/2021/11/08/I8160O.png)](https://imgtu.com/i/I8160O)
+
+4、创建应用，应用名称随意，注意下面的`可见范围`选公司名，以使得公司下的所有人可见
+
+[![wechat_02.png](https://z3.ax1x.com/2021/11/08/I8N4IK.png)](https://imgtu.com/i/I8N4IK)
+
+5、应用创建完成后，会跳到应用详情页面，在详情页面，你可以拿到`AgentId`和`Secret`的值， 在`.env`文件中，将`WECHAT_AGENT_ID`的值改为这里拿到的 `AgentId`
+的值，将`WECHAT_CORP_SECRET`的值改为这里拿到的`Secret`的值
+
+[![wechat_03.png](https://z3.ax1x.com/2021/11/08/I8auAP.png)](https://imgtu.com/i/I8auAP)
+
+注意，此处要查看`Secret`的值的话，需要先安装`企业微信 app`，点击`发送`后会在`企业微信 app`客户端收到`Secret`的值，将值记录下来后，便可以卸载`企业微信 app`，然后记得将 `.env`
+文件中的`WECHAT_CORP_SECRET`的值改为这里拿到的`Secret`的值
+
+[![wechat_04.png](https://z3.ax1x.com/2021/11/08/I8009f.png)](https://imgtu.com/i/I8009f)
+
+[![wechat_05.png](https://z3.ax1x.com/2021/11/08/I8rqEj.png)](https://imgtu.com/i/I8rqEj)
+
+6、获取`企业 ID`，并将`.env`文件中`WECHAT_CORP_ID`的值改为`企业 ID`的值
+
+[![wechat_06.png](https://z3.ax1x.com/2021/11/08/I8sLLD.png)](https://imgtu.com/i/I8sLLD)
+
+7、推送消息到微信客户端。在管理后台点击`我的企业`，再点击`微信插件`，接着往下翻，找到`邀请关注`部分的二维码，用微信扫码关注即可
+
+[![wechat_07.png](https://z3.ax1x.com/2021/11/08/I86TKK.png)](https://imgtu.com/i/I86TKK)
+
+关注后，就可以在微信收到推送消息了
+
+8、将`.env`文件中的`WECHAT_ENABLE`的值改为`1`，以启用微信推送功能
+
+*企业微信 送信部分完。*
+
+#### Server 酱
+
+参考 [Server 酱 教程之企业微信应用消息配置说明](https://sct.ftqq.com/forward) ，这里的配置过程跟上面的`企业微信`配置过程一模一样，所以同样的配置，还是建议直接使用上面的`企业微信`
+，不需要开会员也能直接查看消息，不用跳到`Server 酱`的网页查看消息，也不会有每天 5 条送信次数的限制，何乐而不为。
+
+上一步配置完成，你会得到一个`SendKey`，在`.env`文件中，将`SCT_SEND_KEY`的值改为这个`SendKey`所对应的值，然后再将`SCT_ENABLE`的值改为`1`，即可启用`Server 酱`送信。
+
+*Server 酱 送信部分完。*
+
+#### Bark 送信
+
+Bark 是一款 IOS 端用于推送自定义通知的 app，是个人开发者在维护，项目地址为 [https://github.com/Finb/Bark](https://github.com/Finb/Bark) ，客户端和服务端均开源。
+
+1、前往 App Store 搜索`Bark`并安装
+
+[![bark_01.png](https://z3.ax1x.com/2021/11/08/I845nI.png)](https://imgtu.com/i/I845nI)
+
+2、打开`Bark` app，点击`注册设备`，记得允许通知，然后就可以看到，右边红框中两个`/`之间的字符便是你的`BARK_KEY`，请将`.env`文件中的`BARK_KEY`的值设为此处获取的值
+
+[![bark_02.png](https://z3.ax1x.com/2021/11/08/I8Iqyj.png)](https://imgtu.com/i/I8Iqyj)
+
+3、将`.env`文件中的`BARK_ENABLE`的值设为`1`，以启用`Bark`送信功能
+
+*Bark 送信部分完。*
 
 ***
 
-*与通知相关的设置到此就完成了，下面开始讲本项目的三种使用方式，一种是通过 Docker，另一种是通过腾讯云函数，再一种是直接拉取源码部署，推荐使用 Docker 方式，无需纠结环境。*
+*与 配置送信功能 相关的篇幅完。下面开始讲本项目的三种使用方式，一种是通过 Docker，另一种是通过腾讯云函数，再一种是直接拉取源码部署，推荐使用 Docker 方式，无需纠结环境。*
 
 ### ⛵ 方式一：通过 Docker 部署（推荐，最简单的部署方式）
 
@@ -249,7 +358,7 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 | -d 参数 | 容器以后台运行并输出容器 ID |
 | --name 参数 | 给容器分配一个识别符，方便将来的启动，停止，删除等操作 |
 | --restart 参数 | 配置容器启动类型，always 即为 docker 服务重新启动时自动启动本容器 |
-| -v 参数 | 挂载卷（volume），冒号后面是容器的路径，冒号前面是宿主机的路径（只支持绝对路径），`$(pwd)`表示当前目录 |
+| -v 参数 | 挂载卷（volume），冒号后面是容器的路径，冒号前面是宿主机的路径（只支持绝对路径），`$(pwd)`表示当前目录，如果是 Windows 系统，则可用`${PWD}`替换此处的`$(pwd)` |
 | -e 参数 | 指定容器中的环境变量 |
 | luolongfei/freenom | 这是从 docker hub 下载回来的镜像完整路径名 |
 
@@ -267,9 +376,9 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 | FREENOM_USERNAME | Freenom 账户 | - | 是 | 只支持邮箱账户，如果你是使用第三方社交账户登录的用户，请在 Freenom 管理页面绑定邮箱，绑定后即可使用邮箱账户登录 |
 | FREENOM_PASSWORD | Freenom 密码 | - | 是 | 某些特殊字符可能需要转义，详见`.env`文件内注释 |
 | MULTIPLE_ACCOUNTS | 多账户支持 | - | 否 | 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`”，注意不要省略“<>”符号，否则无法正确匹配。如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
-| MAIL_USERNAME | 机器人邮箱账户 | - | 是 | 支持`Gmail`、`QQ邮箱`以及`163邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`而非`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行。具体的配置方法参考「 [配置发信邮箱](#-配置发信邮箱) 」 |
+| MAIL_USERNAME | 机器人邮箱账户 | - | 是 | 支持`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`而非`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行。具体的配置方法参考「 [配置送信功能](#-配置送信功能) 」 |
 | MAIL_PASSWORD | 机器人邮箱密码 | - | 是 | `Gmail`填密码，`QQ邮箱`或`163邮箱`填授权码 |
-| TO | 接收通知的邮箱 | - | 是 | 你自己最常用的邮箱，推荐使用`QQ邮箱`，用来接收机器人邮箱发出的域名相关邮件 |
+| TO | 接收通知的邮箱 | - | 是 | 你自己最常用的邮箱，用来接收机器人邮箱发出的域名相关邮件 |
 | MAIL_ENABLE | 是否启用邮件推送功能 | `1` | 否 | `1`：启用<br>`0`：不启用<br>默认启用，如果设为`0`，不启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为非必须，可不设置 |
 | TELEGRAM_CHAT_ID | 你的`chat_id` | - | 否 | 通过发送`/start`给`@userinfobot`可以获取自己的`id` |
 | TELEGRAM_BOT_TOKEN | 你的`Telegram bot`的`token` | - | 否 ||
@@ -285,6 +394,13 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 
 修改并保存`.env`文件后，执行`docker restart freenom`重启容器，等待 5 秒钟左右，然后执行`docker logs freenom`查看输出内容， 观察输出内容中有`执行成功`
 字样，则表示配置无误。如果你还来不及配置送信邮箱等内容，可先停用邮件功能。
+
+> 如何升级到最新版或者重新部署呢？
+>
+
+在`.env`所在目录，执行`docker rm -f freenom`删除现有容器，然后再执行 `docker rmi -f luolongfei/freenom`
+删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
+重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
 
 ##### 2.2 后期容器处理常用命令
 
