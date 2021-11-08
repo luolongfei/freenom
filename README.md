@@ -358,7 +358,7 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 | -d 参数 | 容器以后台运行并输出容器 ID |
 | --name 参数 | 给容器分配一个识别符，方便将来的启动，停止，删除等操作 |
 | --restart 参数 | 配置容器启动类型，always 即为 docker 服务重新启动时自动启动本容器 |
-| -v 参数 | 挂载卷（volume），冒号后面是容器的路径，冒号前面是宿主机的路径（只支持绝对路径），`$(pwd)`表示当前目录 |
+| -v 参数 | 挂载卷（volume），冒号后面是容器的路径，冒号前面是宿主机的路径（只支持绝对路径），`$(pwd)`表示当前目录，如果是 Windows 系统，则可用`${PWD}`替换此处的`$(pwd)` |
 | -e 参数 | 指定容器中的环境变量 |
 | luolongfei/freenom | 这是从 docker hub 下载回来的镜像完整路径名 |
 
@@ -376,9 +376,9 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 | FREENOM_USERNAME | Freenom 账户 | - | 是 | 只支持邮箱账户，如果你是使用第三方社交账户登录的用户，请在 Freenom 管理页面绑定邮箱，绑定后即可使用邮箱账户登录 |
 | FREENOM_PASSWORD | Freenom 密码 | - | 是 | 某些特殊字符可能需要转义，详见`.env`文件内注释 |
 | MULTIPLE_ACCOUNTS | 多账户支持 | - | 否 | 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`”，注意不要省略“<>”符号，否则无法正确匹配。如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
-| MAIL_USERNAME | 机器人邮箱账户 | - | 是 | 支持`Gmail`、`QQ邮箱`以及`163邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`而非`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行。具体的配置方法参考「 [配置发信邮箱](#-配置发信邮箱) 」 |
+| MAIL_USERNAME | 机器人邮箱账户 | - | 是 | 支持`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`而非`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行。具体的配置方法参考「 [配置送信功能](#-配置送信功能) 」 |
 | MAIL_PASSWORD | 机器人邮箱密码 | - | 是 | `Gmail`填密码，`QQ邮箱`或`163邮箱`填授权码 |
-| TO | 接收通知的邮箱 | - | 是 | 你自己最常用的邮箱，推荐使用`QQ邮箱`，用来接收机器人邮箱发出的域名相关邮件 |
+| TO | 接收通知的邮箱 | - | 是 | 你自己最常用的邮箱，用来接收机器人邮箱发出的域名相关邮件 |
 | MAIL_ENABLE | 是否启用邮件推送功能 | `1` | 否 | `1`：启用<br>`0`：不启用<br>默认启用，如果设为`0`，不启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为非必须，可不设置 |
 | TELEGRAM_CHAT_ID | 你的`chat_id` | - | 否 | 通过发送`/start`给`@userinfobot`可以获取自己的`id` |
 | TELEGRAM_BOT_TOKEN | 你的`Telegram bot`的`token` | - | 否 ||
@@ -394,6 +394,13 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 
 修改并保存`.env`文件后，执行`docker restart freenom`重启容器，等待 5 秒钟左右，然后执行`docker logs freenom`查看输出内容， 观察输出内容中有`执行成功`
 字样，则表示配置无误。如果你还来不及配置送信邮箱等内容，可先停用邮件功能。
+
+> 如何升级到最新版或者重新部署呢？
+>
+
+在`.env`所在目录，执行`docker rm -f freenom`删除现有容器，然后再执行 `docker rmi -f luolongfei/freenom`
+删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
+重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
 
 ##### 2.2 后期容器处理常用命令
 
