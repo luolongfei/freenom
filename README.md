@@ -66,7 +66,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
 - 收信邮箱（可选）：用于接收机器人发出的通知邮件。
-- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`等送信方式，仅当你使用邮件送信的时候，`送信邮箱`和`收信邮箱`
+- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`等送信方式，仅当你使用`邮件送信`的时候，`送信邮箱`和`收信邮箱`
   才是必须的，其它送信方式所需请参考下面的 [配置送信功能](#-配置送信功能) 。
 - 耐心。
 
@@ -91,7 +91,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 #### 邮件送信
 
-下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用账户加授权码的方式登录，
+下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用`账户加授权码`的方式登录，
 `谷歌邮箱`使用`账户加密码`或者`账户加授权码`的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
 
 *（点击即可展开或收起）*
@@ -169,11 +169,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 上面介绍了三种邮箱的设置方法，如果你不想使用邮件送信，而**由于程序默认启用邮件送信方式，故不配置邮件送信的话，一定要记得关闭邮件推送方式。**
 将根目录下的`.env`文件中的`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。
 
-*邮件送信部分完。*
+*邮件 送信部分完。*
 
 #### Telegram Bot
 
-1、在`.env`文件中，将`TELEGRAM_BOT_ENABLE`的值改为`1`，即可启用 Telegram Bot
+1、将`.env`文件中的`TELEGRAM_BOT_ENABLE`的值改为`1`，即可启用 Telegram Bot 送信功能
 
 2、在 Telegram 客户端中搜索`@userinfobot`，并打开聊天窗口
 
@@ -187,12 +187,10 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 6、将`.env`文件中的`TELEGRAM_BOT_TOKEN`的值改为上一步获取的`token`值
 
-7、将`.env`文件中的`TELEGRAM_BOT_ENABLE`的值改为`1`，以启用 Telegram Bot 送信功能
-
-8、在 Telegram 客户端中搜索你创建的机器人的账户，上面示例中机器人账户为`@fat_tiger_bot`，请替换为你自己的。找到机器人账户并打开聊天对话框，点击聊天输入框中的 `/start`
+7、在 Telegram 客户端中搜索你创建的机器人的账户，上面示例中机器人账户为`@fat_tiger_bot`，请替换为你自己的。找到机器人账户并打开聊天对话框，点击聊天输入框中的 `/start`
 按钮或者直接给机器人发送 `/start`，以启用机器人
 
-9、（可选）为 Telegram Bot 设置代理。针对国内网络环境，可将`.env`文件中的`TELEGRAM_PROXY`的值改为代理值，具体参考`.env`文件中的注释
+8、（可选）为 Telegram Bot 设置代理。针对国内网络环境，可将`.env`文件中的`TELEGRAM_PROXY`的值改为代理值，具体参考`.env`文件中的注释
 
 更多与 Telegram Bot 相关内容请参考：[官方文档](https://core.telegram.org/bots#6-botfather)
 
