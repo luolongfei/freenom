@@ -19,8 +19,6 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
 
-*（下面三种部署方式，选择其中一种即可）*
-
 [⛵ 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)（推荐，最简单的部署方式）
 
 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署推荐无服务器的用户使用)（推荐无服务器的用户使用）
@@ -35,7 +33,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🌚 作者](#-作者)
 
-[📰 更新日志](#-更新日志) （每次新版本发布，可以参考此日志决定是否更新）
+[📰 更新日志](#-更新日志)（每次新版本发布，可以参考此日志决定是否更新）
 
 [🎉 鸣谢](#-鸣谢)
 
