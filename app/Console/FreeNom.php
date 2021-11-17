@@ -18,7 +18,7 @@ use Luolongfei\Libs\Message;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.4.4';
+    const VERSION = 'v0.4.3';
 
     const TIMEOUT = 33;
 
