@@ -3,7 +3,7 @@
 /**
  * 入口文件
  *
- * 腾讯云函数版本维护：
+ * 腾讯云函数版本维护：1
  * 1、去掉顶部的 “#!/usr/bin/env php”，将文件名改为 index.php
  * 2、将 “define('IS_SCF', false);” 改为 “define('IS_SCF', true);”
  * 3、使用 function main_handler($event, $context) {} 将下面的 try catch 部分包起来，
