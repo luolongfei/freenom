@@ -33,6 +33,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🌚 作者](#-作者)
 
+[📝 TODO List](#-TODO-List)
+
 [📰 更新日志](#-更新日志)（每次新版本发布，可以参考此日志决定是否更新）
 
 [🎉 鸣谢](#-鸣谢)
@@ -633,20 +635,21 @@ cd /data/wwwroot/freenom/ && php run
 - 主程序以及框架：[@luolongfei](https://github.com/luolongfei)
 - 英文版文档：[@肖阿姨](#)
 
+### 📝 TODO List
+
+- 支持交互式安装，免去手动修改配置的繁琐操作
+- 支持自动升级
+- 多个账户的续期结果通知合并为同一条消息
+
 ### 📰 更新日志
 
 此处省略了很多较为久远的记录，以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
 #### [Unreleased]
 
-##### Added
-
-- 支持交互式安装，免去手动修改配置的繁琐操作
-- 支持自动升级
-
 ##### Changed
 
-- 多个账户的续期结果通知合并为同一条消息
+- 改进与 Cron 表达式验证相关的正则，兼容各种花里胡哨的表达式
 
 #### [v0.4.3](https://github.com/luolongfei/freenom/releases/tag/v0.4.3) - 2021-11-07
 
