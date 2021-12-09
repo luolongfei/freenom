@@ -80,7 +80,7 @@ class Bark extends MessageGateway
 
     public function __construct()
     {
-        $this->barkKey = config('message.bark.bark_key');
+        $this->barkKey = $this->parseBarkKey(config('message.bark.bark_key'));
         $this->barkUrl = rtrim(config('message.bark.bark_url'), '/');
 
         $this->isArchive = config('message.bark.bark_is_archive');
@@ -96,6 +96,25 @@ class Bark extends MessageGateway
             'verify' => config('verify_ssl'),
             'debug' => config('debug'),
         ]);
+    }
+
+    /**
+     * 解析 Bark Key
+     *
+     * 支持从这类 url 地址中提取 Bark Key
+     * https://api.day.app/xxx/这里改成你自己的推送内容
+     *
+     * @param string $barkKey
+     *
+     * @return string
+     */
+    public function parseBarkKey(string $barkKey)
+    {
+        if (preg_match('/^https?:\/\/[^\/]+?\/(?P<barkKey>.+?)\//iu', $barkKey, $m)) {
+            return $m['barkKey'];
+        }
+
+        return $barkKey;
     }
 
     /**

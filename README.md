@@ -650,6 +650,7 @@ cd /data/wwwroot/freenom/ && php run
 ##### Changed
 
 - 改进与 Cron 表达式验证相关的正则，兼容各种花里胡哨的表达式
+- 支持自动从 Bark url 中提取有效的 Bark key
 
 #### [v0.4.3](https://github.com/luolongfei/freenom/releases/tag/v0.4.3) - 2021-11-07
 
