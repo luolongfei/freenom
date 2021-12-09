@@ -84,7 +84,7 @@ return [
          * Bark 送信
          */
         'bark' => [
-            'bark_key' => env('BARK_KEY'), // 打开 Bark App，注册设备后看到的 Key
+            'bark_key' => (string)env('BARK_KEY'), // 打开 Bark App，注册设备后看到的 Key
             'bark_url' => (string)env('BARK_URL'), // Bark 域名
             'bark_is_archive' => env('BARK_IS_ARCHIVE') === '' ? null : (int)env('BARK_IS_ARCHIVE'),
             'bark_group' => env('BARK_GROUP') === '' ? null : env('BARK_GROUP'),
