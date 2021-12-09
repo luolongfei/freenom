@@ -300,13 +300,7 @@ wget -qO- get.docker.com | bash
 说明：请使用 KVM 架构的 VPS，OpenVZ 架构的 VPS 不支持安装 Docker，另外 CentOS 8 不支持用此脚本来安装 Docker。 更多关于 Docker
 安装的内容参考 [Docker 官方安装指南](https://docs.docker.com/engine/install/) 。
 
-##### 1.2 对 Docker 的一些命令操作
-
-查看 Docker 安装版本等信息
-
-```shell
-docker version
-```
+##### 1.2 针对 Docker 执行以下命令
 
 启动 Docker 服务
 
@@ -402,7 +396,7 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
 重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
 
-##### 2.2 后期容器处理常用命令
+##### 2.2 后期容器管理以及 Docker 常用命令
 
 查看容器在线状态及大小
 
@@ -431,13 +425,19 @@ docker stop freenom
 移除容器
 
 ```shell
-docker rm $name
+docker rm -f freenom
 ```
 
 查看 docker 容器占用 CPU，内存等信息
 
 ```shell
 docker stats --no-stream
+```
+
+查看 Docker 安装版本等信息
+
+```shell
+docker version
 ```
 
 *有关容器部署的内容结束。*
