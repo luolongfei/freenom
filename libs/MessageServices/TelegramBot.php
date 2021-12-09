@@ -276,7 +276,7 @@ class TelegramBot extends MessageGateway
                 [
                     'form_params' => [
                         'chat_id' => $recipient ? $recipient : $this->chatID,
-                        'text' => $content,
+                        'text' => $content, // Text of the message to be sent, 1-4096 characters after entities parsing
                         'parse_mode' => $isMarkdown ? 'MarkdownV2' : 'HTML',
                         'disable_web_page_preview' => true,
                         'disable_notification' => false

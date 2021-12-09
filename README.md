@@ -33,6 +33,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🌚 作者](#-作者)
 
+[📝 TODO List](#-TODO-List)
+
 [📰 更新日志](#-更新日志)（每次新版本发布，可以参考此日志决定是否更新）
 
 [🎉 鸣谢](#-鸣谢)
@@ -298,13 +300,7 @@ wget -qO- get.docker.com | bash
 说明：请使用 KVM 架构的 VPS，OpenVZ 架构的 VPS 不支持安装 Docker，另外 CentOS 8 不支持用此脚本来安装 Docker。 更多关于 Docker
 安装的内容参考 [Docker 官方安装指南](https://docs.docker.com/engine/install/) 。
 
-##### 1.2 对 Docker 的一些命令操作
-
-查看 Docker 安装版本等信息
-
-```shell
-docker version
-```
+##### 1.2 针对 Docker 执行以下命令
 
 启动 Docker 服务
 
@@ -400,7 +396,7 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
 重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
 
-##### 2.2 后期容器处理常用命令
+##### 2.2 后期容器管理以及 Docker 常用命令
 
 查看容器在线状态及大小
 
@@ -429,13 +425,19 @@ docker stop freenom
 移除容器
 
 ```shell
-docker rm $name
+docker rm -f freenom
 ```
 
 查看 docker 容器占用 CPU，内存等信息
 
 ```shell
 docker stats --no-stream
+```
+
+查看 Docker 安装版本等信息
+
+```shell
+docker version
 ```
 
 *有关容器部署的内容结束。*
@@ -633,20 +635,21 @@ cd /data/wwwroot/freenom/ && php run
 - 主程序以及框架：[@luolongfei](https://github.com/luolongfei)
 - 英文版文档：[@肖阿姨](#)
 
+### 📝 TODO List
+
+- 支持交互式安装，免去手动修改配置的繁琐操作
+- 支持自动升级
+- 多个账户的续期结果通知合并为同一条消息
+
 ### 📰 更新日志
 
 此处省略了很多较为久远的记录，以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
 #### [Unreleased]
 
-##### Added
-
-- 支持交互式安装，免去手动修改配置的繁琐操作
-- 支持自动升级
-
 ##### Changed
 
-- 多个账户的续期结果通知合并为同一条消息
+- 改进与 Cron 表达式验证相关的正则，兼容各种花里胡哨的表达式
 
 #### [v0.4.3](https://github.com/luolongfei/freenom/releases/tag/v0.4.3) - 2021-11-07
 
