@@ -22,7 +22,7 @@ class Env extends Base
     {
         if (file_exists(ROOT_PATH . DS . $fileName)) {
             $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
-        } else if (IS_SCF) { // 腾讯云函数直接从 .env.example 读取默认环境变量
+        } else if (IS_SCF) { // 云函数直接从 .env.example 读取默认环境变量
             $fileName = '.env.example';
             if (file_exists(ROOT_PATH . DS . $fileName)) {
                 $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
