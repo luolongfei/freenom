@@ -542,7 +542,7 @@ systemctl restart docker
 [![aliyun07.png](https://s4.ax1x.com/2021/12/14/ovkhQK.png)](https://s4.ax1x.com/2021/12/14/ovkhQK.png)
 
 添加函数触发器，即计划任务。这里设置的 Cron 表达式为【CRON_TZ=Asia/Shanghai 49 24 11 * * *】，意为北京时间每天 11:24:49 执行，
-**注意，执行时间一定要记得改为你自定义的时间，不要跟我这里一模一样，尽可能跟大多数人的设置不一样，否则可能导致多人在同一时间向 freenom 的服务器发起请求，导致 freenom 无法稳定提供服务，影响续期操作。**
+**注意，执行时间一定要记得改为你自定义的时间，不要跟我这里一模一样，尽可能跟大多数人的设置不一样，否则可能出现多人在同一时间向 freenom 的服务器发起请求的情况，导致 freenom 无法稳定提供服务，影响续期操作。**
 
 [![aliyun08.png](https://s4.ax1x.com/2021/12/14/ovAnw4.png)](https://s4.ax1x.com/2021/12/14/ovAnw4.png)
 
