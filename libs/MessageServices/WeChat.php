@@ -60,7 +60,7 @@ class WeChat extends MessageGateway
     /**
      * 获取 access_token 缓存
      *
-     * 由于腾讯云函数环境中只有 /tmp 目录的读写权限，且每次运行结束后写入的内容不会被保留，故腾讯云函数无法真正做到通过文件缓存 access_token
+     * 由于云函数环境中只有 /tmp 目录的读写权限，且每次运行结束后写入的内容不会被保留，故云函数无法真正做到通过文件缓存 access_token
      * 参考：https://cloud.tencent.com/document/product/583/9180
      *
      * @return string|null
@@ -285,7 +285,7 @@ class WeChat extends MessageGateway
                 'msgtype' => 'text', // 消息类型，text 类型支持 a 标签以及 \n 换行，基本满足需求。由于腾讯要求 markdown 语法必须使用 企业微信APP 才能查看，不想安装，故弃之
                 'agentid' => $this->agentId, // 企业应用的 ID，整型，可在应用的设置页面查看
                 'text' => [
-                    'content' => $content, // 消息内容，最长不超过2048个字节，超过将截断
+                    'content' => $content, // 消息内容，最长不超过 2048 个字节，超过将截断
                 ],
                 'enable_duplicate_check' => 1,
                 'duplicate_check_interval' => 60,

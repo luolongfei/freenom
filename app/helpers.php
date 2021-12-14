@@ -237,7 +237,7 @@ if (!function_exists('system_check')) {
         // 如果是在云函数部署，则不需要检查这几项
         if (IS_SCF) {
             system_log('检测到运行环境为云函数，所有环境变量将直接从环境中读取，环境中找不到的变量，则直接从 .env.example 文件中读取');
-            system_log('如果是在腾讯云函数，可以参考此处修改或新增环境变量，无需重建：https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf_env_modify.png');
+            system_log('如果是在腾讯云函数，可以参考此处修改或新增环境变量，无需重建：https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf03.png');
             system_log('如果是在阿里云函数，可以直接在【函数详情】->【函数配置】->【环境信息】处编辑环境变量');
         } else {
             if (!function_exists('putenv')) {
