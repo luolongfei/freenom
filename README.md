@@ -21,9 +21,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [⛵ 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)（推荐，最简单的部署方式）
 
-[🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署推荐无服务器的用户使用)（推荐无服务器的用户使用）
+[🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)（供无服务器的用户使用）
 
-[🚧 直接拉取源码部署](#-方式三直接拉取源码部署)
+[🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署)（同上，供无服务器的用户使用）
+
+[🚧 直接拉取源码部署](#-方式四直接拉取源码部署)
 
 [📋 捐赠名单 Donate List](#-捐赠名单-donate-list)
 
@@ -47,7 +49,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，或者参考下方文档直接搬运到 [腾讯云函数部署](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) ，腾讯云函数不需要有自己的服务器。
+- 推荐 [通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，或者参考下方文档直接搬运到 [腾讯云函数部署](#-方式二通过腾讯云函数部署) ，腾讯云函数不需要有自己的服务器。
 
 ### 📃 引言
 
@@ -61,7 +63,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🎁 事前准备
 
-- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到 [腾讯云函数](#-方式二通过腾讯云函数部署推荐无服务器的用户使用) 。
+- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到 [腾讯云函数](#-方式二通过腾讯云函数部署) 。
 - 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
@@ -442,14 +444,17 @@ docker version
 
 *有关容器部署的内容结束。*
 
-### 🕹 方式二：通过腾讯云函数部署（推荐无服务器的用户使用）
+### 🕹 方式二：通过腾讯云函数部署
+
+*推荐没有自己服务器的用户使用*
 
 <hr>
 
 #### 1、下载腾讯云函数版的压缩包
 
-腾讯云函数版将与主版同步维护更新，推荐没有自己服务器的用户使用，最新版本号为`v0.4.3`。下载地址：
+腾讯云函数版将与主版同步维护更新，腾讯云函数和阿里云函数使用的是同一个压缩包，下载地址：
 [https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip)
+。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
 
@@ -467,11 +472,89 @@ docker version
 
 如果你在创建腾讯云函数的时候，某些环境变量忘记填了，或者在创建腾讯云函数后想要修改或者新增某些环境变量，可以参考这里操作，无需重建：
 
-[![scf03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://imgtu.com/i/I13Ku8)
+[![scf03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://z3.ax1x.com/2021/11/07/I13Ku8.png)
 
 *有关腾讯云函数部署的内容结束。*
 
-### 🚧 方式三：直接拉取源码部署
+### 🧊 通过阿里云函数部署
+
+*推荐没有自己服务器的用户使用*
+
+<hr>
+
+#### 1、下载阿里云函数版的压缩包
+
+阿里云函数版将与主版同步维护更新，阿里云函数和腾讯云函数使用的是同一个压缩包，下载地址：
+[https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip)
+。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
+
+下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
+
+#### 2、在阿里云开通云函数服务
+
+在 [https://common-buy.aliyun.com/?commodityCode=fc#/buy](https://common-buy.aliyun.com/?commodityCode=fc#/buy)
+可以免费开通阿里云函数服务。 详情请参考 [阿里云函数开通流程介绍](https://free.aliyun.com/product/fcfreetrial)
+以及 [阿里云函数官方指南](https://help.aliyun.com/product/50980.html) 。
+
+[![aliyun00.png](https://s4.ax1x.com/2021/12/14/ovCauQ.png)](https://s4.ax1x.com/2021/12/14/ovCauQ.png)
+
+#### 3、创建服务以及创建函数
+
+##### 3.1 创建服务
+
+此处我没有勾选【日志功能】，如果你需要【日志功能】请勾选后根据官方引导开启，否则跟下图配置一致即可。
+
+[![aliyun01.png](https://s4.ax1x.com/2021/12/14/ovPFKg.png)](https://s4.ax1x.com/2021/12/14/ovPFKg.png)
+
+##### 3.2 创建函数
+
+上一步创建了服务，会跳到函数管理画面，点击创建函数，然后根据下面图示流程进行即可。
+
+[![aliyun02.png](https://s4.ax1x.com/2021/12/14/ovinwd.png)](https://s4.ax1x.com/2021/12/14/ovinwd.png)
+
+[![aliyun03.png](https://s4.ax1x.com/2021/12/14/ovidkn.png)](https://s4.ax1x.com/2021/12/14/ovidkn.png)
+
+[![aliyun04.png](https://s4.ax1x.com/2021/12/14/ovig0J.png)](https://s4.ax1x.com/2021/12/14/ovig0J.png)
+
+配置环境变量
+
+[![aliyun05.png](https://s4.ax1x.com/2021/12/14/oviq7d.png)](https://s4.ax1x.com/2021/12/14/oviq7d.png)
+
+在上图所在画面向下滚动，可以很容易找到【环境变量】的配置位置，注意此处我只示例了最简单的几个变量的配置，没有启用任何送信功能，
+建议你在配置时记得启用送信功能，以掌握脚本的执行情况以及续期相关讯息。如何配置以及启用送信功能可以参考本文档的 [配置送信功能](https://github.com/luolongfei/freenom#-%E9%85%8D%E7%BD%AE%E9%80%81%E4%BF%A1%E5%8A%9F%E8%83%BD)
+部分。
+
+[![aliyun06.png](https://s4.ax1x.com/2021/12/14/ovFauD.png)](https://s4.ax1x.com/2021/12/14/ovFauD.png)
+
+[![aliyun07.png](https://s4.ax1x.com/2021/12/14/ovkhQK.png)](https://s4.ax1x.com/2021/12/14/ovkhQK.png)
+
+添加函数触发器，即计划任务。这里设置的 Cron 表达式为【CRON_TZ=Asia/Shanghai 49 24 11 * * *】，意为北京时间每天 11:24:49 执行，
+**注意，执行时间一定要记得改为你自定义的时间，不要跟我这里一模一样，尽可能跟大多数人的设置不一样，否则可能导致多人在同一时间向 freenom 的服务器发起请求，导致 freenom 无法稳定提供服务，影响续期操作。**
+
+[![aliyun08.png](https://s4.ax1x.com/2021/12/14/ovAnw4.png)](https://s4.ax1x.com/2021/12/14/ovAnw4.png)
+
+上传压缩包（在上面步骤 1 中下载得到 zip 压缩包），部署代码
+
+[![aliyun09.png](https://s4.ax1x.com/2021/12/14/ovmKRs.png)](https://s4.ax1x.com/2021/12/14/ovmKRs.png)
+
+[![aliyun10.png](https://s4.ax1x.com/2021/12/14/ovmDL6.png)](https://s4.ax1x.com/2021/12/14/ovmDL6.png)
+
+由于阿里云函数默认有一个示例文件，所以此处我们上传完 zip 文件后，会提示我们是否需要同步代码，点击【是】即可
+
+[![aliyun11.png](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)
+
+然后点击部署代码
+
+[![aliyun12.png](https://s4.ax1x.com/2021/12/14/ovnn0K.png)](https://s4.ax1x.com/2021/12/14/ovnn0K.png)
+
+（可选）延长执行超时时间。阿里云函数默认的执行超时时间为 60 s，满足大多数人的需求。如果你的账户或者域名特别多的话，可以考虑延长它，
+在【函数配置】->【环境信息】处可以编辑配置
+
+[![aliyun13.png](https://s4.ax1x.com/2021/12/14/ovumgs.png)](https://s4.ax1x.com/2021/12/14/ovumgs.png)
+
+*有关阿里云函数部署的内容结束。*
+
+### 🚧 方式四：直接拉取源码部署
 
 <hr>
 
