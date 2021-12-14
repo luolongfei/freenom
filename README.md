@@ -49,7 +49,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)
+- 推荐 [⛵ 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)
   或者 [🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署)，腾讯云函数和阿里云函数不需要你有自己的服务器。
 
 ### 📃 引言
@@ -497,7 +497,7 @@ systemctl restart docker
 [https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.3/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
-下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
+下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到阿里云函数。
 
 #### 2、在阿里云开通云函数服务
 
