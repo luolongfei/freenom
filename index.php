@@ -17,7 +17,7 @@ error_reporting(E_ERROR);
 ini_set('display_errors', 1);
 set_time_limit(0);
 
-define('IS_SCF', false); // 是否云函数环境
+define('IS_SCF', true); // 是否云函数环境
 define('IS_CLI', PHP_SAPI === 'cli');
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', realpath(__DIR__));
