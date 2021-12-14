@@ -746,7 +746,16 @@ cd /data/wwwroot/freenom/ && php run
 
 ##### Changed
 
+- 解决 企业微信 因送信内容过长被截断问题
+
+#### [v0.4.4](https://github.com/luolongfei/freenom/releases/tag/v0.4.4) - 2021-12-14
+
+##### Changed
+
 - 改进与 Cron 表达式验证相关的正则，兼容各种花里胡哨的表达式
+
+##### Added
+
 - 支持自动从 Bark url 中提取有效的 Bark key
 - 支持通过 阿里云函数 部署
 
