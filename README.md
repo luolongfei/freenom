@@ -267,9 +267,9 @@ Bark 是一款 IOS 端用于推送自定义通知的 app，是个人开发者在
 
 *与 配置送信功能 相关的篇幅完。下面开始讲本项目的三种使用方式，一种是通过 Docker，另一种是通过腾讯云函数，再一种是直接拉取源码部署，推荐使用 Docker 方式，无需纠结环境。*
 
-### ⛵ 方式一：通过 Docker 部署（推荐，最简单的部署方式）
+***
 
-<hr>
+### ⛵ 方式一：通过 Docker 部署（推荐，最简单的部署方式）
 
 Docker 仓库地址为： [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom) ，同样欢迎 star 。
 此镜像支持的架构为`linux/amd64`，`linux/arm64`，`linux/ppc64le`，`linux/s390x`，`linux/386`，`linux/arm/v7`，`linux/arm/v6`， 理论上支持`群晖`
@@ -482,11 +482,11 @@ systemctl restart docker
 
 *有关腾讯云函数部署的内容结束。*
 
-### 🧊 通过阿里云函数部署
+***
+
+### 🧊 方式三：通过阿里云函数部署
 
 *推荐没有自己服务器的用户使用*
-
-<hr>
 
 #### 1、下载阿里云函数版的压缩包
 
@@ -560,11 +560,11 @@ systemctl restart docker
 
 *有关阿里云函数部署的内容结束。*
 
+***
+
 ### 🚧 方式四：直接拉取源码部署
 
-<hr>
-
-所有操作均在Centos7系统下进行，其它Linux发行版大同小异
+*所有操作均在Centos7系统下进行，其它Linux发行版大同小异*
 
 #### 1、获取源码
 
@@ -689,6 +689,8 @@ cd /data/wwwroot/freenom/ && php run
 ```
 
 不出意外的话，你将收到一封关于域名情况的邮件。
+
+*有关 直接拉取源码部署 的内容结束。*
 
 ***
 
