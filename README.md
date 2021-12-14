@@ -64,7 +64,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🎁 事前准备
 
-- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档部署到 [腾讯云函数](#-方式二通过腾讯云函数部署) 。
+- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档
+  [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署) 或者 [🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署) 。
 - 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
