@@ -66,7 +66,10 @@ function exception_handler($e)
     Message::send("具体的异常内容是：\n" . $e->getMessage(), '主人，未捕获的异常');
 }
 
-function main_handler($event, $context)
+/**
+ * @return string
+ */
+function run()
 {
     try {
         system_check();
@@ -83,4 +86,33 @@ function main_handler($event, $context)
     }
 
     return '云函数执行失败。';
+}
+
+/**
+ * 腾讯云函数
+ *
+ * @param $event
+ * @param $context
+ *
+ * @return string
+ */
+function main_handler($event, $context)
+{
+    return run();
+}
+
+/**
+ * 阿里云函数
+ *
+ * @param $event
+ * @param $context
+ *
+ * @return string
+ */
+function handler($event, $context)
+{
+    $logger = $GLOBALS['fcLogger'];
+    $logger->info('开始执行阿里云函数');
+
+    return run();
 }
