@@ -471,8 +471,7 @@ systemctl restart docker
 #### 2、创建腾讯云函数
 
 直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty](https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty)
-，按照下图所示的说明进行创建。如果无法看清图片，可访问： [https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png](https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf.png)
-或者 [https://z3.ax1x.com/2021/10/14/5lMweU.png](https://z3.ax1x.com/2021/10/14/5lMweU.png) 查看原图，也可以直接点击图片查看原图。
+，按照下图所示的说明进行创建。如果无法看清图片，直接点击图片即可查看原图。
 
 [![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
 
@@ -480,11 +479,19 @@ systemctl restart docker
 
 [![scf02](https://z3.ax1x.com/2021/10/14/5l3oHf.png)](https://z3.ax1x.com/2021/10/14/5l3oHf.png)
 
+> 如何在腾讯云函数修改或者新增环境变量呢？
+>
 如果你在创建腾讯云函数的时候，某些环境变量忘记填了，或者在创建腾讯云函数后想要修改或者新增某些环境变量，可以参考这里操作，无需重建：
 
 [![scf03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://z3.ax1x.com/2021/11/07/I13Ku8.png)
 
 所有受支持的环境变量及其含义请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example) 文件。
+
+> 如何在腾讯云函数更新部署的代码呢？
+>
+当有新版本可用时，想升级到最新版本，请按下图所示操作。更新代码包并部署后，可以点击测试查看部署是否成功。在更新完代码后，腾讯云函数编辑器里面可能会提示你同步代码，点击确定即可。
+
+[![scf04.png](https://s4.ax1x.com/2021/12/14/ovruHf.png)](https://s4.ax1x.com/2021/12/14/ovruHf.png)
 
 *有关腾讯云函数部署的内容结束。*
 
@@ -516,7 +523,8 @@ systemctl restart docker
 
 ##### 3.1 创建服务
 
-此处我没有勾选【日志功能】，如果你需要【日志功能】请勾选后根据官方引导开启，否则跟下图配置一致即可。
+直接访问 [https://fcnext.console.aliyun.com/cn-hongkong/services](https://fcnext.console.aliyun.com/cn-hongkong/services)
+，然后点击【创建服务】，地点推荐选择【香港】。此处我没有勾选【日志功能】，如果你需要【日志功能】请勾选后根据官方引导开启，否则跟下图配置一致即可。
 
 [![aliyun01.png](https://s4.ax1x.com/2021/12/14/ovPFKg.png)](https://s4.ax1x.com/2021/12/14/ovPFKg.png)
 
