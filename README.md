@@ -442,6 +442,12 @@ docker stats --no-stream
 docker version
 ```
 
+重启 Docker（非容器）
+
+```shell
+systemctl restart docker
+```
+
 *有关容器部署的内容结束。*
 
 ### 🕹 方式二：通过腾讯云函数部署
