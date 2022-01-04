@@ -23,7 +23,7 @@ if [ ! -f /app/.env ]; then
 fi
 
 # PHP 命令
-PHP_COMMAND='php /app/run > /app/logs/freenom_cron.log 2>&1'
+PHP_COMMAND='sleep $(shuf -i1-20 -n1) && php /app/run > /app/logs/freenom_cron.log 2>&1'
 
 # 指定脚本执行时间
 if [ -z "${RUN_AT}" ]; then
