@@ -59,7 +59,7 @@ class TelegramBot extends MessageGateway
      */
     public function genDomainStatusFullMarkDownText(string $username, array $domainStatus)
     {
-        $markDownText = sprintf("我刚刚帮小主看了一下，账户 [%s](#) 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
+        $markDownText = sprintf("我刚刚帮小主看了一下，账户 %s 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
 
         $markDownText .= $this->genDomainStatusMarkDownText($domainStatus);
 
@@ -119,7 +119,7 @@ class TelegramBot extends MessageGateway
      */
     public function genDomainRenewalResultsMarkDownText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
-        $text = sprintf("账户 [%s](#) 这次续期的结果如下\n\n", $username);
+        $text = sprintf("账户 %s 这次续期的结果如下\n\n", $username);
 
         if ($renewalSuccessArr) {
             $text .= '续期成功：';
@@ -200,7 +200,7 @@ class TelegramBot extends MessageGateway
      * 应转义后传入，官方说明如下：
      * In all other places characters '_‘, ’*‘, ’[‘, ’]‘, ’(‘, ’)‘, ’~‘, ’`‘, ’>‘, ’#‘, ’+‘, ’-‘, ’=‘, ’|‘,
      * ’{‘, ’}‘, ’.‘, ’!‘ must be escaped with the preceding character ’\'.
-     * 如果你不转义，且恰好又不是正确的markdown语法，那 Telegram Bot 就只有报错了您勒
+     * 如果不转义则电报返回 400 错误
      *
      * 官方markdown语法示例：
      * *bold \*text*
@@ -254,7 +254,7 @@ class TelegramBot extends MessageGateway
 
         if ($isMarkdown) {
             // 这几个比较容易在正常文本里出现，而我不想每次都手动转义传入，所以直接干掉了
-            $content = preg_replace('/([.>~_-])/u', '\\\\$1', $content);
+            $content = preg_replace('/([.>~_{}|`!+=#-])/u', '\\\\$1', $content);
 
             // 转义非链接格式的 [] 以及 ()
             $content = preg_replace_callback_array(
