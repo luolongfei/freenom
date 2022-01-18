@@ -6,7 +6,7 @@
         "php": ">=7.1.0",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.4",
         "monolog/monolog": "^1.24",
         "bramus/monolog-colored-line-formatter": "~2.0",
         "phpmailer/phpmailer": "^6.0",
