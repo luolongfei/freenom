@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>邮件通知</title>
+    <title>Email notification</title>
     <style>
         .mmsgLetter {
             width: 580px;
@@ -28,7 +28,7 @@
             padding: 30px;
             font-size: 14px;
             line-height: 1.5;
-            /*background: url('images/ting.jpg') no-repeat top right;*/
+            /*background: url('../images/ting.jpg') no-repeat top right;*/
         }
 
         .mmsgLetterContent h3 {
@@ -76,22 +76,22 @@
 
         .mmsgLetterContent a.mmsgButton:link,
         .mmsgLetterContent a.mmsgButton:visited {
-            background: #338702 url('images/mmsgletter_2_btn.png') no-repeat right -40px;
+            background: #338702 url('../images/mmsgletter_2_btn.png') no-repeat right -40px;
         }
 
         .mmsgLetterContent a.mmsgButton:link span,
         .mmsgLetterContent a.mmsgButton:visited span {
-            background: url('images/mmsgletter_2_btn.png') no-repeat 0 0;
+            background: url('../images/mmsgletter_2_btn.png') no-repeat 0 0;
         }
 
         .mmsgLetterContent a.mmsgButton:hover,
         .mmsgLetterContent a.mmsgButton:active {
-            background: #338702 url('images/mmsgletter_2_btn.png') no-repeat right -120px;
+            background: #338702 url('../images/mmsgletter_2_btn.png') no-repeat right -120px;
         }
 
         .mmsgLetterContent a.mmsgButton:hover span,
         .mmsgLetterContent a.mmsgButton:active span {
-            background: url('images/mmsgletter_2_btn.png') no-repeat 0 -80px;
+            background: url('../images/mmsgletter_2_btn.png') no-repeat 0 -80px;
         }
 
         .mmsgLetterInscribe {
@@ -118,7 +118,7 @@
 
         .mmsgLetterHeader {
             height: 23px;
-            /*background: url('images/mmsgletter_2_bg_topline.png') repeat-x 0 0;*/
+            /*background: url('../images/mmsgletter_2_bg_topline.png') repeat-x 0 0;*/
             background: 7px 0 repeat-x #FFF;
             background-image: -webkit-repeating-linear-gradient(135deg, #4882CE, #4882CE 20px, #FFF 20px, #FFF 35px, #EB1B2E 35px, #EB1B2E 55px, #FFF 55px, #FFF 70px);
             background-image: repeating-linear-gradient(-45deg, #4882CE, #4882CE 20px, #FFF 20px, #FFF 35px, #EB1B2E 35px, #EB1B2E 55px, #FFF 55px, #FFF 70px);
@@ -175,7 +175,7 @@
             font-size: 12px;
             float: left;
             height: 43px;
-            background: url('images/mmsgletter_chat_right.gif') no-repeat right top;
+            background: url('../images/mmsgletter_chat_right.gif') no-repeat right top;
         }
 
         .mmsgLetterDesc div {
@@ -184,7 +184,7 @@
             height: 43px;
             padding: 0 20px;
             line-height: 40px;
-            background: url('images/mmsgletter_chat_left.gif') no-repeat left top;
+            background: url('../images/mmsgletter_chat_left.gif') no-repeat left top;
         }
 
         .mmsgLetterUser {
@@ -245,7 +245,7 @@
             font-size: 12px;
             float: left;
             height: 43px;
-            background: url('images/mmsgletter_chat_right.gif') no-repeat right top;
+            background: url('../images/mmsgletter_chat_right.gif') no-repeat right top;
         }
 
         .mmsgLetterDesc div {
@@ -254,7 +254,7 @@
             height: 43px;
             padding: 0 20px;
             line-height: 40px;
-            background: url('images/mmsgletter_chat_left.gif') no-repeat left top;
+            background: url('../images/mmsgletter_chat_left.gif') no-repeat left top;
         }
 
         .qmbox style,
@@ -299,6 +299,11 @@
             font-weight: bold;
             transition: 0.2s all ease-in-out;
             text-decoration: none !important;
+            /*margin-right: 12px;*/
+        }
+
+        .renewed a,
+        .notRenewed a {
             margin-right: 12px;
         }
 
@@ -334,27 +339,40 @@
 </head>
 <body>
 <div id="mailContentContainer" class="qmbox qm_con_body_content qqmail_webmail_only" style="">
-    <div style="background-color:#d0d0d0;background-image:url('images/mmsgletter_2_bg.png');text-align:center;padding:40px;">
+    <div style="background-color:#d0d0d0;background-image:url('../images/mmsgletter_2_bg.png');text-align:center;padding:40px;">
         <div class="mmsgLetter">
             <div class="mmsgLetterHeader" style="height:23px;"></div>
-            <div class="mmsgLetterContent" style="text-align:left;padding: 0 30px;font-size:14px;line-height:1.5;/*background:url('images/ting.jpg') no-repeat top right;background-size: 224px 224px;*/">
+            <div class="mmsgLetterContent"
+                 style="text-align:left;padding: 0 30px;font-size:14px;line-height:1.5;/*background:url('../images/ting.jpg') no-repeat top right;background-size: 224px 224px;*/">
                 <div>
                     <p>
-                        %s
+                        <br>I just checked for you and the account <a href="#" rel="noopener">%s</a> has no domains that
+                        need to be renewed today. The status of all domains is as follows:
+                        <br>
+                        <br><span class="domainDays">%s</span>
+                        <br><br>
+                        For more information, please refer to the <a
+                            href="https://my.freenom.com/domains.php?a=renewals" target="_blank" rel="noopener">Freenom
+                        official website</a>
+                        <br>
+                        <br>(If you don't want to receive a push every time you execute, set the value of NOTICE_FREQ in
+                        .env to 0 so that the program only pushes when there is a renewal operation)
                     </p>
                 </div>
                 <div class="mmsgLetterInscribe" style="padding:40px 0 0;">
-                    <img class="mmsgAvatar" src="https://q2.qlogo.cn/headimg_dl?dst_uin=593198779&spec=100" style="float:left;width:40px;height:40px;">
+                    <img class="mmsgAvatar" src="https://q2.qlogo.cn/headimg_dl?dst_uin=593198779&spec=100"
+                         style="float:left;width:40px;height:40px;" alt="Author avatar">
                     <div class="mmsgSender" style="margin:0 0 0 54px;">
                         <p class="mmsgName" style="margin:0 0 10px;">Im Robot</p>
                         <p class="mmsgInfo" style="font-size:12px;margin:0;line-height:1.2;">
-                            邮件推送机器人<br>
+                            Freenom auto-renewal team <br>
                             <a href="mailto:mybsdc@gmail.com" rel="noopener" target="_blank">llf.push@gmail.com</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="mmsgLetterFooter" style="margin:16px;text-align:center;font-size:12px;color:#888;text-shadow:1px 0px 0px #eee;"></div>
+            <div class="mmsgLetterFooter"
+                 style="margin:16px;text-align:center;font-size:12px;color:#888;text-shadow:1px 0px 0px #eee;"></div>
         </div>
     </div>
 </div>

@@ -24,9 +24,9 @@ class Argv extends Base
             $desc = <<<FLL
 Description
 Params:
--c: <string> 指定要实例化的类名。默认调用FreeNom类
--m: <string> 指定要调用的方法名（不支持静态方法）。默认调用handle方法
--h: 显示说明
+-c: <string> 指定要实例化的类名。默认调用 FreeNom 类 Specifies the name of the class to instantiate. The default call to the FreeNom class
+-m: <string> 指定要调用的方法名（不支持静态方法）。默认调用 handle 方法 Specifies the name of the method to be called (static methods are not supported). The handle method is called by default
+-h: 显示说明 Help
 
 Example: 
 $ php run -c=FreeNom -m=handle

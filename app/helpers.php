@@ -236,9 +236,9 @@ if (!function_exists('system_check')) {
 
         // 如果是在云函数部署，则不需要检查这几项
         if (IS_SCF) {
-            system_log('检测到运行环境为云函数，所有环境变量将直接从环境中读取，环境中找不到的变量，则直接从 .env.example 文件中读取');
-            system_log('如果是在腾讯云函数，可以参考此处修改或新增环境变量，无需重建：https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf03.png');
-            system_log('如果是在阿里云函数，可以直接在【函数详情】->【函数配置】->【环境信息】处编辑环境变量');
+            system_log(lang('100009'));
+            system_log(lang('100010'));
+            system_log(lang('100011'));
         } else {
             if (!function_exists('putenv')) {
                 throw new LlfException(34520005);
@@ -257,7 +257,7 @@ if (!function_exists('system_check')) {
         if (config('new_version_detection')) {
             Upgrade::getInstance()->handle();
         } else {
-            system_log('由于你没有开启升级提醒功能，故无法在有新版本可用时第一时间收到通知。将 .env 文件中 NEW_VERSION_DETECTION 的值改为 1 即可重新开启相关功能。');
+            system_log(lang('100012'));
         }
 
         if (!extension_loaded('curl')) {

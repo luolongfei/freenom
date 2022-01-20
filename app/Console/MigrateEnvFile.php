@@ -118,11 +118,11 @@ class MigrateEnvFile extends Base
         $file = $this->getEnvFilePath($filename);
 
         if (!file_exists($file)) {
-            throw new \Exception('文件不存在：' . $file);
+            throw new \Exception(lang('100021') . $file);
         }
 
         if (($fileContent = file_get_contents($file)) === false) {
-            throw new \Exception('读取文件内容失败：' . $file);
+            throw new \Exception(lang('100022') . $file);
         }
 
         if (!preg_match('/^ENV_FILE_VERSION=(?P<env_file_version>.*?)$/im', $fileContent, $m)) {
@@ -143,7 +143,7 @@ class MigrateEnvFile extends Base
     public function backup()
     {
         if (copy($this->getEnvFilePath(), $this->getEnvFilePath('.env.old')) === false) {
-            throw new \Exception('备份 .env 文件到 .env.old 文件时出错');
+            throw new \Exception(lang('100020'));
         }
 
         return true;
@@ -158,7 +158,7 @@ class MigrateEnvFile extends Base
     public function genNewEnvFile()
     {
         if (copy($this->getEnvFilePath('.env.example'), $this->getEnvFilePath('.env')) === false) {
-            throw new \Exception('从 .env.example 文件生成 .env 文件时出错');
+            throw new \Exception(lang('100019'));
         }
 
         return true;
@@ -239,22 +239,22 @@ class MigrateEnvFile extends Base
                 return true;
             }
 
-            system_log('检测到你的 .env 文件内容过旧，程式将根据 .env.example 文件自动更新相关配置项，不要慌张，此操作对已有数据不会有任何影响');
+            system_log(lang('100013'));
 
             $this->backup();
-            system_log(sprintf('<green>已完成 .env 文件备份</green>，旧文件位置为 %s/.env.old', ROOT_PATH));
+            system_log(sprintf(lang('100014'), ROOT_PATH));
 
             $this->genNewEnvFile();
-            system_log('已生成新 .env 文件');
+            system_log(lang('100015'));
 
             $this->migrateData($this->allOldEnvValues);
-            system_log(sprintf('<green>数据迁移完成</green>，共迁移 %d 条环境变量数据', $this->migrateNum));
+            system_log(sprintf(lang('100016'), $this->migrateNum));
 
-            system_log('<green>恭喜，已成功完成 .env 文件升级</green>');
+            system_log(lang('100017'));
 
             return true;
         } catch (\Exception $e) {
-            system_log('升级 .env 文件出错：' . $e->getMessage());
+            system_log(lang('100018') . $e->getMessage());
 
             return false;
         }

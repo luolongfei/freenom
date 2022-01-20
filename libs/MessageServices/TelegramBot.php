@@ -59,7 +59,7 @@ class TelegramBot extends MessageGateway
      */
     public function genDomainStatusFullMarkDownText(string $username, array $domainStatus)
     {
-        $markDownText = sprintf("我刚刚帮小主看了一下，账户 %s 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
+        $markDownText = sprintf(lang('100102'), $username);
 
         $markDownText .= $this->genDomainStatusMarkDownText($domainStatus);
 
@@ -77,8 +77,8 @@ class TelegramBot extends MessageGateway
     {
         $footer = '';
 
-        $footer .= "\n更多信息可以参考 [Freenom官网](https://my.freenom.com/domains.php?a=renewals) 哦~";
-        $footer .= "\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）";
+        $footer .= lang('100103');
+        $footer .= lang('100104');
 
         return $footer;
     }
@@ -93,16 +93,16 @@ class TelegramBot extends MessageGateway
     public function genDomainStatusMarkDownText(array $domainStatus)
     {
         if (empty($domainStatus)) {
-            return "无数据。\n";
+            return lang('100105');
         }
 
         $domainStatusMarkDownText = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
-            $domainStatusMarkDownText .= sprintf('[%s](http://%s) 还有 *%d* 天到期，', $domain, $domain, $daysLeft);
+            $domainStatusMarkDownText .= sprintf(lang('100106'), $domain, $domain, $daysLeft);
         }
 
-        $domainStatusMarkDownText = rtrim($domainStatusMarkDownText, '，') . "。\n";
+        $domainStatusMarkDownText = rtrim(rtrim($domainStatusMarkDownText, ' '), '，,') . lang('100107');
 
         return $domainStatusMarkDownText;
     }
@@ -119,19 +119,19 @@ class TelegramBot extends MessageGateway
      */
     public function genDomainRenewalResultsMarkDownText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
-        $text = sprintf("账户 %s 这次续期的结果如下\n\n", $username);
+        $text = sprintf(lang('100108'), $username);
 
         if ($renewalSuccessArr) {
-            $text .= '续期成功：';
+            $text .= lang('100109');
             $text .= $this->genDomainsMarkDownText($renewalSuccessArr);
         }
 
         if ($renewalFailuresArr) {
-            $text .= '续期出错：';
+            $text .= lang('100110');
             $text .= $this->genDomainsMarkDownText($renewalFailuresArr);
         }
 
-        $text .= "\n今次无需续期的域名及其剩余天数如下所示：\n\n";
+        $text .= lang('100111');
         $text .= $this->genDomainStatusMarkDownText($domainStatus);
 
         $text .= $this->getMarkDownFooter();
@@ -238,7 +238,7 @@ class TelegramBot extends MessageGateway
         } else if ($type === 3) {
             $content = $this->genDomainStatusFullMarkDownText($data['username'], $data['domainStatusArr']);
         } else {
-            throw new \Exception(lang('error_msg.100003'));
+            throw new \Exception(lang('100003'));
         }
 
         $isMarkdown = true;
@@ -288,7 +288,7 @@ class TelegramBot extends MessageGateway
 
             return $resp['ok'] ?? false;
         } catch (\Exception $e) {
-            system_log('Telegram 消息发送失败：<red>' . $e->getMessage() . '</red>');
+            system_log(sprintf(lang('100112'), $e->getMessage()));
 
             return false;
         }

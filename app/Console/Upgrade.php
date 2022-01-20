@@ -58,6 +58,8 @@ class Upgrade extends Base
     {
         $this->pushedVerFile = DATA_PATH . DS . 'pushed_version.txt';
 
+        $this->language = env('LANGUAGE', 'zh');
+
         $this->client = new Client([
             'base_uri' => 'https://api.github.com',
             'headers' => [
@@ -94,7 +96,7 @@ class Upgrade extends Base
                 || !isset($resp['name'])
                 || !isset($resp['published_at'])
                 || !isset($resp['html_url'])) {
-                throw new \Exception('Github 返回的数据与预期不一致：' . json_encode($resp, JSON_UNESCAPED_UNICODE));
+                throw new \Exception(lang('100023') . json_encode($resp, JSON_UNESCAPED_UNICODE));
             }
 
             $this->releaseInfo = $resp;
@@ -104,7 +106,7 @@ class Upgrade extends Base
 
             return version_compare($this->latestVer, $this->currVer, '>');
         } catch (\Exception $e) {
-            Log::error('检测升级出错：' . $e->getMessage());
+            Log::error(lang('100024') . $e->getMessage());
 
             return false;
         }
@@ -147,18 +149,27 @@ class Upgrade extends Base
      */
     public function genMsgContent()
     {
-        $content = sprintf(
-            "见信好，我们在 %s 发布了新版 FreeNom 续期工具 v%s，而你当前正在使用的版本为 v%s，你可以根据自己的实际需要决定是否升级到新版本。今次新版有以下更新或改进：\n\n",
-            $this->friendlyDateFormat($this->releaseInfo['published_at'], 'UTC'),
-            $this->latestVer,
-            $this->currVer
-        );
+        if ($this->language === 'zh') {
+            $content = sprintf(
+                lang('100025'),
+                $this->friendlyDateFormat($this->releaseInfo['published_at'], 'UTC'),
+                $this->latestVer,
+                $this->currVer
+            );
+        } else {
+            $content = sprintf(
+                lang('100025'),
+                $this->latestVer,
+                $this->friendlyDateFormat($this->releaseInfo['published_at'], 'UTC'),
+                $this->currVer
+            );
+        }
 
         $content .= $this->releaseInfo['body'];
 
-        $content .= "\n\n" . '欲知更多信息，请访问：' . $this->releaseInfo['html_url'];
+        $content .= "\n\n" . lang('100026') . $this->releaseInfo['html_url'];
 
-        $content .= "\n\n" . '（本消息针对同一个新版只会推送一次，如果你不想收到新版本通知，将 .env 文件中的 NEW_VERSION_DETECTION 的值设为 0 即可）';
+        $content .= "\n\n" . lang('100027');
 
         return $content;
     }
@@ -181,15 +192,15 @@ class Upgrade extends Base
 
             if ($diff < 86400) {
                 if ($d->format('d') === date('d')) {
-                    return $diff < 60 ? '刚刚' : ($diff < 3600 ? floor($diff / 60) . '分钟前' : floor($diff / 3600) . '小时前');
+                    return $diff < 60 ? lang('100028') : ($diff < 3600 ? floor($diff / 60) . lang('100029') : floor($diff / 3600) . lang('100030'));
                 } else {
-                    return '昨天 ' . $d->format('H:i');
+                    return lang('100031') . $d->format('H:i');
                 }
             } else {
                 return $d->format($d->format('Y') === date('Y') ? 'Y-m-d H:i' : 'Y-m-d');
             }
         } catch (\Exception $e) {
-            Log::error('转人类友好时间出错：' . $e->getMessage());
+            Log::error(lang('100032') . $e->getMessage());
 
             return $date;
         }
@@ -211,34 +222,34 @@ class Upgrade extends Base
 
             if (IS_SCF) {
                 system_log(sprintf(
-                    'FreeNom 续期工具有新的版本可用，你当前版本为 v%s，最新版本为 v%s。关于新版的详细信息，请访问：%s',
+                    lang('100033'),
                     $this->currVer,
                     $this->latestVer,
                     $this->releaseInfo['html_url']
                 ));
             } else {
                 system_log(sprintf(
-                    '<green>FreeNom 续期工具有新的版本可用，最新版本为 v%s（%s）</green>',
+                    lang('100034'),
                     $this->latestVer,
                     $this->releaseInfo['html_url']
                 ));
 
                 $result = Message::send(
                     $this->genMsgContent(),
-                    sprintf('主人，FreeNom 续期工具有新的版本（v%s）可用，新版相关情况已给到你', $this->latestVer),
+                    sprintf(lang('100035'), $this->latestVer),
                     4,
                     $this->releaseInfo
                 );
 
                 if ($result) {
                     $this->rememberVer($this->latestVer);
-                    system_log('有关新版的信息已送信给到你，请注意查收。');
+                    system_log(lang('100036'));
                 }
             }
 
             return true;
         } catch (\Exception $e) {
-            system_log('升级出错：' . $e->getMessage());
+            system_log(lang('100037') . $e->getMessage());
 
             return false;
         }

@@ -28,7 +28,7 @@
             padding: 30px;
             font-size: 14px;
             line-height: 1.5;
-            /*background: url('images/ting.jpg') no-repeat top right;*/
+            /*background: url('../images/ting.jpg') no-repeat top right;*/
         }
 
         .mmsgLetterContent h3 {
@@ -76,22 +76,22 @@
 
         .mmsgLetterContent a.mmsgButton:link,
         .mmsgLetterContent a.mmsgButton:visited {
-            background: #338702 url('images/mmsgletter_2_btn.png') no-repeat right -40px;
+            background: #338702 url('../images/mmsgletter_2_btn.png') no-repeat right -40px;
         }
 
         .mmsgLetterContent a.mmsgButton:link span,
         .mmsgLetterContent a.mmsgButton:visited span {
-            background: url('images/mmsgletter_2_btn.png') no-repeat 0 0;
+            background: url('../images/mmsgletter_2_btn.png') no-repeat 0 0;
         }
 
         .mmsgLetterContent a.mmsgButton:hover,
         .mmsgLetterContent a.mmsgButton:active {
-            background: #338702 url('images/mmsgletter_2_btn.png') no-repeat right -120px;
+            background: #338702 url('../images/mmsgletter_2_btn.png') no-repeat right -120px;
         }
 
         .mmsgLetterContent a.mmsgButton:hover span,
         .mmsgLetterContent a.mmsgButton:active span {
-            background: url('images/mmsgletter_2_btn.png') no-repeat 0 -80px;
+            background: url('../images/mmsgletter_2_btn.png') no-repeat 0 -80px;
         }
 
         .mmsgLetterInscribe {
@@ -118,7 +118,7 @@
 
         .mmsgLetterHeader {
             height: 23px;
-            /*background: url('images/mmsgletter_2_bg_topline.png') repeat-x 0 0;*/
+            /*background: url('../images/mmsgletter_2_bg_topline.png') repeat-x 0 0;*/
             background: 7px 0 repeat-x #FFF;
             background-image: -webkit-repeating-linear-gradient(135deg, #4882CE, #4882CE 20px, #FFF 20px, #FFF 35px, #EB1B2E 35px, #EB1B2E 55px, #FFF 55px, #FFF 70px);
             background-image: repeating-linear-gradient(-45deg, #4882CE, #4882CE 20px, #FFF 20px, #FFF 35px, #EB1B2E 35px, #EB1B2E 55px, #FFF 55px, #FFF 70px);
@@ -175,7 +175,7 @@
             font-size: 12px;
             float: left;
             height: 43px;
-            background: url('images/mmsgletter_chat_right.gif') no-repeat right top;
+            background: url('../images/mmsgletter_chat_right.gif') no-repeat right top;
         }
 
         .mmsgLetterDesc div {
@@ -184,7 +184,7 @@
             height: 43px;
             padding: 0 20px;
             line-height: 40px;
-            background: url('images/mmsgletter_chat_left.gif') no-repeat left top;
+            background: url('../images/mmsgletter_chat_left.gif') no-repeat left top;
         }
 
         .mmsgLetterUser {
@@ -245,7 +245,7 @@
             font-size: 12px;
             float: left;
             height: 43px;
-            background: url('images/mmsgletter_chat_right.gif') no-repeat right top;
+            background: url('../images/mmsgletter_chat_right.gif') no-repeat right top;
         }
 
         .mmsgLetterDesc div {
@@ -254,7 +254,7 @@
             height: 43px;
             padding: 0 20px;
             line-height: 40px;
-            background: url('images/mmsgletter_chat_left.gif') no-repeat left top;
+            background: url('../images/mmsgletter_chat_left.gif') no-repeat left top;
         }
 
         .qmbox style,
@@ -334,18 +334,20 @@
 </head>
 <body>
 <div id="mailContentContainer" class="qmbox qm_con_body_content qqmail_webmail_only" style="">
-    <div style="background-color:#d0d0d0;background-image:url('images/mmsgletter_2_bg.png');text-align:center;padding:40px;">
+    <div style="background-color:#d0d0d0;background-image:url('../images/mmsgletter_2_bg.png');text-align:center;padding:40px;">
         <div class="mmsgLetter">
             <div class="mmsgLetterHeader" style="height:23px;"></div>
-            <div class="mmsgLetterContent" style="text-align:left;padding: 0 30px;font-size:14px;line-height:1.5;/*background:url('images/ting.jpg') no-repeat top right;background-size: 224px 224px;*/">
+            <div class="mmsgLetterContent" style="text-align:left;padding: 0 30px;font-size:14px;line-height:1.5;/*background:url('../images/ting.jpg') no-repeat top right;background-size: 224px 224px;*/">
                 <div>
-                    <p>
-                        <br>我刚刚帮小主看了一下，账户 <a href="#" rel="noopener">%s</a> 今天并没有需要续期的域名。所有域名情况如下：
+                    <p>主人，我刚刚帮你续期域名啦~
                         <br>
-                        <br><span class="domainDays">%s</span>
+                        <br>账户 <a href="#" rel="noopener">%s</a> 这次续期的结果如下
+                        <br><br>
+                        <span class="renewed">%s</span>
+                        <br>
+                        <span class="notRenewed">%s</span>
+                        <br>emmmm，除以上内容外，我还帮小主看了一下：<br><br><span class="domainDays">%s</span>
                         <br><br>更多信息可以参考 <a href="https://my.freenom.com/domains.php?a=renewals" target="_blank" rel="noopener">Freenom官网</a> 哦~
-                        <br>
-                        <br>（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）
                     </p>
                 </div>
                 <div class="mmsgLetterInscribe" style="padding:40px 0 0;">

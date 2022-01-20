@@ -18,7 +18,8 @@ class Lang extends Base
 
     public function init()
     {
-        $this->lang = require sprintf('%s/lang/%s.php', RESOURCES_PATH, config('locale'));
+        // 读取语言包，位于 resources/lang/ 目录下
+        $this->lang = require sprintf('%s/lang/%s.php', RESOURCES_PATH, env('LANGUAGE', 'zh'));
     }
 
     /**
@@ -46,6 +47,8 @@ class Lang extends Base
             } else {
                 if (isset($lang[$key])) {
                     return $lang[$key];
+                } else if (isset($lang['messages'][$key])) { // 如果没有在根节点找到语言数据，则尝试从 messages 下标继续找寻
+                    return $lang['messages'][$key];
                 }
 
                 return null;

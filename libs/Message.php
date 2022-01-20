@@ -35,7 +35,7 @@ abstract class Message extends Base
         foreach (config('message') as $conf) {
             if ($conf['enable'] !== 1) {
                 if ($conf['not_enabled_tips'] && self::$notEnabledTips) { // 仅在存在配置的送信项未启用的情况下提醒
-                    system_log(sprintf('由于没有启用「%s」功能，故本次不通过「%s」送信，尽管检测到相关配置。', $conf['name'], $conf['name']));
+                    system_log(sprintf(lang('100055'), $conf['name'], $conf['name']));
                 }
 
                 continue;
@@ -44,7 +44,7 @@ abstract class Message extends Base
             $serviceInstance = self::getInstance($conf['class'], 'IS_MESSAGE_SERVICE');
 
             if (!$serviceInstance instanceof MessageServiceInterface) {
-                throw new \Exception(sprintf('消息服务类 %s 必须继承并实现 MessageServiceInterface 接口', $conf['class']));
+                throw new \Exception(sprintf(lang('100056'), $conf['class']));
             }
 
             if ($serviceInstance->$method(...$params) && !$result) { // 任一方式送信成功即为成功

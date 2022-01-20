@@ -27,6 +27,12 @@ class Mail extends MessageGateway
      */
     public function __construct()
     {
+        $this->language = env('LANGUAGE', 'zh');
+
+        $this->noticeTemplatePath = sprintf('%s/mail/%s/notice.html', RESOURCES_PATH, $this->language);
+        $this->successfulRenewalTemplatePath = sprintf('%s/mail/%s/successful_renewal.html', RESOURCES_PATH, $this->language);
+        $this->noRenewalRequiredTemplatePath = sprintf('%s/mail/%s/no_renewal_required.html', RESOURCES_PATH, $this->language);
+
         $this->phpMailerInstance = new PHPMailer(true);
 
         $this->init();
@@ -92,8 +98,7 @@ class Mail extends MessageGateway
             $secure = config('message.mail.encryption');
             $port = (int)config('message.mail.port');
             if (!($host && $secure && $port)) {
-                throw new MailException('目前支持Gmail、QQ邮箱、163邮箱以及Outlook邮箱自动识别配置，其它类型的邮箱或者自建邮箱，'
-                    . '请在 .env 文件中追加“自定义邮箱配置”的所有相关项，否则无法使用邮件服务。');
+                throw new MailException(lang('100069'));
             }
         }
 
@@ -128,16 +133,16 @@ class Mail extends MessageGateway
     public function genDomainStatusHtml(array $domainStatus)
     {
         if (empty($domainStatus)) {
-            return "无数据。";
+            return lang('100070');
         }
 
         $domainStatusHtml = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
-            $domainStatusHtml .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>还有 <span style="font-weight: bold; font-size: 16px;">%d</span> 天到期，', $domain, $domain, $daysLeft);
+            $domainStatusHtml .= sprintf(lang('100071'), $domain, $domain, $daysLeft);
         }
 
-        $domainStatusHtml = rtrim($domainStatusHtml, '，') . "。";
+        $domainStatusHtml = rtrim(rtrim($domainStatusHtml, ' '), '，,') . lang('100072');
 
         return $domainStatusHtml;
     }
@@ -166,8 +171,8 @@ class Mail extends MessageGateway
 
         $this->check($content, $data);
 
-        $this->phpMailerInstance->addAddress($recipient, config('message.mail.recipient_name', '主人')); // 添加收件人，参数2选填
-        $this->phpMailerInstance->addReplyTo(config('message.mail.reply_to', 'mybsdc@qq.com'), config('message.mail.reply_to_name', '作者')); // 备用回复地址，收到的回复的邮件将被发到此地址
+        $this->phpMailerInstance->addAddress($recipient, config('message.mail.recipient_name', lang('100073'))); // 添加收件人，参数2选填
+        $this->phpMailerInstance->addReplyTo(config('message.mail.reply_to', 'mybsdc@qq.com'), config('message.mail.reply_to_name', lang('100074'))); // 备用回复地址，收到的回复的邮件将被发到此地址
 
         /**
          * 抄送和密送都是添加收件人，抄送方式下，被抄送者知道除被密送者外的所有的收件人，密送方式下，
@@ -195,32 +200,32 @@ class Mail extends MessageGateway
          * $this->phpMailerInstance->AltBody = 'This is an HTML-only message. To view it, activate HTML in your email application.'; // 纯文本消息正文。不支持html预览的邮件客户端将显示此预览消息，其它情况将显示正常的body
          */
         if ($type === 1) {
-            $template = file_get_contents(RESOURCES_PATH . '/mail/notice.html');
+            $template = file_get_contents($this->noticeTemplatePath);
             $message = sprintf($template, $content);
         } else if ($type === 2) {
-            $template = file_get_contents(RESOURCES_PATH . '/mail/successful_renewal.html');
+            $template = file_get_contents($this->successfulRenewalTemplatePath);
             $realData = [
                 $data['username'],
-                $data['renewalSuccessArr'] ? sprintf('续期成功：%s<br>', $this->genDomainsHtml($data['renewalSuccessArr'])) : '',
-                $data['renewalFailuresArr'] ? sprintf('续期出错：%s<br>', $this->genDomainsHtml($data['renewalFailuresArr'])) : '',
+                $data['renewalSuccessArr'] ? sprintf(lang('100075'), $this->genDomainsHtml($data['renewalSuccessArr'])) : '',
+                $data['renewalFailuresArr'] ? sprintf(lang('100076'), $this->genDomainsHtml($data['renewalFailuresArr'])) : '',
                 $this->genDomainStatusHtml($data['domainStatusArr'])
             ];
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 3) {
-            $template = file_get_contents(RESOURCES_PATH . '/mail/no_renewal_required.html');
+            $template = file_get_contents($this->noRenewalRequiredTemplatePath);
             $realData = [
                 $data['username'],
                 $this->genDomainStatusHtml($data['domainStatusArr'])
             ];
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 4) {
-            $template = file_get_contents(RESOURCES_PATH . '/mail/notice.html');
+            $template = file_get_contents($this->noticeTemplatePath);
             $message = sprintf($template, $this->newLine2Br($content));
         } else {
-            throw new \Exception(lang('error_msg.100003'));
+            throw new \Exception(lang('100003'));
         }
 
-        $this->phpMailerInstance->msgHTML($message, APP_PATH . '/mail');
+        $this->phpMailerInstance->msgHTML($message, RESOURCES_PATH . '/mail/' . $this->language);
 
         try {
             if (!$this->phpMailerInstance->send()) {
@@ -229,7 +234,7 @@ class Mail extends MessageGateway
 
             return true;
         } catch (\Exception $e) {
-            system_log('邮件发送失败：' . $e->getMessage());
+            system_log(lang('100077') . $e->getMessage());
 
             return false;
         }
