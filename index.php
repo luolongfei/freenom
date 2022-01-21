@@ -49,8 +49,9 @@ use Luolongfei\Libs\Message;
 function customize_error_handler()
 {
     if (!is_null($error = error_get_last())) {
-        Log::error('程序意外终止', $error);
-        Message::send('可能存在错误，这边收集到的错误信息为：' . json_encode($error, JSON_UNESCAPED_UNICODE), '主人，程序意外终止');
+        system_log(json_encode($error, JSON_UNESCAPED_UNICODE));
+        Log::error(lang('100057'), $error);
+        Message::send(lang('100058') . json_encode($error, JSON_UNESCAPED_UNICODE), lang('100059'));
     }
 }
 
@@ -61,8 +62,8 @@ function customize_error_handler()
  */
 function exception_handler($e)
 {
-    Log::error('未捕获的异常：' . $e->getMessage());
-    Message::send("具体的异常内容是：\n" . $e->getMessage(), '主人，未捕获的异常');
+    Log::error(lang('100060') . $e->getMessage());
+    Message::send(lang('100061') . $e->getMessage(), lang('100062'));
 }
 
 /**
@@ -89,7 +90,7 @@ function main_handler($event, $context)
 function handler($event, $context)
 {
     $logger = $GLOBALS['fcLogger'];
-    $logger->info('开始执行阿里云函数');
+    $logger->info(lang('100063'));
 
     return run();
 }
@@ -107,11 +108,11 @@ function run()
 
         $class::getInstance()->$fn();
 
-        return IS_SCF ? '云函数执行成功。' : true;
+        return IS_SCF ? lang('100007') : true;
     } catch (\Exception $e) {
-        system_log(sprintf('执行出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
-        Message::send("执行出错：\n" . $e->getMessage(), '主人，捕获异常');
+        system_log(sprintf(lang('100006'), $e->getMessage()), $e->getTrace());
+        Message::send(lang('100004') . $e->getMessage(), lang('100005'));
     }
 
-    return IS_SCF ? '云函数执行失败。' : false;
+    return IS_SCF ? lang('100008') : false;
 }

@@ -120,13 +120,13 @@ class WeChat extends MessageGateway
         if (isset($resp['errcode']) && $resp['errcode'] === 0 && isset($resp['access_token']) && isset($resp['expires_in'])) {
             $accessTokenFileText = sprintf("WECHAT_ACCESS_TOKEN=%s\nWECHAT_ACCESS_TOKEN_EXPIRES_AT=%s\n", $resp['access_token'], time() + $resp['expires_in']);
             if (file_put_contents($this->accessTokenFile, $accessTokenFileText) === false) {
-                throw new \Exception('企业微信 access_token 写入失败：' . $this->accessTokenFile);
+                throw new \Exception(lang('100113') . $this->accessTokenFile);
             }
 
             return $resp['access_token'];
         }
 
-        throw new \Exception('获取企业微信 access_token 失败：' . ($resp['errmsg'] ?? '未知原因'));
+        throw new \Exception(lang('100114') . ($resp['errmsg'] ?? lang('100115')));
     }
 
     /**
@@ -158,8 +158,8 @@ class WeChat extends MessageGateway
     {
         $footer = '';
 
-        $footer .= "\n更多信息可以参考 <a href=\"https://my.freenom.com/domains.php?a=renewals\">Freenom官网</a> 哦~";
-        $footer .= "\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）";
+        $footer .= lang('100116');
+        $footer .= lang('100117');
 
         return $footer;
     }
@@ -174,16 +174,16 @@ class WeChat extends MessageGateway
     public function genDomainStatusText(array $domainStatus)
     {
         if (empty($domainStatus)) {
-            return "无数据。\n";
+            return lang('100118');
         }
 
         $domainStatusText = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
-            $domainStatusText .= sprintf('<a href="http://%s">%s</a> 还有 <a href="http://%s">%d</a> 天到期，', $domain, $domain, $domain, $daysLeft);
+            $domainStatusText .= sprintf(lang('100119'), $domain, $domain, $domain, $daysLeft);
         }
 
-        $domainStatusText = rtrim($domainStatusText, '，') . "。\n";
+        $domainStatusText = rtrim(rtrim($domainStatusText, ' '), '，,') . lang('100120');
 
         return $domainStatusText;
     }
@@ -200,19 +200,19 @@ class WeChat extends MessageGateway
      */
     public function genDomainRenewalResultsText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
-        $text = sprintf("账户 <a href=\"https://www.google.com\">%s</a> 这次续期的结果如下\n\n", $username);
+        $text = sprintf(lang('100121'), $username);
 
         if ($renewalSuccessArr) {
-            $text .= '续期成功：';
+            $text .= lang('100122');
             $text .= $this->genDomainsText($renewalSuccessArr);
         }
 
         if ($renewalFailuresArr) {
-            $text .= '续期出错：';
+            $text .= lang('100123');
             $text .= $this->genDomainsText($renewalFailuresArr);
         }
 
-        $text .= "\n今次无需续期的域名及其剩余天数如下所示：\n\n";
+        $text .= lang('100124');
         $text .= $this->genDomainStatusText($domainStatus);
 
         $text .= $this->getFooter();
@@ -230,7 +230,7 @@ class WeChat extends MessageGateway
      */
     public function genDomainStatusFullText(string $username, array $domainStatus)
     {
-        $markDownText = sprintf("我刚刚帮小主看了一下，账户 <a href=\"https://www.google.com\">%s</a> 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
+        $markDownText = sprintf(lang('100125'), $username);
 
         $markDownText .= $this->genDomainStatusText($domainStatus);
 
@@ -270,7 +270,7 @@ class WeChat extends MessageGateway
         } else if ($type === 3) {
             $content = $this->genDomainStatusFullText($data['username'], $data['domainStatusArr']);
         } else {
-            throw new \Exception(lang('error_msg.100003'));
+            throw new \Exception(lang('100003'));
         }
 
         if ($subject !== '') {
@@ -293,7 +293,7 @@ class WeChat extends MessageGateway
 
             return $this->doSend($accessToken, $body);
         } catch (\Exception $e) {
-            system_log('企业微信送信失败：<red>' . $e->getMessage() . '</red>');
+            system_log(sprintf(lang('100126'), $e->getMessage()));
 
             return false;
         }
@@ -325,7 +325,7 @@ class WeChat extends MessageGateway
         $resp = (array)json_decode($resp, true);
 
         if (!isset($resp['errcode']) || !isset($resp['errmsg'])) {
-            throw new \Exception('企业微信接口未返回预期的数据响应，本次响应数据为：' . json_encode($resp, JSON_UNESCAPED_UNICODE));
+            throw new \Exception(lang('100127') . json_encode($resp, JSON_UNESCAPED_UNICODE));
         }
 
         if ($resp['errcode'] === 0) {
@@ -334,7 +334,7 @@ class WeChat extends MessageGateway
             $accessToken = $this->getAccessToken(true);
 
             if ($numOfRetries > 2) {
-                throw new \Exception('检测到多次提示 access_token 失效，可能是未能正确获取 access_token，请介入调查：' . $resp['errmsg']);
+                throw new \Exception(lang('100128') . $resp['errmsg']);
             }
 
             $numOfRetries++;

@@ -3,10 +3,10 @@
     "description": "freenom域名自动续期。",
     "type": "project",
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.3",
         "ext-curl": "*",
         "ext-openssl": "*",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.4.1",
         "monolog/monolog": "^1.24",
         "bramus/monolog-colored-line-formatter": "~2.0",
         "phpmailer/phpmailer": "^6.0",
@@ -34,5 +34,8 @@
         "files": [
             "app/helpers.php"
         ]
+    },
+    "config": {
+        "platform-check": false
     }
 }

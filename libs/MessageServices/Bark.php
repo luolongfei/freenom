@@ -146,8 +146,8 @@ class Bark extends MessageGateway
     {
         $footer = '';
 
-        $footer .= "\n更多信息可以参考：https://my.freenom.com/domains.php?a=renewals（点击“复制内容”即可复制此网址）";
-        $footer .= "\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）";
+        $footer .= lang('100078');
+        $footer .= lang('100079');
 
         return $footer;
     }
@@ -162,16 +162,16 @@ class Bark extends MessageGateway
     public function genDomainStatusText(array $domainStatus)
     {
         if (empty($domainStatus)) {
-            return "无数据。\n";
+            return lang('100080');
         }
 
         $domainStatusText = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
-            $domainStatusText .= sprintf('%s 还有 %d 天到期，', $domain, $daysLeft);
+            $domainStatusText .= sprintf(lang('100081'), $domain, $daysLeft);
         }
 
-        $domainStatusText = rtrim($domainStatusText, '，') . "。\n";
+        $domainStatusText = rtrim(rtrim($domainStatusText, ' '), '，,') . lang('100082');
 
         return $domainStatusText;
     }
@@ -188,19 +188,19 @@ class Bark extends MessageGateway
      */
     public function genDomainRenewalResultsText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
-        $text = sprintf("账户 %s 这次续期的结果如下\n\n", $username);
+        $text = sprintf(lang('100083'), $username);
 
         if ($renewalSuccessArr) {
-            $text .= '续期成功：';
+            $text .= lang('100084');
             $text .= $this->genDomainsText($renewalSuccessArr);
         }
 
         if ($renewalFailuresArr) {
-            $text .= '续期出错：';
+            $text .= lang('100085');
             $text .= $this->genDomainsText($renewalFailuresArr);
         }
 
-        $text .= "\n今次无需续期的域名及其剩余天数如下所示：\n\n";
+        $text .= lang('100086');
         $text .= $this->genDomainStatusText($domainStatus);
 
         $text .= $this->getFooter();
@@ -218,7 +218,7 @@ class Bark extends MessageGateway
      */
     public function genDomainStatusFullText(string $username, array $domainStatus)
     {
-        $markDownText = sprintf("我刚刚帮小主看了一下，账户 %s 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
+        $markDownText = sprintf(lang('100087'), $username);
 
         $markDownText .= $this->genDomainStatusText($domainStatus);
 
@@ -251,7 +251,7 @@ class Bark extends MessageGateway
         } else if ($type === 3) {
             $content = $this->genDomainStatusFullText($data['username'], $data['domainStatusArr']);
         } else {
-            throw new \Exception(lang('error_msg.100003'));
+            throw new \Exception(lang('100003'));
         }
 
         $query = [
@@ -302,9 +302,9 @@ class Bark extends MessageGateway
                 return true;
             }
 
-            throw new \Exception($resp['message'] ?? '未知原因');
+            throw new \Exception($resp['message'] ?? lang('100088'));
         } catch (\Exception $e) {
-            system_log('Bark 送信失败：<red>' . $e->getMessage() . '</red>');
+            system_log(sprintf(lang('100089'), $e->getMessage()));
 
             return false;
         }

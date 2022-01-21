@@ -62,7 +62,8 @@ class ReplicationStrategy
         }
 
         if (($eval = $id === 'EVAL') || $id === 'EVALSHA') {
-            $sha1 = $eval ? sha1($command->getArgument(0)) : $command->getArgument(0);
+            $argument = $command->getArgument(0);
+            $sha1 = $eval ? sha1(strval($argument)) : $argument;
 
             if (isset($this->readonlySHA1[$sha1])) {
                 if (true === $readonly = $this->readonlySHA1[$sha1]) {
@@ -87,31 +88,6 @@ class ReplicationStrategy
     public function isDisallowedOperation(CommandInterface $command)
     {
         return isset($this->disallowed[$command->getId()]);
-    }
-
-    /**
-     * Checks if a SORT command is a readable operation by parsing the arguments
-     * array of the specified commad instance.
-     *
-     * @param CommandInterface $command Command instance.
-     *
-     * @return bool
-     */
-    protected function isSortReadOnly(CommandInterface $command)
-    {
-        $arguments = $command->getArguments();
-        $argc = count($arguments);
-
-        if ($argc > 1) {
-            for ($i = 1; $i < $argc; ++$i) {
-                $argument = strtoupper($arguments[$i]);
-                if ($argument === 'STORE') {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -292,7 +268,6 @@ class ReplicationStrategy
             'BITPOS' => true,
             'TIME' => true,
             'PFCOUNT' => true,
-            'SORT' => array($this, 'isSortReadOnly'),
             'BITFIELD' => array($this, 'isBitfieldReadOnly'),
             'GEOHASH' => true,
             'GEOPOS' => true,

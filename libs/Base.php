@@ -25,11 +25,11 @@ class Base
     public static function addInstance(string $className, bool $overwrite = false)
     {
         if (isset(self::$instances[$className]) && !$overwrite) {
-            throw new \InvalidArgumentException(sprintf('类 %s 的实例已存在', $className));
+            throw new \InvalidArgumentException(sprintf(lang('100053'), $className));
         }
 
         if (!class_exists($className)) {
-            throw new \Exception(sprintf('类 %s 不存在', $className));
+            throw new \Exception(sprintf(lang('100054'), $className));
         }
 
         $instance = new $className();

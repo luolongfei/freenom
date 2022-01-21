@@ -24,6 +24,36 @@ class Utils
     }
 
     /**
+     * Makes sure if a relative path is passed in it is turned into an absolute path
+     *
+     * @param string $streamUrl stream URL or path without protocol
+     *
+     * @return string
+     */
+    public static function canonicalizePath($streamUrl)
+    {
+        $prefix = '';
+        if ('file://' === substr($streamUrl, 0, 7)) {
+            $streamUrl = substr($streamUrl, 7);
+            $prefix = 'file://';
+        }
+
+        // other type of stream, not supported
+        if (false !== strpos($streamUrl, '://')) {
+            return $streamUrl;
+        }
+
+        // already absolute
+        if (substr($streamUrl, 0, 1) === '/' || substr($streamUrl, 1, 1) === ':' || substr($streamUrl, 0, 2) === '\\\\') {
+            return $prefix.$streamUrl;
+        }
+
+        $streamUrl = getcwd() . '/' . $streamUrl;
+
+        return $prefix.$streamUrl;
+    }
+
+    /**
      * Return the JSON representation of a value
      *
      * @param  mixed             $data
@@ -138,7 +168,7 @@ class Utils
      * Function converts the input in place in the passed variable so that it
      * can be used as a callback for array_walk_recursive.
      *
-     * @param mixed &$data Input to check and convert if needed
+     * @param mixed $data Input to check and convert if needed, passed by ref
      * @private
      */
     public static function detectAndCleanUtf8(&$data)

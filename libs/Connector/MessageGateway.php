@@ -35,7 +35,7 @@ abstract class MessageGateway implements MessageServiceInterface
     public function check(string $content, array $data)
     {
         if ($content === '' && empty($data)) {
-            throw new \Exception(lang('error_msg.100002'));
+            throw new \Exception(lang('100002'));
         }
     }
 

@@ -48,7 +48,7 @@ class ServerChan extends MessageGateway
      */
     public function genDomainStatusFullMarkDownText(string $username, array $domainStatus)
     {
-        $markDownText = sprintf("我刚刚帮小主看了一下，账户 [%s](#) 今天并没有需要续期的域名。所有域名情况如下：\n\n", $username);
+        $markDownText = sprintf(lang('100090'), $username);
 
         $markDownText .= $this->genDomainStatusMarkDownText($domainStatus);
 
@@ -66,8 +66,8 @@ class ServerChan extends MessageGateway
     {
         $footer = '';
 
-        $footer .= "\n更多信息可以参考 [Freenom官网](https://my.freenom.com/domains.php?a=renewals) 哦~";
-        $footer .= "\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为 0，使程序只在有续期操作时才推送）";
+        $footer .= lang('100091');
+        $footer .= lang('100092');
 
         return $footer;
     }
@@ -82,16 +82,16 @@ class ServerChan extends MessageGateway
     public function genDomainStatusMarkDownText(array $domainStatus)
     {
         if (empty($domainStatus)) {
-            return "无数据。\n";
+            return lang('100093');
         }
 
         $domainStatusMarkDownText = '';
 
         foreach ($domainStatus as $domain => $daysLeft) {
-            $domainStatusMarkDownText .= sprintf('[%s](http://%s) 还有 *%d* 天到期，', $domain, $domain, $daysLeft);
+            $domainStatusMarkDownText .= sprintf(lang('100094'), $domain, $domain, $daysLeft);
         }
 
-        $domainStatusMarkDownText = rtrim($domainStatusMarkDownText, '，') . "。\n";
+        $domainStatusMarkDownText = rtrim(rtrim($domainStatusMarkDownText, ' '), '，,') . lang('100095');
 
         return $domainStatusMarkDownText;
     }
@@ -108,19 +108,19 @@ class ServerChan extends MessageGateway
      */
     public function genDomainRenewalResultsMarkDownText(string $username, array $renewalSuccessArr, array $renewalFailuresArr, array $domainStatus)
     {
-        $text = sprintf("账户 [%s](#) 这次续期的结果如下\n\n", $username);
+        $text = sprintf(lang('100096'), $username);
 
         if ($renewalSuccessArr) {
-            $text .= '续期成功：';
+            $text .= lang('100097');
             $text .= $this->genDomainsMarkDownText($renewalSuccessArr);
         }
 
         if ($renewalFailuresArr) {
-            $text .= '续期出错：';
+            $text .= lang('100098');
             $text .= $this->genDomainsMarkDownText($renewalFailuresArr);
         }
 
-        $text .= "\n今次无需续期的域名及其剩余天数如下所示：\n\n";
+        $text .= lang('100099');
         $text .= $this->genDomainStatusMarkDownText($domainStatus);
 
         $text .= $this->getMarkDownFooter();
@@ -172,7 +172,7 @@ class ServerChan extends MessageGateway
         } else if ($type === 3) {
             $content = $this->genDomainStatusFullMarkDownText($data['username'], $data['domainStatusArr']);
         } else {
-            throw new \Exception(lang('error_msg.100003'));
+            throw new \Exception(lang('100003'));
         }
 
         $subject = $subject === '' ? mb_substr($content, 0, 12) . '...' : $subject;
@@ -194,9 +194,9 @@ class ServerChan extends MessageGateway
                 return true;
             }
 
-            throw new \Exception($resp['message'] ?? '未知原因');
+            throw new \Exception($resp['message'] ?? lang('100100'));
         } catch (\Exception $e) {
-            system_log('Server酱 消息发送失败：<red>' . $e->getMessage() . '</red>');
+            system_log(sprintf(lang('100101'), $e->getMessage()));
 
             return false;
         }

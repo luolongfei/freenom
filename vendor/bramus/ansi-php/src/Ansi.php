@@ -11,19 +11,24 @@ class Ansi
      * Traits to use
      */
     use Traits\ControlFunctions;
-    use Traits\EscapeSequences\SGR;
     use Traits\EscapeSequences\ED;
     use Traits\EscapeSequences\EL;
+    use Traits\EscapeSequences\CUB;
+    use Traits\EscapeSequences\CUD;
+    use Traits\EscapeSequences\CUF;
+    use Traits\EscapeSequences\CUP;
+    use Traits\EscapeSequences\CUU;
+    use Traits\EscapeSequences\SGR;
 
     /**
      * The writer to write the data to
-     * @var Writer\WriterInterface
+     * @var Writers\WriterInterface
      */
     protected $writer;
 
     /**
      * ANSI Wrapper Class to work with \Bramus\Ansi more easily
-     * @param Writer\WriterInterface $writer writer to use
+     * @param Writers\WriterInterface $writer writer to use
      */
     public function __construct($writer = null)
     {
@@ -38,7 +43,7 @@ class Ansi
 
     /**
      * Sets the writer
-     * @param Writer\WriterInterface $writer The writer to use
+     * @param Writers\WriterInterface $writer The writer to use
      */
     public function setWriter(Writers\WriterInterface $writer)
     {
@@ -47,7 +52,7 @@ class Ansi
 
     /**
      * Gets the writer
-     * @return Writer\WriterInterface $writer The writer used
+     * @return Writers\WriterInterface $writer The writer used
      */
     public function getWriter()
     {

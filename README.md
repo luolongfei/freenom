@@ -2,7 +2,7 @@
 <h1>Freenom：freenom域名自动续期</h1>
 
 [![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
-[![Php Version](https://img.shields.io/badge/php-%3E=7.2-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![Php Version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
@@ -64,7 +64,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🎁 事前准备
 
-- VPS：随便一台服务器都行，系统推荐`Centos7`或者`Debian`，另外 PHP 版本需在`php7.2`及以上。如果你没有服务器，推荐参考下方文档
+- VPS：随便一台服务器都行，系统推荐`Debian`或者`Centos7`，另外 PHP 版本需在`php7.3`及以上。如果你没有服务器，推荐参考下方文档
   [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署) 或者 [🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署) 。
 - 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
@@ -78,7 +78,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 此处会分别介绍`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`送信方式的配置方法，以及其所需的资料，你可以任选一种送信方式进行配置，直接跳到对应的文档查看即可。 如果你是 IOS
 用户，推荐使用 `Bark`
-送信方式，一切尽在掌握的感觉很好。其它平台的用户根据自己喜好选择可接受的送信方式即可。这里非常不推荐使用`Server 酱`送信，`Server 酱`每日送信条数的限制，以及需要开会员才能直接看到送信内容，否则需要跳到 `Server 酱`
+送信方式，其它平台的用户根据自己喜好选择可接受的送信方式即可。不太推荐使用`Server 酱`送信，`Server 酱`每日送信条数的限制，以及需要开会员才能直接看到送信内容，否则需要跳到 `Server 酱`
 网站才能查看内容，都是不推荐的原因。同样的配置完全可以直接使用`企业微信`送信方式，`企业微信`送信直接在普通微信客户端就能看到信件内容。
 
 *快速到文档指定位置：*
@@ -89,7 +89,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [企业微信](#企业微信)
 
-[Server 酱](#Server-酱)（不推荐）
+[Server 酱](#Server-酱)
 
 [Bark 送信](#Bark-送信)
 
@@ -574,13 +574,13 @@ systemctl restart docker
 [![aliyun13.png](https://s4.ax1x.com/2021/12/14/ovumgs.png)](https://s4.ax1x.com/2021/12/14/ovumgs.png)
 
 > 在阿里云函数如何修改或者新增环境变量呢？
-> 
+>
 请参考下图操作。
 
 [![aliyun14.png](https://s4.ax1x.com/2021/12/14/ovRKQe.png)](https://s4.ax1x.com/2021/12/14/ovRKQe.png)
 
 > 在阿里云函数如何更新代码或者升级代码到最新版本呢？
-> 
+>
 参考下图，上传新的代码包后，阿里云函数编辑器可能会提示你同步代码，点击【是】即可。然后记得点击【部署】并测试。
 
 [![aliyun15.png](https://s4.ax1x.com/2021/12/14/ovW6HA.png)](https://s4.ax1x.com/2021/12/14/ovW6HA.png)
@@ -768,6 +768,8 @@ cd /data/wwwroot/freenom/ && php run
 ##### Changed
 
 - 解决 企业微信 因送信内容过长被截断问题
+- PHP 版本最低要求不低于 7.3
+- 增加英文相关文言，支持中英文切换
 
 #### [v0.4.4](https://github.com/luolongfei/freenom/releases/tag/v0.4.4) - 2021-12-14
 
