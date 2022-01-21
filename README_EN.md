@@ -51,7 +51,7 @@ name has not been renewed.
 
 - Email of robot: Used to send notification emails.
 - Your email: Used to receive notification emails sent by robots.
-- VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
+- VPS: Any server can be used. The system recommends `Debian`, and the PHP version must be` php7.3` or above.
 - No more
 
 ### 📪 Setting up Gmail
