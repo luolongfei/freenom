@@ -49,6 +49,7 @@ use Luolongfei\Libs\Message;
 function customize_error_handler()
 {
     if (!is_null($error = error_get_last())) {
+        system_log(json_encode($error, JSON_UNESCAPED_UNICODE));
         Log::error(lang('100057'), $error);
         Message::send(lang('100058') . json_encode($error, JSON_UNESCAPED_UNICODE), lang('100059'));
     }

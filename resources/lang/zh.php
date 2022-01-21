@@ -14,7 +14,7 @@ return [
         '34520003' => '域名数据匹配失败，可能是你暂时没有域名或者页面改版导致正则失效，请及时联系作者：https://github.com/luolongfei/freenom/issues',
         '34520004' => 'token 匹配失败，可能是页面改版导致正则失效，请及时联系作者：https://github.com/luolongfei/freenom/issues',
         '34520005' => 'putenv() 函数被禁用，无法写入环境变量导致程序无法正常运作，请启用 putenv() 函数',
-        '34520006' => sprintf('不支持 php7 以下的版本，当前版本为%s，请升级到 php7 以上', PHP_VERSION),
+        '34520006' => 'PHP 的版本不允许小于 %s，当前 PHP 版本为 %s，请升级你的 PHP 版本，否则无法正常运行。如果不方便升级 PHP，推荐使用本项目的 Docker 版：https://hub.docker.com/r/luolongfei/freenom',
         '34520007' => sprintf('已自动在%s目录下生成 .env 配置文件，请将配置文件中的各项内容修改为你自己的', ROOT_PATH),
         '34520008' => sprintf('请将%s目录下的 .env.example 文件复制为 .env 文件，并将 .env 文件中的各项内容修改为你自己的', ROOT_PATH),
         '34520009' => '获取域名状态页面出错，可能是未登录或者登录失效，请重试。',

@@ -14,7 +14,7 @@ return [
         '34520003' => 'Domain data match failed, maybe you don\'t have a domain name or the page of freenom has changed causing the regular expression to fail, please contact the author promptly: https://github.com/luolongfei/freenom/issues',
         '34520004' => 'token match failed, may be the regular expression failed due to the page revision, please contact the author promptly: https://github.com/luolongfei/freenom/issues',
         '34520005' => 'The putenv() function is disabled and cannot write to environment variables, so the program does not work properly, please enable the putenv() function',
-        '34520006' => sprintf('Versions below php7 are not supported, the current version is %s, please upgrade to php7 or above', PHP_VERSION),
+        '34520006' => 'The version of PHP is not allowed to be less than %s, the current version of PHP is %s, please upgrade your version of PHP, otherwise it will not work properly. If it is not convenient to upgrade PHP, we recommend using the Docker version of this project: https://hub.docker.com/r/luolongfei/freenom',
         '34520007' => sprintf('The .env configuration file is automatically generated in the %s directory, please change the contents of the configuration file to your own', ROOT_PATH),
         '34520008' => sprintf('Please copy the .env.example file in the %s directory to an .env file and change the contents of the .env file to your own', ROOT_PATH),
         '34520009' => 'Error getting domain status, probably not logged in or login is invalid, please try again',

@@ -232,8 +232,8 @@ if (!function_exists('system_check')) {
      */
     function system_check()
     {
-        if (version_compare(PHP_VERSION, '7.0.0') < 0) {
-            throw new LlfException(34520006);
+        if (version_compare(PHP_VERSION, '7.3.0') < 0) {
+            throw new LlfException(34520006, ['7.3', PHP_VERSION]);
         }
 
         // 如果是在云函数部署，则不需要检查这几项
