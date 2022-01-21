@@ -58,7 +58,7 @@ class Upgrade extends Base
     {
         $this->pushedVerFile = DATA_PATH . DS . 'pushed_version.txt';
 
-        $this->language = env('LANGUAGE', 'zh');
+        $this->language = config('language', 'zh');
 
         $this->client = new Client([
             'base_uri' => 'https://api.github.com',
