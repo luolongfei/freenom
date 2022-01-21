@@ -28,11 +28,16 @@ When it comes to ANSI Control Functions `bramus/ansi-php` supports:
 
 When it comes to ANSI Escape Sequences `bramus/ansi-php` supports:
 
-- SGR _(Select Graphic Rendition)_: Manipulate text styling (bold, underline, blink, colors, etc.).
+- CUB _(Cursor Back)_: Move cursor back.
+- CUD _(Cursor Down)_: Move cursor down.
+- CUF _(Cursor Forward)_: Move cursor forward.
+- CUP _(Cursor Position)_: Move cursor to position.
+- CUU _(Cursor Up)_: Move cursor up.
 - ED _(Erase Display)_: Erase (parts of) the display.
 - EL _(Erase In Line)_: Erase (parts of) the current line.
+- SGR _(Select Graphic Rendition)_: Manipulate text styling (bold, underline, blink, colors, etc.).
 
-Other Control Sequences – such as moving the cursor – are not (yet) supported.
+Other Control Sequences – such as DCH, NEL, etc. – are not (yet) supported.
 
 An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-formatter`](https://github.com/bramus/monolog-colored-line-formatter). It uses `bramus/ansi-php`'s SGR support to colorize the output:
 
@@ -47,7 +52,7 @@ An example library that uses `bramus/ansi-php` is [`bramus/monolog-colored-line-
 Installation is possible using Composer
 
 ```shell
-composer require bramus/ansi-php ~3.0
+composer require bramus/ansi-php ~3.1
 ```
 
 ## Usage
@@ -123,7 +128,7 @@ These shorthands write SGR ANSI Escape Sequences to the writer.
 - `negative()`: Inverse or Reverse. Swap foreground and background.
 - `strikethrough()`: Strikethrough: On. _(Not widely supported)_
 
-__IMPORTANT:__ Select Graphic Rendition works in such a way that text styling  you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
+__IMPORTANT:__ Select Graphic Rendition works in such a way that text styling you have set will remain active until you call `nostyle()` or `reset()` to return to the default styling.
 
 ### ED ANSI Escape Sequence shorthands:
 
@@ -140,6 +145,14 @@ These shorthands write EL ANSI Escape Sequences to the writer.
 - `eraseLine()`: Erase the entire current line.
 - `eraseLineToEOL()`: Erase from the current cursor position to the end of the current line.
 - `eraseLineToSOL()`: Erases from the current cursor position to the start of the current line.
+
+### CUB/CUD/CUF/CUP/CUU ANSI Escape Sequence shorthands:
+
+- `cursorBack($n)`: Move cursor back `$n` positions _(default: 1)_
+- `cursorForward($n)`: Move cursor forward `$n` positions _(default: 1)_
+- `cursorDown($n)`: Move cursor down `$n` positions _(default: 1)_
+- `cursorUp($n)`: Move cursor up `$n` positions _(default: 1)_
+- `cursorPosition($n, $m)`: Move cursor to position `$n,$m` _(default: 1,1)_
 
 ### Extra functions
 
@@ -282,6 +295,46 @@ $ansi->color(array(SGR::COLOR_FG_RED, SGR::COLOR_BG_WHITE))
      ->text('I will be blinking red on a wrhite background.')
      ->nostyle();
 ```
+
+### Creating a loading Spinner
+
+By manipulating the cursor position one can create an in-place spinner
+
+```php
+use \Bramus\Ansi\Ansi;
+use \Bramus\Ansi\Writers\StreamWriter;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\EL;
+use \Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
+
+// Create Ansi Instance
+$ansi = new Ansi(new StreamWriter('php://stdout'));
+
+// Parts of our spinner
+$spinnerParts = ['⣷','⣯','⣟','⡿','⢿','⣻','⣽','⣾'];
+
+$ansi->text('Loading Data')->lf();
+for ($i = 0; $i < 100; $i++) {
+    $ansi
+        // Erase entire line
+        ->el(EL::ALL)
+        // Go back to very first position on current line
+        ->cursorBack(9999)
+        // Add a blue spinner
+        ->color(SGR::COLOR_FG_BLUE)->text($spinnerParts[$i % sizeof($spinnerParts)])
+        // Write percentage
+        ->nostyle()->text(' ' . str_pad($i, 3, 0, STR_PAD_LEFT) . '%');
+
+    usleep(50000);
+}
+$ansi
+    ->el(EL::ALL)
+    ->cursorBack(9999)
+    ->color(SGR::COLOR_FG_GREEN)->text('✔')
+    ->nostyle()->text(' 100%')
+    ->lf();
+```
+
+This snippet will output a little loading spinner icon + the current percentage (e.g. `⣯ 009%`) that constantly updates in-place. When 100% is reached, the line will read `✔ 100%`.
 
 ### Using the raw classes
 

@@ -61,8 +61,8 @@ abstract class Option implements IteratorAggregate
      *
      * @template S
      *
-     * @param array<string,S>|ArrayAccess<string,S>|null $array A potential array or \ArrayAccess value.
-     * @param string                                     $key   The key to check.
+     * @param array<string|int,S>|ArrayAccess<string|int,S>|null $array A potential array or \ArrayAccess value.
+     * @param string                                             $key   The key to check.
      *
      * @return Option<S>
      */
@@ -93,7 +93,7 @@ abstract class Option implements IteratorAggregate
      */
     public static function fromReturn($callback, array $arguments = [], $noneValue = null)
     {
-        return new LazyOption(function () use ($callback, $arguments, $noneValue) {
+        return new LazyOption(static function () use ($callback, $arguments, $noneValue) {
             /** @var mixed */
             $return = call_user_func_array($callback, $arguments);
 
@@ -126,7 +126,7 @@ abstract class Option implements IteratorAggregate
         if ($value instanceof self) {
             return $value;
         } elseif (is_callable($value)) {
-            return new LazyOption(function () use ($value, $noneValue) {
+            return new LazyOption(static function () use ($value, $noneValue) {
                 /** @var mixed */
                 $return = $value();
 
@@ -159,14 +159,14 @@ abstract class Option implements IteratorAggregate
      */
     public static function lift($callback, $noneValue = null)
     {
-        return function () use ($callback, $noneValue) {
+        return static function () use ($callback, $noneValue) {
             /** @var array<int, mixed> */
             $args = func_get_args();
 
             $reduced_args = array_reduce(
                 $args,
                 /** @param bool $status */
-                function ($status, self $o) {
+                static function ($status, self $o) {
                     return $o->isEmpty() ? true : $status;
                 },
                 false
@@ -178,7 +178,7 @@ abstract class Option implements IteratorAggregate
 
             $args = array_map(
                 /** @return T */
-                function (self $o) {
+                static function (self $o) {
                     // it is safe to do so because the fold above checked
                     // that all arguments are of type Some
                     /** @var T */

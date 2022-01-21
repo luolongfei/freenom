@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\EL as EnumEL;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the EL Escape Function Shorthands
@@ -11,7 +12,7 @@ trait EL
 {
     /**
      * Manually use EL (ERASE IN LINE)
-     * @param  array $parameterByte Parameter byte to the EL Escape Code
+     * @param  array $data Parameter byte to the EL Escape Code
      * @return Ansi  self, for chaining
      */
     public function el($data)

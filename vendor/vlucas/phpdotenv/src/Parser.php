@@ -3,6 +3,7 @@
 namespace Dotenv;
 
 use Dotenv\Exception\InvalidFileException;
+use Dotenv\Regex\Regex;
 
 class Parser
 {
@@ -87,7 +88,7 @@ class Parser
      */
     private static function isValidName($name)
     {
-        return preg_match('~\A[a-zA-Z0-9_.]+\z~', $name) === 1;
+        return Regex::match('~\A[a-zA-Z0-9_.]+\z~', $name)->success()->getOrElse(0) === 1;
     }
 
     /**
@@ -105,7 +106,7 @@ class Parser
             return $value;
         }
 
-        return array_reduce(str_split($value), function ($data, $char) use ($value) {
+        $result = array_reduce(str_split($value), function ($data, $char) use ($value) {
             switch ($data[1]) {
                 case self::INITIAL_STATE:
                     if ($char === '"' || $char === '\'') {
@@ -135,7 +136,7 @@ class Parser
                     if ($char === $value[0] || $char === '\\') {
                         return [$data[0].$char, self::QUOTED_STATE];
                     } elseif (in_array($char, ['f', 'n', 'r', 't', 'v'], true)) {
-                        return [$data[0].stripcslashes('\\' . $char), self::QUOTED_STATE];
+                        return [$data[0].stripcslashes('\\'.$char), self::QUOTED_STATE];
                     } else {
                         throw new InvalidFileException(
                             self::getErrorMessage('an unexpected escape sequence', $value)
@@ -154,7 +155,15 @@ class Parser
                 case self::COMMENT_STATE:
                     return [$data[0], self::COMMENT_STATE];
             }
-        }, ['', self::INITIAL_STATE])[0];
+        }, ['', self::INITIAL_STATE]);
+
+        if ($result[1] === self::QUOTED_STATE || $result[1] === self::ESCAPE_STATE) {
+            throw new InvalidFileException(
+                self::getErrorMessage('a missing closing quote', $value)
+            );
+        }
+
+        return $result[0];
     }
 
     /**
