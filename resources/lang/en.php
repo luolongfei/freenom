@@ -67,7 +67,7 @@ return [
         '100042' => "Account: %s\n Renewal results are as follows:\n",
         '100043' => 'Report, no domains need to be renewed today',
         '100044' => 'The current notification frequency is "only when there is a renewal operation", so no notification will be pushed this time',
-        '100045' => '%s: <green>executed successfully, there are no domains that need to be renewed this time. </green>',
+        '100045' => '%s: <light_green>executed successfully, there are no domains that need to be renewed this time. </light_green>',
         '100046' => 'Renewal Request Error: %s, Domain ID: %s (Account: %s)',
         '100047' => 'Specifically, an exception was thrown at line %d of the %s file. The exception is %s, so go check it out. (Account: %s)',
         '100048' => 'Master, something went wrong: ',
