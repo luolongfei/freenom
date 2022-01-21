@@ -415,7 +415,7 @@ class FreeNom extends Base
         foreach ($accounts as $index => $account) {
             try {
                 $num = $index + 1;
-                system_log(sprintf(lang('100050'), $num, $num, $totalAccounts));
+                system_log(sprintf(lang('100050'), get_local_num($num), $num, $totalAccounts));
 
                 $this->username = $account['username'];
                 $this->password = $account['password'];

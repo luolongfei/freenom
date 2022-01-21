@@ -59,6 +59,8 @@ if (!function_exists('system_log')) {
      * 'light_yellow', 'light_blue', 'light_magenta', 'light_cyan', 'white', 'bg_default', 'bg_black', 'bg_red',
      * 'bg_green', 'bg_yellow', 'bg_blue', 'bg_magenta', 'bg_cyan', 'bg_light_gray', 'bg_dark_gray', 'bg_light_red',
      * 'bg_light_green','bg_light_yellow', 'bg_light_blue', 'bg_light_magenta', 'bg_light_cyan', 'bg_white'
+     *
+     * system_log('<light_magenta>颜色 light_magenta</light_magenta>');
      */
     function system_log($content, array $response = [], $fileName = '')
     {
@@ -262,6 +264,37 @@ if (!function_exists('system_check')) {
 
         if (!extension_loaded('curl')) {
             throw new LlfException(34520010);
+        }
+    }
+}
+
+if (!function_exists('get_local_num')) {
+    /**
+     * 获取当地数字
+     *
+     * @param string|int $num
+     *
+     * @return string
+     */
+    function get_local_num($num)
+    {
+        $num = (string)$num;
+
+        if (\config('language') === 'zh') {
+            return $num;
+        }
+
+        // 英文数字规则
+        $lastDigit = substr($num, -1);
+        switch ($lastDigit) {
+            case '1':
+                return $num . 'st';
+            case '2':
+                return $num . 'nd';
+            case '3':
+                return $num . 'rd';
+            default:
+                return $num . 'th';
         }
     }
 }
