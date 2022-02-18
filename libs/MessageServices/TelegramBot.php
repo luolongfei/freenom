@@ -28,6 +28,11 @@ class TelegramBot extends MessageGateway
     protected $token;
 
     /**
+     * @var host TELEGRAM_API_HOST
+     */
+    protected $host;
+
+    /**
      * @var Client
      */
     protected $client;
@@ -36,6 +41,7 @@ class TelegramBot extends MessageGateway
     {
         $this->chatID = config('message.telegram.chat_id');
         $this->token = config('message.telegram.token');
+        $this->host = config('message.telegram.host') ?: 'api.telegram.org';
 
         $this->client = new Client([
             'headers' => [
@@ -272,7 +278,7 @@ class TelegramBot extends MessageGateway
 
         try {
             $resp = $this->client->post(
-                sprintf('https://api.telegram.org/bot%s/sendMessage', $this->token),
+                sprintf('https://%s/bot%s/sendMessage', $this->host, $this->token),
                 [
                     'form_params' => [
                         'chat_id' => $recipient ? $recipient : $this->chatID,
