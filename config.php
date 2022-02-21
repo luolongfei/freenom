@@ -43,6 +43,7 @@ return [
             'class' => \Luolongfei\Libs\MessageServices\TelegramBot::class,
             'name' => lang('100065'),
             'proxy' => env('TELEGRAM_PROXY'),
+            'host' => env('TELEGRAM_API_HOST'),
         ],
 
         /**
