@@ -473,17 +473,17 @@ systemctl restart docker
 直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty](https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty)
 ，按照下图所示的说明进行创建。如果无法看清图片，直接点击图片即可查看原图。
 
-[![scf01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
+[![点我查看文档图片 scf 01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
 
 按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面点击函数代码，然后往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志， 根据输出日志判断配置以及部署是否正确。
 
-[![scf02](https://z3.ax1x.com/2021/10/14/5l3oHf.png)](https://z3.ax1x.com/2021/10/14/5l3oHf.png)
+[![点我查看文档图片 scf 02](https://z3.ax1x.com/2021/10/14/5l3oHf.png)](https://z3.ax1x.com/2021/10/14/5l3oHf.png)
 
 > 如何在腾讯云函数修改或者新增环境变量呢？
 >
 如果你在创建腾讯云函数的时候，某些环境变量忘记填了，或者在创建腾讯云函数后想要修改或者新增某些环境变量，可以参考这里操作，无需重建：
 
-[![scf03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://z3.ax1x.com/2021/11/07/I13Ku8.png)
+[![点我查看文档图片 scf 03](https://z3.ax1x.com/2021/11/07/I13Ku8.png)](https://z3.ax1x.com/2021/11/07/I13Ku8.png)
 
 所有受支持的环境变量及其含义请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example) 文件。
 
@@ -491,7 +491,7 @@ systemctl restart docker
 >
 当有新版本可用时，想升级到最新版本，请按下图所示操作。更新代码包并部署后，可以点击测试查看部署是否成功。在更新完代码后，腾讯云函数编辑器里面可能会提示你同步代码，点击确定即可。
 
-[![scf04.png](https://s4.ax1x.com/2021/12/14/ovruHf.png)](https://s4.ax1x.com/2021/12/14/ovruHf.png)
+[![点我查看文档图片 scf 04](https://s4.ax1x.com/2021/12/14/ovruHf.png)](https://s4.ax1x.com/2021/12/14/ovruHf.png)
 
 *有关腾讯云函数部署的内容结束。*
 
@@ -517,7 +517,7 @@ systemctl restart docker
 可以免费开通阿里云函数服务。 详情请参考 [阿里云函数开通流程介绍](https://free.aliyun.com/product/fcfreetrial)
 以及 [阿里云函数官方指南](https://help.aliyun.com/product/50980.html) 。
 
-[![aliyun00.png](https://s4.ax1x.com/2021/12/14/ovCauQ.png)](https://s4.ax1x.com/2021/12/14/ovCauQ.png)
+[![点我查看文档图片 aliyun 00](https://s4.ax1x.com/2021/12/14/ovCauQ.png)](https://s4.ax1x.com/2021/12/14/ovCauQ.png)
 
 #### 3、创建服务以及创建函数
 
@@ -526,64 +526,64 @@ systemctl restart docker
 直接访问 [https://fcnext.console.aliyun.com/cn-hongkong/services](https://fcnext.console.aliyun.com/cn-hongkong/services)
 ，然后点击【创建服务】，地点推荐选择【香港】。此处我没有勾选【日志功能】，如果你需要【日志功能】请勾选后根据官方引导开启，否则跟下图配置一致即可。
 
-[![aliyun01.png](https://s4.ax1x.com/2021/12/14/ovPFKg.png)](https://s4.ax1x.com/2021/12/14/ovPFKg.png)
+[![点我查看文档图片 aliyun 01](https://s4.ax1x.com/2021/12/14/ovPFKg.png)](https://s4.ax1x.com/2021/12/14/ovPFKg.png)
 
 ##### 3.2 创建函数
 
 上一步创建了服务，会跳到函数管理画面，点击创建函数，然后根据下面图示流程进行即可。
 
-[![aliyun02.png](https://s4.ax1x.com/2021/12/14/ovinwd.png)](https://s4.ax1x.com/2021/12/14/ovinwd.png)
+[![点我查看文档图片 aliyun 02](https://s4.ax1x.com/2021/12/14/ovinwd.png)](https://s4.ax1x.com/2021/12/14/ovinwd.png)
 
-[![aliyun03.png](https://s4.ax1x.com/2021/12/14/ovidkn.png)](https://s4.ax1x.com/2021/12/14/ovidkn.png)
+[![点我查看文档图片 aliyun 03](https://s4.ax1x.com/2021/12/14/ovidkn.png)](https://s4.ax1x.com/2021/12/14/ovidkn.png)
 
-[![aliyun04.png](https://s4.ax1x.com/2021/12/14/ovig0J.png)](https://s4.ax1x.com/2021/12/14/ovig0J.png)
+[![点我查看文档图片 aliyun 04](https://s4.ax1x.com/2021/12/14/ovig0J.png)](https://s4.ax1x.com/2021/12/14/ovig0J.png)
 
 配置环境变量
 
-[![aliyun05.png](https://s4.ax1x.com/2021/12/14/oviq7d.png)](https://s4.ax1x.com/2021/12/14/oviq7d.png)
+[![点我查看文档图片 aliyun 05](https://s4.ax1x.com/2021/12/14/oviq7d.png)](https://s4.ax1x.com/2021/12/14/oviq7d.png)
 
 在上图所在画面向下滚动，可以很容易找到【环境变量】的配置位置，注意此处我只示例了最简单的几个变量的配置，没有启用任何送信功能，
 建议你在配置时记得启用送信功能，以掌握脚本的执行情况以及续期相关讯息。如何配置以及启用送信功能可以参考本文档的 [配置送信功能](https://github.com/luolongfei/freenom#-%E9%85%8D%E7%BD%AE%E9%80%81%E4%BF%A1%E5%8A%9F%E8%83%BD)
 部分。所有受支持的环境变量及其含义请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example) 文件。
 
-[![aliyun06.png](https://s4.ax1x.com/2021/12/14/ovFauD.png)](https://s4.ax1x.com/2021/12/14/ovFauD.png)
+[![点我查看文档图片 aliyun 06](https://s4.ax1x.com/2021/12/14/ovFauD.png)](https://s4.ax1x.com/2021/12/14/ovFauD.png)
 
-[![aliyun07.png](https://s4.ax1x.com/2021/12/14/ovkhQK.png)](https://s4.ax1x.com/2021/12/14/ovkhQK.png)
+[![点我查看文档图片 aliyun 07](https://s4.ax1x.com/2021/12/14/ovkhQK.png)](https://s4.ax1x.com/2021/12/14/ovkhQK.png)
 
 添加函数触发器，即计划任务。这里设置的 Cron 表达式为【CRON_TZ=Asia/Shanghai 49 24 11 * * *】，意为北京时间每天 11:24:49 执行，
 **注意，执行时间一定要记得改为你自定义的时间，不要跟我这里一模一样，尽可能跟大多数人的设置不一样，否则可能出现多人在同一时间向 freenom 的服务器发起请求的情况，导致 freenom 无法稳定提供服务，影响续期操作。**
 
-[![aliyun08.png](https://s4.ax1x.com/2021/12/14/ovAnw4.png)](https://s4.ax1x.com/2021/12/14/ovAnw4.png)
+[![点我查看文档图片 aliyun 08](https://s4.ax1x.com/2021/12/14/ovAnw4.png)](https://s4.ax1x.com/2021/12/14/ovAnw4.png)
 
 上传压缩包（在上面步骤 1 中下载得到 zip 压缩包），部署代码
 
-[![aliyun09.png](https://s4.ax1x.com/2021/12/14/ovmKRs.png)](https://s4.ax1x.com/2021/12/14/ovmKRs.png)
+[![点我查看文档图片 aliyun 09](https://s4.ax1x.com/2021/12/14/ovmKRs.png)](https://s4.ax1x.com/2021/12/14/ovmKRs.png)
 
-[![aliyun10.png](https://s4.ax1x.com/2021/12/14/ovmDL6.png)](https://s4.ax1x.com/2021/12/14/ovmDL6.png)
+[![点我查看文档图片 aliyun 10](https://s4.ax1x.com/2021/12/14/ovmDL6.png)](https://s4.ax1x.com/2021/12/14/ovmDL6.png)
 
 由于阿里云函数默认有一个示例文件，所以此处我们上传完 zip 文件后，会提示我们是否需要同步代码，点击【是】即可
 
-[![aliyun11.png](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)
+[![点我查看文档图片 aliyun 11](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)](https://s4.ax1x.com/2021/12/14/ovmqYQ.png)
 
 然后点击部署代码
 
-[![aliyun12.png](https://s4.ax1x.com/2021/12/14/ovnn0K.png)](https://s4.ax1x.com/2021/12/14/ovnn0K.png)
+[![点我查看文档图片 aliyun 12](https://s4.ax1x.com/2021/12/14/ovnn0K.png)](https://s4.ax1x.com/2021/12/14/ovnn0K.png)
 
 【可选】 延长执行超时时间。阿里云函数默认的执行超时时间为 60 s，满足大多数人的需求。如果你的账户或者域名特别多的话，可以考虑延长它， 在【函数配置】->【环境信息】处可以编辑配置
 
-[![aliyun13.png](https://s4.ax1x.com/2021/12/14/ovumgs.png)](https://s4.ax1x.com/2021/12/14/ovumgs.png)
+[![点我查看文档图片 aliyun 13](https://s4.ax1x.com/2021/12/14/ovumgs.png)](https://s4.ax1x.com/2021/12/14/ovumgs.png)
 
 > 在阿里云函数如何修改或者新增环境变量呢？
 >
 请参考下图操作。
 
-[![aliyun14.png](https://s4.ax1x.com/2021/12/14/ovRKQe.png)](https://s4.ax1x.com/2021/12/14/ovRKQe.png)
+[![点我查看文档图片 aliyun 14](https://s4.ax1x.com/2021/12/14/ovRKQe.png)](https://s4.ax1x.com/2021/12/14/ovRKQe.png)
 
 > 在阿里云函数如何更新代码或者升级代码到最新版本呢？
 >
 参考下图，上传新的代码包后，阿里云函数编辑器可能会提示你同步代码，点击【是】即可。然后记得点击【部署】并测试。
 
-[![aliyun15.png](https://s4.ax1x.com/2021/12/14/ovW6HA.png)](https://s4.ax1x.com/2021/12/14/ovW6HA.png)
+[![点我查看文档图片 aliyun 15](https://s4.ax1x.com/2021/12/14/ovW6HA.png)](https://s4.ax1x.com/2021/12/14/ovW6HA.png)
 
 *有关阿里云函数部署的内容结束。*
 

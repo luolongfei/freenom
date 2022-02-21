@@ -42,8 +42,8 @@ return [
             'not_enabled_tips' => env('TELEGRAM_CHAT_ID') && env('TELEGRAM_BOT_TOKEN'), // 提醒未启用
             'class' => \Luolongfei\Libs\MessageServices\TelegramBot::class,
             'name' => lang('100065'),
-            'proxy' => env('TELEGRAM_PROXY'),
-            'host' => env('TELEGRAM_API_HOST'),
+            'proxy' => env('TELEGRAM_PROXY') ?: null,
+            'host' => env('CUSTOM_TELEGRAM_HOST') ?: 'api.telegram.org',
         ],
 
         /**
