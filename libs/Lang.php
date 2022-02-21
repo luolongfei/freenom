@@ -18,7 +18,7 @@ class Lang extends Base
 
     public function init()
     {
-        // 读取语言包，位于 resources/lang/ 目录下
+        // 读取语言包，语言包位于 resources/lang/ 目录下
         $this->lang = require sprintf('%s/lang/%s.php', RESOURCES_PATH, env('LANGUAGE', 'zh'));
     }
 
