@@ -115,6 +115,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 2、允许不够安全的应用
 
+*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+
 登录谷歌邮箱后，访问 [谷歌权限设置界面](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) ，启用允许不够安全的应用。
 
 ![gmail配置02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail配置02")
@@ -124,6 +126,10 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 登录谷歌邮箱后，去 [gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha) 点击允许。这种情况较为少见。
 
+**注意：由于直接使用 gmail
+密码登录容易触发谷歌安全机制，故推荐参考官方文档启用应用专用密码：[https://support.google.com/mail/answer/185833?hl=zh-Hans](https://support.google.com/mail/answer/185833?hl=zh-Hans)**
+
+**使用账户+应用专用密码登录，就算频繁换 ip 登录 gmail 也不会触发谷歌安全机制。**
 ***
 
 </details>
@@ -170,8 +176,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 </details>
 
-上面介绍了三种邮箱的设置方法，如果你不想使用邮件送信，而**由于程序默认启用邮件送信方式，故不配置邮件送信的话，一定要记得关闭邮件推送方式。**
-将根目录下的`.env`文件中的`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。
+上面的动作完成后，在`.env`文件中，将`MAIL_USERNAME`和`MAIL_PASSWORD`设置为你的邮箱和密码（或令牌），将`TO`设置为你的收信邮箱，然后将`MAIL_ENABLE`的值设为`1`以启用邮箱送信功能。
+
+上面介绍了三种邮箱的设置方法，如果你不想使用邮件送信，将根目录下的`.env`文件中的`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。
 
 *邮件 送信部分完。*
 
