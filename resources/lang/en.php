@@ -21,6 +21,7 @@ return [
         '34520010' => 'Missing curl module, can\'t send request, please check your php environment and add curl module at compile time',
         '34520012' => 'You have not configured an email address for incoming mail and may not receive mail. Please change the value corresponding to TO in the .env file to the email address you use most often to receive domain-related emails from the robot email address',
         '34520013' => 'Error getting domain status, error message: %s',
+        '34520014' => 'No domain name found under your account %s (%s)',
     ],
     'messages' => [
         '100001' => 'The cookie value named WHMCSZH5eHTGhfvzP could not be obtained, so this login is not valid, please check if your account or password is correct',
@@ -151,5 +152,6 @@ return [
         '100126' => 'Corporate WeChat failed to send a message: <red>%s</red>',
         '100127' => 'Corporate WeChat interface did not return the expected data response, this response data is: ',
         '100128' => 'Multiple invalid access_token prompts have been detected, possibly because the access_token was not properly obtained, please intervene to investigate: ',
+        '100129' => 'Warning: <light_yellow>%s</light_yellow>',
     ],
 ];
