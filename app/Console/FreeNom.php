@@ -423,11 +423,11 @@ class FreeNom extends Base
 
         foreach ($accounts as $index => $account) {
             try {
-                $num = $index + 1;
-                system_log(sprintf(lang('100050'), get_local_num($num), $num, $totalAccounts));
-
                 $this->username = $account['username'];
                 $this->password = $account['password'];
+
+                $num = $index + 1;
+                system_log(sprintf(lang('100050'), get_local_num($num), $this->username, $num, $totalAccounts));
 
                 $this->jar = new CookieJar(); // 所有请求共用一个 CookieJar 实例
                 $this->login($this->username, $this->password);
