@@ -232,7 +232,8 @@ if (!function_exists('system_check')) {
      */
     function system_check()
     {
-        if (version_compare(PHP_VERSION, '7.3.0') < 0) {
+        // 由于各种云函数目前支持的最大的 PHP 版本为 7.2，故此处暂时不强制要求升级 PHP 7.3 以获得更好的兼容性
+        if (version_compare(PHP_VERSION, '7.2.0') < 0) {
             throw new LlfException(34520006, ['7.3', PHP_VERSION]);
         }
 
