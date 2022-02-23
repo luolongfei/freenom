@@ -28,7 +28,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [☕ Verification](#-Verification)
 
-[❤ Donate](#-Donate)
+[❤ Donation](#-Donation)
 
 [🌚 Author](#-Author)
 
@@ -223,7 +223,7 @@ changes the algorithm and causes this project to fail, Please
 mention [issues](https://github.com/luolongfei/freenom/issues) to inform me that I will fix it in time and maintain this
 project for a long time. Welcome star ~
 
-### ❤ Donate
+### ❤ Donation
 
 #### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
