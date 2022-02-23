@@ -30,9 +30,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚧 直接拉取源码部署](#-方式四直接拉取源码部署)
 
-[📋 捐赠名单 Donate List](#-捐赠名单-donate-list)
+[📋 捐赠名单 Donation List](#-捐赠名单-donation-list)
 
-[❤ 捐赠 Donate](#-捐赠-donate)
+[❤ 捐赠 Donation](#-捐赠-donation)
 
 [🍺 信仰](#-信仰)
 
@@ -734,11 +734,11 @@ cd /data/wwwroot/freenom/ && php run
 遇到任何问题或 Bug 欢迎提 [issue](https://github.com/luolongfei/freenom/issues) （请按模板格式提`issue`，以便我快速复现你的问题，否则问题会被忽略）， 如果`Freenom`
 改变算法导致此项目失效，请提 [issue](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。 欢迎`star`~
 
-### 📋 捐赠名单 Donate List
+### 📋 捐赠名单 Donation List
 
-非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donate-List) 」对本项目的捐赠支持！
+非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donation-List) 」对本项目的捐赠支持！
 
-### ❤ 捐赠 Donate
+### ❤ 捐赠 Donation
 
 如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的捐赠。
 
@@ -746,7 +746,7 @@ cd /data/wwwroot/freenom/ && php run
 
 > Every time you spend money, you're casting a vote for the kind of world you want. -- Anna Lappe
 
-![pay](https://s2.ax1x.com/2020/01/31/1394at.png "Donate")
+![pay](https://s2.ax1x.com/2020/01/31/1394at.png "Donation")
 
 ![每一次你花的钱都是在为你想要的世界投票。](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
