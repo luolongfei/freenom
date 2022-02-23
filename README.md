@@ -1,10 +1,13 @@
 <div align="center">
-<h1>Freenom：freenom域名自动续期</h1>
 
-[![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
-[![Php Version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
-[![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
+[![freenom logo](https://s4.ax1x.com/2022/02/23/b9s5U1.png)](https://s4.ax1x.com/2022/02/23/b9s5U1.png)
+
+<h3>Freenom：freenom域名自动续期</h3>
+
+[![PHP version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![Scrutinizer code quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
+[![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
