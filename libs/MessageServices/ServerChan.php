@@ -60,14 +60,19 @@ class ServerChan extends MessageGateway
     /**
      * 获取 MarkDown 页脚
      *
+     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
+     *
      * @return string
      */
-    public function getMarkDownFooter()
+    public function getMarkDownFooter(bool $isRenewalResult = false)
     {
         $footer = '';
 
         $footer .= lang('100091');
-        $footer .= lang('100092');
+
+        if (!$isRenewalResult) {
+            $footer .= lang('100092');
+        }
 
         return $footer;
     }
@@ -123,7 +128,7 @@ class ServerChan extends MessageGateway
         $text .= lang('100099');
         $text .= $this->genDomainStatusMarkDownText($domainStatus);
 
-        $text .= $this->getMarkDownFooter();
+        $text .= $this->getMarkDownFooter(true);
 
         return $text;
     }
