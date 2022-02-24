@@ -159,8 +159,8 @@ class Upgrade extends Base
         } else {
             $content = sprintf(
                 lang('100025'),
-                $this->latestVer,
                 $this->friendlyDateFormat($this->releaseInfo['published_at'], 'UTC'),
+                $this->latestVer,
                 $this->currVer
             );
         }
