@@ -140,14 +140,19 @@ class Bark extends MessageGateway
     /**
      * 获取页脚
      *
+     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
+     *
      * @return string
      */
-    public function getFooter()
+    public function getFooter(bool $isRenewalResult = false)
     {
         $footer = '';
 
         $footer .= lang('100078');
-        $footer .= lang('100079');
+
+        if (!$isRenewalResult) {
+            $footer .= lang('100079');
+        }
 
         return $footer;
     }
@@ -203,7 +208,7 @@ class Bark extends MessageGateway
         $text .= lang('100086');
         $text .= $this->genDomainStatusText($domainStatus);
 
-        $text .= $this->getFooter();
+        $text .= $this->getFooter(true);
 
         return $text;
     }
