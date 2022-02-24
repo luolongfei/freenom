@@ -93,14 +93,19 @@ class TelegramBot extends MessageGateway
     /**
      * 获取 MarkDown 页脚
      *
+     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
+     *
      * @return string
      */
-    public function getMarkDownFooter()
+    public function getMarkDownFooter(bool $isRenewalResult = false)
     {
         $footer = '';
 
         $footer .= lang('100103');
-        $footer .= lang('100104');
+
+        if (!$isRenewalResult) {
+            $footer .= lang('100104');
+        }
 
         return $footer;
     }
@@ -156,7 +161,7 @@ class TelegramBot extends MessageGateway
         $text .= lang('100111');
         $text .= $this->genDomainStatusMarkDownText($domainStatus);
 
-        $text .= $this->getMarkDownFooter();
+        $text .= $this->getMarkDownFooter(true);
 
         return $text;
     }
