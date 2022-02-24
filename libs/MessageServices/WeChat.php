@@ -152,14 +152,19 @@ class WeChat extends MessageGateway
     /**
      * 获取页脚
      *
+     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
+     *
      * @return string
      */
-    public function getFooter()
+    public function getFooter(bool $isRenewalResult = false)
     {
         $footer = '';
 
         $footer .= lang('100116');
-        $footer .= lang('100117');
+
+        if (!$isRenewalResult) {
+            $footer .= lang('100117');
+        }
 
         return $footer;
     }
@@ -215,7 +220,7 @@ class WeChat extends MessageGateway
         $text .= lang('100124');
         $text .= $this->genDomainStatusText($domainStatus);
 
-        $text .= $this->getFooter();
+        $text .= $this->getFooter(true);
 
         return $text;
     }
