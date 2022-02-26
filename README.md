@@ -481,9 +481,19 @@ systemctl restart docker
 #### 2、创建腾讯云函数
 
 直接访问腾讯云函数控制台创建云函数： [https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty](https://console.cloud.tencent.com/scf/list-create?rid=5&ns=default&createType=empty)
-，按照下图所示的说明进行创建。如果无法看清图片，直接点击图片即可查看原图。
+，按照下图所示的说明进行创建。如果无法看清图片，直接点击图片即可查看原图。我未截图说明的地方保持默认即可。
 
-[![点我查看文档图片 scf 01](https://z3.ax1x.com/2021/10/14/5lMweU.png)](https://z3.ax1x.com/2021/10/14/5lMweU.png)
+[![点我查看文档图片 qq_scf01](https://s4.ax1x.com/2022/02/26/bZjCV0.png)](https://s4.ax1x.com/2022/02/26/bZjCV0.png)
+
+[![点我查看文档图片 qq_scf02](https://s4.ax1x.com/2022/02/26/bZjSrn.png)](https://s4.ax1x.com/2022/02/26/bZjSrn.png)
+
+[![点我查看文档图片 qq_scf03](https://s4.ax1x.com/2022/02/26/bZji5T.png)](https://s4.ax1x.com/2022/02/26/bZji5T.png)
+
+[![点我查看文档图片 qq_scf04](https://s4.ax1x.com/2022/02/26/bZjPaV.png)](https://s4.ax1x.com/2022/02/26/bZjPaV.png)
+
+[![点我查看文档图片 qq_scf05](https://s4.ax1x.com/2022/02/26/bZXvvj.png)](https://s4.ax1x.com/2022/02/26/bZXvvj.png)
+
+[![点我查看文档图片 qq_scf06](https://s4.ax1x.com/2022/02/26/bZjpbq.png)](https://s4.ax1x.com/2022/02/26/bZjpbq.png)
 
 按照上图所示部署完成后，可以点击云函数的名称进入云函数管理画面，管理画面点击函数代码，然后往下翻可看到`部署`与`测试`按钮，点击`测试`，稍等几秒钟，即可看到输出日志， 根据输出日志判断配置以及部署是否正确。
 
