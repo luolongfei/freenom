@@ -25,9 +25,9 @@ A clear and concise description of what the bug is.
 ```
 
 **环境信息**
- - centos7 x64
- - php7.2
- - freenom续期脚本版本 v0.2.2
+ - debian11 x64
+ - php8.0
+ - freenom续期脚本版本 v0.4.5
 
 **额外的备注**
 - Add any other context about the problem here.
