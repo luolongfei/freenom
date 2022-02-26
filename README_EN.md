@@ -44,7 +44,7 @@ So I felt frustrated every time I renewed, so I wrote this automatic renewal scr
 
 ### 🍭 Demo
 
-![Email example](https://s2.ax1x.com/2020/01/31/139Rrd.png "Email content")
+[![Email Example](https://s4.ax1x.com/2022/02/26/bZrtz9.png)](https://s4.ax1x.com/2022/02/26/bZrtz9.png)
 
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the
 program. In the case of a renewal success or failure email, the email will include the number of days that the domain
@@ -110,11 +110,30 @@ to create a Telegram bot and how to get the token please refer to:
 
 *This completes the settings related to notifications, followed by the configuration related to this program* :)
 
-### 🚧 Configuration script
+<hr>
+
+**The next step is to start describing how to deploy this script, there are two ways to deploy it, one is to pull the
+code and deploy it directly, the other is to deploy it via docker. We recommend deploying via docker, it's easy and
+hassle-free.**
+
+### 🧊 The first deployment method: Deployment via docker
+
+Deployment via docker is our recommended deployment method. For detailed deployment steps, please
+visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)
+
+There is a detailed description in the docker repository documentation, and the whole deployment process is quite
+simple.
+
+### 🧱 The second deployment method: direct pull code deployment
+
+*We don't recommend this deployment method as it requires certain environment requirements to be met for direct code
+pull deployment.*
+
+#### 🚧 Configuration script
 
 All operations are performed under Centos7 system, other Linux distributions are similar
 
-#### Get the source code
+##### Get the source code
 
 ```bash
 $ mkdir -p /data/wwwroot/freenom
@@ -124,7 +143,7 @@ $ cd /data/wwwroot/freenom
 $ git clone https://github.com/luolongfei/freenom.git ./
 ```
 
-#### Configuration process
+##### Configuration process
 
 ```bash
 # Copy configuration file template
@@ -140,9 +159,9 @@ $ vim .env
 # After editing, press "Esc" to return to the command mode, enter ":wq" and press Enter to save and exit. If you don't use vim editor, you can ask Uncle Google. :)
 ```
 
-### 🎈 Add scheduled task
+#### 🎈 Add scheduled task
 
-#### Install crontabs and cronie
+##### Install crontabs and cronie
 
 ```bash
 $ yum -y install cronie crontabs
@@ -154,7 +173,7 @@ $ yum list cronie && systemctl status crond
 $ yum list crontabs $$ which crontab && crontab -l
 ```
 
-#### Open the task form and edit
+##### Open the task form and edit
 
 ```bash
 $ crontab -e
@@ -165,7 +184,7 @@ $ crontab -e
 00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1
 ```
 
-#### Restart the crond daemon (This step is required each time you edit the task form for the task to take effect)
+##### Restart the crond daemon (This step is required each time you edit the task form for the task to take effect)
 
 ```bash
 $ systemctl restart crond
@@ -207,7 +226,7 @@ Of course, if your `crontab` can correctly find the `php path` without error, yo
 
 *So far, all the configurations have been completed, let's verify if the whole process works* :)
 
-### ☕ Verification
+#### ☕ Verification
 
 You can first change the value of `NOTICE_FREQ` in `.env` to 1 (Push notification every time the script is executed),
 and then execute
@@ -217,6 +236,10 @@ $ cd /data/wwwroot/freenom/ && php run
 ```
 
 If nothing else, you will receive an email about the domain name.
+
+**End of the section on script deployment.**
+
+<hr>
 
 If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/freenom/issues). If freenom
 changes the algorithm and causes this project to fail, Please
@@ -238,8 +261,10 @@ project for a long time. Welcome star ~
 
 ### 🎉 Acknowledgements
 
-- [PHPMailer](https://github.com/PHPMailer/PHPMailer/) (Mail sending function depends on this library)
-- [guzzle](https://github.com/guzzle/guzzle) (Curl library)
+- The project relies on third-party libraries such as [PHPMailer](https://github.com/PHPMailer/PHPMailer/)
+  , [guzzle](https://github.com/guzzle/guzzle), etc.
+- The project Docker related documentation has reference to the article by [秋水逸冰](https://teddysun.com/569.html)
+- [@anjumrafidofficial](https://github.com/anjumrafidofficial) Improve the English mail content
 
 ### 🥝 Open source agreement
 
