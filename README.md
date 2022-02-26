@@ -61,7 +61,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🍭 效果
 
-![邮件示例](https://s2.ax1x.com/2020/01/31/139Rrd.png "邮件内容")
+[![邮件示例](https://s4.ax1x.com/2022/02/26/bZr7WQ.png)](https://s4.ax1x.com/2022/02/26/bZr7WQ.png)
 
 无论是续期成败或者脚本执行出错，都会收到的程序发出的邮件。如果是续期成败相关的邮件，邮件会包括未续期域名的到期天数等内容。 邮件参考了微信发送的注销公众号的邮件样式。
 
@@ -848,9 +848,9 @@ cd /data/wwwroot/freenom/ && php run
 
 ### 🎉 鸣谢
 
-- [PHPMailer](https://github.com/PHPMailer/PHPMailer/) （邮件发送功能依赖此库）
-- [guzzle](https://github.com/guzzle/guzzle) （Curl库）
-- [秋水逸冰](https://teddysun.com/569.html) （本项目 Docker 相关文档有参考秋水逸冰的文章）
+- 项目依赖 [PHPMailer](https://github.com/PHPMailer/PHPMailer/) 、 [guzzle](https://github.com/guzzle/guzzle) 等第三方库
+- 本项目 Docker 相关文档有参考 [秋水逸冰](https://teddysun.com/569.html) 的文章
+- [@anjumrafidofficial](https://github.com/anjumrafidofficial) 完善英文版邮件内容
 
 ### 🥝 开源协议
 
