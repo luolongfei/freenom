@@ -22,11 +22,10 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🤶 Telegram bot](#-Telegram-bot)
 
-[🚧 Configuration script](#-Configuration-script)
+[🧊 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
+the recommended deployment method)
 
-[🎈 Add scheduled task](#-Add-scheduled-task)
-
-[☕ Verification](#-Verification)
+[🧱 The second deployment method: direct pull code deployment](#-the-second-deployment-method-direct-pull-code-deployment)
 
 [❤ Donation](#-Donation)
 
