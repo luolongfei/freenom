@@ -58,7 +58,6 @@ name has not been renewed.
 
 ### 📪 Setting up Gmail
 
-***
 1.In `Settings > Forwarding and POP/IMAP`, tick
 
 - Enable POP for all messages
@@ -98,7 +97,6 @@ directory to `0` to turn off the email push method.
 
 ### 🤶 Telegram bot
 
-***
 If you don't want to use email push, you can also use Telegram bot. In the `.env` file, Change the value
 of `TELEGRAM_BOT_ENABLE` to `1` to enable the Telegram bot. Similarly, change the value of `MAIL_ENABLE` to `0` to
 disable the mail push method. Telegram bot has two configuration items, one is `chat_id` (corresponding
