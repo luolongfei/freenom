@@ -108,8 +108,6 @@ account, The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.en
 to create a Telegram bot and how to get the token please refer to:
 [Official Document](https://core.telegram.org/bots#6-botfather)
 
-*This completes the settings related to notifications, followed by the configuration related to this program* :)
-
 <hr>
 
 **The next step is to start describing how to deploy this script, there are two ways to deploy it, one is to pull the
@@ -118,11 +116,13 @@ hassle-free.**
 
 ### 🧊 The first deployment method: Deployment via docker
 
-Deployment via docker is our recommended deployment method. For detailed deployment steps, please
-visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)
+**Deployment via docker is our recommended deployment method. For detailed deployment steps, please
+visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)**
 
 There is a detailed description in the docker repository documentation, and the whole deployment process is quite
 simple.
+
+<hr>
 
 ### 🧱 The second deployment method: direct pull code deployment
 
