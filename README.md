@@ -473,7 +473,7 @@ systemctl restart docker
 #### 1、下载腾讯云函数版的压缩包
 
 腾讯云函数版将与主版同步维护更新，腾讯云函数和阿里云函数使用的是同一个压缩包，下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.4.4/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.4/freenom_scf.zip)
+[https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到腾讯云函数。
@@ -526,7 +526,7 @@ systemctl restart docker
 #### 1、下载阿里云函数版的压缩包
 
 阿里云函数版将与主版同步维护更新，阿里云函数和腾讯云函数使用的是同一个压缩包，下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.4.4/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.4/freenom_scf.zip)
+[https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到阿里云函数。
