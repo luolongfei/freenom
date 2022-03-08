@@ -31,6 +31,8 @@ the recommended deployment method)
 
 [🌚 Author](#-Author)
 
+[💖 All Contributors](#-All-Contributors)
+
 [🎉 Acknowledgements](#-Acknowledgements)
 
 [🥝 Open source agreement](#-Open-source-agreement)
@@ -255,6 +257,14 @@ project for a long time. Welcome star ~
 
 - Main program and framework: [@luolongfei](https://github.com/luolongfei)
 - English document: [@肖阿姨](#)
+
+### 💖 All Contributors
+
+<a href="https://github.com/luolongfei/freenom/graphs/contributors">
+  <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
+</a>
+
+[@anjumrafidofficial](https://github.com/anjumrafidofficial)
 
 ### 🎉 Acknowledgements
 
