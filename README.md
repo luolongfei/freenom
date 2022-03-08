@@ -38,6 +38,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🌚 作者](#-作者)
 
+[💖 所有贡献者](#-所有贡献者)
+
 [📝 TODO List](#-TODO-List)
 
 [📰 更新日志](#-更新日志)（每次新版本发布，可以参考此日志决定是否更新）
@@ -772,6 +774,14 @@ cd /data/wwwroot/freenom/ && php run
 
 - 主程序以及框架：[@luolongfei](https://github.com/luolongfei)
 - 英文版文档：[@肖阿姨](#)
+
+### 💖 所有贡献者
+
+<a href="https://github.com/luolongfei/freenom/graphs/contributors">
+  <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
+</a>
+
+[@anjumrafidofficial](https://github.com/anjumrafidofficial)
 
 ### 📝 TODO List
 
