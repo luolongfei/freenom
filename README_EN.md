@@ -22,7 +22,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🤶 Telegram bot](#-Telegram-bot)
 
-[🧊 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
+[🐳 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
 the recommended deployment method)
 
 [🧱 The second deployment method: direct pull code deployment](#-the-second-deployment-method-direct-pull-code-deployment)
@@ -111,7 +111,7 @@ to create a Telegram bot and how to get the token please refer to:
 code and deploy it directly, the other is to deploy it via docker. We recommend deploying via docker, it's easy and
 hassle-free.**
 
-### 🧊 The first deployment method: Deployment via docker
+### 🐳 The first deployment method: Deployment via docker
 
 **Deployment via docker is our recommended deployment method. For detailed deployment steps, please
 visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)**

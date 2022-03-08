@@ -22,7 +22,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
 
-[⛵ 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)（推荐，最简单的部署方式）
+[🐳 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)（推荐，最简单的部署方式）
 
 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)（供无服务器的用户使用）
 
@@ -52,7 +52,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [⛵ 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)
+- 推荐 [🐳 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)
   或者 [🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署)，腾讯云函数和阿里云函数不需要你有自己的服务器。
 
 ### 📃 引言
@@ -281,7 +281,7 @@ Bark 是一款 IOS 端用于推送自定义通知的 app，是个人开发者在
 
 ***
 
-### ⛵ 方式一：通过 Docker 部署（推荐，最简单的部署方式）
+### 🐳 方式一：通过 Docker 部署（推荐，最简单的部署方式）
 
 Docker 仓库地址为： [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom) ，同样欢迎 star 。
 此镜像支持的架构为`linux/amd64`，`linux/arm64`，`linux/ppc64le`，`linux/s390x`，`linux/386`，`linux/arm/v7`，`linux/arm/v6`， 理论上支持`群晖`
