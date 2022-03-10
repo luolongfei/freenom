@@ -34,7 +34,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [❤ 捐赠 Donation](#-捐赠-donation)
 
-[🍺 信仰](#-信仰)
+[🪓 信仰](#-信仰)
 
 [🌚 作者](#-作者)
 
@@ -189,23 +189,19 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 #### Telegram Bot
 
-有关 【Telegram Bot】
-的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Telegram-Bot)
+有关 【Telegram Bot】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Telegram-Bot)
 
 #### 企业微信
 
-有关 【企业微信】
-的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1)
+有关 【企业微信】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1)
 
 #### Server 酱
 
-有关 【Server 酱】
-的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Server-%E9%85%B1)
+有关 【Server 酱】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Server-%E9%85%B1)
 
 #### Bark 送信
 
-有关 【Bark 送信】
-的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
+有关 【Bark 送信】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
 
 ***
 
@@ -442,11 +438,13 @@ systemctl restart docker
 
 **你的 star 或者`小额打赏`是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。 另外，将本项目推荐给更多的人，也是一种支持的方式，用的人越多更新的动力越足。**
 
-### 🍺 信仰
+### 🪓 信仰
 
-![南京市民李先生](https://s2.ax1x.com/2020/02/04/1Bm3Ps.jpg "南京市民李先生")
->
+相信未来，保持“理智”。
+
 > 认真是我们参与这个社会的方式，认真是我们改变这个社会的方式。 ——李志
+
+![南京市民李先生](https://s1.ax1x.com/2022/03/10/bhP7FO.jpg "南京市民李先生")
 
 ### 🌚 作者
 
@@ -469,6 +467,8 @@ systemctl restart docker
 
 ### 📰 更新日志
 
+此处只含最新版本的更新日志，完整的日志记录请参考 [Changelog.md](https://github.com/luolongfei/freenom/blob/main/Changelog.md)
+
 #### [Unreleased](#)
 
 - 解决 企业微信 因送信内容过长被截断问题
@@ -478,8 +478,6 @@ systemctl restart docker
 - 支持多语言，中英文切换
 - 支持自建 Telegram 反代地址 [@Mattraks](https://github.com/Mattraks)
 - 更新各种依赖库，PHP 版本最低要求不低于 7.3
-
-此处只含最新版本的更新日志，完整的日志记录请参考 [Changelog.md](https://github.com/luolongfei/freenom/blob/main/Changelog.md)
 
 ### 🎉 鸣谢
 
