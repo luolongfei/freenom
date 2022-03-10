@@ -1,11 +1,11 @@
 <div align="center">
 
-[![freenom logo](https://s4.ax1x.com/2022/02/23/b9s5U1.png)](https://s4.ax1x.com/2022/02/23/b9s5U1.png)
+![freenom logo](https://s1.ax1x.com/2022/03/10/bhzMG9.png)
 
 <h3>Freenom：Auto-renewal of freenom domain names.</h3>
 
 [![PHP version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
-[![Scrutinizer code quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
+[![Docker pulls](https://img.shields.io/docker/pulls/luolongfei/freenom.svg?style=for-the-badge)](https://hub.docker.com/r/luolongfei/freenom)
 [![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
