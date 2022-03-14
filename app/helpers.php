@@ -65,7 +65,8 @@ if (!function_exists('system_log')) {
     function system_log($content, array $response = [], $fileName = '')
     {
         try {
-            $path = sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
+            # 云函数只有 /tmp 目录可写
+            $path = IS_SCF ? '/tmp/' : sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
             $file = $path . ($fileName ?: date('d')) . '.log';
 
             if (!is_dir($path)) {
