@@ -1,0 +1,6 @@
+setup:
+  config:
+    IS_HEROKU: 1
+build:
+  docker:
+    web: Dockerfile
