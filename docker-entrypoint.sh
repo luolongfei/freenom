@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #===================================================================#
-#   Author: mybsdc <mybsdc@gmail.com>                               #
+#   Author: luolongfei <luolongf@gmail.com>                         #
 #   Intro: https://github.com/luolongfei/freenom                    #
 #===================================================================#
 
