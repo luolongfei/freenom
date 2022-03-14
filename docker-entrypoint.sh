@@ -54,6 +54,6 @@ echo -e "${CRON_COMMAND}" >> /etc/crontabs/root
 
 echo -e "[${green}Info${plain}] 计划任务：${CRON_COMMAND}"
 
-php run
+chmod +x run && php run
 
 exec "$@"

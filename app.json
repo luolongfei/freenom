@@ -6,6 +6,10 @@
         "FREENOM_USERNAME": {
             "description": "你的 freenom 账户",
             "value": ""
+        },
+        "FREENOM_PASSWORD": {
+            "description": "你的 freenom 密码",
+            "value": ""
         }
     },
     "website": "https://github.com/luolongfei/freenom",
