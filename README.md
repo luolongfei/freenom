@@ -14,6 +14,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📢 注意](#-注意)
 
+[🌿 特别感谢 Special Thanks](#-特别感谢-special-thanks)
+
 [📃 引言](#-引言)
 
 [🍭 效果](#-效果)
@@ -56,6 +58,16 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
 - 推荐 [🐳 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🕹 通过腾讯云函数部署](#-方式二通过腾讯云函数部署)
   或者 [🧊 通过阿里云函数部署](#-方式三通过阿里云函数部署)，腾讯云函数和阿里云函数不需要你有自己的服务器。
+  
+### 🌿 特别感谢 Special Thanks
+
+感谢 JetBrains 提供的非商业开源软件开发授权。
+
+Thanks for non-commercial open source development authorization by JetBrains.
+
+<a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
+</a>
 
 ### 📃 引言
 
