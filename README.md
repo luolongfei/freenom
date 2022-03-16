@@ -62,8 +62,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 ### 🌿 特别感谢 Special Thanks
 
 感谢 JetBrains 提供的非商业开源软件开发授权。
-Thanks for non-commercial open source development authorization by JetBrains.
 
+Thanks for non-commercial open source development authorization by JetBrains.
 
 <a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
