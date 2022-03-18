@@ -1,5 +1,8 @@
 ---
-name: Bug report about: 请根据此模板填写问题，不按此模板行文的问题将被直接关闭。Create a report to help us improve. title: bug_report labels: ''
+name: Bug report
+about: 请根据此模板填写问题，不按此模板行文的问题将被直接关闭。Create a report to help us improve.
+title: bug_report
+labels: ''
 assignees: ''
 
 ---
