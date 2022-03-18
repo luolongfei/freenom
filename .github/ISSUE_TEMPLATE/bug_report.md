@@ -1,5 +1,8 @@
 ---
-name: Bug report about: 请根据此模板填写问题，不按此模板行文的问题将被直接关闭。Create a report to help us improve. title: bug_report labels: ''
+name: Bug report
+about: 报告问题请根据此模板填写，不按此模板行文的问题将被直接关闭。Create a report to help us improve.
+title: bug_report
+labels: ''
 assignees: ''
 
 ---
@@ -34,3 +37,4 @@ A clear and concise description of what the bug is.
 **额外的备注**
 
 - Add any other context about the problem here.
+- 可额外备注比如你的运行环境是否 NAS，是否宝塔面板等信息
