@@ -153,5 +153,6 @@ return [
         '100127' => 'Corporate WeChat interface did not return the expected data response, this response data is: ',
         '100128' => 'Multiple invalid access_token prompts have been detected, possibly because the access_token was not properly obtained, please intervene to investigate: ',
         '100129' => 'Warning: <light_yellow>%s</light_yellow>',
+        '200000' => 'Lark',
     ],
 ];
