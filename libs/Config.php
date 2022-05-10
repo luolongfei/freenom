@@ -9,19 +9,14 @@
 
 namespace Luolongfei\Libs;
 
-class Config
+class Config extends Base
 {
-    /**
-     * @var Config
-     */
-    protected static $instance;
-
     /**
      * @var array 配置
      */
     protected $allConfig;
 
-    public function __construct()
+    protected function init()
     {
         $this->allConfig = require ROOT_PATH . '/config.php';
     }
@@ -61,14 +56,5 @@ class Config
         }
 
         return $allConfig;
-    }
-
-    public static function instance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 }

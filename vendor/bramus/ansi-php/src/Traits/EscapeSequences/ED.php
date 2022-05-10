@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\ED as EnumED;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the ED Escape Function Shorthands
@@ -11,7 +12,7 @@ trait ED
 {
     /**
      * Manually use ED (Select Graphic Rendition)
-     * @param  array $parameterByte Parameter byte to the SGR Escape Code
+     * @param  array $data Parameter byte to the SGR Escape Code
      * @return Ansi  self, for chaining
      */
     public function ed($data)

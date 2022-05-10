@@ -3,6 +3,7 @@
 namespace Bramus\Ansi\Traits\EscapeSequences;
 
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR as EnumSGR;
+use Bramus\Ansi\Ansi;
 
 /**
  * Trait containing the SGR Escape Function Shorthands
@@ -11,7 +12,7 @@ trait SGR
 {
     /**
      * Manually use SGR (Select Graphic Rendition)
-     * @param  array $parameterByte Parameter byte to the SGR Escape Code
+     * @param  array $data Parameter byte to the SGR Escape Code
      * @return Ansi  self, for chaining
      */
     public function sgr($data = array())

@@ -14,6 +14,8 @@ use Luolongfei\Libs\Log;
 use Luolongfei\Libs\Env;
 use Luolongfei\Libs\Lang;
 use Luolongfei\Libs\PhpColor;
+use Luolongfei\App\Console\MigrateEnvFile;
+use Luolongfei\App\Console\Upgrade;
 
 if (!function_exists('config')) {
     /**
@@ -26,7 +28,7 @@ if (!function_exists('config')) {
      */
     function config($key = '', $default = null)
     {
-        return Config::instance()->get($key, $default);
+        return Config::getInstance()->get($key, $default);
     }
 }
 
@@ -40,7 +42,7 @@ if (!function_exists('lang')) {
      */
     function lang($key = '')
     {
-        return Lang::instance()->get($key);
+        return Lang::getInstance()->get($key);
     }
 }
 
@@ -57,11 +59,14 @@ if (!function_exists('system_log')) {
      * 'light_yellow', 'light_blue', 'light_magenta', 'light_cyan', 'white', 'bg_default', 'bg_black', 'bg_red',
      * 'bg_green', 'bg_yellow', 'bg_blue', 'bg_magenta', 'bg_cyan', 'bg_light_gray', 'bg_dark_gray', 'bg_light_red',
      * 'bg_light_green','bg_light_yellow', 'bg_light_blue', 'bg_light_magenta', 'bg_light_cyan', 'bg_white'
+     *
+     * system_log('<light_magenta>颜色 light_magenta</light_magenta>');
      */
     function system_log($content, array $response = [], $fileName = '')
     {
         try {
-            $path = sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
+            # 云函数只有 /tmp 目录可写
+            $path = IS_SCF ? '/tmp/' : sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
             $file = $path . ($fileName ?: date('d')) . '.log';
 
             if (!is_dir($path)) {
@@ -89,7 +94,7 @@ if (!function_exists('system_log')) {
             }
 
             // 尝试为消息着色
-            $c = PhpColor::instance()->getColorInstance();
+            $c = PhpColor::getInstance()->getColorInstance();
             echo $c($msg)->colorize();
 
             // 干掉着色标签
@@ -201,7 +206,7 @@ if (!function_exists('env')) {
      */
     function env($key = '', $default = null)
     {
-        return Env::instance()->get($key, $default);
+        return Env::getInstance()->get($key, $default);
     }
 }
 
@@ -216,7 +221,7 @@ if (!function_exists('get_argv')) {
      */
     function get_argv(string $name, string $default = '')
     {
-        return Argv::instance()->get($name, $default);
+        return Argv::getInstance()->get($name, $default);
     }
 }
 
@@ -228,21 +233,70 @@ if (!function_exists('system_check')) {
      */
     function system_check()
     {
-        if (!function_exists('putenv')) {
-            throw new LlfException(34520005);
+        // 由于各种云函数目前支持的最大的 PHP 版本为 7.2，故此处暂时不强制要求升级 PHP 7.3 以获得更好的兼容性
+        if (version_compare(PHP_VERSION, '7.2.0') < 0) {
+            throw new LlfException(34520006, ['7.3', PHP_VERSION]);
         }
 
-        if (version_compare(PHP_VERSION, '7.0.0') < 0) {
-            throw new LlfException(34520006);
+        // 如果是在云函数部署，则不需要检查这几项
+        if (IS_SCF) {
+            system_log(lang('100009'));
+            system_log(lang('100010'));
+            system_log(lang('100011'));
+        } else {
+            if (!function_exists('putenv')) {
+                throw new LlfException(34520005);
+            }
+
+            $envFile = ROOT_PATH . '/.env';
+            if (!file_exists($envFile)) {
+                throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
+            }
+
+            // 检查当前 .env 文件版本是否过低，过低自动升级
+            MigrateEnvFile::getInstance()->handle();
         }
 
-        $envFile = ROOT_PATH . '/.env';
-        if (!file_exists($envFile)) {
-            throw new LlfException(copy(ROOT_PATH . '/.env.example', $envFile) ? 34520007 : 34520008);
+        // 是否有新版可用
+        if (config('new_version_detection')) {
+            Upgrade::getInstance()->handle();
+        } else {
+            system_log(lang('100012'));
         }
 
         if (!extension_loaded('curl')) {
             throw new LlfException(34520010);
+        }
+    }
+}
+
+if (!function_exists('get_local_num')) {
+    /**
+     * 获取当地数字
+     *
+     * @param string|int $num
+     *
+     * @return string
+     */
+    function get_local_num($num)
+    {
+        $num = (string)$num;
+
+        if (\config('language') === 'zh') {
+            return $num;
+        }
+
+        // 英文数字规则
+        $lastDigit = substr($num, -1);
+        switch ($lastDigit) {
+            case '1':
+                return $num . 'st';
+            case '2':
+                return $num . 'nd';
+            case '3':
+                return $num . 'rd';
+            default:
+                return $num . 'th';
         }
     }
 }

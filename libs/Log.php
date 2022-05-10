@@ -13,7 +13,7 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Bramus\Monolog\Formatter\ColoredLineFormatter;
 
-class Log
+class Log extends Base
 {
     /**
      * @var Logger
@@ -31,8 +31,9 @@ class Log
     public static function logger()
     {
         if (!self::$loggerInstance instanceof Logger) {
+            // 云函数只能在 /tmp 目录下写文件
             $handler = new StreamHandler(
-                config('debug') ? 'php://stdout' : sprintf('%s/logs/%s.log', ROOT_PATH, date('Y-m/d')),
+                config('debug') || IS_SCF ? 'php://stdout' : sprintf('%s/logs/%s.log', ROOT_PATH, date('Y-m/d')),
                 config('debug') ? Logger::DEBUG : Logger::INFO
             );
             if (config('debug')) {

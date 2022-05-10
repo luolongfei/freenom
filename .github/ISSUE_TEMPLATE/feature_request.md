@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: 新功能建议请按此模板行文。Suggest an idea for this project.
 title: feature_request
 labels: ''
 assignees: ''

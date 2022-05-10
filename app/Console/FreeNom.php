@@ -11,17 +11,17 @@
 namespace Luolongfei\App\Console;
 
 use Luolongfei\App\Exceptions\LlfException;
+use Luolongfei\App\Exceptions\WarningException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Luolongfei\Libs\Log;
-use Luolongfei\Libs\Mail;
-use Luolongfei\Libs\TelegramBot;
+use Luolongfei\Libs\Message;
 
-class FreeNom
+class FreeNom extends Base
 {
-    const VERSION = 'v0.3';
+    const VERSION = 'v0.4.5';
 
-    const TIMEOUT = 34.52;
+    const TIMEOUT = 33;
 
     // FreeNom登录地址
     const LOGIN_URL = 'https://my.freenom.com/dologin.php';
@@ -41,10 +41,8 @@ class FreeNom
     // 匹配登录状态的正则
     const LOGIN_STATUS_REGEX = '/<li.*?Logout.*?<\/li>/i';
 
-    /**
-     * @var FreeNom
-     */
-    protected static $instance;
+    // 匹配无域名的正则
+    const NO_DOMAIN_REGEX = '/<tr\sclass="carttablerow"><td\scolspan="5">(?P<msg>[^<]+)<\/td><\/tr>/i';
 
     /**
      * @var Client
@@ -57,16 +55,33 @@ class FreeNom
     protected $jar = true;
 
     /**
-     * @var string freenom账户
+     * @var string FreeNom 账户
      */
     protected $username;
 
     /**
-     * @var string freenom密码
+     * @var string FreeNom 密码
      */
     protected $password;
 
-    public function __construct()
+    /**
+     * @var FreeNom
+     */
+    private static $instance;
+
+    /**
+     * @return FreeNom
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof self) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $this->client = new Client([
             'headers' => [
@@ -77,168 +92,231 @@ class FreeNom
             'timeout' => self::TIMEOUT,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_AUTOREFERER => true,
-            'verify' => config('verifySSL'),
-            'debug' => config('debug')
+            'verify' => config('verify_ssl'),
+            'debug' => config('debug'),
+            'proxy' => config('freenom_proxy'),
         ]);
 
-        system_log(sprintf('当前程序版本 %s', self::VERSION));
+        system_log(sprintf(lang('100038'), self::VERSION));
     }
 
-    /**
-     * @return FreeNom
-     */
-    public static function instance()
+    private function __clone()
     {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
     }
 
     /**
      * 登录
+     *
+     * @param string $username
+     * @param string $password
+     *
+     * @return bool
+     * @throws LlfException
      */
-    protected function login()
+    protected function login(string $username, string $password)
     {
-        $this->client->post(self::LOGIN_URL, [
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded',
-                'Referer' => 'https://my.freenom.com/clientarea.php'
-            ],
-            'form_params' => [
-                'username' => $this->username,
-                'password' => $this->password
-            ],
-            'cookies' => $this->jar
-        ]);
+        try {
+            $this->client->post(self::LOGIN_URL, [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Referer' => 'https://my.freenom.com/clientarea.php'
+                ],
+                'form_params' => [
+                    'username' => $username,
+                    'password' => $password
+                ],
+                'cookies' => $this->jar
+            ]);
+        } catch (\Exception $e) {
+            throw new LlfException(34520002, $e->getMessage());
+        }
+
+        if (empty($this->jar->getCookieByName('WHMCSZH5eHTGhfvzP')->getValue())) {
+            throw new LlfException(34520002, lang('100001'));
+        }
+
+        return true;
     }
 
     /**
-     * 续期
+     * 匹配获取所有域名
      *
-     * @throws \Exception
+     * @param string $domainStatusPage
+     *
+     * @return array
      * @throws LlfException
+     * @throws WarningException
      */
-    public function renewDomains()
+    protected function getAllDomains(string $domainStatusPage)
     {
-        // 所有请求共用一个CookieJar实例
-        $this->jar = new CookieJar();
-
-        $this->login();
-        $authCookie = $this->jar->getCookieByName('WHMCSZH5eHTGhfvzP')->getValue();
-        if (empty($authCookie)) {
-            throw new LlfException(34520002);
+        if (preg_match(self::NO_DOMAIN_REGEX, $domainStatusPage, $m)) {
+            throw new WarningException(34520014, [$this->username, $m['msg']]);
         }
 
-        // 检查域名状态
-        $response = $this->client->get(self::DOMAIN_STATUS_URL, [
-            'headers' => [
-                'Referer' => 'https://my.freenom.com/clientarea.php'
-            ],
-            'cookies' => $this->jar
-        ]);
-        $body = (string)$response->getBody();
-
-        if (!preg_match(self::LOGIN_STATUS_REGEX, $body)) {
-            throw new LlfException(34520009);
-        }
-
-        // 域名数据
-        if (!preg_match_all(self::DOMAIN_INFO_REGEX, $body, $domains, PREG_SET_ORDER)) {
+        if (!preg_match_all(self::DOMAIN_INFO_REGEX, $domainStatusPage, $allDomains, PREG_SET_ORDER)) {
             throw new LlfException(34520003);
         }
 
-        // 页面token
-        if (!preg_match(self::TOKEN_REGEX, $body, $matches)) {
+        return $allDomains;
+    }
+
+    /**
+     * 获取匹配 token
+     *
+     * 据观察，每次登录后此 token 不会改变，故可以只获取一次，多次使用
+     *
+     * @param string $domainStatusPage
+     *
+     * @return string
+     * @throws LlfException
+     */
+    protected function getToken(string $domainStatusPage)
+    {
+        if (!preg_match(self::TOKEN_REGEX, $domainStatusPage, $matches)) {
             throw new LlfException(34520004);
         }
-        $token = $matches['token'];
 
-        // 续期
-        $result = '';
-        $renewed = $renewedTG = ''; // 续期成功的域名
-        $notRenewed = $notRenewedTG = ''; // 记录续期出错的域名，用于邮件通知内容
-        $domainInfo = $domainInfoTG = ''; // 域名状态信息，用于邮件通知内容
-        foreach ($domains as $d) {
+        return $matches['token'];
+    }
+
+    /**
+     * 获取域名状态页面
+     *
+     * @return string
+     * @throws LlfException
+     */
+    protected function getDomainStatusPage()
+    {
+        try {
+            $resp = $this->client->get(self::DOMAIN_STATUS_URL, [
+                'headers' => [
+                    'Referer' => 'https://my.freenom.com/clientarea.php'
+                ],
+                'cookies' => $this->jar
+            ]);
+
+            $page = (string)$resp->getBody();
+        } catch (\Exception $e) {
+            throw new LlfException(34520013, $e->getMessage());
+        }
+
+        if (!preg_match(self::LOGIN_STATUS_REGEX, $page)) {
+            throw new LlfException(34520009);
+        }
+
+        return $page;
+    }
+
+    /**
+     * 续期所有域名
+     *
+     * @param array $allDomains
+     * @param string $token
+     *
+     * @return bool
+     */
+    public function renewAllDomains(array $allDomains, string $token)
+    {
+        $renewalSuccessArr = [];
+        $renewalFailuresArr = [];
+        $domainStatusArr = [];
+
+        foreach ($allDomains as $d) {
             $domain = $d['domain'];
-            $days = intval($d['days']);
+            $days = (int)$d['days'];
             $id = $d['id'];
 
-            // 免费域名只允许在到期前14天内续期
+            // 免费域名只允许在到期前 14 天内续期
             if ($days <= 14) {
-                try {
-                    $response = $this->client->post(self::RENEW_DOMAIN_URL, [
-                        'headers' => [
-                            'Referer' => sprintf('https://my.freenom.com/domains.php?a=renewdomain&domain=%s', $id),
-                            'Content-Type' => 'application/x-www-form-urlencoded'
-                        ],
-                        'form_params' => [
-                            'token' => $token,
-                            'renewalid' => $id,
-                            sprintf('renewalperiod[%s]', $id) => '12M', // 续期一年
-                            'paymentmethod' => 'credit', // 支付方式：信用卡
-                        ],
-                        'cookies' => $this->jar
-                    ]);
-                } catch (\Exception $e) {
-                    system_log(sprintf('%s：续期请求出错：%s', $this->username, $e->getMessage()));
-                    continue;
-                }
+                $renewalResult = $this->renew($id, $token);
 
-                $body = (string)$response->getBody();
                 sleep(1);
 
-                if (stripos($body, 'Order Confirmation') === false) { // 续期失败
-                    $result .= sprintf("%s续期失败\n", $domain);
-                    $notRenewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
-                    $notRenewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
+                if ($renewalResult) {
+                    $renewalSuccessArr[] = $domain;
+
+                    continue; // 续期成功的域名无需记录过期天数
                 } else {
-                    $result .= sprintf("%s续期成功\n", $domain);
-                    $renewed .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>', $domain, $domain);
-                    $renewedTG .= sprintf('[%s](http://%s)  ', $domain, $domain);
-                    continue;
+                    $renewalFailuresArr[] = $domain;
                 }
             }
 
-            $domainInfo .= sprintf('<a href="http://%s" rel="noopener" target="_blank">%s</a>还有<span style="font-weight: bold; font-size: 16px;">%d</span>天到期，', $domain, $domain, $days);
-            $domainInfoTG .= sprintf('[%s](http://%s)还有*%d*天到期，', $domain, $domain, $days);
+            // 记录域名过期天数
+            $domainStatusArr[$domain] = $days;
         }
-        $domainInfoTG .= "更多信息可以参考[Freenom官网](https://my.freenom.com/domains.php?a=renewals)哦~\n\n（如果你不想每次执行都收到推送，请将 .env 中 NOTICE_FREQ 的值设为0，使程序只在有续期操作时才推送）";
 
-        if ($notRenewed || $renewed) {
-            Mail::send(
-                '主人，我刚刚帮你续期域名啦~',
-                [
-                    $this->username,
-                    $renewed ? sprintf('续期成功：%s<br>', $renewed) : '',
-                    $notRenewed ? sprintf('续期出错：%s<br>', $notRenewed) : '',
-                    $domainInfo ?: '哦豁，没看到其它域名。'
-                ]
-            );
-            TelegramBot::send(sprintf(
-                "主人，我刚刚帮你续期域名啦~\n\n%s%s\n另外，%s",
-                $renewedTG ? sprintf("续期成功：%s\n", $renewedTG) : '',
-                $notRenewedTG ? sprintf("续期失败：%s\n", $notRenewedTG) : '',
-                $domainInfoTG
+        // 存在续期操作
+        if ($renewalSuccessArr || $renewalFailuresArr) {
+            $data = [
+                'username' => $this->username,
+                'renewalSuccessArr' => $renewalSuccessArr,
+                'renewalFailuresArr' => $renewalFailuresArr,
+                'domainStatusArr' => $domainStatusArr,
+            ];
+            $result = Message::send('', lang('100039'), 2, $data);
+
+            system_log(sprintf(
+                lang('100040'),
+                count($renewalSuccessArr),
+                count($renewalFailuresArr),
+                $result ? lang('100041') : ''
             ));
-            system_log(sprintf("%s：续期结果如下：\n%s", $this->username, $result));
+
+            Log::info(sprintf(lang('100042'), $this->username), $data);
+
+            return true;
+        }
+
+        // 不存在续期操作
+        if (config('notice_freq') === 1) {
+            $data = [
+                'username' => $this->username,
+                'domainStatusArr' => $domainStatusArr,
+            ];
+            Message::send('', lang('100043'), 3, $data);
         } else {
-            if (config('noticeFreq') == 1) {
-                Mail::send(
-                    '报告，今天没有域名需要续期',
-                    [
-                        $this->username,
-                        $domainInfo
-                    ],
-                    '',
-                    'notice'
-                );
-                TelegramBot::send("报告，今天没有域名需要续期，所有域名情况如下：\n\n" . $domainInfoTG);
-            } else {
-                system_log('当前通知频率为「仅当有续期操作时」，故本次不会推送通知');
-            }
-            system_log(sprintf('%s：<green>执行成功，今次没有需要续期的域名</green>', $this->username));
+            system_log(lang('100044'));
+        }
+
+        system_log(sprintf(lang('100045'), $this->username));
+
+        return true;
+    }
+
+    /**
+     * 续期单个域名
+     *
+     * @param int $id
+     * @param string $token
+     *
+     * @return bool
+     */
+    protected function renew(int $id, string $token)
+    {
+        try {
+            $resp = $this->client->post(self::RENEW_DOMAIN_URL, [
+                'headers' => [
+                    'Referer' => sprintf('https://my.freenom.com/domains.php?a=renewdomain&domain=%s', $id),
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ],
+                'form_params' => [
+                    'token' => $token,
+                    'renewalid' => $id,
+                    sprintf('renewalperiod[%s]', $id) => '12M', // 续期一年
+                    'paymentmethod' => 'credit', // 支付方式：信用卡
+                ],
+                'cookies' => $this->jar
+            ]);
+
+            $resp = (string)$resp->getBody();
+
+            return stripos($resp, 'Order Confirmation') !== false;
+        } catch (\Exception $e) {
+            $errorMsg = sprintf(lang('100046'), $e->getMessage(), $id, $this->username);
+            system_log($errorMsg);
+            Message::send($errorMsg);
+
+            return false;
         }
     }
 
@@ -279,7 +357,7 @@ class FreeNom
     }
 
     /**
-     * 获取freenom账户信息
+     * 获取 FreeNom 账户信息
      *
      * @return array
      * @throws LlfException
@@ -319,29 +397,17 @@ class FreeNom
     /**
      * 发送异常报告
      *
-     * @param \Exception $e
-     *
-     * @throws \Exception
+     * @param $e \Exception|LlfException
      */
     private function sendExceptionReport($e)
     {
-        Mail::send(
-            '主人，' . $e->getMessage(),
-            [
-                $this->username,
-                sprintf('具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。', $e->getFile(), $e->getLine(), $e->getMessage()),
-            ],
-            '',
-            'LlfException'
-        );
-
-        TelegramBot::send(sprintf(
-            '主人，出错了。具体是在%s文件的第%d行，抛出了一个异常。异常的内容是%s，快去看看吧。（账户：%s）',
+        Message::send(sprintf(
+            lang('100047'),
             $e->getFile(),
             $e->getLine(),
             $e->getMessage(),
             $this->username
-        ), '', false);
+        ), lang('100048') . $e->getMessage());
     }
 
     /**
@@ -351,17 +417,33 @@ class FreeNom
     public function handle()
     {
         $accounts = $this->getAccounts();
-        foreach ($accounts as $account) {
+        $totalAccounts = count($accounts);
+
+        system_log(sprintf(lang('100049'), $totalAccounts));
+
+        foreach ($accounts as $index => $account) {
             try {
                 $this->username = $account['username'];
                 $this->password = $account['password'];
 
-                $this->renewDomains();
+                $num = $index + 1;
+                system_log(sprintf(lang('100050'), get_local_num($num), $this->username, $num, $totalAccounts));
+
+                $this->jar = new CookieJar(); // 所有请求共用一个 CookieJar 实例
+                $this->login($this->username, $this->password);
+
+                $domainStatusPage = $this->getDomainStatusPage();
+                $allDomains = $this->getAllDomains($domainStatusPage);
+                $token = $this->getToken($domainStatusPage);
+
+                $this->renewAllDomains($allDomains, $token);
+            } catch (WarningException $e) {
+                system_log(sprintf(lang('100129'), $e->getMessage()));
             } catch (LlfException $e) {
-                system_log(sprintf('出错：<red>%s</red>', $e->getMessage()));
+                system_log(sprintf(lang('100051'), $e->getMessage()));
                 $this->sendExceptionReport($e);
             } catch (\Exception $e) {
-                system_log(sprintf('出错：<red>%s</red>', $e->getMessage()), $e->getTrace());
+                system_log(sprintf(lang('100052'), $e->getMessage()), $e->getTrace());
                 $this->sendExceptionReport($e);
             }
         }

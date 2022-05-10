@@ -11,35 +11,28 @@ namespace Luolongfei\Libs;
 
 use Dotenv\Dotenv;
 
-class Env
+class Env extends Base
 {
-    /**
-     * @var Env
-     */
-    protected static $instance;
-
     /**
      * @var array 环境变量值
      */
-    protected $allValues;
+    protected $allValues = [];
 
-    public function __construct($fileName)
+    public function init($fileName = '.env', $overload = false)
     {
-        $this->allValues = Dotenv::create(ROOT_PATH, $fileName)->load();
-    }
-
-    public static function instance($fileName = '.env')
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self($fileName);
+        if (file_exists(ROOT_PATH . DS . $fileName)) {
+            $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
+        } else if (IS_SCF) { // 云函数直接从 .env.example 读取默认环境变量
+            $fileName = '.env.example';
+            if (file_exists(ROOT_PATH . DS . $fileName)) {
+                $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
+            }
         }
-
-        return self::$instance;
     }
 
     public function get($key = '', $default = null)
     {
-        if (!strlen($key)) { // 不传key则返回所有环境变量
+        if (!strlen($key)) { // 不传 key 则返回所有环境变量
             return $this->allValues;
         }
 

@@ -1,57 +1,77 @@
 <div align="center">
-<h1>Freenom: freenom domain name renews automatically</h1>
 
-[![Build Status](https://img.shields.io/badge/build-passed-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/build-status/master)
-[![Php Version](https://img.shields.io/badge/php-%3E=7.2-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
-[![Scrutinizer Code Quality](https://img.shields.io/badge/scrutinizer-9.31-brightgreen?style=for-the-badge)](https://scrutinizer-ci.com/g/luolongfei/freenom/?branch=master)
-[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
+![freenom logo](https://s1.ax1x.com/2022/03/10/bhzMG9.png)
+
+<h3>Freenom：Auto-renewal of freenom domain names.</h3>
+
+[![PHP version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![Docker pulls](https://img.shields.io/docker/pulls/luolongfei/freenom.svg?style=for-the-badge)](https://hub.docker.com/r/luolongfei/freenom)
+[![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
 Documentation: English version | [中文版](https://github.com/luolongfei/freenom)
 </div>
 
-[📃  Why write this script](#--Why-write-this-script)
+[📃 Why write this script](#-Why-write-this-script)
 
-[🍭  Demo](#--Demo)
+[🌿 Special Thanks](#-special-thanks)
 
-[🎁  Preparation](#--Preparation)
+[🍭 Demo](#-Demo)
 
-[📪  Setting up Gmail](#--Setting-up-Gmail)
+[🎁 Preparation](#-Preparation)
 
-[🤶  Telegram bot](#--Telegram-bot)
+[📪 Setting up Gmail](#-Setting-up-Gmail)
 
-[🚧  Configuration script](#--Configuration-script)
+[🤶 Telegram bot](#-Telegram-bot)
 
-[🎈  Add scheduled task](#--Add-scheduled-task)
+[🐳 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
+the recommended deployment method)
 
-[☕  Verification](#--Verification)
+[🧱 The second deployment method: direct pull code deployment](#-the-second-deployment-method-direct-pull-code-deployment)
 
-[❤  Donate](#--Donate)
+[❤ Donation](#-Donation)
 
-[🌚  Author](#--Author)
+[🌚 Author](#-Author)
 
-[🎉  Acknowledgements](#--Acknowledgements)
+[💖 All Contributors](#-All-Contributors)
 
-[🥝  Open source agreement](#--Open-source-agreement)
+[🎉 Acknowledgements](#-Acknowledgements)
 
+[🥝 Open source agreement](#-Open-source-agreement)
 
-### 📃  Why write this script
-As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
+### 📃 Why write this script
+
+As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be
+renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
 So I felt frustrated every time I renewed, so I wrote this automatic renewal script.
 
-### 🍭  Demo
-![Email example](https://s2.ax1x.com/2020/01/31/139Rrd.png "Email content")
+### 🌿 Special Thanks
 
-Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the program. In the case of a renewal success or failure email, the email will include the number of days that the domain name has not been renewed.
+Thanks for non-commercial open source development authorization by JetBrains.
 
-### 🎁  Preparation
+<a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
+</a>
+
+### 🍭 Demo
+
+[![Email Example](https://s4.ax1x.com/2022/02/26/bZrtz9.png)](https://s4.ax1x.com/2022/02/26/bZrtz9.png)
+
+Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the
+program. In the case of a renewal success or failure email, the email will include the number of days that the domain
+name has not been renewed.
+
+### 🎁 Preparation
+
 - Email of robot: Used to send notification emails.
 - Your email: Used to receive notification emails sent by robots.
-- VPS: Any server can be used. The system recommends `Centos7`, and the PHP version must be` php7.1` or above.
+- VPS: Any server can be used. The system recommends `Debian`, and the PHP version must be` php7.3` or above.
 - No more
 
-### 📪  Setting up Gmail
-***
+### 📪 Setting up Gmail
+
 1.In `Settings > Forwarding and POP/IMAP`, tick
+
 - Enable POP for all messages
 - Enable IMAP
 
@@ -61,29 +81,69 @@ Then save your changes.
 
 2.Allow less secure applications
 
-After logging into Google Mail, visit [this page](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) and enable the application that is not secure enough.
+*It is recommended that you turn on your browser's privacy mode before logging into gmail to set up your settings, to
+prevent you from not being able to jump to the correct settings address when you have multiple gmail accounts.*
+
+After logging into Google Mail, visit [this page](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) and
+enable the application that is not secure enough.
 
 Also, if prompted
 > Do not allow access to account
 
-After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click Allow. This situation is relatively rare.
+After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click
+Allow. This situation is relatively rare.
 
-### 🤶  Telegram bot
-***
-If you don't want to use email push, you can also use Telegram bot. In the `.env` file,
-Change the value of `TELEGRAM_BOT_ENABLE` to `true` to enable the Telegram bot.
-Similarly, change the value of `MAIL_ENABLE` to `false` to disable the mail push method.
-Telegram bot has two configuration items, one is `chatID` (corresponding to `TELEGRAM_CHAT_ID` in `.env` file),
-You can get your own id by sending `/start` to `@userinfobot` using your Telegram account,
-The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.env` file), 
-your Telegram bot token, how to create a Telegram bot and how to get the token please refer to: 
+**Note: Since using gmail directly password to sign in easily triggers Google security mechanism, so we recommend to
+refer to the official document to enable the application-specific
+password: [https://support.google.com/mail/answer/185833](https://support.google.com/mail/answer/185833)**
+
+**Sign in with an account+application-specific password, so you won't trigger Google security restrictions even if you
+change your IP frequently to sign in to gmail.**
+
+After the above operation is finished, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and password (or token)
+in `.env` file, set `TO` to your incoming mailbox, and then set the value of `MAIL_ENABLE` to `1` to enable the mailbox
+delivery function.
+
+If you don't want to use email related features, change the value of `MAIL_ENABLE` in the `.env` file in the root
+directory to `0` to turn off the email push method.
+
+### 🤶 Telegram bot
+
+If you don't want to use email push, you can also use Telegram bot. In the `.env` file, Change the value
+of `TELEGRAM_BOT_ENABLE` to `1` to enable the Telegram bot. Similarly, change the value of `MAIL_ENABLE` to `0` to
+disable the mail push method. Telegram bot has two configuration items, one is `chat_id` (corresponding
+to `TELEGRAM_CHAT_ID` in `.env` file), You can get your own id by sending `/start` to `@userinfobot` using your Telegram
+account, The other is `token` (corresponding to `TELEGRAM_BOT_TOKEN` in the `.env` file), your Telegram bot token, how
+to create a Telegram bot and how to get the token please refer to:
 [Official Document](https://core.telegram.org/bots#6-botfather)
 
-*This completes the settings related to notifications, followed by the configuration related to this program* :)
+<hr>
 
-### 🚧  Configuration script
+**The next step is to start describing how to deploy this script, there are two ways to deploy it, one is to pull the
+code and deploy it directly, the other is to deploy it via docker. We recommend deploying via docker, it's easy and
+hassle-free.**
+
+### 🐳 The first deployment method: Deployment via docker
+
+**Deployment via docker is our recommended deployment method. For detailed deployment steps, please
+visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)**
+
+There is a detailed description in the docker repository documentation, and the whole deployment process is quite
+simple.
+
+<hr>
+
+### 🧱 The second deployment method: direct pull code deployment
+
+*We don't recommend this deployment method as it requires certain environment requirements to be met for direct code
+pull deployment.*
+
+#### 🚧 Configuration script
+
 All operations are performed under Centos7 system, other Linux distributions are similar
-#### Get the source code
+
+##### Get the source code
+
 ```bash
 $ mkdir -p /data/wwwroot/freenom
 $ cd /data/wwwroot/freenom
@@ -92,7 +152,8 @@ $ cd /data/wwwroot/freenom
 $ git clone https://github.com/luolongfei/freenom.git ./
 ```
 
-#### Configuration process
+##### Configuration process
+
 ```bash
 # Copy configuration file template
 $ cp .env.example .env
@@ -107,8 +168,10 @@ $ vim .env
 # After editing, press "Esc" to return to the command mode, enter ":wq" and press Enter to save and exit. If you don't use vim editor, you can ask Uncle Google. :)
 ```
 
-### 🎈  Add scheduled task
-#### Install crontabs and cronie
+#### 🎈 Add scheduled task
+
+##### Install crontabs and cronie
+
 ```bash
 $ yum -y install cronie crontabs
 
@@ -119,7 +182,8 @@ $ yum list cronie && systemctl status crond
 $ yum list crontabs $$ which crontab && crontab -l
 ```
 
-#### Open the task form and edit
+##### Open the task form and edit
+
 ```bash
 $ crontab -e
 
@@ -129,12 +193,16 @@ $ crontab -e
 00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1
 ```
 
-#### Restart the crond daemon (This step is required each time you edit the task form for the task to take effect)
+##### Restart the crond daemon (This step is required each time you edit the task form for the task to take effect)
+
 ```bash
 $ systemctl restart crond
 ```
-To check if the `Task` is normal, you can set the execution time of the above task to a few minutes, and then wait until the task execution is completed,
-check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freenom/` directory for errors. Common error messages are as follows:
+
+To check if the `Task` is normal, you can set the execution time of the above task to a few minutes, and then wait until
+the task execution is completed, check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freenom/`
+directory for errors. Common error messages are as follows:
+
 - /bin/sh: php: command not found
 - /bin/sh: /usr/local/php: Is a directory
 
@@ -149,17 +217,17 @@ check the contents of the `freenom_crontab.log` file in the `/data/wwwroot/freen
 > $ whereis php
 > # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > ```
-> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system), 
+> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system),
 > and then modify the commands in the form task, change
-> 
+>
 > `00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1`
-> 
+>
 > to
-> 
+>
 > `00 09 * * * cd /data/wwwroot/freenom/ && /usr/local/php/bin/php run > freenom_crontab.log 2>&1`
-> 
+>
 > More information: [click here](https://stackoverflow.com/questions/7397469/why-is-crontab-not-executing-my-php-script)
-> 
+>
 
 </details>
 
@@ -167,30 +235,54 @@ Of course, if your `crontab` can correctly find the `php path` without error, yo
 
 *So far, all the configurations have been completed, let's verify if the whole process works* :)
 
-### ☕  Verification
-You can first change the value of `NOTICE_FREQ` in `.env` to 1 (Push notification every time the script is executed), and then execute
+#### ☕ Verification
+
+You can first change the value of `NOTICE_FREQ` in `.env` to 1 (Push notification every time the script is executed),
+and then execute
+
 ```bash
 $ cd /data/wwwroot/freenom/ && php run
 ```
+
 If nothing else, you will receive an email about the domain name.
 
-If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/freenom/issues). If freenom changes the algorithm and causes this project to fail,
-Please mention [issues](https://github.com/luolongfei/freenom/issues) to inform me that I will fix it in time and maintain this project for a long time. Welcome star ~
+**End of the section on script deployment.**
 
-### ❤  Donate
+<hr>
+
+If you encounter any problems or bugs, please mention [issues](https://github.com/luolongfei/freenom/issues). If freenom
+changes the algorithm and causes this project to fail, Please
+mention [issues](https://github.com/luolongfei/freenom/issues) to inform me that I will fix it in time and maintain this
+project for a long time. Welcome star ~
+
+### ❤ Donation
 
 #### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
+
 > Every time you spend money, you're casting a vote for the kind of world you want .-- Anna Lappe
 
 ![Every time you spend your money, you are voting for the world you want. ](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-### 🌚  Author
+### 🌚 Author
+
 - Main program and framework: [@luolongfei](https://github.com/luolongfei)
 - English document: [@肖阿姨](#)
 
-### 🎉  Acknowledgements
-- [PHPMailer](https://github.com/PHPMailer/PHPMailer/) (Mail sending function depends on this library)
-- [guzzle](https://github.com/guzzle/guzzle) (Curl library)
+### 💖 All Contributors
 
-### 🥝  Open source agreement
+<a href="https://github.com/luolongfei/freenom/graphs/contributors">
+  <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
+</a>
+
+[@anjumrafidofficial](https://github.com/anjumrafidofficial)
+
+### 🎉 Acknowledgements
+
+- The project relies on third-party libraries such as [PHPMailer](https://github.com/PHPMailer/PHPMailer/)
+  , [guzzle](https://github.com/guzzle/guzzle), etc.
+- The project Docker related documentation has reference to the article by [秋水逸冰](https://teddysun.com/569.html)
+- [@anjumrafidofficial](https://github.com/anjumrafidofficial) Improve the English mail content
+
+### 🥝 Open source agreement
+
 [MIT](https://opensource.org/licenses/mit-license.php)
