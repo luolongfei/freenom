@@ -16,7 +16,7 @@ plain='\033[0m'
 # 生成配置文件
 if [ ! -f /conf/.env ]; then
     cp /app/.env.example /conf/.env
-    echo -e "[${green}Info${plain}] 已生成 .env 文件，请将 .env 文件中的配置项改为你自己的，然后重启容器"
+    echo -e "[${green}Info${plain}] 已生成 .env 文件，请将 .env 文件中的配置项改为你自己的，然后重启容器（如果你是在第三方 Docker 环境中使用容器，例如 railway/heroku 等平台，可忽略本条提醒）"
 fi
 if [ ! -f /app/.env ]; then
     ln -s /conf/.env /app/.env
