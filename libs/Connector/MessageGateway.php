@@ -50,4 +50,25 @@ abstract class MessageGateway implements MessageServiceInterface
     {
         return preg_replace("/\n/u", '<br>', $content);
     }
+
+    /**
+     * 设置公共页脚
+     *
+     * @param $footer
+     * @param $newline
+     * @param $enable
+     *
+     * @return void
+     */
+    public function setCommonFooter(&$footer, $newline = "\n", $enable = true)
+    {
+        if (env('SHOW_SERVER_INFO')) {
+            $footer .= $newline . $newline . lang('100134');
+            $footer .= $newline . get_ip_info();
+        }
+
+        if ($enable) {
+            $footer .= $newline . $newline . lang('100133');
+        }
+    }
 }
