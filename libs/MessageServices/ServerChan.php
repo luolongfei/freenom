@@ -70,9 +70,7 @@ class ServerChan extends MessageGateway
 
         $footer .= lang('100091');
 
-        if (!$isRenewalResult) {
-            $footer .= lang('100092');
-        }
+        $this->setCommonFooter($footer, "\n", !$isRenewalResult);
 
         return $footer;
     }

@@ -162,9 +162,7 @@ class WeChat extends MessageGateway
 
         $footer .= lang('100116');
 
-        if (!$isRenewalResult) {
-            $footer .= lang('100117');
-        }
+        $this->setCommonFooter($footer, "\n", !$isRenewalResult);
 
         return $footer;
     }

@@ -103,9 +103,7 @@ class TelegramBot extends MessageGateway
 
         $footer .= lang('100103');
 
-        if (!$isRenewalResult) {
-            $footer .= lang('100104');
-        }
+        $this->setCommonFooter($footer, "\n", !$isRenewalResult);
 
         return $footer;
     }

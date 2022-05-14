@@ -58,8 +58,6 @@ class Upgrade extends Base
     {
         $this->pushedVerFile = DATA_PATH . DS . 'pushed_version.txt';
 
-        $this->language = config('language', 'zh');
-
         $this->client = new Client([
             'base_uri' => 'https://api.github.com',
             'headers' => [
@@ -149,7 +147,7 @@ class Upgrade extends Base
      */
     public function genMsgContent()
     {
-        if ($this->language === 'zh') {
+        if (is_chinese()) {
             $content = sprintf(
                 lang('100025'),
                 $this->friendlyDateFormat($this->releaseInfo['published_at'], 'UTC'),

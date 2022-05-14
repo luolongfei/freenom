@@ -150,9 +150,7 @@ class Bark extends MessageGateway
 
         $footer .= lang('100078');
 
-        if (!$isRenewalResult) {
-            $footer .= lang('100079');
-        }
+        $this->setCommonFooter($footer, "\n", !$isRenewalResult);
 
         return $footer;
     }

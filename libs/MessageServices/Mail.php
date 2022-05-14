@@ -213,9 +213,14 @@ class Mail extends MessageGateway
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 3) {
             $template = file_get_contents($this->noRenewalRequiredTemplatePath);
+
+            $footer = '';
+            $this->setCommonFooter($footer, '<br>');
+
             $realData = [
                 $data['username'],
-                $this->genDomainStatusHtml($data['domainStatusArr'])
+                $this->genDomainStatusHtml($data['domainStatusArr']),
+                $footer
             ];
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 4) {

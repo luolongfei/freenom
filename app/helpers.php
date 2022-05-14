@@ -300,3 +300,27 @@ if (!function_exists('get_local_num')) {
         }
     }
 }
+
+if (!function_exists('is_chinese')) {
+    /**
+     * 判断当前语言环境
+     *
+     * @return bool
+     */
+    function is_chinese()
+    {
+        return config('language', 'zh') === 'zh';
+    }
+}
+
+if (!function_exists('get_ip_info')) {
+    /**
+     * 获取 ip 信息
+     *
+     * @return string
+     */
+    function get_ip_info()
+    {
+        return \Luolongfei\Libs\IP::getInstance()->get();
+    }
+}
