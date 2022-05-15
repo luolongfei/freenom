@@ -416,7 +416,7 @@ systemctl restart docker
 ### ☁ 方式三：通过各种云函数部署
 
 所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip)
+[https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到各种云函数。
@@ -449,8 +449,11 @@ systemctl restart docker
 ### ❤ 捐赠 Donation
 
 如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的捐赠。
+if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
 
-#### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
+
+PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 > Every time you spend money, you're casting a vote for the kind of world you want. -- Anna Lappe
 
@@ -458,7 +461,7 @@ systemctl restart docker
 
 ![每一次你花的钱都是在为你想要的世界投票。](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-**你的 star 或者`小额打赏`是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。 另外，将本项目推荐给更多的人，也是一种支持的方式，用的人越多更新的动力越足。**
+**你的`star`或者`赞助`是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。 另外，将本项目推荐给更多的人，也是一种支持的方式，用的人越多更新的动力越足。**
 
 ### 🪓 信仰
 
@@ -495,11 +498,11 @@ systemctl restart docker
 
 - 解决 企业微信 因送信内容过长被截断问题
 
-#### [v0.4.5](https://github.com/luolongfei/freenom/releases/tag/v0.4.5) - 2022-02-26
+#### [v0.5](https://github.com/luolongfei/freenom/releases/tag/v0.5) - 2022-05-15
 
-- 支持多语言，中英文切换
-- 支持自建 Telegram 反代地址 [@Mattraks](https://github.com/Mattraks)
-- 更新各种依赖库，PHP 版本最低要求不低于 7.3
+- 增加支持 华为云函数、Railway 等部署方式
+- 支持在消息中显示服务器信息，该功能默认关闭
+- 优化部分代码逻辑
 
 ### 🎉 鸣谢
 

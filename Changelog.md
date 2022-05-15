@@ -2,6 +2,12 @@
 
 此处包含了自脚本发布以来的所有更新日志。以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
+#### [v0.5](https://github.com/luolongfei/freenom/releases/tag/v0.5) - 2022-05-15
+
+- 增加支持 华为云函数、Railway 等部署方式
+- 支持在消息中显示服务器信息，该功能默认关闭
+- 优化部分代码逻辑
+
 #### [v0.4.5](https://github.com/luolongfei/freenom/releases/tag/v0.4.5) - 2022-02-26
 
 - 支持多语言，中英文切换
