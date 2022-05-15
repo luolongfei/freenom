@@ -96,6 +96,35 @@ function handler($event, $context)
 }
 
 /**
+ * 华为云函数
+ *
+ * @param $event
+ * @param $context
+ *
+ * @return bool|string
+ */
+function huawei_handler($event, $context)
+{
+    $logger = $context->getLogger();
+
+    $logger->info('开始执行华为云函数');
+
+    // 手动设置环境变量
+    $logger->info('设置环境变量');
+    $allEnvKeys = array_keys((array)env());
+    foreach ($allEnvKeys as $key) {
+        $value = $context->getUserData((string)$key);
+        if (strlen($value) > 0) {
+            $logger->info('从控制台发现环境变量：' . $key);
+            putenv("{$key}={$value}");
+        }
+    }
+    $logger->info('环境变量设置完成');
+
+    return run();
+}
+
+/**
  * @return string|bool
  */
 function run()
