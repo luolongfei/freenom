@@ -57,7 +57,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
 - 推荐 [🐳 通过 Docker 方式部署](#-方式一通过-docker-部署推荐最简单的部署方式)，也可以参考下方文档 [🚈 通过 Railway 部署](#-方式二通过-Railway-部署)
-  或者 [☁ 通过 各种云函数 部署](#-方式三通过各种云函数部署)，各种云函数不需要你有自己的服务器，不过由于`云函数`政策经常变化，也许 [Railway](https://railway.app/) 是更好的选择。
+  或者 [☁ 通过 各种云函数 部署](#-方式三通过各种云函数部署)，各种`云函数`不需要你有自己的服务器，不过由于`云函数`政策经常变化，也许 [Railway](https://railway.app/) 是更好的选择。
 
 ### 🌿 特别感谢 Special Thanks
 
@@ -404,18 +404,22 @@ systemctl restart docker
 
 ***
 
+### 🚈 方式二：通过 Railway 部署
+
+***
+
 ### ☁ 方式三：通过各种云函数部署
 
 *推荐没有自己服务器的用户使用。*
 
-【🕹
-通过腾讯云函数部署】的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%95%B9-%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E9%80%9A%E8%BF%87%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+有关 【通过腾讯云函数部署】
+的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%95%B9-%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E9%80%9A%E8%BF%87%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
 
-【🧊
-通过阿里云函数部署】的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%A7%8A-%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+有关 【通过阿里云函数部署】
+的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%A7%8A-%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
 
-【🌸
-通过华为云函数部署】的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%A7%8A-%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+有关 【通过华为云函数部署】
+的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%F0%9F%A7%8A-%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
 
 ***
 
