@@ -257,7 +257,11 @@ project for a long time. Welcome star ~
 
 ### ❤ Donation
 
-#### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
+if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
+
+PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 > Every time you spend money, you're casting a vote for the kind of world you want .-- Anna Lappe
 
