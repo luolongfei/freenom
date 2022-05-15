@@ -406,13 +406,12 @@ systemctl restart docker
 
 ### 🚈 方式二：通过 Railway 部署
 
-*适用于没有自己服务器的用户。*
+有关 【通过 Railway 部署】
+的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
 
 ***
 
 ### ☁ 方式三：通过各种云函数部署
-
-*适用于没有自己服务器的用户。*
 
 所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
 [https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.4.5/freenom_scf.zip)
