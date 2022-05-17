@@ -32,9 +32,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚧 直接拉取源码部署](#-方式四直接拉取源码部署)
 
-[📋 捐赠名单 Donation List](#-捐赠名单-donation-list)
+[📋 赞助名单 Donation List](#-赞助名单-donation-list)
 
-[❤ 捐赠 Donation](#-捐赠-donation)
+[❤ 赞助 Donation](#-赞助-donation)
 
 [🪓 信仰](#-信仰)
 
@@ -442,13 +442,13 @@ systemctl restart docker
 遇到任何问题或 Bug 欢迎提 [issue](https://github.com/luolongfei/freenom/issues) （请按模板格式提`issue`，以便我快速复现你的问题，否则问题会被忽略）， 如果`Freenom`
 改变算法导致此项目失效，请提 [issue](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。 欢迎`star`~
 
-### 📋 捐赠名单 Donation List
+### 📋 赞助名单 Donation List
 
-非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donation-List) 」对本项目的捐赠支持！
+非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donation-List) 」对本项目的赞助支持！
 
-### ❤ 捐赠 Donation
+### ❤ 赞助 Donation
 
-如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的捐赠。
+如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的赞助。
 if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
