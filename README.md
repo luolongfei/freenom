@@ -350,7 +350,7 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
 删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
 重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
 
-或者在`.env`目录下运行`update.sh`脚本。
+> *也可以直接在`.env`文件所在目录执行`./docker-update.sh`以完成更新操作。*
 
 ##### 2.2 后期容器管理以及 Docker 常用命令
 
