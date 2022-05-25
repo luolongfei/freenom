@@ -123,7 +123,7 @@ class TelegramBot extends MessageGateway
             $domainStatusMarkDownText .= sprintf(lang('100106'), $domain, $domain, $daysLeft);
         }
 
-        $domainStatusMarkDownText = rtrim(rtrim($domainStatusMarkDownText, ' '), '，,') . lang('100107');
+        $domainStatusMarkDownText = rtrim(rtrim($domainStatusMarkDownText, ' '), "，,\n") . lang('100107');
 
         return $domainStatusMarkDownText;
     }
