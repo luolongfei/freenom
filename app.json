@@ -1,0 +1,52 @@
+{
+    "name": "freenom-automatic-renew快速部署",
+    "description": "Deploy freenom-automatic-renew to Heroku.",
+    "keywords": ["freenom"],
+    "env": {
+        "FREENOM_USERNAME": {
+            "description": "Freenom账户",
+            "value": ""
+        },
+
+        "FREENOM_PASSWORD": {
+            "description": "Freenom密码",
+            "value": ""
+        },
+
+        "TELEGRAM_CHAT_ID": {
+            "description": "你的chat_id，通过发送“/start”给@userinfobot可以获取自己的id",
+            "value": "",
+            "required": true
+        },
+
+        "TELEGRAM_BOT_TOKEN": {
+            "description": "Telegram Bot 的 token",
+            "value": "",
+            "required": true
+        },
+
+        "TELEGRAM_BOT_ENABLE": {
+            "description": "是否启用Telegram通知",
+            "value": 1,
+            "required": false
+        },
+
+        "NOTICE_FREQ": {
+            "description": "通知频率 0：仅当有续期操作的时候 1：每次执行",
+            "value": 1
+        },
+
+        "VERIFY_SSL": {
+            "description": "请求时验证 SSL 证书行为，默认不验证，防止服务器证书过期或证书颁布者信息不全导致无法发出请求",
+            "value": 0
+        },
+
+        "DEBUG": {
+            "description": "debug模式",
+            "value": 0
+        }
+    },
+    "website": "xx.com",
+    "repository": "no repository",
+    "stack": "container"
+}
