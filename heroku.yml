@@ -2,4 +2,7 @@ build:
   docker:
     web: Dockerfile
 run:
-  app: crond -f
+  app:
+    command:
+      - crond -f
+    image: web
