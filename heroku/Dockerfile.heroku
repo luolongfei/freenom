@@ -7,10 +7,10 @@ ENV TZ Asia/Shanghai
 
 WORKDIR /app
 
-COPY ../ ./
+COPY . ./
 
-COPY nginx.template.conf ./
-COPY html ./html/
+COPY heroku/nginx.template.conf ./
+COPY heroku/html ./html/
 
 RUN set -eux \
     && apk update \
