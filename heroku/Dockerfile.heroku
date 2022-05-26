@@ -1,0 +1,24 @@
+FROM php:7.4.19-alpine3.13
+
+LABEL author="mybsdc <mybsdc@gmail.com>" \
+    maintainer="luolongfei <luolongf@gmail.com>"
+
+ENV TZ Asia/Shanghai
+
+WORKDIR /app
+
+COPY ../ ./
+
+COPY nginx.template.conf ./
+COPY html ./html/
+
+RUN set -eux \
+    && apk update \
+    && apk add --no-cache tzdata bash nginx
+
+VOLUME ["/conf", "/app/logs"]
+
+COPY startup.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/startup.sh
+
+CMD startup.sh
