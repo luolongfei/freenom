@@ -18,7 +18,7 @@ RUN set -eux \
 
 VOLUME ["/conf", "/app/logs"]
 
-COPY heroku/startup.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/startup.sh
+COPY heroku/startup.sh ./
+RUN chmod +x ./startup.sh
 
-ENTRYPOINT ["startup.sh"]
+ENTRYPOINT ["./startup.sh"]
