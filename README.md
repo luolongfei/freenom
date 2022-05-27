@@ -58,8 +58,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [🐳 通过 Docker 方式部署](#-通过-docker-部署)，也可以参考下方文档 [🚈 通过 Railway 部署](#-通过-Railway-部署)
-  或者 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)，各种`云函数`不需要你有自己的服务器，不过由于`云函数`政策经常变化，也许 [Railway](https://railway.app/) 是更好的选择。
+- 推荐 [🐳 通过 Docker 方式部署](#-通过-docker-部署)。如果你没有自己的服务器，可参考本文档 [🚈 通过 Railway 部署](#-通过-Railway-部署)
+  、[🧊 通过 Heroku 部署](#-通过-Heroku-部署)、[☁ 通过 各种云函数 部署](#-通过各种云函数部署) 等相关内容。
 
 ### 🌿 特别感谢 Special Thanks
 
@@ -83,8 +83,7 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ### 🎁 事前准备
 
-- VPS：随便一台服务器都行，系统推荐`Debian`或者`Centos7`，另外 PHP 版本需在`php7.3`及以上。如果你没有服务器，推荐参考下方文档
-  [🚈 通过 Railway 部署](#-通过-Railway-部署) 或者 [☁ 通过 各种云函数 部署](#-通过各种云函数部署) 。
+- VPS：随便一台服务器都行，系统推荐`Debian`。`PHP`版本需在`php7.3`及以上，如果有`Docker`环境则可无视这个限制。如果你没有服务器，可参考本文档部署到各种免费环境中。
 - 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
@@ -467,7 +466,8 @@ systemctl restart docker
 ### ❤ 赞助 Donation
 
 如果你觉得本项目对你有帮助，请考虑赞助本项目，以激励我投入更多的时间进行维护与开发。
-If you find this project helpful, please consider supporting the project going forward. Your support is greatly appreciated.
+If you find this project helpful, please consider supporting the project going forward. Your support is greatly
+appreciated.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
 
