@@ -239,7 +239,7 @@ if (!function_exists('system_check')) {
         }
 
         // 如果是在云函数部署，则不需要检查这几项
-        if (IS_SCF) {
+        if (IS_SCF || (int)env('IS_HEROKU') === 1) {
             system_log(lang('100009'));
             system_log(lang('100010'));
             system_log(lang('100011'));
