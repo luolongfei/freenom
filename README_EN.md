@@ -26,7 +26,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🐳 Deployment via docker](#-deployment-via-docker) (This is the recommended deployment method)
 
-[🧱  direct pull code deployment](#-direct-pull-code-deployment)
+[🧱 Direct pull code deployment](#-direct-pull-code-deployment)
 
 [❤ Donation](#-Donation)
 
