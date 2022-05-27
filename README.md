@@ -28,7 +28,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚈 通过 Railway 部署](#-通过-Railway-部署)（推荐没有自己服务器的用户使用此方案）
 
-[🧊 通过 Heroku 部署](#-通过-Heroku-部署)（同上）
+[🧊 通过 Heroku 部署](#-通过-Heroku-部署) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)（同上）
 
 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)（同上）
 
@@ -422,6 +422,14 @@ systemctl restart docker
 
 ***
 
+### 🧊 通过 Heroku 部署
+
+点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 可能会休眠，所以稳定性有待验证。
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+***
+
 ### ☁ 通过各种云函数部署
 
 所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
@@ -438,14 +446,6 @@ systemctl restart docker
 
 有关 【通过华为云函数部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E5%8D%8E%E4%B8%BA%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
-
-***
-
-### 🧊 通过 Heroku 部署
-
-点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 可能会休眠，所以稳定性有待验证。
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ***
 
