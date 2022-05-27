@@ -456,8 +456,8 @@ systemctl restart docker
 
 ### ❤ 赞助 Donation
 
-如果你觉得本项目真的有帮助到你并且想回馈作者，感谢你的赞助。
-if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
+如果你觉得本项目对你有帮助，请考虑赞助本项目，以激励我投入更多的时间进行维护与开发。
+If you find this project helpful, please consider supporting the project going forward. Your support is greatly appreciated.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
 

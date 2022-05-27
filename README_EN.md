@@ -257,7 +257,7 @@ project for a long time. Welcome star ~
 
 ### ❤ Donation
 
-if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
+If you find this project helpful, please consider supporting the project going forward. Your support is greatly appreciated.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
 
