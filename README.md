@@ -225,6 +225,8 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ### 🐳 通过 Docker 部署
 
+*如果你有自己的服务器，这是最推荐的部署方式。*
+
 Docker 仓库地址为： [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom) ，同样欢迎 star 。
 此镜像支持的架构为`linux/amd64`，`linux/arm64`，`linux/ppc64le`，`linux/s390x`，`linux/386`，`linux/arm/v7`，`linux/arm/v6`， 理论上支持`群晖`
 、`威联通`、`树莓派`以及各种类型的`VPS`。
@@ -441,6 +443,8 @@ systemctl restart docker
 ***
 
 ### 🧊 通过 Heroku 部署
+
+点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 可能会休眠，所以稳定性有待验证。
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
