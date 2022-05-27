@@ -18,18 +18,36 @@ class Env extends Base
      */
     protected $allValues = [];
 
-    public function init($fileName = '.env', $overload = false)
+    public function init($filename = '.env', $overload = false)
     {
-        if (file_exists(ROOT_PATH . DS . $fileName)) {
-            $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
-        } else if (IS_SCF) { // 云函数直接从 .env.example 读取默认环境变量
-            $fileName = '.env.example';
-            if (file_exists(ROOT_PATH . DS . $fileName)) {
-                $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $fileName)->overload() : Dotenv::create(ROOT_PATH, $fileName)->load();
-            }
+        if (file_exists(ROOT_PATH . DS . $filename)) {
+            $this->setAllValues($filename, $overload);
+        } else { // 云函数或 Heroku 或 Railway 直接从 .env.example 读取默认环境变量
+            $this->setAllValues('.env.example', $overload);
         }
     }
 
+    /**
+     * 读取并设置所有环境变量
+     *
+     * @param $filename
+     * @param $overload
+     *
+     * @return void
+     */
+    private function setAllValues($filename, $overload)
+    {
+        $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $filename)->overload() : Dotenv::create(ROOT_PATH, $filename)->load();
+    }
+
+    /**
+     * 获取环境变量
+     *
+     * @param $key
+     * @param $default
+     *
+     * @return array|bool|mixed|string|null
+     */
     public function get($key = '', $default = null)
     {
         if (!strlen($key)) { // 不传 key 则返回所有环境变量
