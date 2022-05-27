@@ -24,4 +24,4 @@ VOLUME ["/conf", "/app/logs"]
 COPY heroku/startup.sh ./
 RUN chmod +x ./startup.sh
 
-ENTRYPOINT ["./startup.sh"]
+ENTRYPOINT ["/app/startup.sh"]
