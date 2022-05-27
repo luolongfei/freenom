@@ -22,7 +22,7 @@
             "value": ""
         },
         "MULTIPLE_ACCOUNTS": {
-            "description": "多账户支持 Support for multiple accounts",
+            "description": "多账户支持，多个账户和密码的格式必须是“<账户1>@<密码1>|<账户2>@<密码2>|<账户3>@<密码3>”，不要有空格，不要省略尖括号 Support for multiple accounts",
             "value": "",
             "required": false
         },
