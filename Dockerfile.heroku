@@ -4,6 +4,7 @@ LABEL author="mybsdc <mybsdc@gmail.com>" \
     maintainer="luolongfei <luolongf@gmail.com>"
 
 ENV TZ Asia/Shanghai
+ENV IS_HEROKU=1
 
 WORKDIR /app
 
@@ -22,4 +23,4 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 COPY ./heroku/startup.sh /
 RUN chmod +x /startup.sh
 
-CMD /startup.sh
+CMD ["/bin/bash", "-c", "/startup.sh"]
