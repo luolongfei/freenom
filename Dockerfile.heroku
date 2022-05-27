@@ -20,4 +20,5 @@ RUN set -eux \
 COPY ./heroku/startup.sh /
 RUN chmod +x /startup.sh
 
+# https://devcenter.heroku.com/articles/container-registry-and-runtime#dockerfile-commands-and-runtime
 CMD ["/bin/bash", "-c", "/startup.sh"]
