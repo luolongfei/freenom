@@ -7,7 +7,7 @@
 
 set -e
 
-echo '检测到您当前在 Heroku 环境运行容器'
+echo '[Info] 检测到你当前在 Heroku 环境运行容器'
 
 # PHP 命令
 PHP_COMMAND='php /app/run > /app/logs/freenom_cron.log 2>&1'
