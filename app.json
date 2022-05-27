@@ -14,21 +14,23 @@
             "description": "Freenom 密码 Freenom password",
             "value": ""
         },
+        "MULTIPLE_ACCOUNTS": {
+            "description": "多账户支持 Support for multiple accounts",
+            "value": "",
+            "required": false
+        },
         "TELEGRAM_CHAT_ID": {
             "description": "你的 chat_id，通过发送“/start”给 @userinfobot 可以获取自己的 id Your chat_id, you can get your own id by sending \"/start\" to @userinfobot",
-            "value": ""
+            "value": "",
+            "required": false
         },
         "TELEGRAM_BOT_TOKEN": {
             "description": "你的 Telegram bot 的 token Token for your Telegram bot",
-            "value": ""
+            "value": "",
+            "required": false
         },
         "TELEGRAM_BOT_ENABLE": {
             "description": "是否启用 Telegram Bot 功能 1：启用 0：不启用 Whether to enable Telegram Bot features 1: enabled 0: not enabled",
-            "value": "1",
-            "required": false
-        },
-        "IS_HEROKU": {
-            "description": "是否在 Heroku 运行",
             "value": "1",
             "required": false
         }
