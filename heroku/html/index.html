@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>恭喜，部署成功</title>
+    <link rel="stylesheet" href="css/mdui.min.css"/>
+</head>
+<body>
+<div class="mdui-container">
+    <div class="mdui-ripple mdui-ripple-yellow"
+         mdui-tooltip="{content: '前往项目 GitHub 仓库', position: 'auto', delay: 1000}">
+        <a href="https://github.com/luolongfei/freenom" target="_blank">
+            <img class="mdui-img-rounded mdui-center mdui-valign" src="images/logo_bear.png" alt="logo"/>
+        </a>
+    </div>
+
+    <div class="mdui-typo-display-2">部署成功</div>
+
+    <ul class="mdui-list mdui-m-t-4">
+        <li class="mdui-list-item mdui-ripple mdui-shadow-1">
+            <div class="mdui-list-item-avatar">
+                <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=593198779&spec=100" alt="作者头像"/>
+            </div>
+            <div class="mdui-list-item-content">恭喜！你已成功将 freenom 自动续期工具部署到 Heroku。</div>
+            <i class="mdui-list-item-icon mdui-icon material-icons">chat_bubble</i>
+        </li>
+    </ul>
+
+    <div class="mdui-panel" mdui-panel>
+        <div class="mdui-panel-item mdui-panel-item-open">
+            <div class="mdui-panel-item-header">接下来干什么</div>
+            <div class="mdui-panel-item-body">
+                <p>
+                    <a href="https://github.com/luolongfei/freenom" target="_blank"
+                       class="mdui-btn mdui-btn-raised mdui-ripple"><i class="mdui-icon material-icons">visibility</i>
+                        访问仓库</a>
+                    <a href="https://blog.llfapp.com" target="_blank"
+                       class="mdui-btn mdui-btn-raised mdui-ripple"><i class="mdui-icon material-icons">event_note</i>
+                        作者博客</a>
+                    <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent mdui-color-pink-a200"
+                            mdui-dialog="{target: '#donation-dialog'}"><i class="mdui-icon material-icons">favorite</i>
+                        赞助作者
+                    </button>
+                </p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdui-dialog" id="donation-dialog">
+        <div class="mdui-dialog-content">
+            <div class="mdui-chip mdui-m-b-2">
+                <img class="mdui-chip-icon" src="https://q2.qlogo.cn/headimg_dl?dst_uin=593198779&spec=100" alt="作者头像"/>
+                <span class="mdui-chip-title">如果你觉得本项目对你有帮助，请考虑赞助本项目，以激励我投入更多的时间进行维护与开发。</span>
+            </div>
+
+            <div class="mdui-card">
+                <div class="mdui-card-media">
+                    <img class="mdui-img-rounded" src="https://s2.ax1x.com/2020/01/31/1394at.png" alt="赞助二维码"/>
+                </div>
+
+                <div class="mdui-card-content">
+                    <div id="smart-button-container">
+                        <div style="text-align: center;">
+                            <div id="paypal-button-container"></div>
+                        </div>
+                    </div>
+
+                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+                    <script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#F05D59', 'X7X8CA7S1');
+                    kofiwidget2.draw();</script>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-dialog-actions">
+            <button class="mdui-btn mdui-ripple" mdui-dialog-close>不了</button>
+            <button class="mdui-btn mdui-ripple" mdui-dialog-close onclick="mdui.alert('赞助在哪里，我没收到呢');">已赞助</button>
+        </div>
+    </div>
+</div>
+<script src="js/mdui.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
+        data-sdk-integration-source="button-factory"></script>
+<script>
+    function initPayPalButton() {
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'gold',
+                layout: 'horizontal',
+                label: 'paypal',
+
+            },
+
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        "description": "赞助 freenom 自动续期脚本的作者，以促进项目持续发展。",
+                        "amount": {"currency_code": "USD", "value": 5}
+                    }]
+                });
+            },
+
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (orderData) {
+
+                    // Full available details
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                    // Show a success message within this page, e.g.
+                    const element = document.getElementById('paypal-button-container');
+                    element.innerHTML = '';
+                    element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                    // Or go to another URL:  actions.redirect('thank_you.html');
+
+                });
+            },
+
+            onError: function (err) {
+                console.log(err);
+            }
+        }).render('#paypal-button-container');
+    }
+
+    initPayPalButton();
+</script>
+</body>
+</html>

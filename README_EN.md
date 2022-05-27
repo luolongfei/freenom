@@ -24,10 +24,9 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🤶 Telegram bot](#-Telegram-bot)
 
-[🐳 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
-the recommended deployment method)
+[🐳 Deployment via docker](#-deployment-via-docker) (This is the recommended deployment method)
 
-[🧱 The second deployment method: direct pull code deployment](#-the-second-deployment-method-direct-pull-code-deployment)
+[🧱 Direct pull code deployment](#-direct-pull-code-deployment)
 
 [❤ Donation](#-Donation)
 
@@ -123,7 +122,7 @@ to create a Telegram bot and how to get the token please refer to:
 code and deploy it directly, the other is to deploy it via docker. We recommend deploying via docker, it's easy and
 hassle-free.**
 
-### 🐳 The first deployment method: Deployment via docker
+### 🐳 Deployment via docker
 
 **Deployment via docker is our recommended deployment method. For detailed deployment steps, please
 visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)**
@@ -133,7 +132,7 @@ simple.
 
 <hr>
 
-### 🧱 The second deployment method: direct pull code deployment
+### 🧱 Direct pull code deployment
 
 *We don't recommend this deployment method as it requires certain environment requirements to be met for direct code
 pull deployment.*
@@ -217,7 +216,8 @@ directory for errors. Common error messages are as follows:
 > $ whereis php
 > # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > ```
-> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system),
+> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your
+> own system),
 > and then modify the commands in the form task, change
 >
 > `00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1`
@@ -257,7 +257,8 @@ project for a long time. Welcome star ~
 
 ### ❤ Donation
 
-if you like my script, please consider supporting the project going forward. Your support is greatly appreciated 😃
+If you find this project helpful, please consider supporting the project going forward. Your support is greatly
+appreciated.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
 

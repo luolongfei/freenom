@@ -1,0 +1,53 @@
+{
+    "name": "freenom auto-renewal",
+    "description": "Deploy freenom scripts to heroku.",
+    "keywords": [
+        "freenom",
+        "auto-renewal",
+        "heroku",
+        "luolongfei"
+    ],
+    "env": {
+        "A_TIP": {
+            "description": "这是一个提醒：此处我只列举了常见的几个环境变量的配置，更多的环境变量，请参考 .env.example 文件的内容，.env.example 文件的地址见输入框。你可以待容器部署完成后，在 settings -> Config Vars 点击 Reveal Config Vars 按钮配置更多的环境变量。由于自作聪明的 Heroku 将下面的变量顺序按字母正序，看起来可能有点混乱。This is a reminder: I have only listed the configuration of a few common environment variables here, for more environment variables, please refer to the contents of the .env.example file, see the input box for the address of the .env.example file. You can configure more environment variables after the container has been deployed by clicking the Reveal Config Vars button in settings -> Config Vars. Since the clever Heroku puts the variables below in alphabetical order, it may look a bit confusing.",
+            "value": "https://github.com/luolongfei/freenom/blob/main/.env.example",
+            "required": false
+        },
+        "FREENOM_USERNAME": {
+            "description": "Freenom 账户 Freenom Account",
+            "value": ""
+        },
+        "FREENOM_PASSWORD": {
+            "description": "Freenom 密码 Freenom password",
+            "value": ""
+        },
+        "MULTIPLE_ACCOUNTS": {
+            "description": "多账户支持，多个账户和密码的格式必须是“<账户1>@<密码1>|<账户2>@<密码2>|<账户3>@<密码3>”，不要有空格，不要省略尖括号 Support for multiple accounts",
+            "value": "",
+            "required": false
+        },
+        "TELEGRAM_CHAT_ID": {
+            "description": "你的 chat_id，通过发送“/start”给 @userinfobot 可以获取自己的 id Your chat_id, you can get your own id by sending \"/start\" to @userinfobot",
+            "value": "",
+            "required": false
+        },
+        "TELEGRAM_BOT_TOKEN": {
+            "description": "你的 Telegram bot 的 token Token for your Telegram bot",
+            "value": "",
+            "required": false
+        },
+        "TELEGRAM_BOT_ENABLE": {
+            "description": "是否启用 Telegram Bot 功能 1：启用 0：不启用 Whether to enable Telegram Bot features 1: enabled 0: not enabled",
+            "value": "1",
+            "required": false
+        },
+        "SHOW_SERVER_INFO": {
+            "description": "送信时是否显示服务器信息 1：显示 0：不显示 Whether to display server information when sending messages 1: Display 0: Do not display",
+            "value": "1",
+            "required": false
+        }
+    },
+    "website": "llfapp.com",
+    "repository": "https://github.com/luolongfei/freenom",
+    "stack": "container"
+}

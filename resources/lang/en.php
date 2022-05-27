@@ -32,7 +32,7 @@ return [
         '100006' => 'Execution error: <red>%s</red>',
         '100007' => 'Cloud function executed successfully.',
         '100008' => 'Cloud function execution failed.',
-        '100009' => 'Your runtime environment is a cloud function, all environment variables will be read directly from the environment, and those variables not found in the environment will be read directly from the .env.example file',
+        '100009' => 'Your runtime environment is a cloud function or Heroku, all environment variables will be read directly from the environment, and those variables not found in the environment will be read directly from the .env.example file',
         '100010' => 'If it is in the Tencent cloud function, you can refer here to modify or add environment variables without rebuilding: https://github.com/luolongfei/freenom/blob/main/resources/screenshot/scf03.png',
         '100011' => 'If it is in Aliyun cloud function, you can directly edit the environment variable at [Function Details] -> [Function Configuration] -> [Environment Information]',
         '100012' => 'Because you did not turn on the upgrade alert feature, you will not be notified when a new version is available. Change the value of NEW_VERSION_DETECTION in the .env file to 1 to turn the feature back on.',
