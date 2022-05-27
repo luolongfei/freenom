@@ -4,7 +4,7 @@ LABEL author="mybsdc <mybsdc@gmail.com>" \
     maintainer="luolongfei <luolongf@gmail.com>"
 
 ENV TZ Asia/Shanghai
-ENV IS_HEROKU=1
+ENV IS_HEROKU 1
 
 WORKDIR /app
 
