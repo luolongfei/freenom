@@ -15,7 +15,7 @@ COPY ./heroku/html ./html/
 
 RUN set -eux \
     && apk update \
-    && apk add --no-cache tzdata bash nginx
+    && apk add --no-cache tzdata bash nginx gettext
 
 # https://stackoverflow.com/a/46670119/8507338
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
