@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #===================================================================#
 #   Author: luolongfei <luolongf@gmail.com>                         #
