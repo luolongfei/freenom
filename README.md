@@ -531,38 +531,3 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 ### 🥝 开源协议
 
 [MIT](https://opensource.org/licenses/mit-license.php)
-
-<details>
-  <summary>通过华为云函数部署</summary>
-<br>
-*适用于没有自己服务器的用户。*
-
-
-#### 1、下载云函数版的压缩包
-
-
-参考 [此处](https://github.com/luolongfei/freenom/#-%E6%96%B9%E5%BC%8F%E4%B8%89%E9%80%9A%E8%BF%87%E5%90%84%E7%A7%8D%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2) 下载需要用到的 zip 压缩包。
-
-
-#### 2、创建华为云函数
-
-
-直接访问华为云函数控制台创建云函数： https://console.huaweicloud.com/functiongraph/?region=ap-southeast-1#/serverless/functions/create?packageName=default ，此处选择的区域为香港，可以根据实际需要修改。
-
-创建函数时需要注意入口文件名称为 **index.huawei_handler** 。
-
-![](https://images2.imgbox.com/10/12/cN4yGHei_o.jpg)
-
-创建函数后，在配置中按照自己的实际情况填写Freenom账号密码以及通知方式，下图示例中为通过邮件通知结果。
-
-![](https://images2.imgbox.com/c4/15/BIpCG46R_o.jpg)
-
-根据实际需要配置触发器，定时执行。
-
-![](https://images2.imgbox.com/5f/ac/RzaIdsmd_o.jpg)
-
-配置完成后可以手动测试是否部署成功。
-
-![](https://images2.imgbox.com/34/5d/SAMRGdLu_o.png)
-
-</details>
