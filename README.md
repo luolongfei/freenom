@@ -424,7 +424,9 @@ systemctl restart docker
 
 ### 🧊 通过 Heroku 部署
 
-点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 可能会休眠，所以稳定性有待验证。
+点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 免费版本每 30 分钟休眠，你可以将创建的 app 地址交给 [https://kaffeine.herokuapp.com](https://kaffeine.herokuapp.com/) ，让它每隔一段时间就 ping 一下你的地址，使得你的容器保持唤醒状态。而 Heroku 容器每个月最多只能清醒 500 个小时，所以还是会面临休眠问题。
+
+目前我正打算构建一个有自动唤醒功能的网站，根据配置里设定的时间，每次只在需要执行续期任务的前 10 分钟将容器唤醒。不过可能还需要很长一段时间才去弄，因为我想做的事情太多了。敬请期待。
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
