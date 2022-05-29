@@ -30,7 +30,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🧊 通过 Heroku 部署](#-通过-Heroku-部署)
 
-[☁ 通过 各种云函数 部署](#-通过各种云函数部署)（同上）
+[☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
 
