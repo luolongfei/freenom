@@ -1,0 +1,3 @@
+heroku/* linguist-vendored
+resources/mail/* linguist-vendored
+resources/screenshot/* linguist-vendored
