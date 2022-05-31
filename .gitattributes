@@ -1,3 +1,3 @@
-heroku/* linguist-vendored
-resources/mail/* linguist-vendored
-resources/screenshot/* linguist-vendored
+heroku/* linguist-vendored=true
+resources/mail/* linguist-vendored=true
+resources/screenshot/* linguist-vendored=true
