@@ -1,18 +1,8 @@
 name: Run it on actions
 
-
-
-
 on:
-
-  push:
-
-    branches:
-
-      - master
-
+  workflow_dispatch:
   schedule:
-
     - cron: 00 01 * * *
 
 jobs:
