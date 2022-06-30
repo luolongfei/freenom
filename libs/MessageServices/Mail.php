@@ -27,7 +27,7 @@ class Mail extends MessageGateway
      */
     public function __construct()
     {
-        $this->language = config('language', 'zh');
+        $this->language = config('custom_language', 'zh');
 
         $this->noticeTemplatePath = sprintf('%s/mail/%s/notice.html', RESOURCES_PATH, $this->language);
         $this->successfulRenewalTemplatePath = sprintf('%s/mail/%s/successful_renewal.html', RESOURCES_PATH, $this->language);
