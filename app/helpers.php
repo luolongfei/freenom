@@ -282,7 +282,7 @@ if (!function_exists('get_local_num')) {
     {
         $num = (string)$num;
 
-        if (\config('language') === 'zh') {
+        if (is_chinese()) {
             return $num;
         }
 
@@ -309,7 +309,7 @@ if (!function_exists('is_chinese')) {
      */
     function is_chinese()
     {
-        return config('language', 'zh') === 'zh';
+        return config('custom_language', 'zh') === 'zh';
     }
 }
 
