@@ -154,5 +154,6 @@ return [
         '100132' => 'get ip info error:',
         '100133' => "(If you don't want to get a push every time you execute, adjust the value of NOTICE_FREQ in the .env file to 0 so that the application only pushes when there is a renewal operation.)",
         '100134' => '[Server Info]',
+        '100135' => 'DingDing',
     ],
 ];

@@ -18,7 +18,7 @@ class Env extends Base
      */
     protected $allValues = [];
 
-    public function init($filename = '.env', $overload = true)
+    public function init($filename = '.env', $overload = false)
     {
         if (file_exists(ROOT_PATH . DS . $filename)) {
             $this->setAllValues($filename, $overload);

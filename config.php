@@ -87,6 +87,13 @@ return [
             'class' => \Luolongfei\Libs\MessageServices\Bark::class,
             'name' => lang('100068'),
         ],
+        'dingding' => [
+            'webhook' => (string)env('DINGDING_WEBHOOK'),
+            'enable' => (int)env('DINGDING_ENABLE'), // 是否启用，默认不启用
+            'not_enabled_tips' => env('DINGDING_WEBHOOK'), // 提醒未启用
+            'class' => \Luolongfei\Libs\MessageServices\Dingding::class,
+            'name' => lang('100135'),
+        ]
     ],
     'language' => env('LANGUAGE', 'zh'),
     'notice_freq' => (int)env('NOTICE_FREQ', 1), // 通知频率 0：仅当有续期操作的时候 1：每次执行
