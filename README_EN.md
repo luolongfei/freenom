@@ -69,6 +69,8 @@ name has not been renewed.
 
 ### 📪 Setting up Gmail
 
+*It is recommended to open the privacy mode of your browser and then log in to gmail to set up the settings, to prevent you from not being able to jump to the correct settings URL when you have multiple gmail accounts.*
+
 1.In `Settings > Forwarding and POP/IMAP`, tick
 
 - Enable POP for all messages
@@ -78,30 +80,20 @@ name has not been renewed.
 
 Then save your changes.
 
-2.Allow less secure applications
+2.Enable two-step verification
 
-*It is recommended that you turn on your browser's privacy mode before logging into gmail to set up your settings, to
-prevent you from not being able to jump to the correct settings address when you have multiple gmail accounts.*
+Refer to the official document: [Turn on 2-Step Verification](https://support.google.com/accounts/answer/185839?hl=en)
 
-After logging into Google Mail, visit [this page](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) and
-enable the application that is not secure enough.
+3.Configure login with application-specific password
 
-Also, if prompted
-> Do not allow access to account
+Refer to the official document: [Sign in with App Passwords](https://support.google.com/mail/answer/185833?hl=en)
 
-After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click
-Allow. This situation is relatively rare.
+**Because Gmail no longer supports "insecure login", you can only use the account plus application-specific password to
+login now.**
 
-**Note: Since using gmail directly password to sign in easily triggers Google security mechanism, so we recommend to
-refer to the official document to enable the application-specific
-password: [https://support.google.com/mail/answer/185833](https://support.google.com/mail/answer/185833)**
-
-**Sign in with an account+application-specific password, so you won't trigger Google security restrictions even if you
-change your IP frequently to sign in to gmail.**
-
-After the above operation is finished, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and password (or token)
-in `.env` file, set `TO` to your incoming mailbox, and then set the value of `MAIL_ENABLE` to `1` to enable the mailbox
-delivery function.
+After the above operation is finished, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and application-specific
+password in `.env` file, set `TO` to your incoming mailbox, and then set the value of `MAIL_ENABLE` to `1` to enable the
+mailbox delivery function.
 
 If you don't want to use email related features, change the value of `MAIL_ENABLE` in the `.env` file in the root
 directory to `0` to turn off the email push method.
