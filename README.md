@@ -122,6 +122,8 @@ Thanks for non-commercial open source development authorization by JetBrains.
     <summary>设置Gmail</summary>
 <br>
 
+*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+
 1、在`设置>转发和POP/IMAP`中，勾选
 
 - 对所有邮件启用 POP
@@ -131,23 +133,16 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 然后保存更改。
 
-2、允许不够安全的应用
+2、开启两步验证
 
-*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+参考官方文档：[开启两步验证](https://support.google.com/accounts/answer/185839)
 
-登录谷歌邮箱后，访问 [谷歌权限设置界面](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) ，启用允许不够安全的应用。
+3、配置使用应用专用密码登录邮箱
 
-![gmail配置02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail配置02")
+参考官方文档：[使用应用专用密码登录](https://support.google.com/mail/answer/185833?hl=zh-Hans)
 
-另外，若遇到提示
-> 不允许访问账户
+**由于 Gmail 已不再支持“不安全的登录方式”，故目前只能使用账户加应用专用密码的方式登录。**
 
-登录谷歌邮箱后，去 [gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha) 点击允许。这种情况较为少见。
-
-**注意：由于直接使用 gmail
-密码登录容易触发谷歌安全机制，故推荐参考官方文档启用应用专用密码：[https://support.google.com/mail/answer/185833?hl=zh-Hans](https://support.google.com/mail/answer/185833?hl=zh-Hans)**
-
-**使用账户+应用专用密码登录，就算频繁换 ip 登录 gmail 也不会触发谷歌安全机制。**
 ***
 
 </details>
