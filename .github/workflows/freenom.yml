@@ -2,8 +2,8 @@ name: Run it on actions
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 00 01 * * *
+#   schedule:
+#     - cron: 00 01 * * *
 
 jobs:
 
