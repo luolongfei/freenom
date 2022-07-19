@@ -24,13 +24,13 @@ class FreeNom extends Base
     const TIMEOUT = 33;
 
     // FreeNom登录地址
-    const LOGIN_URL = 'https://my.freenom.com/dologin.php';
+    const LOGIN_URL = 'http://my.freenom.com/dologin.php';
 
     // 域名状态地址
-    const DOMAIN_STATUS_URL = 'https://my.freenom.com/domains.php?a=renewals';
+    const DOMAIN_STATUS_URL = 'http://my.freenom.com/domains.php?a=renewals';
 
     // 域名续期地址
-    const RENEW_DOMAIN_URL = 'https://my.freenom.com/domains.php?submitrenewals=true';
+    const RENEW_DOMAIN_URL = 'http://my.freenom.com/domains.php?submitrenewals=true';
 
     // 匹配token的正则
     const TOKEN_REGEX = '/name="token"\svalue="(?P<token>[^"]+)"/i';
