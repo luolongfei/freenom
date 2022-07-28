@@ -16,7 +16,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🌿 Special Thanks](#-special-thanks)
 
-[🥦 Demo](#-Demo)
+[🍭 Demo](#-Demo)
 
 [🎁 Preparation](#-Preparation)
 
@@ -52,7 +52,7 @@ Thanks for non-commercial open source development authorization by JetBrains.
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
 </a>
 
-### 🥦 Demo
+### 🍭 Demo
 
 Whether the renewal is successful or unsuccessful or the script executes with an error, you will receive a notification from the script. In case of renewal success or failure related notifications, the notification will include the number of days to expiration for the unrenewed domain name, etc. *The content of the email is shown here.*
 

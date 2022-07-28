@@ -18,7 +18,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📃 引言](#-引言)
 
-[🥦 效果](#-效果)
+[🍭 效果](#-效果)
 
 [🎁 事前准备](#-事前准备)
 
@@ -75,9 +75,9 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的， 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
 
-### 🥦 效果
+### 🍭 效果
 
-无论是续期成败或者脚本执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是邮件内容。*
+无论是续期成败或者程序执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是邮件内容。*
 
 <a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="670" height="540" /></a>
 
