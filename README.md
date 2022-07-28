@@ -513,7 +513,7 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 ### 📰 更新日志
 
-此处只含最新版本的更新日志，完整的日志记录请参考 [Changelog.md](https://github.com/luolongfei/freenom/blob/main/Changelog.md)
+此处只含最新版本的更新日志，完整的日志记录请参考 [CHANGELOG.md](https://github.com/luolongfei/freenom/blob/main/CHANGELOG.md)
 
 #### [Unreleased](#)
 
