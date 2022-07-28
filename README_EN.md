@@ -54,11 +54,9 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ### 🍭 Demo
 
-[![Email Example](https://s4.ax1x.com/2022/02/26/bZrtz9.png)](https://s4.ax1x.com/2022/02/26/bZrtz9.png)
+Whether the renewal is successful or unsuccessful or the script executes with an error, you will receive a notification from the script. In case of renewal success or failure related notifications, the notification will include the number of days to expiration for the unrenewed domain name, etc. *The content of the notification email is shown here.*
 
-Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the
-program. In the case of a renewal success or failure email, the email will include the number of days that the domain
-name has not been renewed.
+<a href="https://s4.ax1x.com/2022/02/26/bZrtz9.png"><img src="https://s4.ax1x.com/2022/02/26/bZrtz9.png" alt="Example of notification email" border="0" width="670" height="540" /></a>
 
 ### 🎁 Preparation
 
