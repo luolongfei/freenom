@@ -16,7 +16,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🌿 Special Thanks](#-special-thanks)
 
-[🍭 Demo](#-Demo)
+[🥦 Demo](#-Demo)
 
 [🎁 Preparation](#-Preparation)
 
@@ -52,9 +52,9 @@ Thanks for non-commercial open source development authorization by JetBrains.
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
 </a>
 
-### 🍭 Demo
+### 🥦 Demo
 
-[![Email Example](https://s4.ax1x.com/2022/02/26/bZrtz9.png)](https://s4.ax1x.com/2022/02/26/bZrtz9.png)
+<a href="https://s4.ax1x.com/2022/02/26/bZrtz9.png"><img src="https://s4.ax1x.com/2022/02/26/bZrtz9.png" alt="邮件示例" border="0" width="670" height="540" /></a>
 
 Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the
 program. In the case of a renewal success or failure email, the email will include the number of days that the domain
