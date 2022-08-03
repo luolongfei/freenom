@@ -10,17 +10,28 @@
 namespace Luolongfei\Libs;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class IP extends Base
 {
     const TIMEOUT = 2.14;
 
     /**
-     * 匹配 ip 的正则
+     * @var string 匹配 ip 的正则
      */
     const REGEX_IP = '/(?:\d{1,3}\.){3}\d{1,3}/u';
 
     const REGEX_LOC = '/^.*：(?P<country>[^\s]+?)\s+?(?P<region>[^\s]+?)\s+?(?P<city>[^\s]+?)\s/iu';
+
+    /**
+     * @var string 匹配 IPIP.NET 首页数据的正则
+     */
+    const REGEX_IPIP_NET_PAGE = '/class="yourInfo">[\s\S]+?IP.*?<a[^>]+>(?P<ip>.*?)<\/a>[\d\D]+?位置.*?>(?P<loc>[^<]+)/iu';
+
+    /**
+     * @var string ipip.net 首页地址，显示中文
+     */
+    const IPIP_NET_URL = 'https://www.ipip.net/?origin=EN';
 
     /**
      * @var string ip 地址
@@ -46,7 +57,7 @@ class IP extends Base
     {
         $this->client = new Client([
             'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36',
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
             ],
             'cookies' => false,
             'timeout' => self::TIMEOUT,
@@ -58,6 +69,8 @@ class IP extends Base
     }
 
     /**
+     * 获取 IP 信息
+     *
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -68,10 +81,19 @@ class IP extends Base
                 $res = $this->client->get($this->url);
                 $body = $res->getBody()->getContents();
 
-                $this->matchIpInfo($body);
+                $this->setIpInfo($body);
             }
 
             return sprintf(lang('100130'), self::$ip, self::$loc);
+        } catch (ClientException $e) {
+            // myip.ipip.net 针对某些国外 VPS 会直接返回 404，需要进一步处理
+            if ($e->getResponse()->getStatusCode() === 404) {
+                $this->setIpInfoByIpIpNetPage();
+
+                return sprintf(lang('100130'), self::$ip, self::$loc);
+            }
+
+            throw $e;
         } catch (\Exception $e) {
             Log::error(lang('100132') . $e->getMessage());
 
@@ -80,13 +102,29 @@ class IP extends Base
     }
 
     /**
-     * 匹配 ip 信息
+     * 通过 IPIP.NET 页面设置 IP 信息
+     *
+     * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function setIpInfoByIpIpNetPage()
+    {
+        $body = $this->client->get(self::IPIP_NET_URL)->getBody()->getContents();
+
+        if (preg_match(self::REGEX_IPIP_NET_PAGE, $body, $m)) {
+            self::$ip = $m['ip'];
+            self::$loc = $m['loc'];
+        }
+    }
+
+    /**
+     * 设置 ip 信息
      *
      * @param $body
      *
      * @return bool
      */
-    protected function matchIpInfo($body)
+    protected function setIpInfo($body)
     {
         if (is_chinese()) {
             if (preg_match(self::REGEX_IP, $body, $m)) {
