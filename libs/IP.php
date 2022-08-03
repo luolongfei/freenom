@@ -10,6 +10,7 @@
 namespace Luolongfei\Libs;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class IP extends Base
 {
@@ -80,15 +81,19 @@ class IP extends Base
                 $res = $this->client->get($this->url);
                 $body = $res->getBody()->getContents();
 
-                // myip.ipip.net 针对某些国外 VPS 会直接返回 404，需要进一步处理
-                if (is_chinese() && $res->getStatusCode() === 404) {
-                    $this->setIpInfoByIpIpNetPage();
-                } else {
-                    $this->matchIpInfo($body);
-                }
+                $this->setIpInfo($body);
             }
 
             return sprintf(lang('100130'), self::$ip, self::$loc);
+        } catch (ClientException $e) {
+            // myip.ipip.net 针对某些国外 VPS 会直接返回 404，需要进一步处理
+            if ($e->getResponse()->getStatusCode() === 404) {
+                $this->setIpInfoByIpIpNetPage();
+
+                return sprintf(lang('100130'), self::$ip, self::$loc);
+            }
+
+            throw $e;
         } catch (\Exception $e) {
             Log::error(lang('100132') . $e->getMessage());
 
@@ -113,13 +118,13 @@ class IP extends Base
     }
 
     /**
-     * 匹配 ip 信息
+     * 设置 ip 信息
      *
      * @param $body
      *
      * @return bool
      */
-    protected function matchIpInfo($body)
+    protected function setIpInfo($body)
     {
         if (is_chinese()) {
             if (preg_match(self::REGEX_IP, $body, $m)) {
