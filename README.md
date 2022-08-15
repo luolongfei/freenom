@@ -26,11 +26,11 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🐳 通过 Docker 方式部署](#-通过-docker-部署)（推荐，最简单的部署方式之一）
 
-[🚈 通过 Railway 部署](#-通过-Railway-部署)（推荐没有自己服务器的用户使用此方案）
+[🚈 通过 Railway 部署](#-通过-Railway-部署)
 
 [🧊 通过 Heroku 部署](#-通过-Heroku-部署)
 
-[☁ 通过 各种云函数 部署](#-通过各种云函数部署)
+[☁ 通过 各种云函数 部署](#-通过各种云函数部署)（由于 Railway 和 Heroku 都增加了每月时长限制，故目前想完全免费部署，暂时只有云函数可选）
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
 
@@ -410,7 +410,9 @@ systemctl restart docker
 
 ### 🚈 通过 Railway 部署
 
-*推荐没有自己服务器的用户使用此方案。*
+*由于 Railway 在几天前更新了服务条款，每月增加了使用时长限制，* **故不再推荐使用此方式部署。** 新的服务条款导致每月最多只能运行 21 天左右，详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。
+
+目前，手里没有服务器的情况下，如果想完全免费部署，暂时只能考虑迁移至 阿里云函数 或者 华为云函数，请参考 [☁ 通过 各种云函数 部署](#-通过各种云函数部署) 等相关内容。
 
 有关 【通过 Railway 部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
