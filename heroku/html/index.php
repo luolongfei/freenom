@@ -1,10 +1,10 @@
 <?php
 
 // phpinfo();
-echo '欢迎';
+echo "Freenom 自动续期\n";
 
-echo '开始执行';
+echo "开始执行\n\n";
 
-passthru('php run');
+passthru('php /app/run');
 
-echo '执行完成';
+echo "\n\n执行完成";
