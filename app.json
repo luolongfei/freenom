@@ -13,6 +13,10 @@
             "value": "https://github.com/luolongfei/freenom/blob/main/.env.example",
             "required": false
         },
+        "FF_TOKEN": {
+            "description": "令牌，在触发执行的时候，需要跟上此参数的值。假设 FF_TOKEN 的值为 123，则传参的格式为 https://xxx.herokuapp.com/?ff-token=123",
+            "generator": "secret"
+        },
         "FREENOM_USERNAME": {
             "description": "Freenom 账户 Freenom Account",
             "value": ""
