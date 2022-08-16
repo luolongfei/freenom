@@ -87,9 +87,7 @@ class IP extends Base
             return sprintf(lang('100130'), self::$ip, self::$loc);
         } catch (ClientException $e) {
             // myip.ipip.net 针对某些国外 VPS 会直接返回 404，需要进一步处理
-            if ($e->getResponse()->getStatusCode() === 404) {
-                $this->setIpInfoByIpIpNetPage();
-
+            if ($e->getResponse()->getStatusCode() === 404 && $this->setIpInfoByIpIpNetPage()) {
                 return sprintf(lang('100130'), self::$ip, self::$loc);
             }
 
@@ -104,17 +102,25 @@ class IP extends Base
     /**
      * 通过 IPIP.NET 页面设置 IP 信息
      *
-     * @return void
+     * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function setIpInfoByIpIpNetPage()
     {
-        $body = $this->client->get(self::IPIP_NET_URL)->getBody()->getContents();
+        try {
+            $body = $this->client->get(self::IPIP_NET_URL)->getBody()->getContents();
 
-        if (preg_match(self::REGEX_IPIP_NET_PAGE, $body, $m)) {
-            self::$ip = $m['ip'];
-            self::$loc = $m['loc'];
+            if (preg_match(self::REGEX_IPIP_NET_PAGE, $body, $m)) {
+                self::$ip = $m['ip'];
+                self::$loc = $m['loc'];
+
+                return true;
+            }
+        } catch (\Exception $e) {
+            Log::error(lang('100132') . $e->getMessage());
         }
+
+        return false;
     }
 
     /**
