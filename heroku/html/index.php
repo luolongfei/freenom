@@ -2,9 +2,6 @@
 
 set_time_limit(0);
 
-ob_end_clean();
-ob_implicit_flush();
-
 header('X-Accel-Buffering: no');
 
 echo '<pre>';
