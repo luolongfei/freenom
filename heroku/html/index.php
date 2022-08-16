@@ -6,7 +6,7 @@ header('X-Accel-Buffering: no');
 
 echo '<pre>';
 
-$FF_TOKEN = $_GET('ff-token');
+$FF_TOKEN = $_GET['ff-token'] ?? '';
 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
     die('你没有权限触发执行');
 }
