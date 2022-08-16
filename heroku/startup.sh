@@ -15,5 +15,5 @@ php run
 # 替换端口变量
 envsubst '\$PORT' < /app/nginx.template.conf > /app/nginx.conf
 
-# 启动 nginx
-nginx -c /app/nginx.conf -g 'daemon off;'
+# 启动 php-fpm 与 nginx
+php-fpm -D -R; nginx -c /app/nginx.conf -g 'daemon off;'
