@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . ./
 
 COPY ./heroku/nginx.template.conf ./
-COPY ./heroku/html ./html/
+COPY ./heroku/web ./web/
 
 RUN set -eux \
     && apk update \
