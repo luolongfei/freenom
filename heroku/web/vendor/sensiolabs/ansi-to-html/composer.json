@@ -1,0 +1,32 @@
+{
+    "name": "sensiolabs/ansi-to-html",
+    "type": "library",
+    "description": "A library to convert a text with ANSI codes to HTML",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabien Potencier",
+            "email": "fabien@symfony.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5"
+    },
+    "require-dev": {
+        "twig/twig": "^2.4 || ^3.0"
+    },
+    "suggest": {
+        "twig/twig": "Provides nice templating features"
+    },
+    "conflict": {
+        "twig/twig": "< 2.4.0"
+    },
+    "autoload": {
+        "psr-4": { "SensioLabs\\AnsiConverter\\": "SensioLabs/AnsiConverter" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2-dev"
+        }
+    }
+}

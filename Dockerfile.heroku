@@ -1,4 +1,4 @@
-FROM php:7.4.19-alpine3.13
+FROM php:8.1.9-fpm-alpine3.16
 
 LABEL author="mybsdc <mybsdc@gmail.com>" \
     maintainer="luolongfei <luolongf@gmail.com>"
@@ -11,7 +11,7 @@ WORKDIR /app
 COPY . ./
 
 COPY ./heroku/nginx.template.conf ./
-COPY ./heroku/html ./html/
+COPY ./heroku/web ./web/
 
 RUN set -eux \
     && apk update \
