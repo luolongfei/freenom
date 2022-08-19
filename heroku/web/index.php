@@ -126,6 +126,11 @@ $converter = new AnsiToHtmlConverter();
                     }
 
                     echo "\n\n执行完成";
+
+                    echo '<script type="text/javascript">',
+                    "document.getElementById('running-box').style.display = 'none';
+                    document.getElementById('success-box').style.display = 'block';",
+                    '</script>';
                 }
 
                 echo '</pre>';
