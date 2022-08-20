@@ -33,6 +33,11 @@ $converter = new AnsiToHtmlConverter();
             margin-top: -6px;
             margin-right: 10px;
         }
+
+        #copy-btn {
+            border-radius: 16px;
+            border: 1px solid rgb(0 0 0 / 14%);
+        }
     </style>
 </head>
 <body>
@@ -164,6 +169,8 @@ $converter = new AnsiToHtmlConverter();
     </div>
 </div>
 
+<script src="js/mdui.min.js"></script>
+<script src="js/clipboard.min.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
         data-sdk-integration-source="button-factory"></script>
 <script>
@@ -243,15 +250,12 @@ $converter = new AnsiToHtmlConverter();
 </script>
 
 <?php
-echo '<script src="js/mdui.min.js"></script>';
-echo '<script src="js/clipboard.min.js"></script>';
-
 $FF_TOKEN = $_GET['ff-token'] ?? '';
 
 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
     echo '<script>shellBox.innerHTML += "<p>你没有权限触发执行</p>";</script>';
 } else {
-    echo '<script>shellBox.innerHTML += "<p>Freenom 自动续期工具</p><br>";</script>';
+    echo '<script>shellBox.innerHTML += "<p>Freenom 自动续期工具</p>";</script>';
     echo '<script>shellBox.innerHTML += "<p>开始执行</p><br>";</script>';
 
     $cmd = 'php /app/run';
