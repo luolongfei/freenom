@@ -33,9 +33,6 @@ header('X-Accel-Buffering: no');
         }
 
         #output-box {
-            height: 100%;
-            overflow-y: auto;
-            font-size: smaller;
             word-wrap: break-word;
         }
 
@@ -73,7 +70,7 @@ header('X-Accel-Buffering: no');
             </div>
             <div class="mdui-panel-item-body">
                 <p>1、点击 <strong><a href="https://uptimerobot.com/"
-                                     target="_blank" class="a-tag">https://uptimerobot.com</a></strong>，前往 <kbd>uptimerobot</kbd>
+                                     target="_blank" class="a-tag">https://uptimerobot.com</a></strong>，前往 <strong>uptimerobot</strong>
                     注册一个账户，并登录</p>
                 <p>2、点击右边的按钮，以复制此地址 <strong><span
                                 class="mdui-text-color-red" id="app-url"></span></strong>
@@ -84,8 +81,8 @@ header('X-Accel-Buffering: no');
                 </p>
                 <p>3、回到 <a href="https://uptimerobot.com/dashboard#mainDashboard" target="_blank"
                              class="a-tag">https://uptimerobot.com/dashboard#mainDashboard</a>，点击
-                    <strong class="mdui-text-color-green">Add New Monitor</strong> 添加新的监控任务，如何填写各种选项请点击下方
-                    <strong class="mdui-text-color-green">查看 <kbd>Uptimerobot</kbd> 配置图片</strong>，注意将 URL
+                    <strong class="mdui-text-color-green">Add New Monitor</strong> 添加新的监控任务，如何填写各项配置请点击下方
+                    <strong class="mdui-text-color-green">查看 Uptimerobot 配置图片</strong>，注意将 <strong>URL</strong>
                     地址替换成你上一步复制的地址
                 </p>
 
