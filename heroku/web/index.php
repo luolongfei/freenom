@@ -3,12 +3,6 @@
 set_time_limit(0);
 
 header('X-Accel-Buffering: no');
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
-
-$converter = new AnsiToHtmlConverter();
 ?>
 
 <!DOCTYPE html>
@@ -265,7 +259,7 @@ if ($FF_TOKEN !== getenv('FF_TOKEN')) {
     $proc = popen($cmd, 'r');
 
     while (!feof($proc)) {
-        echo '<script>shellBox.innerHTML += "<p>' . $converter->convert(fread($proc, 4096)) . '</p>";</script>';
+        echo '<script>shellBox.innerHTML += "<p>' . fread($proc, 4096) . '</p>";</script>';
         @flush();
     }
 
