@@ -412,7 +412,7 @@ systemctl restart docker
 
 *推荐没有自己服务器的用户使用此方案部署。Heroku 可以说是业界良心。*
 
-**如果你是新手，请务必参考** 有关 【通过 Heroku 部署】 的具体操作步骤，点击 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2) 查看。
+**如果你是新手或小白，请务必参考** 有关 【通过 Heroku 部署】 的具体操作步骤，点击 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2) 查看。
 
 如果你是老手，也可以直接点击下方按钮，可以一键部署到 Heroku：
 

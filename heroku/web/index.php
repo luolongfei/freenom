@@ -133,7 +133,7 @@ header('X-Accel-Buffering: no');
         </div>
 
         <div class="mdui-panel-item mdui-panel-item-open" id="shell-box">
-            <div class="mdui-panel-item-header">
+            <div class="mdui-panel-item-header" id="shell-title">
                 <div id="running-box">
                     <i class="mdui-icon material-icons loading-icon mdui-text-color-red shake">fiber_manual_record</i>
                     正在执行
@@ -148,6 +148,9 @@ header('X-Accel-Buffering: no');
 
                 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
                     echo '<p>你没有权限触发执行</p>';
+                    echo '<script type="text/javascript">',
+                    'document.getElementById("shell-title").innerHTML = "啊，出错啦";',
+                    '</script>';
                 } else {
                     echo '<p>Freenom 自动续期工具</p>';
                     echo '<p>开始执行</p><br>';

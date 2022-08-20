@@ -15,7 +15,7 @@
             "required": false
         },
         "FF_TOKEN": {
-            "description": "令牌，用于验证执行者身份，防止别人恶意触发执行续期任务。假设 FF_TOKEN 的值为 123，你的应用地址为 https://xxx.herokuapp.com，则后续在 Uptimerobot 创建任务的时候 URL 就填 https://xxx.herokuapp.com/?ff-token=123",
+            "description": "令牌，用于验证执行者身份，防止别人恶意触发执行续期任务。假设 FF_TOKEN 的值为 123，你的应用地址为 https://xxx.herokuapp.com，则后续在 Uptimerobot 创建任务的时候 URL 就填 https://xxx.herokuapp.com/?ff-token=123，这里的令牌默认为 20190214，请自定义它。",
             "value": "20190214"
         },
         "FREENOM_USERNAME": {
