@@ -101,40 +101,8 @@ $converter = new AnsiToHtmlConverter();
                     <i class="mdui-icon material-icons mdui-text-color-green-500 success-icon">check_circle</i>完成
                 </div>
             </div>
-            <div class="mdui-panel-item-body mdui-color-black">
+            <div class="mdui-panel-item-body mdui-color-black" id="shell-box">
 
-                <?php
-
-                echo '<pre>';
-
-                $FF_TOKEN = $_GET['ff-token'] ?? '';
-                if ($FF_TOKEN !== getenv('FF_TOKEN')) {
-                    echo '你没有权限触发执行';
-                } else {
-                    echo "Freenom 自动续期\n\n";
-                    echo "开始执行\n\n";
-
-                    $cmd = 'php /app/run';
-
-                    while (@ob_end_flush()) ;
-
-                    $proc = popen($cmd, 'r');
-
-                    while (!feof($proc)) {
-                        echo '<p>' . $converter->convert(fread($proc, 4096)) . '</p>';
-                        @flush();
-                    }
-
-                    echo "\n\n执行完成";
-
-                    echo '<script type="text/javascript">',
-                    "document.getElementById('running-box').style.display = 'none';
-                    document.getElementById('success-box').style.display = 'block';",
-                    '</script>';
-                }
-
-                echo '</pre>';
-                ?>
             </div>
         </div>
     </div>
@@ -265,5 +233,42 @@ $converter = new AnsiToHtmlConverter();
 
     initPayPalButton();
 </script>
+<script>
+    /**
+     * shell 执行区块
+     */
+    let shellBox = document.getElementById('shell-box');
+
+    shellBox.scrollIntoView({behavior: 'smooth'});
+    shellBox.innerHTML = '';
+</script>
+
+<?php
+$FF_TOKEN = $_GET['ff-token'] ?? '';
+if ($FF_TOKEN !== getenv('FF_TOKEN')) {
+    echo '<script>shellBox.innerHTML += "你没有权限触发执行";</script>';
+} else {
+    echo '<script>shellBox.innerHTML += "Freenom 自动续期工具<br><br>";</script>';
+    echo '<script>shellBox.innerHTML += "开始执行<br>";</script>';
+
+    $cmd = 'php /app/run';
+
+    while (@ob_end_flush()) ;
+
+    $proc = popen($cmd, 'r');
+
+    while (!feof($proc)) {
+        echo '<script>shellBox.innerHTML += "<p>' . $converter->convert(fread($proc, 4096)) . '</p>";</script>';
+        @flush();
+    }
+
+    echo '<script>shellBox.innerHTML += "<br><br>执行完了<br>";</script>';
+    echo '<script>shellBox.innerHTML += \'<br><br>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-color-pink-a200 mdui-text-color-black-text" href="https:\/\/github.com/luolongfei/" target="_blank">luolongfei</a>.<br>\';</script>';
+    echo '<script type="text/javascript">',
+    "document.getElementById('running-box').style.display = 'none';
+                    document.getElementById('success-box').style.display = 'block';",
+    '</script>';
+}
+?>
 </body>
 </html>
