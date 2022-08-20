@@ -151,7 +151,7 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
                                 点击上行文字即可输入内容，输入完成后，请点击下方送信按钮以验证身份
                             </div>
                         </div>
-                        <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" id="submit-btn">
+                        <button class="mdui-btn mdui-btn-block mdui-color-red mdui-ripple" id="submit-btn">
                             送信
                         </button>
                     </div>
@@ -211,21 +211,6 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
         </div>
     </div>
 
-    <p>
-        <a href="https://github.com/luolongfei/freenom" target="_blank"
-           class="mdui-btn mdui-btn-raised mdui-ripple"><i class="mdui-icon material-icons">link</i>
-            访问仓库</a>
-        <a href="https://github.com/luolongfei/freenom/wiki/Donation-List"
-           class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
-           target="_blank"><i class="mdui-icon material-icons">format_list_bulleted</i>
-            赞助名单
-        </a>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
-                mdui-dialog="{target: '#donation-dialog'}"><i class="mdui-icon material-icons">exposure_plus_1</i>
-            赞助作者
-        </button>
-    </p>
-
     <div class="mdui-dialog" id="donation-dialog">
         <div class="mdui-dialog-content">
             <ul class="mdui-list mdui-list-dense">
@@ -266,6 +251,23 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
             </button>
         </div>
     </div>
+</div>
+
+<div class="mdui-container">
+    <p>
+        <a href="https://github.com/luolongfei/freenom" target="_blank"
+           class="mdui-btn mdui-btn-raised mdui-ripple"><i class="mdui-icon material-icons">link</i>
+            访问仓库</a>
+        <a href="https://github.com/luolongfei/freenom/wiki/Donation-List"
+           class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+           target="_blank"><i class="mdui-icon material-icons">format_list_bulleted</i>
+            赞助名单
+        </a>
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+                mdui-dialog="{target: '#donation-dialog'}"><i class="mdui-icon material-icons">exposure_plus_1</i>
+            赞助作者
+        </button>
+    </p>
 </div>
 
 <script src="js/mdui.min.js"></script>
