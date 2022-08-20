@@ -2,8 +2,6 @@
 
 set_time_limit(0);
 
-header('X-Accel-Buffering: no');
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
@@ -244,7 +242,10 @@ $converter = new AnsiToHtmlConverter();
 </script>
 
 <?php
+header('X-Accel-Buffering: no');
+
 $FF_TOKEN = $_GET['ff-token'] ?? '';
+
 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
     echo '<script>shellBox.innerHTML += "<p>你没有权限触发执行</p>";</script>';
 } else {
@@ -263,7 +264,7 @@ if ($FF_TOKEN !== getenv('FF_TOKEN')) {
     }
 
     echo '<script>shellBox.innerHTML += "<p>执行完了</p>";</script>';
-    echo '<script>shellBox.innerHTML += \'<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-color-pink-a200 mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a>.</p>>\';</script>';
+    echo '<script>shellBox.innerHTML += \'<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a></p>\';</script>';
     echo '<script type="text/javascript">',
     "document.getElementById('running-box').style.display = 'none';
                     document.getElementById('success-box').style.display = 'block';",
