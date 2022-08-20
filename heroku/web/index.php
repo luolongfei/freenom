@@ -280,30 +280,37 @@ if ($FF_TOKEN !== '' && !$VERIFIED) { // 验证失败
     "mdui.snackbar({message: '你输入的令牌有误，请重试'});",
     '</script>';
 }
+
+if ($VERIFIED) { // 验证成功
+    ?>
+
+    <script type="text/javascript">
+        document.getElementById('app-url').innerHTML = `https://${document.domain}/?ff-token=<?php echo $FF_TOKEN; ?>`;
+
+        let clipboard = new ClipboardJS('#copy-btn');
+        clipboard.on('success', function (e) {
+            console.info('Action:', e.action);
+            console.info('Text:', e.text);
+            console.info('Trigger:', e.trigger);
+            mdui.snackbar({message: '复制成功'});
+
+            e.clearSelection();
+        });
+        clipboard.on('error', function (e) {
+            console.error('Action:', e.action);
+            console.error('Trigger:', e.trigger);
+            alert('复制失败，请手动复制');
+        });
+
+        setTimeout(function () {
+            document.getElementById('shell-box').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'});
+        }, 1500);
+    </script>
+
+    <?php
+}
 ?>
-
 <script>
-    document.getElementById('app-url').innerHTML = `https://${document.domain}/?ff-token=<?php echo getenv('FF_TOKEN'); ?>`;
-
-    let clipboard = new ClipboardJS('#copy-btn');
-    clipboard.on('success', function (e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-        mdui.snackbar({message: '复制成功'});
-
-        e.clearSelection();
-    });
-    clipboard.on('error', function (e) {
-        console.error('Action:', e.action);
-        console.error('Trigger:', e.trigger);
-        alert('复制失败，请手动复制');
-    });
-
-    setTimeout(function () {
-        document.getElementById('shell-box').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'});
-    }, 1500);
-
     function initPayPalButton() {
         paypal.Buttons({
             style: {
