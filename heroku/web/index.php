@@ -136,7 +136,34 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
             </div>
         </div>
         <?php } else { ?>
-            没有没有没有
+            <div class="mdui-panel" mdui-panel>
+                <div class="mdui-panel-item mdui-panel-item-open">
+                    <div class="mdui-panel-item-header">
+                        请先验证身份
+                    </div>
+                    <div class="mdui-panel-item-body">
+                        <div class="mdui-textfield mdui-textfield-floating-label">
+                            <i class="mdui-icon material-icons">lock</i>
+                            <label class="mdui-textfield-label" for="pwd">请输入你在 Heroku 配置的 FF_TOKEN
+                                的值，即令牌</label>
+                            <input class="mdui-textfield-input" type="text" id="pwd"/>
+                            <div class="mdui-textfield-helper">
+                                点击上行文字即可输入内容，输入完成后，请点击下方送信按钮以验证身份
+                            </div>
+                        </div>
+                        <button class="mdui-btn mdui-btn-block mdui-color-theme-accent mdui-ripple" id="submit-btn">
+                            送信
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.getElementById('submit-btn').onclick = function () {
+                    let ffToken = document.getElementById('pwd').value;
+
+                    window.location.href = '?ff-token=' + ffToken;
+                }
+            </script>
         <?php } ?>
 
         <div class="mdui-panel-item mdui-panel-item-open" id="shell-box">
@@ -245,6 +272,16 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
 <script src="js/clipboard.min.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
         data-sdk-integration-source="button-factory"></script>
+
+<?php
+
+if ($FF_TOKEN !== '' && !$VERIFIED) { // 验证失败
+    echo '<script type="text/javascript">',
+    "mdui.snackbar({message: '你输入的令牌有误，请重试'});",
+    '</script>';
+}
+?>
+
 <script>
     document.getElementById('app-url').innerHTML = `https://${document.domain}/?ff-token=<?php echo getenv('FF_TOKEN'); ?>`;
 
