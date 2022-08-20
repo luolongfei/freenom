@@ -164,7 +164,7 @@ header('X-Accel-Buffering: no');
                     }
 
                     echo '<p>执行完了</p>';
-                    echo '<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a></p>';
+                    echo '<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200 shake">favorite</i> by <a class="mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a></p>';
 
                     echo '<script type="text/javascript">',
                     "document.getElementById('running-box').style.display = 'none';
