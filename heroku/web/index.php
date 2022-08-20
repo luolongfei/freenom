@@ -20,7 +20,8 @@ header('X-Accel-Buffering: no');
             width: 17px;
             height: 17px;
             margin-right: 10px;
-            margin-bottom: -3px;
+            margin-top: -6px;
+            font-size: 18px;
         }
 
         .success-icon {
@@ -34,12 +35,42 @@ header('X-Accel-Buffering: no');
 
         #output-box {
             word-wrap: break-word;
+            font-size: 14px;
         }
 
         .a-tag {
             color: #f44336;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        @-webkit-keyframes shake {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .shake {
+            -webkit-animation: shake 2s infinite;
+            animation: shake 2s infinite;
         }
     </style>
 </head>
@@ -104,7 +135,7 @@ header('X-Accel-Buffering: no');
         <div class="mdui-panel-item mdui-panel-item-open" id="shell-box">
             <div class="mdui-panel-item-header">
                 <div id="running-box">
-                    <div class="mdui-spinner mdui-spinner-colorful loading-icon"></div>
+                    <i class="mdui-icon material-icons loading-icon mdui-text-color-red shake">fiber_manual_record</i>
                     正在执行
                 </div>
                 <div id="success-box" style="display: none;">
