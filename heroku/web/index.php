@@ -2,6 +2,8 @@
 
 set_time_limit(0);
 
+header('X-Accel-Buffering: no');
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use SensioLabs\AnsiConverter\AnsiToHtmlConverter;
@@ -161,8 +163,7 @@ $converter = new AnsiToHtmlConverter();
         </div>
     </div>
 </div>
-<script src="js/mdui.min.js"></script>
-<script src="js/clipboard.min.js"></script>
+
 <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
         data-sdk-integration-source="button-factory"></script>
 <script>
@@ -242,7 +243,8 @@ $converter = new AnsiToHtmlConverter();
 </script>
 
 <?php
-header('X-Accel-Buffering: no');
+echo '<script src="js/mdui.min.js"></script>';
+echo '<script src="js/clipboard.min.js"></script>';
 
 $FF_TOKEN = $_GET['ff-token'] ?? '';
 
