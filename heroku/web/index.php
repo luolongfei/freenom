@@ -13,7 +13,7 @@ header('X-Accel-Buffering: no');
     <meta name="renderer" content="webkit"/>
     <meta name="force-rendering" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>恭喜，部署成功</title>
+    <title>Freenom 续期控制台 | 你只需部署，剩下的事情交给我们</title>
     <link rel="stylesheet" href="css/mdui.min.css"/>
     <style>
         .loading-icon {
@@ -30,14 +30,13 @@ header('X-Accel-Buffering: no');
 
         #copy-btn {
             border-radius: 16px;
-            border: 1px solid rgb(0 0 0 / 14%);
         }
     </style>
 </head>
 <body>
 <div class="mdui-container">
     <div class="mdui-ripple mdui-ripple-yellow"
-         mdui-tooltip="{content: '前往项目 GitHub 仓库', position: 'auto', delay: 1000}">
+         mdui-tooltip="{content: '前往项目 GitHub 仓库', position: 'auto', delay: 500}">
         <a href="https://github.com/luolongfei/freenom" target="_blank">
             <img class="mdui-img-rounded mdui-center mdui-valign mdui-img-fluid" src="images/logo_bear.png" alt="logo"/>
         </a>
@@ -49,7 +48,7 @@ header('X-Accel-Buffering: no');
                 <img src="https://q2.qlogo.cn/headimg_dl?dst_uin=593198779&spec=100" alt="作者头像"/>
             </div>
             <div class="mdui-list-item-content">
-                Freenom 续期工具控制台
+                Freenom 续期控制台
             </div>
         </li>
     </ul>
@@ -74,19 +73,19 @@ header('X-Accel-Buffering: no');
                     <strong class="mdui-text-color-green">Add New Monitor</strong> 添加新的监控任务，如何填写各种选项请点击下方
                     <strong class="mdui-text-color-green">查看 Uptimerobot 配置图片</strong>，注意将 URL 地址替换成你上一步复制的地址
                 </p>
-            </div>
-        </div>
 
-        <div class="mdui-panel-item">
-            <div class="mdui-panel-item-header">
-                查看 Uptimerobot 配置图片
-            </div>
-            <div class="mdui-panel-item-body">
-                <p><a href="https://s1.ax1x.com/2022/08/19/vsp9zQ.png" target="_blank"><img
-                                src="https://s1.ax1x.com/2022/08/19/vsp9zQ.png"
-                                class="mdui-img-fluid"
-                                alt="点我查看 uptimerobot 配置图片"/></a>
-                </p>
+                <div class="mdui-panel" mdui-panel>
+                    <div class="mdui-panel-item">
+                        <div class="mdui-panel-item-header">查看 Uptimerobot 配置图片</div>
+                        <div class="mdui-panel-item-body">
+                            <p><a href="https://s1.ax1x.com/2022/08/19/vsp9zQ.png" target="_blank"><img
+                                            src="https://s1.ax1x.com/2022/08/19/vsp9zQ.png"
+                                            class="mdui-img-fluid"
+                                            alt="点我查看 uptimerobot 配置图片"/></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -101,7 +100,39 @@ header('X-Accel-Buffering: no');
                 </div>
             </div>
             <div class="mdui-panel-item-body mdui-color-black" id="shell-box">
+                <?php
+                $FF_TOKEN = $_GET['ff-token'] ?? '';
 
+                echo '<pre>';
+
+                if ($FF_TOKEN !== getenv('FF_TOKEN')) {
+                    echo '<p>你没有权限触发执行</p>';
+                } else {
+                    echo '<p>Freenom 自动续期工具</p>';
+                    echo '<p>开始执行</p><br>';
+
+                    $cmd = 'php /app/run';
+
+                    while (@ob_end_flush()) ;
+
+                    $proc = popen($cmd, 'r');
+
+                    while (!feof($proc)) {
+                        echo '<p>' . fread($proc, 4096) . '</p>';
+                        @flush();
+                    }
+
+                    echo '<p>执行完了</p>';
+                    echo '<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a></p>';
+
+                    echo '<script type="text/javascript">',
+                    "document.getElementById('running-box').style.display = 'none';
+                    document.getElementById('success-box').style.display = 'block';",
+                    '</script>';
+                }
+
+                echo '</pre>';
+                ?>
             </div>
         </div>
     </div>
@@ -168,13 +199,9 @@ header('X-Accel-Buffering: no');
 <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
         data-sdk-integration-source="button-factory"></script>
 <script>
-    let domain = document.domain;
-    let appUrlEl = document.getElementById('app-url');
-
-    appUrlEl.innerHTML = `https://${domain}/?ff-token=<?php echo getenv('FF_TOKEN'); ?>`;
+    document.getElementById('app-url').innerHTML = `https://${document.domain}/?ff-token=<?php echo getenv('FF_TOKEN'); ?>`;
 
     let clipboard = new ClipboardJS('#copy-btn');
-
     clipboard.on('success', function (e) {
         console.info('Action:', e.action);
         console.info('Text:', e.text);
@@ -183,12 +210,15 @@ header('X-Accel-Buffering: no');
 
         e.clearSelection();
     });
-
     clipboard.on('error', function (e) {
         console.error('Action:', e.action);
         console.error('Trigger:', e.trigger);
         alert('复制失败，请手动复制');
     });
+
+    setTimeout(function () {
+        document.getElementById('shell-box').scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'});
+    }, 1500);
 
     function initPayPalButton() {
         paypal.Buttons({
@@ -199,7 +229,6 @@ header('X-Accel-Buffering: no');
                 label: 'paypal',
 
             },
-
             createOrder: function (data, actions) {
                 return actions.order.create({
                     purchase_units: [{
@@ -208,23 +237,13 @@ header('X-Accel-Buffering: no');
                     }]
                 });
             },
-
             onApprove: function (data, actions) {
                 return actions.order.capture().then(function (orderData) {
-
-                    // Full available details
-                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
-                    // Show a success message within this page, e.g.
                     const element = document.getElementById('paypal-button-container');
                     element.innerHTML = '';
                     element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-                    // Or go to another URL:  actions.redirect('thank_you.html');
-
                 });
             },
-
             onError: function (err) {
                 console.log(err);
             }
@@ -233,43 +252,5 @@ header('X-Accel-Buffering: no');
 
     initPayPalButton();
 </script>
-<script>
-    /**
-     * shell 执行区块
-     */
-    let shellBox = document.getElementById('shell-box');
-
-    shellBox.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'});
-    shellBox.innerHTML = '';
-</script>
-
-<?php
-$FF_TOKEN = $_GET['ff-token'] ?? '';
-
-if ($FF_TOKEN !== getenv('FF_TOKEN')) {
-    echo '<script>shellBox.innerHTML += "<p>你没有权限触发执行</p>";</script>';
-} else {
-    echo '<script>shellBox.innerHTML += "<p>Freenom 自动续期工具</p>";</script>';
-    echo '<script>shellBox.innerHTML += "<p>开始执行</p><br>";</script>';
-
-    $cmd = 'php /app/run';
-
-    while (@ob_end_flush()) ;
-
-    $proc = popen($cmd, 'r');
-
-    while (!feof($proc)) {
-        echo '<script>shellBox.innerHTML += "<p>' . fread($proc, 4096) . '</p>";</script>';
-        @flush();
-    }
-
-    echo '<script>shellBox.innerHTML += "<p>执行完了</p>";</script>';
-    echo '<script>shellBox.innerHTML += \'<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-text-color-white-text" href="https:\/\/github.com/luolongfei" target="_blank">luolongfei</a></p>\';</script>';
-    echo '<script type="text/javascript">',
-    "document.getElementById('running-box').style.display = 'none';
-                    document.getElementById('success-box').style.display = 'block';",
-    '</script>';
-}
-?>
 </body>
 </html>
