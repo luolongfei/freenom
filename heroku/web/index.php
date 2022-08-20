@@ -31,6 +31,19 @@ header('X-Accel-Buffering: no');
         #copy-btn {
             border-radius: 16px;
         }
+
+        #output-box {
+            height: 100%;
+            overflow-y: auto;
+            font-size: smaller;
+            word-wrap: break-word;
+        }
+
+        .a-tag {
+            color: #f44336;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -59,19 +72,21 @@ header('X-Accel-Buffering: no');
                 如何使用
             </div>
             <div class="mdui-panel-item-body">
-                <p>1、前往 <strong><a href="https://uptimerobot.com/"
-                                     target="_blank">https://uptimerobot.com</a></strong> 注册一个
-                    uptimerobot 账户，并登录</p>
-                <p>2、点击右边按钮，以复制地址 <strong><span
+                <p>1、点击 <strong><a href="https://uptimerobot.com/"
+                                     target="_blank" class="a-tag">https://uptimerobot.com</a></strong>，前往 <kbd>uptimerobot</kbd>
+                    注册一个账户，并登录</p>
+                <p>2、点击右边的按钮，以复制此地址 <strong><span
                                 class="mdui-text-color-red" id="app-url"></span></strong>
                     <button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-ripple mdui-color-pink-accent"
                             id="copy-btn" data-clipboard-target="#app-url">
                         复制地址
                     </button>
                 </p>
-                <p>3、回到 <strong><a href="https://uptimerobot.com/dashboard#mainDashboard" target="_blank">https://uptimerobot.com/dashboard#mainDashboard</a></strong>，点击
+                <p>3、回到 <a href="https://uptimerobot.com/dashboard#mainDashboard" target="_blank"
+                             class="a-tag">https://uptimerobot.com/dashboard#mainDashboard</a>，点击
                     <strong class="mdui-text-color-green">Add New Monitor</strong> 添加新的监控任务，如何填写各种选项请点击下方
-                    <strong class="mdui-text-color-green">查看 Uptimerobot 配置图片</strong>，注意将 URL 地址替换成你上一步复制的地址
+                    <strong class="mdui-text-color-green">查看 <kbd>Uptimerobot</kbd> 配置图片</strong>，注意将 URL
+                    地址替换成你上一步复制的地址
                 </p>
 
                 <div class="mdui-panel" mdui-panel>
@@ -89,7 +104,7 @@ header('X-Accel-Buffering: no');
             </div>
         </div>
 
-        <div class="mdui-panel-item mdui-panel-item-open">
+        <div class="mdui-panel-item mdui-panel-item-open" id="shell-box">
             <div class="mdui-panel-item-header">
                 <div id="running-box">
                     <div class="mdui-spinner mdui-spinner-colorful loading-icon"></div>
@@ -99,11 +114,9 @@ header('X-Accel-Buffering: no');
                     <i class="mdui-icon material-icons mdui-text-color-green-500 success-icon">check_circle</i>完成
                 </div>
             </div>
-            <div class="mdui-panel-item-body mdui-color-black" id="shell-box">
+            <div class="mdui-panel-item-body mdui-color-black" id="output-box">
                 <?php
                 $FF_TOKEN = $_GET['ff-token'] ?? '';
-
-                echo '<pre>';
 
                 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
                     echo '<p>你没有权限触发执行</p>';
@@ -130,8 +143,6 @@ header('X-Accel-Buffering: no');
                     document.getElementById('success-box').style.display = 'block';",
                     '</script>';
                 }
-
-                echo '</pre>';
                 ?>
             </div>
         </div>
