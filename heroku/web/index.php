@@ -3,6 +3,9 @@
 set_time_limit(0);
 
 header('X-Accel-Buffering: no');
+
+$FF_TOKEN = $_GET['ff-token'] ?? '';
+$VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
 ?>
 
 <!DOCTYPE html>
@@ -94,6 +97,7 @@ header('X-Accel-Buffering: no');
         </li>
     </ul>
 
+    <?php if ($VERIFIED) { ?>
     <div class="mdui-panel" mdui-panel>
         <div class="mdui-panel-item mdui-panel-item-open">
             <div class="mdui-panel-item-header">
@@ -131,6 +135,9 @@ header('X-Accel-Buffering: no');
                 </div>
             </div>
         </div>
+        <?php } else { ?>
+            没有没有没有
+        <?php } ?>
 
         <div class="mdui-panel-item mdui-panel-item-open" id="shell-box">
             <div class="mdui-panel-item-header" id="shell-title">
@@ -144,14 +151,7 @@ header('X-Accel-Buffering: no');
             </div>
             <div class="mdui-panel-item-body mdui-color-black" id="output-box">
                 <?php
-                $FF_TOKEN = $_GET['ff-token'] ?? '';
-
-                if ($FF_TOKEN !== getenv('FF_TOKEN')) {
-                    echo '<p>你没有权限触发执行</p>';
-                    echo '<script type="text/javascript">',
-                    'document.getElementById("shell-title").innerHTML = "啊，出错啦";',
-                    '</script>';
-                } else {
+                if ($VERIFIED) {
                     echo '<p>Freenom 自动续期工具</p>';
                     echo '<p>开始执行</p><br>';
 
@@ -172,6 +172,11 @@ header('X-Accel-Buffering: no');
                     echo '<script type="text/javascript">',
                     "document.getElementById('running-box').style.display = 'none';
                     document.getElementById('success-box').style.display = 'block';",
+                    '</script>';
+                } else {
+                    echo '<p>你没有权限触发执行</p>';
+                    echo '<script type="text/javascript">',
+                    'document.getElementById("shell-title").innerHTML = "啊，出错啦";',
                     '</script>';
                 }
                 ?>
