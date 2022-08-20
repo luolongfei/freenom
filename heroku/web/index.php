@@ -239,17 +239,17 @@ $converter = new AnsiToHtmlConverter();
      */
     let shellBox = document.getElementById('shell-box');
 
-    shellBox.scrollIntoView({behavior: 'smooth'});
+    shellBox.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'start'});
     shellBox.innerHTML = '';
 </script>
 
 <?php
 $FF_TOKEN = $_GET['ff-token'] ?? '';
 if ($FF_TOKEN !== getenv('FF_TOKEN')) {
-    echo '<script>shellBox.innerHTML += "你没有权限触发执行";</script>';
+    echo '<script>shellBox.innerHTML += "<p>你没有权限触发执行</p>";</script>';
 } else {
-    echo '<script>shellBox.innerHTML += "Freenom 自动续期工具<br><br>";</script>';
-    echo '<script>shellBox.innerHTML += "开始执行<br>";</script>';
+    echo '<script>shellBox.innerHTML += "<p>Freenom 自动续期工具</p><br>";</script>';
+    echo '<script>shellBox.innerHTML += "<p>开始执行</p><br>";</script>';
 
     $cmd = 'php /app/run';
 
@@ -262,8 +262,8 @@ if ($FF_TOKEN !== getenv('FF_TOKEN')) {
         @flush();
     }
 
-    echo '<script>shellBox.innerHTML += "<br><br>执行完了<br>";</script>';
-    echo '<script>shellBox.innerHTML += \'<br><br>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-color-pink-a200 mdui-text-color-black-text" href="https:\/\/github.com/luolongfei/" target="_blank">luolongfei</a>.<br>\';</script>';
+    echo '<script>shellBox.innerHTML += "<p>执行完了</p>";</script>';
+    echo '<script>shellBox.innerHTML += \'<p>Made with <i class="mdui-icon material-icons mdui-text-color-pink-a200">favorite</i> by <a class="mdui-color-pink-a200 mdui-text-color-black-text" href="https:\/\/github.com/luolongfei/" target="_blank">luolongfei</a>.</p>>\';</script>';
     echo '<script type="text/javascript">',
     "document.getElementById('running-box').style.display = 'none';
                     document.getElementById('success-box').style.display = 'block';",
