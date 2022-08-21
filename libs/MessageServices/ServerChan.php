@@ -60,19 +60,13 @@ class ServerChan extends MessageGateway
     /**
      * 获取 MarkDown 页脚
      *
-     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
-     *
      * @return string
      */
-    public function getMarkDownFooter(bool $isRenewalResult = false)
+    public function getMarkDownFooter()
     {
         $footer = '';
 
         $footer .= lang('100091');
-
-        if (!$isRenewalResult) {
-            $footer .= lang('100092');
-        }
 
         return $footer;
     }
@@ -128,7 +122,7 @@ class ServerChan extends MessageGateway
         $text .= lang('100099');
         $text .= $this->genDomainStatusMarkDownText($domainStatus);
 
-        $text .= $this->getMarkDownFooter(true);
+        $text .= $this->getMarkDownFooter();
 
         return $text;
     }
@@ -170,15 +164,21 @@ class ServerChan extends MessageGateway
     {
         $this->check($content, $data);
 
+        $commonFooter = '';
+
         if ($type === 1 || $type === 4) {
-            // Do nothing
+            $this->setCommonFooter($commonFooter, "\n", false);
         } else if ($type === 2) {
+            $this->setCommonFooter($commonFooter, "\n", false);
             $content = $this->genDomainRenewalResultsMarkDownText($data['username'], $data['renewalSuccessArr'], $data['renewalFailuresArr'], $data['domainStatusArr']);
         } else if ($type === 3) {
+            $this->setCommonFooter($commonFooter);
             $content = $this->genDomainStatusFullMarkDownText($data['username'], $data['domainStatusArr']);
         } else {
             throw new \Exception(lang('100003'));
         }
+
+        $content .= $commonFooter;
 
         $subject = $subject === '' ? mb_substr($content, 0, 12) . '...' : $subject;
 
