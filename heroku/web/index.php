@@ -158,8 +158,21 @@ $VERIFIED = $FF_TOKEN === getenv('FF_TOKEN');
                 </div>
             </div>
             <script>
-                document.getElementById('submit-btn').onclick = function () {
+                let submitBtn = document.getElementById('submit-btn');
+
+                submitBtn.onclick = function () {
                     let ffToken = document.getElementById('pwd').value;
+
+                    ffToken = ffToken.replace(/\s/g, '');
+
+                    if (ffToken.length < 1) {
+                        mdui.snackbar({message: '请输入令牌'});
+
+                        return;
+                    }
+
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = '送信中...';
 
                     window.location.href = '?ff-token=' + ffToken;
                 }
