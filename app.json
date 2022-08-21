@@ -7,11 +7,16 @@
         "heroku",
         "luolongfei"
     ],
+    "success_url": "/",
     "env": {
         "A_TIP": {
             "description": "这是一个提醒：此处我只列举了常见的几个环境变量的配置，更多的环境变量，请参考 .env.example 文件的内容，.env.example 文件的地址见输入框。你可以待容器部署完成后，在 settings -> Config Vars 点击 Reveal Config Vars 按钮配置更多的环境变量。由于自作聪明的 Heroku 将下面的变量顺序按字母正序，看起来可能有点混乱。This is a reminder: I have only listed the configuration of a few common environment variables here, for more environment variables, please refer to the contents of the .env.example file, see the input box for the address of the .env.example file. You can configure more environment variables after the container has been deployed by clicking the Reveal Config Vars button in settings -> Config Vars. Since the clever Heroku puts the variables below in alphabetical order, it may look a bit confusing.",
             "value": "https://github.com/luolongfei/freenom/blob/main/.env.example",
             "required": false
+        },
+        "FF_TOKEN": {
+            "description": "令牌，用于验证执行者身份，防止别人恶意触发执行续期任务。假设 FF_TOKEN 的值为 123，你的应用地址为 https://xxx.herokuapp.com，则后续在 Uptimerobot 创建任务的时候 URL 就填 https://xxx.herokuapp.com/?ff-token=123，这里的令牌默认为 20190214，请自定义它。",
+            "value": "20190214"
         },
         "FREENOM_USERNAME": {
             "description": "Freenom 账户 Freenom Account",
