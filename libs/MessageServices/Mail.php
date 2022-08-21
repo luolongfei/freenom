@@ -27,7 +27,7 @@ class Mail extends MessageGateway
      */
     public function __construct()
     {
-        $this->language = config('custom_language', 'zh');
+        $this->language = config('language', 'zh');
 
         $this->noticeTemplatePath = sprintf('%s/mail/%s/notice.html', RESOURCES_PATH, $this->language);
         $this->successfulRenewalTemplatePath = sprintf('%s/mail/%s/successful_renewal.html', RESOURCES_PATH, $this->language);
@@ -189,9 +189,6 @@ class Mail extends MessageGateway
         $subject = $subject === '' ? mb_substr($content, 0, 12) . '...' : $subject;
         $this->phpMailerInstance->Subject = $subject;
 
-        // 页脚
-        $footer = '';
-
         /**
          * 正文
          * 使用 html 文件内容作为正文，其中的图片将被 base64 编码，另确保 html 样式为内联形式，且某些样式可能需要 !important 方能正常显示，
@@ -204,38 +201,26 @@ class Mail extends MessageGateway
          */
         if ($type === 1) {
             $template = file_get_contents($this->noticeTemplatePath);
-            $this->setCommonFooter($footer, '<br>', false);
-            $message = $this->genMessageContent([
-                $content,
-                $footer
-            ], $template);
+            $message = sprintf($template, $content);
         } else if ($type === 2) {
             $template = file_get_contents($this->successfulRenewalTemplatePath);
-            $this->setCommonFooter($footer, '<br>', false);
             $realData = [
                 $data['username'],
                 $data['renewalSuccessArr'] ? sprintf(lang('100075'), $this->genDomainsHtml($data['renewalSuccessArr'])) : '',
                 $data['renewalFailuresArr'] ? sprintf(lang('100076'), $this->genDomainsHtml($data['renewalFailuresArr'])) : '',
-                $this->genDomainStatusHtml($data['domainStatusArr']),
-                $footer
+                $this->genDomainStatusHtml($data['domainStatusArr'])
             ];
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 3) {
             $template = file_get_contents($this->noRenewalRequiredTemplatePath);
-            $this->setCommonFooter($footer, '<br>');
             $realData = [
                 $data['username'],
-                $this->genDomainStatusHtml($data['domainStatusArr']),
-                $footer
+                $this->genDomainStatusHtml($data['domainStatusArr'])
             ];
             $message = $this->genMessageContent($realData, $template);
         } else if ($type === 4) {
             $template = file_get_contents($this->noticeTemplatePath);
-            $this->setCommonFooter($footer, '<br>', false);
-            $message = $this->genMessageContent([
-                $this->newLine2Br($content),
-                $footer
-            ], $template);
+            $message = sprintf($template, $this->newLine2Br($content));
         } else {
             throw new \Exception(lang('100003'));
         }

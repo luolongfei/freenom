@@ -24,9 +24,10 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🤶 Telegram bot](#-Telegram-bot)
 
-[🐳 Deployment via docker](#-deployment-via-docker) (This is the recommended deployment method)
+[🐳 The first deployment method: Deployment via docker](#-the-first-deployment-method-deployment-via-docker) (This is
+the recommended deployment method)
 
-[🧱 Direct pull code deployment](#-direct-pull-code-deployment)
+[🧱 The second deployment method: direct pull code deployment](#-the-second-deployment-method-direct-pull-code-deployment)
 
 [❤ Donation](#-Donation)
 
@@ -54,9 +55,11 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ### 🍭 Demo
 
-Whether the renewal is successful or unsuccessful or the script executes with an error, you will receive a notification from the script. In case of renewal success or failure related notifications, the notification will include the number of days to expiration for the unrenewed domain name, etc. *The content of the notification email is shown here.*
+[![Email Example](https://s4.ax1x.com/2022/02/26/bZrtz9.png)](https://s4.ax1x.com/2022/02/26/bZrtz9.png)
 
-<a href="https://s4.ax1x.com/2022/02/26/bZrtz9.png"><img src="https://s4.ax1x.com/2022/02/26/bZrtz9.png" alt="Example of notification email" border="0" width="670" height="540" /></a>
+Regardless of the success or failure of the renewal or the execution of the script, you will receive emails from the
+program. In the case of a renewal success or failure email, the email will include the number of days that the domain
+name has not been renewed.
 
 ### 🎁 Preparation
 
@@ -67,8 +70,6 @@ Whether the renewal is successful or unsuccessful or the script executes with an
 
 ### 📪 Setting up Gmail
 
-*It is recommended to open the privacy mode of your browser and then log in to gmail to set up the settings, to prevent you from not being able to jump to the correct settings URL when you have multiple gmail accounts.*
-
 1.In `Settings > Forwarding and POP/IMAP`, tick
 
 - Enable POP for all messages
@@ -78,20 +79,30 @@ Whether the renewal is successful or unsuccessful or the script executes with an
 
 Then save your changes.
 
-2.Enable two-step verification
+2.Allow less secure applications
 
-Refer to the official document: [Turn on 2-Step Verification](https://support.google.com/accounts/answer/185839?hl=en)
+*It is recommended that you turn on your browser's privacy mode before logging into gmail to set up your settings, to
+prevent you from not being able to jump to the correct settings address when you have multiple gmail accounts.*
 
-3.Configure login with application-specific password
+After logging into Google Mail, visit [this page](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) and
+enable the application that is not secure enough.
 
-Refer to the official document: [Sign in with App Passwords](https://support.google.com/mail/answer/185833?hl=en)
+Also, if prompted
+> Do not allow access to account
 
-**Because Gmail no longer supports "insecure login", you can only use the account plus application-specific password to
-login now.**
+After logging in to Google Mail, go to [this page](https://accounts.google.com/b/0/DisplayUnlockCaptcha) and click
+Allow. This situation is relatively rare.
 
-After the above operation is finished, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and application-specific
-password in `.env` file, set `TO` to your incoming mailbox, and then set the value of `MAIL_ENABLE` to `1` to enable the
-mailbox delivery function.
+**Note: Since using gmail directly password to sign in easily triggers Google security mechanism, so we recommend to
+refer to the official document to enable the application-specific
+password: [https://support.google.com/mail/answer/185833](https://support.google.com/mail/answer/185833)**
+
+**Sign in with an account+application-specific password, so you won't trigger Google security restrictions even if you
+change your IP frequently to sign in to gmail.**
+
+After the above operation is finished, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and password (or token)
+in `.env` file, set `TO` to your incoming mailbox, and then set the value of `MAIL_ENABLE` to `1` to enable the mailbox
+delivery function.
 
 If you don't want to use email related features, change the value of `MAIL_ENABLE` in the `.env` file in the root
 directory to `0` to turn off the email push method.
@@ -112,7 +123,7 @@ to create a Telegram bot and how to get the token please refer to:
 code and deploy it directly, the other is to deploy it via docker. We recommend deploying via docker, it's easy and
 hassle-free.**
 
-### 🐳 Deployment via docker
+### 🐳 The first deployment method: Deployment via docker
 
 **Deployment via docker is our recommended deployment method. For detailed deployment steps, please
 visit: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)**
@@ -122,7 +133,7 @@ simple.
 
 <hr>
 
-### 🧱 Direct pull code deployment
+### 🧱 The second deployment method: direct pull code deployment
 
 *We don't recommend this deployment method as it requires certain environment requirements to be met for direct code
 pull deployment.*
@@ -206,8 +217,7 @@ directory for errors. Common error messages are as follows:
 > $ whereis php
 > # Determine the location of php, the general output is "php: /usr/local/php /usr/local/php/bin/php", we choose: /usr/local/php/bin/php
 > ```
-> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your
-> own system),
+> Now we know that php's path is `/usr/local/php/bin/php` (may be different according to the actual situation of your own system),
 > and then modify the commands in the form task, change
 >
 > `00 09 * * * cd /data/wwwroot/freenom/ && php run > freenom_crontab.log 2>&1`
@@ -247,12 +257,7 @@ project for a long time. Welcome star ~
 
 ### ❤ Donation
 
-If you find this project helpful, please consider supporting the project going forward. Your support is greatly
-appreciated.
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
-
-PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
+#### PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 > Every time you spend money, you're casting a vote for the kind of world you want .-- Anna Lappe
 

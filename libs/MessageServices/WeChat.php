@@ -152,13 +152,19 @@ class WeChat extends MessageGateway
     /**
      * 获取页脚
      *
+     * @param bool $isRenewalResult 是否续期结果，续期结果不用提醒调整推送频率
+     *
      * @return string
      */
-    public function getFooter()
+    public function getFooter(bool $isRenewalResult = false)
     {
         $footer = '';
 
         $footer .= lang('100116');
+
+        if (!$isRenewalResult) {
+            $footer .= lang('100117');
+        }
 
         return $footer;
     }
@@ -214,7 +220,7 @@ class WeChat extends MessageGateway
         $text .= lang('100124');
         $text .= $this->genDomainStatusText($domainStatus);
 
-        $text .= $this->getFooter();
+        $text .= $this->getFooter(true);
 
         return $text;
     }
@@ -262,21 +268,15 @@ class WeChat extends MessageGateway
     {
         $this->check($content, $data);
 
-        $commonFooter = '';
-
         if ($type === 1 || $type === 4) {
-            $this->setCommonFooter($commonFooter, "\n", false);
+            // Do nothing
         } else if ($type === 2) {
-            $this->setCommonFooter($commonFooter, "\n", false);
             $content = $this->genDomainRenewalResultsText($data['username'], $data['renewalSuccessArr'], $data['renewalFailuresArr'], $data['domainStatusArr']);
         } else if ($type === 3) {
-            $this->setCommonFooter($commonFooter);
             $content = $this->genDomainStatusFullText($data['username'], $data['domainStatusArr']);
         } else {
             throw new \Exception(lang('100003'));
         }
-
-        $content .= $commonFooter;
 
         if ($subject !== '') {
             $content = $subject . "\n\n" . $content;
