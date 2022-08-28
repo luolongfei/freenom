@@ -1,0 +1,69 @@
+{
+    "packages": [
+        {
+            "name": "sensiolabs/ansi-to-html",
+            "version": "v1.2.1",
+            "version_normalized": "1.2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs/ansi-to-html.git",
+                "reference": "94a3145aae4733ff933c8910263ef56d1ae317a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs/ansi-to-html/zipball/94a3145aae4733ff933c8910263ef56d1ae317a9",
+                "reference": "94a3145aae4733ff933c8910263ef56d1ae317a9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.2.5"
+            },
+            "conflict": {
+                "twig/twig": "< 2.4.0"
+            },
+            "require-dev": {
+                "twig/twig": "^2.4 || ^3.0"
+            },
+            "suggest": {
+                "twig/twig": "Provides nice templating features"
+            },
+            "time": "2020-10-06T05:48:55+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "SensioLabs\\AnsiConverter\\": "SensioLabs/AnsiConverter"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A library to convert a text with ANSI codes to HTML",
+            "support": {
+                "issues": "https://github.com/sensiolabs/ansi-to-html/issues",
+                "source": "https://github.com/sensiolabs/ansi-to-html/tree/v1.2.1"
+            },
+            "install-path": "../sensiolabs/ansi-to-html"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

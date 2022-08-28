@@ -65,30 +65,16 @@ if (!function_exists('system_log')) {
     function system_log($content, array $response = [], $fileName = '')
     {
         try {
-            # 云函数只有 /tmp 目录可写
-            $path = IS_SCF ? '/tmp/' : sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
-            $file = $path . ($fileName ?: date('d')) . '.log';
-
-            if (!is_dir($path)) {
-                mkdir($path, 0777, true);
-                chmod($path, 0777);
-            }
-
-            $handle = fopen($file, 'a'); // 追加而非覆盖
-
-            if (!filesize($file)) {
-                chmod($file, 0666);
-            }
-
             $msg = sprintf(
                 "[%s] %s %s\n",
                 date('Y-m-d H:i:s'),
                 is_string($content) ? $content : json_encode($content),
                 $response ? json_encode($response, JSON_UNESCAPED_UNICODE) : '');
 
-            // 在 Github Actions 上运行，过滤敏感信息
-            if (env('ON_GITHUB_ACTIONS')) {
-                $msg = preg_replace_callback('/(?P<secret>[\w-.]{1,4}?)(?=@[\w-.]+)/i', function ($m) {
+            // 过滤敏感信息
+            if ((int)env('MOSAIC_SENSITIVE_INFO') === 1) {
+                // 在 php 7.3 之前，连字符“-”在中括号中随便放，但在之后，只能放在开头或结尾或者转义后才能随便放
+                $msg = preg_replace_callback('/(?P<secret>[\w.-]{1,3}?)(?=@[\w.-]+)/ui', function ($m) {
                     return str_ireplace($m['secret'], str_repeat('*', strlen($m['secret'])), $m['secret']);
                 }, $msg);
             }
@@ -100,8 +86,26 @@ if (!function_exists('system_log')) {
             // 干掉着色标签
             $msg = strip_tags($msg); // 不完整或者破损标签将导致更多的数据被删除
 
-            fwrite($handle, $msg);
-            fclose($handle);
+            // 写入日志文件
+            if (is_writable(ROOT_PATH)) {
+                $path = sprintf('%s/logs/%s/', ROOT_PATH, date('Y-m'));
+                $file = $path . ($fileName ?: date('d')) . '.log';
+
+                if (!is_dir($path)) {
+                    mkdir($path, 0666, true); // 0666 所有用户可读写
+                }
+
+                $handle = fopen($file, 'a'); // 追加而非覆盖
+
+                if ($handle !== false) {
+                    if (!filesize($file)) {
+                        chmod($file, 0666);
+                    }
+
+                    fwrite($handle, $msg);
+                    fclose($handle);
+                }
+            }
 
             flush();
         } catch (\Exception $e) {
@@ -238,11 +242,9 @@ if (!function_exists('system_check')) {
             throw new LlfException(34520006, ['7.3', PHP_VERSION]);
         }
 
-        // 如果是在 云函数 或 Heroku 部署，则不需要检查这几项
-        if (IS_SCF || (int)env('IS_HEROKU') === 1) {
+        // 特殊环境无需检查这几项
+        if (IS_SCF || !is_writable(ROOT_PATH) || (int)env('IS_KOYEB') === 1 || (int)env('IS_HEROKU') === 1) {
             system_log(lang('100009'));
-            system_log(lang('100010'));
-            system_log(lang('100011'));
         } else {
             if (!function_exists('putenv')) {
                 throw new LlfException(34520005);
