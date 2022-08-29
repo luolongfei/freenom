@@ -442,7 +442,7 @@ systemctl restart docker
 ### ☁ 通过各种云函数部署
 
 所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip)
+[https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到各种云函数。
@@ -525,11 +525,11 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 - 解决 企业微信 因送信内容过长被截断问题
 
-#### [v0.5](https://github.com/luolongfei/freenom/releases/tag/v0.5) - 2022-05-15
+#### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-29
 
-- 增加支持 华为云函数、Railway 等部署方式
-- 支持在消息中显示服务器信息，该功能默认关闭
-- 优化部分代码逻辑
+- 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
+- 优化在各种环境下的目录读写权限判断
+- 支持给日志或者命令行输出内容中的敏感信息打马赛克，默认不启用
 
 ### 🎉 鸣谢
 

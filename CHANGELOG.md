@@ -2,7 +2,7 @@
 
 此处包含了自脚本发布以来的所有更新日志。以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
-#### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-27
+#### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-29
 
 - 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
 - 优化在各种环境下的目录读写权限判断
