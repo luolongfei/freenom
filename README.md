@@ -422,7 +422,7 @@ systemctl restart docker
 
 ### 🚈 通过 Railway 部署
 
-*由于 Railway 已更新服务条款，每月增加了使用时长限制，* **故不再推荐使用此方式部署。** 新的服务条款导致每月最多只能运行 21 天左右，详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。
+*Railway 已更新服务条款，每月增加了使用时长限制，新的服务条款导致每月最多只能运行 21 天左右， **除非你验证了信用卡，则没有这个限制** 。详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。*
 
 有关 【通过 Railway 部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
