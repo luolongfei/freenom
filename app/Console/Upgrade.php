@@ -210,6 +210,13 @@ class Upgrade extends Base
     public function handle()
     {
         try {
+            // 检查 Data 目录写权限
+            if (!is_writable(DATA_PATH)) {
+                system_log(lang('100135'));
+
+                return true;
+            }
+
             if (!$this->needToUpgrade()) {
                 return true;
             }

@@ -119,8 +119,14 @@ class WeChat extends MessageGateway
 
         if (isset($resp['errcode']) && $resp['errcode'] === 0 && isset($resp['access_token']) && isset($resp['expires_in'])) {
             $accessTokenFileText = sprintf("WECHAT_ACCESS_TOKEN=%s\nWECHAT_ACCESS_TOKEN_EXPIRES_AT=%s\n", $resp['access_token'], time() + $resp['expires_in']);
-            if (file_put_contents($this->accessTokenFile, $accessTokenFileText) === false) {
-                throw new \Exception(lang('100113') . $this->accessTokenFile);
+
+            // 检查 Data 目录是否有写入权限
+            if (is_writable(DATA_PATH)) {
+                if (file_put_contents($this->accessTokenFile, $accessTokenFileText) === false) {
+                    throw new \Exception(lang('100113') . $this->accessTokenFile);
+                }
+            } else {
+                system_log('由于 Data 目录没有写入权限，故无法缓存企业微信的 access_token');
             }
 
             return $resp['access_token'];

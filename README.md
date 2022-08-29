@@ -30,6 +30,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚈 通过 Railway 部署](#-通过-Railway-部署)
 
+[📦 通过 Koyeb 部署](#-通过-Koyeb-部署)（推荐没有自己服务器的用户使用此方案，一键部署）
+
 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
@@ -79,7 +81,7 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 无论是续期成败或者程序执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是通知邮件的内容。*
 
-<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="670" height="540" /></a>
+<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="95%" height="100%" /></a>
 
 ### 🎁 事前准备
 
@@ -410,8 +412,6 @@ systemctl restart docker
 
 ### 🧊 通过 Heroku 部署
 
-~~*推荐没有自己服务器的用户使用此方案部署。此方案完全免费。*~~
-
 **Heroku 将于 2022-11-28 停止提供免费服务，所以，忘掉本文吧。官方通告：[https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
 
 有关 【通过 Heroku 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2)
@@ -424,6 +424,18 @@ systemctl restart docker
 
 有关 【通过 Railway 部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
+
+***
+
+### 📦 通过 Koyeb 部署
+
+*推荐没有自己服务器的用户使用此方案部署。此方案完全免费。*
+
+有关 【通过 Koyeb 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
+
+**在看完上行文档的具体内容，并且你确定你行后**，便可点击下方按钮，尝试一键部署：
+
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&image=docker.io/luolongfei/freenom:koyeb)
 
 ***
 

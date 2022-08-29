@@ -1,0 +1,5 @@
+{
+    "require": {
+        "sensiolabs/ansi-to-html": "^1.2"
+    }
+}

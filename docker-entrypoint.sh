@@ -15,15 +15,14 @@ plain='\033[0m'
 
 # 生成配置文件
 if [ ! -f /conf/.env ]; then
-    cp /app/.env.example /conf/.env
-    echo -e "[${green}Info${plain}] 已生成 .env 文件，请将 .env 文件中的配置项改为你自己的，然后重启容器（如果你是在第三方 Docker 环境中使用容器，例如 railway/heroku 等平台，可忽略本条提醒）"
+    cp /app/.env.example /conf/.env && echo -e "[${green}Info${plain}] 已生成 .env 文件，请将 .env 文件中的配置项改为你自己的，然后重启容器，如果当前环境非普通 VPS，可忽略此提示" || echo -e "[${yellow}Warn${plain}] 未能正常生成 .env 文件"
 fi
 if [ ! -f /app/.env ]; then
-    ln -s /conf/.env /app/.env
+    ln -s /conf/.env /app/.env || echo -e "[${yellow}Warn${plain}] 未能正常创建 .env 文件链接"
 fi
 
 # PHP 命令
-PHP_COMMAND='php /app/run > /app/logs/freenom_cron.log 2>&1'
+PHP_COMMAND='/usr/local/bin/php /app/run > /app/logs/freenom_cron.log 2>&1'
 
 # 指定脚本执行时间
 if [ -z "${RUN_AT}" ]; then
