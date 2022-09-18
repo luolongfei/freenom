@@ -32,6 +32,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📦 通过 Koyeb 部署](#-通过-Koyeb-部署)（推荐没有自己服务器的用户使用此方案，一键部署）
 
+[🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（如果你无法注册 Koyeb 账户，可以考虑在 Mogenius 部署）
+
 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
@@ -438,6 +440,12 @@ systemctl restart docker
 **在看完上行文档的具体内容，并且你确定你行后**，便可点击下方按钮，尝试一键部署：
 
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&image=docker.io/luolongfei/freenom:koyeb)
+
+***
+
+### 🧪 通过 Mogenius 部署
+
+暂时没时间写详细教程，有兴趣的可以自己尝试一下。参考我此处的说明事项： [https://github.com/luolongfei/freenom/issues/146](https://github.com/luolongfei/freenom/issues/146) 
 
 ***
 
