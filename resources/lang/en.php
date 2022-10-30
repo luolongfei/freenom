@@ -153,5 +153,7 @@ return [
         '100133' => "(If you don't want to get a push every time you execute, adjust the value of NOTICE_FREQ in the .env file to 0 so that the application only pushes when there is a renewal operation.)",
         '100134' => '[Server Info]',
         '100135' => 'It is detected that the Data directory does not have write permission and cannot record the version number. To avoid repeated pushing of upgrade messages, the program will ignore the version check. Please go to https://github.com/luolongfei/freenom/releases to check if there is a new version by yourself',
+        '100136' => 'Pushplus',
+        '100137' => 'Pushplus Failed to send message: <red>%s</red>',
     ],
 ];
