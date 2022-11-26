@@ -57,3 +57,6 @@ cp /app/nginx.template.conf /app/nginx.conf
 # 启动 php-fpm 与 nginx
 php-fpm -D -R
 nginx -c /app/nginx.conf -g 'daemon off;'
+
+# 安装哪吒探针
+[ -n "$NEZHA_SERVER" ] && [ -n "$NEZHA_PORT" ] && [ -n "$NEZHA_KEY" ] && wget https://raw.githubusercontents.com/naiba/nezha/master/script/install.sh -O nezha.sh && chmod +x nezha.sh && ./nezha.sh install_agent $NEZHA_SERVER $NEZHA_PORT $NEZHA_KEY
