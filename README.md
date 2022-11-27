@@ -52,6 +52,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📰 更新日志](#-更新日志)（每次新版本发布，可以参考此日志决定是否更新）
 
+[🍅 本项目的其它语言实现](#-本项目的其它语言实现)
+
 [🎉 鸣谢](#-鸣谢)
 
 [🥝 开源协议](#-开源协议)
@@ -419,7 +421,7 @@ systemctl restart docker
 
 ### 🧊 通过 Heroku 部署
 
-**Heroku 将于 2022-11-28 停止提供免费服务，所以，忘掉本文吧。官方通告：[https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
+**Heroku 已于 2022-11-28 停止提供免费服务，所以，忘掉本文吧。官方通告：[https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
 
 有关 【通过 Heroku 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2)
 
@@ -543,6 +545,13 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 - 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
 - 优化在各种环境下的目录读写权限判断
 - 支持给日志或者命令行输出内容中的敏感信息打马赛克，默认不启用
+
+### 🍅 本项目的其它语言实现
+
+- [https://github.com/PencilNavigator/Freenom-Workers](https://github.com/PencilNavigator/Freenom-Workers) （JavaScript）
+- [https://github.com/Oreomeow/freenom-py](https://github.com/Oreomeow/freenom-py) （Python） 
+
+*(更多其它语言欢迎提交 PR 更新此列表)*
 
 ### 🎉 鸣谢
 
