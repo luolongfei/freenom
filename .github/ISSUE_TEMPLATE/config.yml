@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 问题与帮助 Questions and support
+    url: https://github.com/luolongfei/freenom/discussions
+    about: 提问，求助，以及其他类型的帮助支持，请前往 Discussions。Answers to questions and other kinds of help support is provided on the discussions page.
