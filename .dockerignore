@@ -9,3 +9,4 @@ LICENSE
 .github
 app/Data/pushed_version.txt
 app/Data/wechat_access_token.txt
+resources/screenshot
