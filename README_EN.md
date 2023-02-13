@@ -26,7 +26,7 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🐳 Deploy via Docker](#-deploy-via-docker) (recommended, one of the easiest way to deploy)
 
-[🧊 Deploy via Heroku] (#-deploy-via-heroku)
+[🧊 Deploy via Heroku](#-deploy-via-heroku)
 
 [🚈 Deploy via Railway](#-deploy-via-railway)
 
@@ -34,44 +34,42 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [🧪 Deploy via Mogenius](#-deploy-via-mogenius) (If you can't register Koyeb account, you can consider deploying in Mogenius)
 
-[☁ Deploy through various SCF] (#-deploy-through-various-scf)
+[☁ Deploy through various SCF](#-deploy-through-various-scf)
 
-[🚧 Directly pull source code deployment](#-directly-pull-source-code-deployment)
+[🚧 Directly pull the source code for deployment](#-directly-pull-the-source-code-for-deployment)
 
 [📋 Donation List](#-donation-list)
 
 [❤ Sponsor Donation](#-Sponsor-donation)
 
-[🌚 Author] (#-author)
+[🌚 Author](#-author)
 
-[💖 All Contributors] (#-all-contributors)
+[💖 All Contributors](#-all-contributors)
 
 [📝 TODO List](#-todo-list)
 
 [📰 Changelog](https://github.com/luolongfei/freenom/blob/main/README.md#-更新日志) (every time a new version is released, you can refer to this log to decide whether to update)
 
-[🍅 This project is implemented in other languages] (#-this-project-is-implemented-in-other-languages)
+[🍅 This project is implemented in other languages](#-this-project-is-implemented-in-other-languages)
 
-[🎉 Acknowledgments] (#-Acknowledgments)
+[🎉 Acknowledgments](#-Acknowledgments)
 
-[🥝 Open Source License] (#-open-source-license)
+[🥝 Open Source License](#-open-source-license)
 
 ### 📢 Notice
 
 - This project was banned because of the GitHub Action incident before, and then I briefly transferred the project to https://github.com/luolongfei/next-freenom
   Warehouse, and then under the reminder of [@Matraks](https://github.com/Matraks), restored this warehouse in a special way.
-- The direct consequence of this ban is that all previous `issues` are lost, and the number of `star` of nearly `1.8k` returns to zero. The motivation is indeed affected, but it will not have much impact. The project is still maintained for a long time, if the project helps you, welcome to star.
+- The direct consequence of this ban is that all previous`issues`are lost, and the number of`star`of nearly`1.8k`returns to zero. The motivation is indeed affected, but it will not have much impact. The project is still maintained for a long time, if the project helps you, welcome to star.
 - Three Caves of the Rabbit, the temporary warehouse https://github.com/luolongfei/next-freenom is also a backup warehouse. If this warehouse loses contact again, you can move to the backup warehouse to get the latest news. Under normal circumstances, future development and maintenance will still be in this warehouse conduct.
 - Recommended [🐳 Deploy via Docker](#-deploy via-docker-). If you don't have your own server, you can refer to this document [📦 Deploying via Koyeb](#-via-Koyeb-deploying).
-- Enthusiastic netizens have created the `Freenom Renewal Affairs Bureau` group, which can be used for communication, testing, and feedback. **Join can directly visit [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew ), or scan the QR code to join: **
+- Enthusiastic users have created the`Freenom Renewal Affairs Bureau`group, which can be used for communication, testing, and feedback. **Join directly by visiting [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew ), or scan the QR code to join: **
 
 <a href="https://t.me/freenom_auto_renew"><img src="https://s2.loli.net/2022/10/11/k4sSoXqMVfpIY3d.png" alt="freenom_tg_group.png" border="0" width="220px" height="280px" /></a>
 
 ### 🌿 Special Thanks To
 
 Thanks to JetBrains for the non-commercial open source software development license.
-
-Thanks for non-commercial open source development authorization by JetBrains.
 
 <a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width="200px" height="200px" alt="JetBrains Logo (Main) logo.">
@@ -89,37 +87,37 @@ Regardless of the success or failure of the renewal or an error in the execution
 
 ### 🎁 Prepare beforehand
 
-- VPS: Any server is fine, the system recommends `Debian`. The `PHP` version needs to be `php7.3` and above. If you have a `Docker` environment, you can ignore this restriction. If you do not have a server, you can refer to this document to deploy in various free environments.
-- Delivery mailbox (optional): For the convenience of understanding, it is also called robot mailbox, which is used to send notification emails. Currently for `Gmail`, `QQ mailbox`, `163 mailbox` and `Outlook mailbox`, the program will automatically determine the sending mailbox type and use the appropriate configuration.
+- VPS: Any server is fine, the system recommends`Debian`. The`PHP`version needs to be`php7.3`and above. If you have a`Docker`environment, you can ignore this restriction. If you do not have a server, you can refer to this document to deploy in various free environments.
+- Delivery mailbox (optional): For the convenience of understanding, it is also called robot mailbox, which is used to send notification emails. Currently for`Gmail`,`QQ mailbox`,`163 mailbox`and`Outlook mailbox`, the program will automatically determine the sending mailbox type and use the appropriate configuration.
   If you are using other third-party email or self-built email service, please refer to [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   Comments related to mail configuration in the file are configured.
 - Receiving mailbox (optional): used to receive notification emails from the robot.
-- The above `Sending Mailbox` and `Receiving Mailbox` are optional, because the current program already supports `Email Send` / `Telegram Bot` / `Enterprise WeChat` / `Server Sauce` / `Bark` and other sending methods, only When you use `Send Mail`, `Sending Mailbox` and `Receive Mailbox`
+- The above`Sending Mailbox`and`Receiving Mailbox`are optional, because the current program already supports`Email Send`/`Telegram Bot`/`Enterprise WeChat`/`Server Sauce`/`Bark`and other sending methods, only When you use`Send Mail`,`Sending Mailbox`and`Receive Mailbox`
   It is necessary. For other sending methods, please refer to the following [Configure Sending Function](#-Configuring Sending Function).
-- patience.
+- Patience.
 
 ### 📪 Configure the sending function
 
-Here we will introduce the configuration methods of `Mail Delivery` / `Telegram Bot` / `Enterprise WeChat` / `Server Sauce` / `Bark` respectively, as well as the required information. You can choose one of the delivery methods. Configuration, just jump to the corresponding document to view it. If you are IOS
-users, recommend using `Bark`
-For the delivery method, users of other platforms can choose an acceptable delivery method according to their own preferences. It is not recommended to use `Server Sauce` to send letters, `Server Sauce` has a daily limit on the number of letters sent, and you need to be a member to directly see the content of the mail, otherwise you need to skip to `Server Sauce`
-The website can only view the content, which is not recommended. The same configuration can directly use the `Enterprise WeChat` mail delivery method, and the `Enterprise WeChat' sender can see the content of the letter directly on the ordinary WeChat client.
+Here we will introduce the configuration methods of`Mail Delivery`/`Telegram Bot`/`Enterprise WeChat`/`Server Sauce`/`Bark`respectively, as well as the required information. You can choose one of the delivery methods. Configuration, just jump to the corresponding document to view it. If you are IOS
+users, recommend using`Bark`
+For the delivery method, users of other platforms can choose an acceptable delivery method according to their own preferences. It is not recommended to use`Server Sauce`to send letters,`Server Sauce`has a daily limit on the number of letters sent, and you need to be a member to directly see the content of the mail, otherwise you need to skip to`Server Sauce`
+The website can only view the content, which is not recommended. The same configuration can directly use the`Enterprise WeChat`mail delivery method, and the`Enterprise WeChat' sender can see the content of the letter directly on the ordinary WeChat client.
 
 *Quickly go to the specified location of the document:*
 
-[Mail delivery] (#-mail-delivery)
+[Mail delivery](#-mail-delivery)
 
-[Telegram Bot] (#-telegram-bot)
+[Telegram Bot](#-telegram-bot)
 
-[Enterprise WeChat] (#enterprise-wechat)
+[Enterprise WeChat](#enterprise-wechat)
 
-[Server sauce] (#server-sauce)
+[Server sauce](#server-sauce)
 
-[Bark delivery] (#bark-delivery)
+[Bark delivery](#bark-delivery)
 
 #### Mail delivery
-The following introduces the settings of `Gmail`, `QQ mailbox` and `163 mailbox`, you only need to look at the parts you need. Note that `QQ Mailbox` and `163 Mailbox` both use the method of `account plus authorization code` to log in.
-Please note that `Google Mail` uses `account plus password` or `account plus authorization code` to log in. In addition, I would like to complain that you have to spend a dime to send a text message to the mailbox provider to get the authorization code for domestic mailboxes.
+The following introduces the settings of`Gmail`,`QQ mailbox`and`163 mailbox`, you only need to look at the parts you need. Note that`QQ Mailbox`and`163 Mailbox`both use the method of`account plus authorization code`to log in.
+Please note that`Google Mail`uses`account plus password`or`account plus authorization code`to log in. In addition, I would like to complain that you have to spend a dime to send a text message to the mailbox provider to get the authorization code for domestic mailboxes.
 
 *(Click to expand or collapse)*
 
@@ -129,7 +127,7 @@ Please note that `Google Mail` uses `account plus password` or `account plus aut
 
 *It is recommended to open the privacy mode of the browser and then log in to gmail to set it up, so as to prevent you from being unable to jump to the correct setting address when you have multiple gmail accounts. *
 
-1. In `Settings > Forwarding and POP/IMAP`, check the
+1. In`Settings > Forwarding and POP/IMAP`, check the
 
 - Enable POP for all mail
 - enable IMAP
@@ -156,11 +154,11 @@ Refer to the official document: [Login with application-specific password](https
     <summary>Set up QQ mailbox</summary>
 <br>
 
-Under `Settings>Account>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV Service`, enable `POP3/SMTP Service`
+Under`Settings>Account>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV Service`, enable`POP3/SMTP Service`
 
 ![qq mailbox configuration 01](https://s2.ax1x.com/2020/01/31/13cIKA.png "qq mailbox configuration 01")
 
-At this time, the cheating QQ mailbox will ask you to send a text message to Tencent with your mobile phone. After sending, click `I have sent`
+At this time, the cheating QQ mailbox will ask you to send a text message to Tencent with your mobile phone. After sending, click`I have sent`
 
 ![qq mailbox configuration 02](https://s2.ax1x.com/2020/01/31/13c4vd.png "qq mailbox configuration 02")
 
@@ -178,13 +176,13 @@ Then you can see your email authorization code, use the email account to add the
     <summary>Set 163 mailbox</summary>
 <br>
 
-Under `Settings>POP3/SMTP/IMAP`, enable `POP3/SMTP Service` and `IMAP/SMTP Service` and save
+Under`Settings>POP3/SMTP/IMAP`, enable`POP3/SMTP Service`and`IMAP/SMTP Service`and save
 
 ![163 mailbox configuration 01](https://s2.ax1x.com/2020/01/31/13WKZn.png "163 mailbox configuration 01")
 
 ![163 Mailbox Configuration 02](https://s2.ax1x.com/2020/01/31/13WQI0.png "163 Mailbox Configuration 02")
 
-Now click `Client Authorization Password` on the sidebar and get the authorization code. The screen you see may be different from mine, because I have already obtained the authorization code, so there is only the `Reset Authorization Code` button. Here I am according to the website Prompt to apply for an authorization code. Netease is as disgusting as Tencent. You need to send a text message to it with your mobile phone to get the authorization code.
+Now click`Client Authorization Password`on the sidebar and get the authorization code. The screen you see may be different from mine, because I have already obtained the authorization code, so there is only the`Reset Authorization Code`button. Here I am according to the website Prompt to apply for an authorization code. Netease is as disgusting as Tencent. You need to send a text message to it with your mobile phone to get the authorization code.
 
 ![163 Mailbox Configuration 03](https://s2.ax1x.com/2020/01/31/13WMaq.png "163 Mailbox Configuration 03")
 
@@ -194,9 +192,9 @@ After the 163 mailbox is sent, if the recipient does not receive it, you can loo
 
 </details>
 
-After the above actions are completed, in the `.env` file, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and password (or token), set `TO` to your mailbox, and then ` The value of MAIL_ENABLE` is set to `1` to enable mailbox delivery.
+After the above actions are completed, in the`.env`file, set`MAIL_USERNAME`and`MAIL_PASSWORD`to your mailbox and password (or token), set`TO`to your mailbox, and then`The value of MAIL_ENABLE`is set to`1`to enable mailbox delivery.
 
-The above describes three ways to set up mailboxes. If you don’t want to use mail delivery, change the value of `MAIL_ENABLE` in the `.env` file in the root directory to `0` to turn off the mail push method.
+The above describes three ways to set up mailboxes. If you don’t want to use mail delivery, change the value of`MAIL_ENABLE`in the`.env`file in the root directory to`0`to turn off the mail push method.
 
 *Mail The delivery part is over. *
 
@@ -227,8 +225,8 @@ For the specific configuration steps of 【Bark Messenger】, please refer to [h
 *This is the most recommended way to deploy if you have your own server. *
 
 The address of the Docker warehouse is: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom), welcome to star too.
-The supported architectures of this image are `linux/amd64`, `linux/arm64`, `linux/ppc64le`, `linux/s390x`, `linux/386`, `linux/arm/v7`, `linux/arm/v6` `, theoretically supports `Synology`
-, `QNAP`, `Raspberry Pi` and various types of `VPS`.
+The supported architectures of this image are`linux/amd64`,`linux/arm64`,`linux/ppc64le`,`linux/s390x`,`linux/386`,`linux/arm/v7`,`linux/arm/v6``, theoretically supports`Synology`
+,`QNAP`,`Raspberry Pi`and various types of`VPS`.
 
 #### 1. Install Docker
 
@@ -293,8 +291,8 @@ Or, if you want to customize the script execution time, the command is as follow
 docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs -e RUN_AT="11:24" luolongfei/freenom
 ```
 
-The above command is only one more than the previous command `-e RUN_AT="11:24"`, where `11:24` means that the renewal task will be executed at 11:24 Beijing time every day, you can customize this time. The `RUN_AT` parameter here also supports CRON
-The time format in the command, for example, `-e RUN_AT="9 11 * * *"`, means that the renewal task will be executed at 11:09 Beijing time every day. If you don’t want to execute the task every day, but only want to execute it every few days, just use Just modify the value of `RUN_AT`.
+The above command is only one more than the previous command`-e RUN_AT="11:24"`, where`11:24`means that the renewal task will be executed at 11:24 Beijing time every day, you can customize this time. The`RUN_AT`parameter here also supports CRON
+The time format in the command, for example,`-e RUN_AT="9 11 * * *"`, means that the renewal task will be executed at 11:09 Beijing time every day. If you don’t want to execute the task every day, but only want to execute it every few days, just use Just modify the value of`RUN_AT`.
 
 **Note: Custom script execution time is not recommended. Because you may define the same time point with many people, this may cause everyone to initiate a request to Freenom's server at the same time, making Freenom unable to provide stable services. And if you do not customize the time, the program will automatically specify Beijing time 06 ~
 A random time point at 23:00 is used as the execution time, and it will be automatically re-specified every time the container is restarted. **
@@ -309,14 +307,14 @@ A random time point at 23:00 is used as the execution time, and it will be autom
 | -d parameter | run the container in the background and output the container ID |
 | --name parameter | Assign an identifier to the container for future start, stop, delete and other operations |
 | --restart parameter | Configure the container startup type, always means that the container will be automatically started when the docker service is restarted |
-| -v parameter| Mount the volume (volume), after the colon is the path of the container, before the colon is the path of the host (only absolute paths are supported), `$(pwd)` indicates the current directory, if it is a Windows system, it can be used `${PWD}` replaces `$(pwd)` here |
+| -v parameter| Mount the volume (volume), after the colon is the path of the container, before the colon is the path of the host (only absolute paths are supported),`$(pwd)`indicates the current directory, if it is a Windows system, it can be used`${PWD}`replaces`$(pwd)`here |
 | -e parameter | Specify the environment variable in the container |
 | luolongfei/freenom | This is the full path name of the image downloaded from docker hub |
 
 </details>
 
-At this point, your auto-renewal container is running. After executing `ls -a`, you can see that in your current directory, there is a `.env` file and a `logs` directory, `logs` directory The program log is stored in it, and `.env` is the configuration file, now execute `vim .env` directly
-Change all the configuration items in the `.env` file to your own and save it. Then restart the container, and if the configuration is correct, you will receive relevant emails soon.
+At this point, your auto-renewal container is running. After executing`ls -a`, you can see that in your current directory, there is a`.env`file and a`logs`directory,`logs`directory The program log is stored in it, and`.env`is the configuration file, now execute`vim .env`directly
+Change all the configuration items in the`.env`file to your own and save it. Then restart the container, and if the configuration is correct, you will receive relevant emails soon.
 
 <details>
     <summary>Click me to view the meaning of some configuration items in the .env file</summary>
@@ -325,16 +323,16 @@ Change all the configuration items in the `.env` file to your own and save it. T
 | Variable name | Meaning | Default value | Required | Remarks |
 | :---: | :---: |:---:|:----:|:-------------------- -------------------------------------------------- ------------------ :|
 | FREENOM_USERNAME | Freenom account | - | Yes | Only email accounts are supported. If you are a user who uses a third-party social account to log in, please bind your email on the Freenom management page. After binding, you can log in with your email account |
-| FREENOM_PASSWORD | Freenom password | - | Yes | Some special characters may need to be escaped, see comments in `.env` file |
-| MULTIPLE_ACCOUNTS | Multi-account support | - | No | The format of multiple accounts and passwords must be "`<account1>@<password1>\|<account2>@<password2>\|<account3>@< Password 3>`", be careful not to omit the "<>" symbol, otherwise it cannot be matched correctly. If multiple accounts are set, the above `FREENOM_USERNAME` and `FREENOM_PASSWORD` can not be set |
-| MAIL_USERNAME | Robot email account | - | No | Support `Gmail`, `QQ mailbox`, `163 mailbox` and `Outlook mailbox` |
-| MAIL_PASSWORD | Robot mailbox password | - | No | Fill in the application-specific password for `Gmail`, fill in the authorization code for `QQ mailbox` or `163 mailbox` |
+| FREENOM_PASSWORD | Freenom password | - | Yes | Some special characters may need to be escaped, see comments in`.env`file |
+| MULTIPLE_ACCOUNTS | Multi-account support | - | No | The format of multiple accounts and passwords must be "`<account1>@<password1>\|<account2>@<password2>\|<account3>@< Password 3>`", be careful not to omit the "<>" symbol, otherwise it cannot be matched correctly. If multiple accounts are set, the above`FREENOM_USERNAME`and`FREENOM_PASSWORD`can not be set |
+| MAIL_USERNAME | Robot email account | - | No | Support`Gmail`,`QQ mailbox`,`163 mailbox`and`Outlook mailbox`|
+| MAIL_PASSWORD | Robot mailbox password | - | No | Fill in the application-specific password for`Gmail`, fill in the authorization code for`QQ mailbox`or`163 mailbox`|
 | TO | E-mail to receive notifications | - | No | Your own most-used e-mail, used to receive domain-related e-mails from robot e-mails |
-| MAIL_ENABLE | Whether to enable the mail push function | `0` | No | `1`: Enable<br>`0`: Disable<br>Default is not enabled, if set to `1`, enable the mail push function, then the above `MAIL_USERNAME`, `MAIL_PASSWORD`, `TO` variables become mandatory |
-| TELEGRAM_CHAT_ID | Your `chat_id` | - | No | You can get your own `id` by sending `/start` to `@userinfobot` |
-| TELEGRAM_BOT_TOKEN | `token` of your `Telegram bot` | - | No ||
-| TELEGRAM_BOT_ENABLE | whether to enable `Telegram Bot` push function | `0` | `TELEGRAM_CHAT_ID` and `TELEGRAM_BOT_TOKEN` variables |
-| NOTICE_FREQ | Notification frequency | `1` | No | `0`: Only when there is a renewal operation<br>`1`: Every time |
+| MAIL_ENABLE | Whether to enable the mail push function |`0`| No |`1`: Enable<br>`0`: Disable<br>Default is not enabled, if set to`1`, enable the mail push function, then the above`MAIL_USERNAME`,`MAIL_PASSWORD`,`TO`variables become mandatory |
+| TELEGRAM_CHAT_ID | Your`chat_id`| - | No | You can get your own`id`by sending`/start`to`@userinfobot`|
+| TELEGRAM_BOT_TOKEN |`token`of your`Telegram bot`| - | No ||
+| TELEGRAM_BOT_ENABLE | whether to enable`Telegram Bot`push function |`0`|`TELEGRAM_CHAT_ID`and`TELEGRAM_BOT_TOKEN`variables |
+| NOTICE_FREQ | Notification frequency |`1`| No |`0`: Only when there is a renewal operation<br>`1`: Every time |
 | NEZHA_SERVER | The IP or domain name of the Nezha probe server | - | No |
 | NEZHA_PORT | The port of the Nezha probe server | - | No |
 | NEZHA_KEY | Nezha probe client dedicated Key | - | No |  
@@ -346,17 +344,17 @@ Change all the configuration items in the `.env` file to your own and save it. T
 > How to verify that your configuration is correct?
 >
 
-After modifying and saving the `.env` file, execute `docker restart freenom` to restart the container, wait for about 5 seconds, and then execute `docker logs freenom` to view the output content, and observe that there is `execution successful` in the output content
+After modifying and saving the`.env`file, execute`docker restart freenom`to restart the container, wait for about 5 seconds, and then execute`docker logs freenom`to view the output content, and observe that there is`execution successful`in the output content
 , it means the configuration is correct. If you do not have time to configure the sending mailbox and other content, you can disable the mail function first.
 
 > How to upgrade to the latest version or redeploy?
 >
 
-In the directory where `.env` is located, execute `docker rm -f freenom` to delete the existing container, and then execute `docker rmi -f luolongfei/freenom`
-Delete the old image, and then execute the above `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
-Just redeploy, so that the latest code will be available after deployment. Of course, the `.env` file corresponding to the new version may change, don’t worry, the program will automatically update the contents of the `.env` file and migrate the existing configuration to it.
+In the directory where`.env`is located, execute`docker rm -f freenom`to delete the existing container, and then execute`docker rmi -f luolongfei/freenom`
+Delete the old image, and then execute the above`docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
+Just redeploy, so that the latest code will be available after deployment. Of course, the`.env`file corresponding to the new version may change, don’t worry, the program will automatically update the contents of the`.env`file and migrate the existing configuration to it.
 
-One-sentence operation, that is, execute the following command in the directory where the `.env` file is located to complete the update and upgrade:
+One-sentence operation, that is, execute the following command in the directory where the`.env`file is located to complete the update and upgrade:
 
 ```shell
 docker rm -f freenom && docker rmi -f luolongfei/freenom && docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom
@@ -472,8 +470,8 @@ About [Directly pull source code deployment] For specific steps, please refer to
 
 ***
 
-Any problems or bugs are welcome [issue](https://github.com/luolongfei/freenom/issues) （Please file `issue` in template format so that I can reproduce your problem quickly, otherwise the problem will be ignored), if `Freenom`
-Changing the algorithm will cause this project to fail, please mention [issue](https://github.com/luolongfei/freenom/issues) Let me know, I will fix it in time, and this project will be maintained for a long time. Welcome `star`~
+Any problems or bugs are welcome [issue](https://github.com/luolongfei/freenom/issues) （Please file`issue`in template format so that I can reproduce your problem quickly, otherwise the problem will be ignored), if`Freenom`
+Changing the algorithm will cause this project to fail, please mention [issue](https://github.com/luolongfei/freenom/issues) Let me know, I will fix it in time, and this project will be maintained for a long time. Welcome`star`~
 
 ### 📋 Donation List
 
@@ -495,7 +493,7 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 ![Every dollar you spend is a vote for the world you want.](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-**Your `star` or `sponsorship` is the motivation for me to maintain this project for a long time. I sincerely thank every supporter, "Every time you spend money, you are voting for the world you want." In addition, recommending this project to more people is also a way of support. The more people use it, the more motivated it will be to update. **
+**Your`star`or`sponsorship`is the motivation for me to maintain this project for a long time. I sincerely thank every supporter, "Every time you spend money, you are voting for the world you want." In addition, recommending this project to more people is also a way of support. The more people use it, the more motivated it will be to update. **
 
 ### 🌚 Author
 
