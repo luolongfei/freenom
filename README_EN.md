@@ -269,14 +269,14 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
   <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
 </a>
 
-[@anjumrafidofficial](https://github.com/anjumrafidofficial)
+[@origamiofficial](https://github.com/origamiofficial)
 
 ### 🎉 Acknowledgements
 
 - The project relies on third-party libraries such as [PHPMailer](https://github.com/PHPMailer/PHPMailer/)
   , [guzzle](https://github.com/guzzle/guzzle), etc.
 - The project Docker related documentation has reference to the article by [秋水逸冰](https://teddysun.com/569.html)
-- [@anjumrafidofficial](https://github.com/anjumrafidofficial) Improve the English mail content
+- [@origamiofficial](https://github.com/origamiofficial) Improve the English mail content
 
 ### 🥝 Open source agreement
 

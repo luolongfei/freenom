@@ -524,7 +524,7 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
   <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
 </a>
 
-[@anjumrafidofficial](https://github.com/anjumrafidofficial)
+[@origamiofficial](https://github.com/origamiofficial)
 
 ### 📝 TODO List
 
@@ -557,7 +557,7 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 - 项目依赖 [PHPMailer](https://github.com/PHPMailer/PHPMailer/) 、 [guzzle](https://github.com/guzzle/guzzle) 等第三方库
 - 本项目 Docker 相关文档有参考 [秋水逸冰](https://teddysun.com/569.html) 的文章
-- [@anjumrafidofficial](https://github.com/anjumrafidofficial) 完善英文版邮件内容
+- [@origamiofficial](https://github.com/origamiofficial) 完善英文版邮件内容
 
 ### 🥝 开源协议
 
