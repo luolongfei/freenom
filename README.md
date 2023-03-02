@@ -32,7 +32,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📦 通过 Koyeb 部署](#-通过-Koyeb-部署)（推荐没有自己服务器的用户使用此方案，一键部署）
 
-[🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（如果你无法注册 Koyeb 账户，可以考虑在 Mogenius 部署）
+[🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（已不可行）
 
 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
@@ -450,7 +450,7 @@ systemctl restart docker
 
 ### 🧪 通过 Mogenius 部署
 
-暂时没时间写详细教程，有兴趣的可以自己尝试一下。参考我此处的说明事项： [https://github.com/luolongfei/freenom/issues/146](https://github.com/luolongfei/freenom/issues/146) 
+已下线免费套餐，不再可用。 [https://github.com/luolongfei/freenom/discussions/208](https://github.com/luolongfei/freenom/discussions/208) 
 
 ***
 
