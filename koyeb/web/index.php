@@ -228,7 +228,7 @@ $converter = new AnsiToHtmlConverter();
             </ul>
             <div class="mdui-card">
                 <div class="mdui-card-media">
-                    <img class="mdui-img-rounded" src="https://s2.ax1x.com/2020/01/31/1394at.png" alt="赞助二维码"/>
+                    <img class="mdui-img-rounded" src="https://images.llfapp.com/pay.png" alt="赞助二维码"/>
                 </div>
 
                 <div class="mdui-card-content">
