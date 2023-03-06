@@ -31,6 +31,11 @@ class WeChat extends MessageGateway
      */
     protected $agentId;
 
+        /**
+     * @var integer 企业微信用户 ID
+     */
+    protected $userId;
+
     /**
      * @var Client
      */
@@ -46,6 +51,7 @@ class WeChat extends MessageGateway
         $this->corpId = config('message.wechat.corp_id');
         $this->corpSecret = config('message.wechat.corp_secret');
         $this->agentId = config('message.wechat.agent_id');
+        $this->userId = config('message.wechat.user_id');
 
         $this->accessTokenFile = DATA_PATH . DS . 'wechat_access_token.txt';
 
@@ -292,7 +298,7 @@ class WeChat extends MessageGateway
             $accessToken = $this->getAccessToken();
 
             $body = [
-                'touser' => '@all', // 可直接通过此地址获取 userId，指定接收用户，多个用户用“|”分割 https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token=ACCESS_TOKEN&fetch_child=FETCH_CHILD&department_id=1
+                'touser' => $this->userId, // 可直接通过此地址获取 userId，指定接收用户，多个用户用“|”分割 https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token=ACCESS_TOKEN&fetch_child=FETCH_CHILD&department_id=1
                 'msgtype' => 'text', // 消息类型，text 类型支持 a 标签以及 \n 换行，基本满足需求。由于腾讯要求 markdown 语法必须使用 企业微信APP 才能查看，不想安装，故弃之
                 'agentid' => $this->agentId, // 企业应用的 ID，整型，可在应用的设置页面查看
                 'text' => [
