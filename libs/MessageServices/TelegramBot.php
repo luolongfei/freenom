@@ -253,7 +253,7 @@ class TelegramBot extends MessageGateway
         $this->check($content, $data);
 
         $commonFooter = '';
-
+        $notification = false;
         if ($type === 1 || $type === 4) {
             $this->setCommonFooter($commonFooter, "\n", false);
         } else if ($type === 2) {
@@ -262,6 +262,7 @@ class TelegramBot extends MessageGateway
         } else if ($type === 3) {
             $this->setCommonFooter($commonFooter);
             $content = $this->genDomainStatusFullMarkDownText($data['username'], $data['domainStatusArr']);
+            $notification = true;
         } else {
             throw new \Exception(lang('100003'));
         }
@@ -306,7 +307,7 @@ class TelegramBot extends MessageGateway
                         'text' => $content, // Text of the message to be sent, 1-4096 characters after entities parsing
                         'parse_mode' => $isMarkdown ? 'MarkdownV2' : 'HTML',
                         'disable_web_page_preview' => true,
-                        'disable_notification' => false
+                        'disable_notification' => $notification
                     ],
                 ]
             );
