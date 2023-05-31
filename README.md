@@ -12,7 +12,10 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-[📢 注意](#-注意)
+## 🎤 大新闻：
+### Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前无法通过脚本自动续期，如果是 reCAPTCHA 或者 hCaptcha 倒是好解决，AWS WAF CAPTCHA 比较小众，暂时无解。所以，各位可以先手动续期，静观其变，等待后续有 AWS WAF CAPTCHA solver 了再说。另外，现在手动续期好像也不行了，估计 freenom 正在改造，一手消息可以通过下方入群，持续关注。江湖路远，后会有期。
+
+[📢 公告](#-公告)
 
 [🌿 特别感谢 Special Thanks](#-特别感谢-special-thanks)
 
@@ -58,13 +61,8 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🥝 开源协议](#-开源协议)
 
-### 📢 注意
+### 📢 公告
 
-- 之前因为 GitHub Action 事件导致本项目被封禁，而后我短暂将项目转移到了 https://github.com/luolongfei/next-freenom
-  仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
-- 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
-- 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [🐳 通过 Docker 方式部署](#-通过-docker-部署)。如果你没有自己的服务器，可参考本文档 [📦 通过 Koyeb 部署](#-通过-Koyeb-部署) 。
 - 热心网友创建了`Freenom 续期事务局`群组，可供交流、测试、反馈， **加入可直接访问 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew) ，或者扫码加入：**
 
 <a href="https://t.me/freenom_auto_renew"><img src="https://s2.loli.net/2022/10/11/k4sSoXqMVfpIY3d.png" alt="freenom_tg_group.png" border="0" width="220px" height="280px" /></a>
