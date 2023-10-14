@@ -12,7 +12,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-### Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，最大重试次数默认 32 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。能否续期成功主要靠人品和运气，重试只是增加成功的几率，希望把偶然变为经常。更多消息在下方热心网友的电报群交流。
+**Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，最大重试次数默认 32 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。能否续期成功主要靠人品和运气，重试只是增加成功的几率，希望把偶然变为经常。更多消息在下方热心网友的电报群交流。**
 
 [📢 公告](#-公告)
 
@@ -36,7 +36,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（已不可行）
 
-[☁ 通过 各种云函数 部署](#-通过各种云函数部署)
+[☁ 通过 各种云函数 部署](#-通过各种云函数部署) （目前各平台已开启收费模式，已放弃支持）
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
 
