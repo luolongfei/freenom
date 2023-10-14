@@ -19,7 +19,7 @@ use Luolongfei\Libs\Message;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.5.1';
+    const VERSION = 'v0.5.3';
 
     const TIMEOUT = 33;
 
@@ -70,6 +70,11 @@ class FreeNom extends Base
     private static $instance;
 
     /**
+     * @var int 最大请求重试次数
+     */
+    public $maxRequestRetryCount;
+
+    /**
      * @return FreeNom
      */
     public static function getInstance()
@@ -97,6 +102,8 @@ class FreeNom extends Base
             'proxy' => config('freenom_proxy'),
         ]);
 
+        $this->maxRequestRetryCount = config('max_request_retry_count');
+
         system_log(sprintf(lang('100038'), self::VERSION));
     }
 
@@ -116,17 +123,19 @@ class FreeNom extends Base
     protected function login(string $username, string $password)
     {
         try {
-            $this->client->post(self::LOGIN_URL, [
-                'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Referer' => 'https://my.freenom.com/clientarea.php'
-                ],
-                'form_params' => [
-                    'username' => $username,
-                    'password' => $password
-                ],
-                'cookies' => $this->jar
-            ]);
+            autoRetry(function ($username, $password) {
+                return $this->client->post(self::LOGIN_URL, [
+                    'headers' => [
+                        'Content-Type' => 'application/x-www-form-urlencoded',
+                        'Referer' => 'https://my.freenom.com/clientarea.php'
+                    ],
+                    'form_params' => [
+                        'username' => $username,
+                        'password' => $password
+                    ],
+                    'cookies' => $this->jar
+                ]);
+            }, $this->maxRequestRetryCount, [$username, $password]);
         } catch (\Exception $e) {
             throw new LlfException(34520002, $e->getMessage());
         }
@@ -134,6 +143,8 @@ class FreeNom extends Base
         if (empty($this->jar->getCookieByName('WHMCSZH5eHTGhfvzP')->getValue())) {
             throw new LlfException(34520002, lang('100001'));
         }
+
+        system_log(sprintf(lang('100138'), $username));
 
         return true;
     }
@@ -188,12 +199,14 @@ class FreeNom extends Base
     protected function getDomainStatusPage()
     {
         try {
-            $resp = $this->client->get(self::DOMAIN_STATUS_URL, [
-                'headers' => [
-                    'Referer' => 'https://my.freenom.com/clientarea.php'
-                ],
-                'cookies' => $this->jar
-            ]);
+            $resp = autoRetry(function ($jar) {
+                return $this->client->get(self::DOMAIN_STATUS_URL, [
+                    'headers' => [
+                        'Referer' => 'https://my.freenom.com/clientarea.php'
+                    ],
+                    'cookies' => $jar
+                ]);
+            }, $this->maxRequestRetryCount, [$this->jar]);
 
             $page = (string)$resp->getBody();
         } catch (\Exception $e) {
@@ -294,19 +307,21 @@ class FreeNom extends Base
     protected function renew(int $id, string $token)
     {
         try {
-            $resp = $this->client->post(self::RENEW_DOMAIN_URL, [
-                'headers' => [
-                    'Referer' => sprintf('https://my.freenom.com/domains.php?a=renewdomain&domain=%s', $id),
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ],
-                'form_params' => [
-                    'token' => $token,
-                    'renewalid' => $id,
-                    sprintf('renewalperiod[%s]', $id) => '12M', // 续期一年
-                    'paymentmethod' => 'credit', // 支付方式：信用卡
-                ],
-                'cookies' => $this->jar
-            ]);
+            $resp = autoRetry(function ($token, $id, $jar) {
+                return $this->client->post(self::RENEW_DOMAIN_URL, [
+                    'headers' => [
+                        'Referer' => sprintf('https://my.freenom.com/domains.php?a=renewdomain&domain=%s', $id),
+                        'Content-Type' => 'application/x-www-form-urlencoded'
+                    ],
+                    'form_params' => [
+                        'token' => $token,
+                        'renewalid' => $id,
+                        sprintf('renewalperiod[%s]', $id) => '12M', // 续期一年
+                        'paymentmethod' => 'credit', // 支付方式：信用卡
+                    ],
+                    'cookies' => $jar
+                ]);
+            }, $this->maxRequestRetryCount, [$token, $id, $this->jar]);
 
             $resp = (string)$resp->getBody();
 

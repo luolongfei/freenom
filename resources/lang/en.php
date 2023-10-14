@@ -22,6 +22,7 @@ return [
         '34520012' => 'You have not configured an email address for incoming mail and may not receive mail. Please change the value corresponding to TO in the .env file to the email address you use most often to receive domain-related emails from the robot email address',
         '34520013' => 'Error getting domain status, error message: %s',
         '34520014' => 'No domain name found under your account %s (%s)',
+        '34520015' => 'The request has been intercepted for human verification and will be retried in %d seconds, with a maximum of %d retries. [%d/%d]',
     ],
     'messages' => [
         '100001' => 'The cookie value named WHMCSZH5eHTGhfvzP could not be obtained, so this login is not valid, please check if your account or password is correct',
@@ -155,5 +156,6 @@ return [
         '100135' => 'It is detected that the Data directory does not have write permission and cannot record the version number. To avoid repeated pushing of upgrade messages, the program will ignore the version check. Please go to https://github.com/luolongfei/freenom/releases to check if there is a new version by yourself',
         '100136' => 'Pushplus',
         '100137' => 'Pushplus Failed to send message: <red>%s</red>',
+        '100138' => '<light_green>%s login successfully</light_green>',
     ],
 ];

@@ -90,7 +90,7 @@ return [
         ],
 
         /**
-         * Pushplus
+         * PUSH PLUS
          */
         'pushplus' => [
             'pushplus_key' => env('PUSHPLUS_KEY'), // SendKey
@@ -106,4 +106,5 @@ return [
     'debug' => (bool)env('DEBUG'),
     'freenom_proxy' => env('FREENOM_PROXY') ?: null, // FreeNom 代理，针对国内网络情况，可选择代理访问
     'new_version_detection' => (bool)env('NEW_VERSION_DETECTION', 1),
+    'max_request_retry_count' => (int)env('MAX_REQUEST_RETRY_COUNT', 32), // 最大请求重试次数
 ];

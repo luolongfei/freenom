@@ -1918,3 +1918,42 @@ if (!function_exists('get_random_user_agent')) {
         return $chromeVersions[array_rand($chromeVersions)];
     }
 }
+
+if (!function_exists('autoRetry')) {
+    /**
+     * 自动重试
+     *
+     * @param $func
+     * @param int $maxRetryCount
+     * @param array $params
+     *
+     * @return mixed|void
+     * @throws Exception
+     */
+    function autoRetry($func, $maxRetryCount = 3, $params = [])
+    {
+        $retryCount = 0;
+        while ($retryCount <= $maxRetryCount) {
+            try {
+                return call_user_func_array($func, $params);
+            } catch (\Exception $e) {
+                if (stripos($e->getMessage(), '405') === false) {
+                    break;
+                }
+
+                $retryCount++;
+                if ($retryCount > $maxRetryCount) {
+                    throw $e;
+                }
+
+                $sleepTime = $retryCount * 4;
+                if ($sleepTime < 20) { // 最小休眠 20 秒
+                    $sleepTime = 20;
+                }
+                system_log(sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
+
+                sleep($sleepTime);
+            }
+        }
+    }
+}

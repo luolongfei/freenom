@@ -12,8 +12,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-## 🎤 大新闻：
-### Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前无法通过脚本自动续期，如果是 reCAPTCHA 或者 hCaptcha 倒是好解决，AWS WAF CAPTCHA 比较小众，暂时无解。所以，各位可以先手动续期（手动续期失败的，可以尝试隐身模式 + 全局），静观其变，等待后续有 AWS WAF CAPTCHA solver 了再说，一手消息可以通过下方入群，持续关注。江湖路远，后会有期。
+### Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，最大重试次数默认 32 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。能否续期成功主要靠人品和运气，重试只是增加成功的几率，希望把偶然变为经常。更多消息在下方热心网友的电报群交流。
 
 [📢 公告](#-公告)
 
