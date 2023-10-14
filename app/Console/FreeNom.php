@@ -123,7 +123,7 @@ class FreeNom extends Base
     protected function login(string $username, string $password)
     {
         try {
-            autoRetry(function ($username, $password) {
+            autoRetry(function ($username, $password, &$jar) {
                 return $this->client->post(self::LOGIN_URL, [
                     'headers' => [
                         'Content-Type' => 'application/x-www-form-urlencoded',
@@ -133,9 +133,9 @@ class FreeNom extends Base
                         'username' => $username,
                         'password' => $password
                     ],
-                    'cookies' => $this->jar
+                    'cookies' => $jar
                 ]);
-            }, $this->maxRequestRetryCount, [$username, $password]);
+            }, $this->maxRequestRetryCount, [$username, $password, &$this->jar]);
         } catch (\Exception $e) {
             throw new LlfException(34520002, $e->getMessage());
         }
@@ -199,14 +199,14 @@ class FreeNom extends Base
     protected function getDomainStatusPage()
     {
         try {
-            $resp = autoRetry(function ($jar) {
+            $resp = autoRetry(function (&$jar) {
                 return $this->client->get(self::DOMAIN_STATUS_URL, [
                     'headers' => [
                         'Referer' => 'https://my.freenom.com/clientarea.php'
                     ],
                     'cookies' => $jar
                 ]);
-            }, $this->maxRequestRetryCount, [$this->jar]);
+            }, $this->maxRequestRetryCount, [&$this->jar]);
 
             $page = (string)$resp->getBody();
         } catch (\Exception $e) {
@@ -307,7 +307,7 @@ class FreeNom extends Base
     protected function renew(int $id, string $token)
     {
         try {
-            $resp = autoRetry(function ($token, $id, $jar) {
+            $resp = autoRetry(function ($token, $id, &$jar) {
                 return $this->client->post(self::RENEW_DOMAIN_URL, [
                     'headers' => [
                         'Referer' => sprintf('https://my.freenom.com/domains.php?a=renewdomain&domain=%s', $id),
@@ -321,7 +321,7 @@ class FreeNom extends Base
                     ],
                     'cookies' => $jar
                 ]);
-            }, $this->maxRequestRetryCount, [$token, $id, $this->jar]);
+            }, $this->maxRequestRetryCount, [$token, $id, &$this->jar]);
 
             $resp = (string)$resp->getBody();
 
