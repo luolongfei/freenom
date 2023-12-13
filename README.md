@@ -12,14 +12,14 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-**Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 32 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。根据群友反馈，建议大家把最多重试次数设为 200，可极大增加成功率。更多消息可在热心网友的电报群内交流。**
+Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 200 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。 **目前基本能 100% 自动续期成功** 。更多消息可在热心网友的电报群内交流。
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
 
 这台 VPS 解锁奈飞迪斯尼，适合落地：
 
-<a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="300px" /></a>
+<a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="320px" /></a>
 
 [📢 公告](#-公告)
 
