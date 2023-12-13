@@ -173,6 +173,11 @@ class MigrateEnvFile extends Base
     public function migrateData(array $allEnvVars)
     {
         foreach ($allEnvVars as $envKey => $envVal) {
+            // 强行覆盖原有的最大请求重试次数
+            if ($envKey === 'MAX_REQUEST_RETRY_COUNT') {
+                continue;
+            }
+
             if ($this->setEnv($envKey, $envVal)) {
                 $this->migrateNum++;
             }

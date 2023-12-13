@@ -2,6 +2,18 @@
 
 此处包含了自脚本发布以来的所有更新日志。以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
+#### [v0.5.4](https://github.com/luolongfei/freenom/releases/tag/v0.5.4) - 2023-12-13
+
+- 将重试次数默认强制改为 200 次
+
+#### [v0.5.3](https://github.com/luolongfei/freenom/releases/tag/v0.5.3) - 2023-10-16
+
+- 增加重试机制，应对 freenom 人机验证
+
+#### [v0.5.2](https://github.com/luolongfei/freenom/releases/tag/v0.5.2)
+
+- 用于共有 freenom 变动，无实质修改
+
 #### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-29
 
 - 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
