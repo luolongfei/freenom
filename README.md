@@ -17,7 +17,7 @@ Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚�
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
 
-这台 VPS 解锁奈飞迪斯尼，适合落地：
+这台 VPS IP 干净，解锁奈飞迪斯尼，适合落地：
 
 <a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="320px" /></a>
 
