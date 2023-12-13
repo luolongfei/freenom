@@ -16,9 +16,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
-这台 VPS 解锁奈飞迪斯尼：
+这台 VPS 解锁奈飞迪斯尼，适合落地：
 
-<a href="https://go.llfapp.com/cc"><img src="images.llfapp.com/cc.png" alt="cc.png" border="0" width="240px" height="300px" /></a>
+<a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="300px" /></a>
 
 [📢 公告](#-公告)
 
