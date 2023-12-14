@@ -12,8 +12,14 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-**Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 32 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。能否续期成功主要看缘分，失败则说明缘分未到。更多消息可在热心网友的电报群内交流。**
+Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 200 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。 **目前基本能 100% 自动续期成功** 。更多消息可在热心网友的电报群内交流。
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
+
+如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
+
+这台 VPS IP 干净，解锁奈飞迪斯尼，适合落地：
+
+<a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="320px" /></a>
 
 [📢 公告](#-公告)
 
@@ -540,11 +546,9 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 - 解决 企业微信 因送信内容过长被截断问题
 
-#### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-29
+#### [v0.5.4](https://github.com/luolongfei/freenom/releases/tag/v0.5.4) - 2023-12-13
 
-- 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
-- 优化在各种环境下的目录读写权限判断
-- 支持给日志或者命令行输出内容中的敏感信息打马赛克，默认不启用
+- 重试次数默认改为 200 次
 
 ### 🍅 本项目的其它语言实现
 
