@@ -23,6 +23,7 @@ return [
         '34520013' => 'Error getting domain status, error message: %s',
         '34520014' => 'No domain name found under your account %s (%s)',
         '34520015' => 'The request has been intercepted for human verification and will be retried in %d seconds, with a maximum of %d retries. [%d/%d]',
+        '34520016' => 'Request failed: %s, will retry in %d seconds, up to %d times. [%d/%d]',
     ],
     'messages' => [
         '100001' => 'The cookie value named WHMCSZH5eHTGhfvzP could not be obtained, so this login is not valid, please check if your account or password is correct',

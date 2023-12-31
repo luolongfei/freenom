@@ -1933,27 +1933,46 @@ if (!function_exists('autoRetry')) {
     function autoRetry($func, $maxRetryCount = 3, $params = [])
     {
         $retryCount = 0;
-        while ($retryCount <= $maxRetryCount) {
+        while (true) {
             try {
                 return call_user_func_array($func, $params);
             } catch (\Exception $e) {
-                if (stripos($e->getMessage(), '405') === false) {
-                    break;
-                }
-
                 $retryCount++;
                 if ($retryCount > $maxRetryCount) {
                     throw $e;
                 }
 
-                $sleepTime = $retryCount * 4;
-                if ($sleepTime < 20) { // 最小休眠 20 秒
-                    $sleepTime = 20;
+                $sleepTime = getSleepTime($retryCount);
+
+                if (stripos($e->getMessage(), '405') !== false) {
+                    system_log(sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
+                } else {
+                    system_log(sprintf(lang('exception_msg.34520016'), $e->getMessage(), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
                 }
-                system_log(sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
 
                 sleep($sleepTime);
             }
         }
+    }
+}
+
+if (!function_exists('getSleepTime')) {
+    /**
+     * 获取睡眠秒数
+     *
+     * @param int $i
+     * @param int $magRatio
+     * @param int $minSleepTime
+     *
+     * @return int
+     */
+    function getSleepTime($i, $magRatio = 4, $minSleepTime = 20)
+    {
+        $sleepTime = $i * $magRatio;
+        if ($sleepTime < $minSleepTime) { // 最小休眠 $minSleepTime 秒
+            return $minSleepTime;
+        }
+
+        return $sleepTime;
     }
 }
