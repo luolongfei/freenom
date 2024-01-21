@@ -420,6 +420,54 @@ docker version
 systemctl restart docker
 ```
 
+##### 2.3 使用Docker-Compose创建并启动容器
+
+安装docker-compose
+
+Debian / Ubuntu
+
+```shell
+apt update && apt -y install python3 pip
+pip3 install docker-compose
+```
+
+CentOS
+
+```shell
+yum update && yum -y install python3 pip
+pip3 install docker-compose
+```
+
+新建文件夹并创建`docker-compose.yml`文件，内容如下：
+
+```yaml
+version: "3.3"
+services:
+  freenom:
+    image: luolongfei/freenom
+    restart: always
+    container_name: freenom
+    volumes:
+      - ./conf:/conf
+      - ./logs:/app/logs
+```
+
+运行容器
+
+```shell
+docker-compose up -d
+```
+
+更新镜像
+
+```shell
+docker-compose pull
+docker-compose stop
+docker-compose up -d
+```
+
+其余配置同上
+
 *有关容器部署的内容结束。*
 
 ***
