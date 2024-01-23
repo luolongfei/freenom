@@ -12,7 +12,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 200 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。 **目前基本能 100% 自动续期成功** 。更多消息可在热心网友的电报群内交流。
+Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证， ~目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 200 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。~  **答复一下某位赞助者，目前最新版本已经不再是通过重试的方式解决 aws waf，而是通过语音识别，自动答题，预计在这周六（01/27）发布最新版本。新版本能 100% 自动续期成功** 。更多消息可在热心网友的电报群内交流。
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
