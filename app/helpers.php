@@ -16,6 +16,7 @@ use Luolongfei\Libs\Lang;
 use Luolongfei\Libs\PhpColor;
 use Luolongfei\App\Console\MigrateEnvFile;
 use Luolongfei\App\Console\Upgrade;
+use GuzzleHttp\Client;
 
 if (!function_exists('config')) {
     /**
@@ -1974,5 +1975,88 @@ if (!function_exists('getSleepTime')) {
         }
 
         return $sleepTime;
+    }
+}
+
+if (!function_exists('getAwsWafToken')) {
+    /**
+     * 获取 aws waf token
+     *
+     * @return string
+     * @throws LlfException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    function getAwsWafToken()
+    {
+        $AWS_WAF_SOLVER_URL = \env('AWS_WAF_SOLVER_URL');
+        if (!$AWS_WAF_SOLVER_URL) {
+            throw new LlfException('34520017');
+        }
+        $AWS_WAF_SOLVER_URL = rtrim($AWS_WAF_SOLVER_URL, '/');
+
+        $client = new Client([
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => \env('FF_SECRET_KEY', '')
+            ],
+            'timeout' => 32,
+        ]);
+
+        $i = 0;
+        do {
+            try {
+                // 获取任务 ID
+                $r = $client->get($AWS_WAF_SOLVER_URL);
+                $body = json_decode($r->getBody()->getContents(), true);
+
+                if (!isset($body['status']) || $body['status'] !== 'OK') {
+                    // 一般情况下走不到这个分支
+                    if (isset($body['msg']) && $body['msg'] === 'A task is already running') {
+                        sleep(180);
+                    }
+
+                    throw new \Exception(isset($body['msg']) ? $body['msg'] : json_encode($body));
+                }
+
+                // 已获取任务 ID，等待任务完成
+                $taskId = $body['data']['task_id'];
+                $startTime = time();
+
+                while (true) {
+                    // 最多等你 5 分钟，过时不候
+                    if (time() - $startTime >= 300) {
+                        break;
+                    }
+
+                    $r = $client->get(sprintf('%s/%s', $AWS_WAF_SOLVER_URL, $taskId));
+                    $body = json_decode($r->getBody()->getContents(), true);
+
+                    if (!isset($body['status']) || $body['status'] !== 'OK') {
+                        throw new \Exception(isset($body['msg']) ? $body['msg'] : json_encode($body));
+                    }
+
+                    $taskStatus = $body['data']['task_status'];
+                    if ($taskStatus !== 'done') { // 任务进行中，继续等待
+                        sleep(3);
+
+                        continue;
+                    }
+
+                    if (!isset($body['data']['result']) || $body['data']['result'] === '') {
+                        throw new \Exception('no result');
+                    }
+
+                    return $body['data']['result'];
+                }
+            } catch (\Exception $e) {
+                system_log('<red>getAwsWafToken error:</red> ' . $e);
+            } finally {
+                sleep(1);
+            }
+
+            $i++;
+        } while ($i <= 10);
+
+        throw new LlfException('34520018');
     }
 }

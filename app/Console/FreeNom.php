@@ -16,6 +16,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
 use Luolongfei\Libs\Log;
 use Luolongfei\Libs\Message;
+use GuzzleHttp\Cookie\SetCookie;
 
 class FreeNom extends Base
 {
@@ -436,6 +437,9 @@ class FreeNom extends Base
 
         system_log(sprintf(lang('100049'), $totalAccounts));
 
+        $awsWafToken = getAwsWafToken();
+        system_log(sprintf(lang('100139'), $awsWafToken));
+
         foreach ($accounts as $index => $account) {
             try {
                 $this->username = $account['username'];
@@ -445,6 +449,12 @@ class FreeNom extends Base
                 system_log(sprintf(lang('100050'), get_local_num($num), $this->username, $num, $totalAccounts));
 
                 $this->jar = new CookieJar(); // 所有请求共用一个 CookieJar 实例
+                $cookie = new SetCookie();
+                $cookie->setName('aws-waf-token');
+                $cookie->setValue($awsWafToken);
+                $cookie->setDomain('.my.freenom.com');
+                $this->jar->setCookie($cookie);
+
                 $this->login($this->username, $this->password);
 
                 $domainStatusPage = $this->getDomainStatusPage();
