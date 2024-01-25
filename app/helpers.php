@@ -2049,7 +2049,7 @@ if (!function_exists('getAwsWafToken')) {
                     return $body['data']['result'];
                 }
             } catch (\Exception $e) {
-                system_log('<red>getAwsWafToken error:</red> ' . $e);
+                system_log('<red>getAwsWafToken error:</red> ' . $e->getMessage());
             } finally {
                 sleep(1);
             }
