@@ -26,6 +26,7 @@ return [
         '34520016' => '请求失败，原因为 %s，将在 %d 秒后重试，最多重试 %d 次。[%d/%d]',
         '34520017' => '未配置 AWS_WAF_SOLVER_URL 环境变量',
         '34520018' => '未能获取到 AWS WAF Token',
+        '34520019' => '<light_green>将自动使用新的 AWS WAF Token</light_green>',
     ],
     'messages' => [
         '100001' => '未能取得名为 WHMCSZH5eHTGhfvzP 的 cookie 值，故本次登录无效，请检查你的账户或密码是否正确。',

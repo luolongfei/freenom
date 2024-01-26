@@ -7,16 +7,20 @@
  * @time 16:34
  */
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Cookie\SetCookie;
+use Luolongfei\App\Console\GlobalValue;
+use Luolongfei\App\Console\MigrateEnvFile;
+use Luolongfei\App\Console\Upgrade;
+use Luolongfei\App\Constants\CommonConst;
 use Luolongfei\App\Exceptions\LlfException;
 use Luolongfei\Libs\Argv;
 use Luolongfei\Libs\Config;
-use Luolongfei\Libs\Log;
 use Luolongfei\Libs\Env;
 use Luolongfei\Libs\Lang;
+use Luolongfei\Libs\Log;
 use Luolongfei\Libs\PhpColor;
-use Luolongfei\App\Console\MigrateEnvFile;
-use Luolongfei\App\Console\Upgrade;
-use GuzzleHttp\Client;
 
 if (!function_exists('config')) {
     /**
@@ -1946,7 +1950,20 @@ if (!function_exists('autoRetry')) {
                 $sleepTime = getSleepTime($retryCount);
 
                 if (stripos($e->getMessage(), '405') !== false) {
-                    system_log(sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
+                    // aws waf token 失效，将重新获取新的 token
+                    $handleInvalidToken = false;
+                    foreach ($params as &$param) {
+                        if ($param instanceof CookieJar) {
+                            $handleInvalidToken = true;
+                            $sleepTime = 1;
+                            delGlobalValue(CommonConst::AWS_WAF_TOKEN);
+                            $param->setCookie(buildAwsWafCookie(getAwsWafToken()));
+
+                            break;
+                        }
+                    }
+
+                    system_log($handleInvalidToken ? \lang('exception_msg.34520019') : sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
                 } else {
                     system_log(sprintf(lang('exception_msg.34520016'), $e->getMessage(), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
                 }
@@ -1954,6 +1971,25 @@ if (!function_exists('autoRetry')) {
                 sleep($sleepTime);
             }
         }
+    }
+}
+
+if (!function_exists('buildAwsWafCookie')) {
+    /**
+     * 构建 aws waf cookie
+     *
+     * @param string $awsWafToken
+     *
+     * @return SetCookie
+     */
+    function buildAwsWafCookie(string $awsWafToken)
+    {
+        $cookie = new SetCookie();
+        $cookie->setName('aws-waf-token');
+        $cookie->setValue($awsWafToken);
+        $cookie->setDomain('.my.freenom.com');
+
+        return $cookie;
     }
 }
 
@@ -1988,6 +2024,13 @@ if (!function_exists('getAwsWafToken')) {
      */
     function getAwsWafToken()
     {
+        // 优先从全局变量中获取
+        $AWS_WAF_TOKEN = getGlobalValue(CommonConst::AWS_WAF_TOKEN);
+        if ($AWS_WAF_TOKEN) {
+            return $AWS_WAF_TOKEN;
+        }
+
+        // 调用自建接口获取
         $AWS_WAF_SOLVER_URL = \env('AWS_WAF_SOLVER_URL');
         if (!$AWS_WAF_SOLVER_URL) {
             throw new LlfException('34520017');
@@ -2046,7 +2089,12 @@ if (!function_exists('getAwsWafToken')) {
                         throw new \Exception('no result');
                     }
 
-                    return $body['data']['result'];
+                    $awsWafToken = $body['data']['result'] ?? '';
+                    setGlobalValue(CommonConst::AWS_WAF_TOKEN, $awsWafToken);
+
+                    system_log(sprintf(lang('100139'), $awsWafToken));
+
+                    return $awsWafToken;
                 }
             } catch (\Exception $e) {
                 system_log('<red>getAwsWafToken error:</red> ' . $e->getMessage());
@@ -2058,5 +2106,62 @@ if (!function_exists('getAwsWafToken')) {
         } while ($i <= 10);
 
         throw new LlfException('34520018');
+    }
+}
+
+if (!function_exists('getGlobalValue')) {
+    /**
+     * 获取全局变量
+     *
+     * @param string $name
+     *
+     * @return string|null
+     */
+    function getGlobalValue(string $name, ?string $default = null)
+    {
+        return GlobalValue::getInstance()->get($name, $default);
+    }
+}
+
+if (!function_exists('setGlobalValue')) {
+    /**
+     * 设置全局变量
+     *
+     * @param string $name
+     * @param string $value
+     *
+     * @return void
+     */
+    function setGlobalValue(string $name, string $value)
+    {
+        GlobalValue::getInstance()->set($name, $value);
+    }
+}
+
+if (!function_exists('hasGlobalValue')) {
+    /**
+     * 是否存在全局变量
+     *
+     * @param string $name
+     *
+     * @return bool
+     */
+    function hasGlobalValue(string $name)
+    {
+        return GlobalValue::getInstance()->has($name);
+    }
+}
+
+if (!function_exists('delGlobalValue')) {
+    /**
+     * 删除全局变量
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    function delGlobalValue(string $name)
+    {
+        GlobalValue::getInstance()->del($name);
     }
 }
