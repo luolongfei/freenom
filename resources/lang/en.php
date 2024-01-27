@@ -24,6 +24,9 @@ return [
         '34520014' => 'No domain name found under your account %s (%s)',
         '34520015' => 'The request has been intercepted for human verification and will be retried in %d seconds, with a maximum of %d retries. [%d/%d]',
         '34520016' => 'Request failed: %s, will retry in %d seconds, up to %d times. [%d/%d]',
+        '34520017' => 'The AWS_WAF_SOLVER_URL environment variable is not configured',
+        '34520018' => 'Failed to get AWS WAF Token',
+        '34520019' => '<light_green>Will automatically use the new AWS WAF Token</light_green>',
     ],
     'messages' => [
         '100001' => 'The cookie value named WHMCSZH5eHTGhfvzP could not be obtained, so this login is not valid, please check if your account or password is correct',
@@ -158,5 +161,6 @@ return [
         '100136' => 'Pushplus',
         '100137' => 'Pushplus Failed to send message: <red>%s</red>',
         '100138' => '<light_green>%s login successfully</light_green>',
+        '100139' => '<light_green>AWS WAF token has been acquired: %s</light_green>',
     ],
 ];

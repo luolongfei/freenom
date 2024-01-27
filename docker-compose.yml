@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+    freenom:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: freenom-image
+        extends:
+            file: ./common.yml
+            service: common_config
+        privileged: true
+        container_name: freenom
+        depends_on:
+            - aws-waf-solver
+        working_dir: /var/www/
+        volumes:
+            - ./.env:/app/.env
+
+    aws-waf-solver:
+        image: luolongfei/aws-waf-solver
+        container_name: aws-waf-solver
+        privileged: true
+        pull_policy: always
+        extends:
+            file: ./common.yml
+            service: common_config
+        ports:
+            - 2019:2019
+        volumes:
+            - ./.env:/app/.env
+
+networks:
+    llf-networks:
+        driver: bridge

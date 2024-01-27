@@ -1,0 +1,19 @@
+# common config
+# no volumes_from, no depends_on
+# https://docs.docker.com/compose/extends/#extending-services
+services:
+    common_config:
+        logging:
+            options:
+                max-size: "20M"
+                max-file: "3"
+        restart: unless-stopped
+        networks:
+            - llf-networks
+        env_file:
+            - ./.env
+        dns:
+            - 1.1.1.1
+            - 1.0.0.1
+            - 9.9.9.9
+            - 8.8.8.8
