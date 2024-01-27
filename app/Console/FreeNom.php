@@ -20,7 +20,7 @@ use GuzzleHttp\Cookie\SetCookie;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.6';
+    const VERSION = 'v0.6.0';
 
     const TIMEOUT = 33;
 
