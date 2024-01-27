@@ -12,7 +12,7 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，作为回应，本项目增加语音识别自动答题功能与之对抗，目前基本能百分百成功自动续期。目前发布的 v0.6.0 属于 beta 版，有任何问题或建议欢迎提 issue 反馈。由于最近比较忙，文档部分我只更新 docker compose 的部署方式，其它部署方式或者其它平台的部署等后续有时间了再更新文档，也欢迎各位提 PR 完善文档。更多消息可在热心网友的电报群内交流。
+Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，作为回应，本项目增加语音识别自动答题功能与之对抗，目前基本能百分百成功自动续期。目前发布的 v0.6.0 属于 beta 版，有任何问题或建议欢迎提 issue 反馈。由于最近比较忙，文档部分我只更新 docker compose 的部署文档：[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)，其它部署方式或者其它平台的部署等后续有时间了再更新文档，也欢迎各位提 PR 完善文档。更多消息可在热心网友的电报群内交流。
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
