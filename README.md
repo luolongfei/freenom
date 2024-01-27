@@ -12,14 +12,10 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证， ~目前脚本追加了重试机制，可在 `.env` 中自行修改 `MAX_REQUEST_RETRY_COUNT`的值以配置最大重试次数，默认最多重试 200 次，每次至少休眠 20 秒，第 5 次后每次休眠时间根据重试次数递增。~  **答复一下某位赞助者，目前最新版本已经不再是通过重试的方式解决 aws waf，而是通过语音识别，自动答题，预计在这周六（01/27）发布最新版本。新版本能 100% 自动续期成功** 。更多消息可在热心网友的电报群内交流。
+Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，作为回应，本项目增加语音识别自动答题功能与之对抗，目前基本能百分百成功自动续期。目前发布的 v0.6.0 属于 beta 版，有任何问题或建议欢迎提 issue 反馈。由于最近比较忙，文档部分我只更新 docker compose 的部署文档：[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)，其它部署方式或者其它平台的部署等后续有时间了再更新文档，也欢迎各位提 PR 完善文档。更多消息可在热心网友的电报群内交流。
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
-
-这台 VPS IP 干净，解锁奈飞迪斯尼，适合落地：
-
-<a href="https://go.llfapp.com/cc"><img src="https://images.llfapp.com/cc.png" alt="cc.png" border="0" width="380px" height="320px" /></a>
 
 [📢 公告](#-公告)
 
@@ -32,6 +28,8 @@ Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证， ~目前�
 [🎁 事前准备](#-事前准备)
 
 [📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
+
+[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)（请使用此方式部署 v0.6.0 版本，其它部署方式的文档后续更新）
 
 [🐳 通过 Docker 方式部署](#-通过-docker-部署)（推荐，最简单的部署方式之一）
 
@@ -229,6 +227,123 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ***
 
+### ⛵ 通过 Docker Compose 部署
+
+#### 1、一键安装 docker 和 docker compose
+
+Debian / Ubuntu（推荐）
+
+```shell
+apt-get update -y;
+apt-get install -y wget vim git make;
+wget -qO- get.docker.com | bash;
+systemctl start docker;
+sudo systemctl enable docker.service;
+sudo systemctl enable containerd.service;
+docker version;
+DOCKER_COMPOSE_VER=2.24.3;
+DOCKER_CONFIG=/usr/local/lib/docker;
+mkdir -p $DOCKER_CONFIG/cli-plugins;
+curl -SL https://github.com/docker/compose/releases/download/v${DOCKER_COMPOSE_VER}/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose;
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose;
+docker compose version;
+```
+
+CentOS
+
+```shell
+yum update -y;
+yum install -y wget vim make;
+wget -qO- get.docker.com | bash;
+systemctl start docker;
+sudo systemctl enable docker.service;
+sudo systemctl enable containerd.service;
+docker version;
+DOCKER_COMPOSE_VER=2.24.3;
+DOCKER_CONFIG=/usr/local/lib/docker;
+mkdir -p $DOCKER_CONFIG/cli-plugins;
+curl -SL https://github.com/docker/compose/releases/download/v${DOCKER_COMPOSE_VER}/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose;
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose;
+docker compose version;
+```
+
+#### 2、下载本项目
+
+```shell
+git clone https://github.com/luolongfei/freenom.git && cd freenom
+```
+
+#### 3、配置
+
+##### 3.1、申请 wit.ai 的 token
+
+3.1.1 访问 https://wit.ai
+
+3.1.2 使用 Facebook 账户登录或者使用邮箱注册账户登录，只需要邮箱就可以注册
+
+3.1.3 前往 https://wit.ai/apps 画面，创建一个新的 app
+
+3.1.4 语言选择 English，名字随意，类型选择私有，创建之
+
+3.1.5 前往 Management > Settings (https://wit.ai/apps/<App ID>/settings) 画面
+
+3.1.6 复制 Client Access Token，下面需要写入 .env 文件中，WIT_AI_KEY='你复制的 Client Access Token'
+
+##### 3.2、修改 .env 配置文件
+
+将 .env 配置文件中的内容修改为你自己的配置，如果是从旧版升级，也可以直接把旧版 .env 复制到新版项目根目录，脚本会自动更新它。配置含义参考 .env.example 文件中的注解。
+
+```shell
+cp .env.example .env;
+vim .env;
+```
+
+修改完成后，输入 `:wq` 保存并退出。
+
+#### 4、启动
+
+注意：以下命令均需要在 docker-compose.yml 所在目录执行才有效。
+
+```shell
+make up
+```
+
+没错，就是这么简单。然后可以执行 `make logs` 查看实时日志。
+
+##### 4.1、常用命令
+
+启动或者更新到最新版
+
+```shell
+make up
+```
+
+停止
+
+```shell
+make down
+```
+
+查看实时日志
+
+```shell
+make logs
+```
+
+清理容器占用的空间
+
+```shell
+make clear
+```
+
+重启容器
+
+```shell
+make restart
+```
+
+*通过 docker compose 部署部分结束。*
+
 ### 🐳 通过 Docker 部署
 
 *如果你有自己的服务器，这是最推荐的部署方式。*
@@ -246,13 +361,13 @@ Docker 仓库地址为： [https://hub.docker.com/r/luolongfei/freenom](https://
 Debian / Ubuntu
 
 ```shell
-apt-get update && apt-get install -y wget vim
+apt-get update && apt-get install -y wget vim make
 ```
 
 CentOS
 
 ```shell
-yum update && yum install -y wget vim
+yum update && yum install -y wget vim make
 ```
 
 执行此命令等候自动安装 Docker
