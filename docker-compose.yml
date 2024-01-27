@@ -20,6 +20,7 @@ services:
         image: luolongfei/aws-waf-solver
         container_name: aws-waf-solver
         privileged: true
+        pull_policy: always
         extends:
             file: ./common.yml
             service: common_config

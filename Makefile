@@ -7,6 +7,7 @@ up:
 	git fetch --all
 	git reset --hard
 	git pull
+	docker compose pull aws-waf-solver
 	docker compose up --build -d
 	docker system prune -af
 
