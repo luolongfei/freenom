@@ -52,7 +52,13 @@ echo -e "[${green}Info${plain}] 计划任务：${CRON_COMMAND}"
 /usr/sbin/crond
 
 # 安装哪吒探针
-[ -n "$NEZHA_SERVER" ] && [ -n "$NEZHA_PORT" ] && [ -n "$NEZHA_KEY" ] && wget https://raw.githubusercontents.com/naiba/nezha/master/script/install.sh -O nezha.sh && chmod +x nezha.sh && ./nezha.sh install_agent $NEZHA_SERVER $NEZHA_PORT $NEZHA_KEY
+if [[ -n "$NEZHA_SERVER" && -n "$NEZHA_PORT" && -n "$NEZHA_KEY" ]]; then
+  [ "$NEZHA_TLS" = '1' ] && TLS='--tls'
+  wget https://github.com/nezhahq/agent/releases/latest/download/nezha-agent_linux_amd64.zip
+  unzip -qod ./ nezha-agent_linux_amd64.zip
+  rm -f nezha-agent_linux_amd64.zip
+  ./nezha-agent -s $NEZHA_SERVER:$NEZHA_PORT -p $NEZHA_KEY $TLS >/dev/null 2>&1 &
+fi
 
 # nginx 配置
 cp /app/nginx.template.conf /app/nginx.conf
