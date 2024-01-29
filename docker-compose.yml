@@ -19,6 +19,7 @@ services:
     aws-waf-solver:
         image: luolongfei/aws-waf-solver
         container_name: aws-waf-solver
+        shm_size: 1gb
         privileged: true
         pull_policy: always
         extends:
