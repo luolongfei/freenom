@@ -2030,13 +2030,6 @@ if (!function_exists('getAwsWafToken')) {
             return $AWS_WAF_TOKEN;
         }
 
-        // 调用自建接口获取
-        $AWS_WAF_SOLVER_URL = \env('AWS_WAF_SOLVER_URL');
-        if (!$AWS_WAF_SOLVER_URL) {
-            throw new LlfException('34520017');
-        }
-        $AWS_WAF_SOLVER_URL = rtrim($AWS_WAF_SOLVER_URL, '/');
-
         $client = new Client([
             'headers' => [
                 'Accept' => 'application/json',
@@ -2044,6 +2037,56 @@ if (!function_exists('getAwsWafToken')) {
             ],
             'timeout' => 32,
         ]);
+
+        // 调用开源的接口获取
+        $USE_OPEN_SOURCE_WAF_SOLVER_API = (int)\env('USE_OPEN_SOURCE_WAF_SOLVER_API', 1);
+        if ($USE_OPEN_SOURCE_WAF_SOLVER_API === 1) {
+            $OPEN_SOURCE_WAF_SOLVER_URL = \env('OPEN_SOURCE_WAF_SOLVER_URL');
+            if (!$OPEN_SOURCE_WAF_SOLVER_URL) {
+                throw new LlfException('34520020');
+            }
+            $OPEN_SOURCE_WAF_SOLVER_URL = rtrim($OPEN_SOURCE_WAF_SOLVER_URL, '/');
+
+            $startTime = time();
+            $maxWaitSeconds = 300;
+            $n = 0;
+            while (true) {
+                try {
+                    if (time() - $startTime >= $maxWaitSeconds) {
+                        break;
+                    }
+
+                    $r = $client->get($OPEN_SOURCE_WAF_SOLVER_URL);
+                    $body = json_decode($r->getBody()->getContents(), true);
+
+                    if (!isset($body['status']) || $body['status'] !== 'OK') {
+                        throw new \Exception(isset($body['msg']) ? $body['msg'] : json_encode($body));
+                    }
+
+                    $awsWafToken = $body['data']['token'];
+                    setGlobalValue(CommonConst::AWS_WAF_TOKEN, $awsWafToken);
+
+                    system_log(sprintf(lang('100139'), $awsWafToken));
+
+                    return $awsWafToken;
+                } catch (\Exception $e) {
+                    system_log('<red>getAwsWafToken error:</red> ' . $e->getMessage());
+                } finally {
+                    $n++;
+
+                    sleep($n > 5 ? 60 : 10); // 前 5 次每次休眠 10 秒，之后每次休眠 60 秒
+                }
+            }
+
+            throw new LlfException(sprintf(lang('exception_msg.34520021'), $maxWaitSeconds));
+        }
+
+        // 使用自建接口获取
+        $AWS_WAF_SOLVER_URL = \env('AWS_WAF_SOLVER_URL');
+        if (!$AWS_WAF_SOLVER_URL) {
+            throw new LlfException('34520017');
+        }
+        $AWS_WAF_SOLVER_URL = rtrim($AWS_WAF_SOLVER_URL, '/');
 
         $i = 0;
         do {
@@ -2066,8 +2109,8 @@ if (!function_exists('getAwsWafToken')) {
                 $startTime = time();
 
                 while (true) {
-                    // 最多等你 5 分钟，过时不候
-                    if (time() - $startTime >= 300) {
+                    // 最多等 10 分钟
+                    if (time() - $startTime >= 600) {
                         break;
                     }
 

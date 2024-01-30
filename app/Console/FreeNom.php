@@ -20,7 +20,7 @@ use GuzzleHttp\Cookie\SetCookie;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.6.0';
+    const VERSION = 'v0.6.1';
 
     const TIMEOUT = 33;
 
@@ -435,6 +435,8 @@ class FreeNom extends Base
         $accounts = $this->getAccounts();
         $totalAccounts = count($accounts);
 
+        $awsWafToken = getAwsWafToken();
+
         system_log(sprintf(lang('100049'), $totalAccounts));
 
         foreach ($accounts as $index => $account) {
@@ -446,8 +448,6 @@ class FreeNom extends Base
                 system_log(sprintf(lang('100050'), get_local_num($num), $this->username, $num, $totalAccounts));
 
                 $this->jar = new CookieJar(); // 所有请求共用一个 CookieJar 实例
-
-                $awsWafToken = getAwsWafToken();
                 $this->jar->setCookie(buildAwsWafCookie($awsWafToken));
 
                 $this->login($this->username, $this->password);
