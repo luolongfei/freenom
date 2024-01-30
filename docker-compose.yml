@@ -25,8 +25,6 @@ services:
         extends:
             file: ./common.yml
             service: common_config
-        ports:
-            - 2019:2019
         volumes:
             - ./.env:/app/.env
 
