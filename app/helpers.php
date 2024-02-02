@@ -2026,7 +2026,7 @@ if (!function_exists('getAwsWafToken')) {
     {
         // 优先从全局变量中获取
         $AWS_WAF_TOKEN = getGlobalValue(CommonConst::AWS_WAF_TOKEN);
-        if ($AWS_WAF_TOKEN) {
+        if ($AWS_WAF_TOKEN !== null) {
             return $AWS_WAF_TOKEN;
         }
 
