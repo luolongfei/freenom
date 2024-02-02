@@ -1985,6 +1985,7 @@ if (!function_exists('buildAwsWafCookie')) {
     function buildAwsWafCookie(string $awsWafToken)
     {
         $cookie = new SetCookie();
+
         $cookie->setName('aws-waf-token');
         $cookie->setValue($awsWafToken);
         $cookie->setDomain('.my.freenom.com');
@@ -2071,11 +2072,11 @@ if (!function_exists('getAwsWafToken')) {
                     return $awsWafToken;
                 } catch (\Exception $e) {
                     system_log('<red>getAwsWafToken error:</red> ' . $e->getMessage());
-                } finally {
-                    $n++;
-
-                    sleep($n > 5 ? 60 : 10); // 前 5 次每次休眠 10 秒，之后每次休眠 60 秒
                 }
+
+                $n++;
+
+                sleep($n > 5 ? 60 : 10); // 前 5 次每次休眠 10 秒，之后每次休眠 60 秒
             }
 
             throw new LlfException(sprintf(lang('exception_msg.34520021'), $maxWaitSeconds));
@@ -2141,9 +2142,9 @@ if (!function_exists('getAwsWafToken')) {
                 }
             } catch (\Exception $e) {
                 system_log('<red>getAwsWafToken error:</red> ' . $e->getMessage());
-            } finally {
-                sleep(1);
             }
+
+            sleep(1);
 
             $i++;
         } while ($i <= 10);
