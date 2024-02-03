@@ -491,7 +491,7 @@ if (!function_exists('getAwsWafToken')) {
                     $awsWafToken = $body['data']['token'];
                     setGlobalValue(CommonConst::AWS_WAF_TOKEN, $awsWafToken);
 
-                    system_log($awsWafToken === '' ? \lang('100140') : sprintf(lang('100139'), $awsWafToken));
+                    system_log(sprintf(lang('100139'), $awsWafToken));
 
                     return $awsWafToken;
                 } catch (\Exception $e) {
@@ -560,7 +560,7 @@ if (!function_exists('getAwsWafToken')) {
                     $awsWafToken = $body['data']['result'] ?? '';
                     setGlobalValue(CommonConst::AWS_WAF_TOKEN, $awsWafToken);
 
-                    system_log($awsWafToken === '' ? \lang('100140') : sprintf(lang('100139'), $awsWafToken));
+                    system_log(sprintf(lang('100139'), $awsWafToken));
 
                     return $awsWafToken;
                 }
@@ -631,5 +631,33 @@ if (!function_exists('delGlobalValue')) {
     function delGlobalValue(string $name)
     {
         GlobalValue::getInstance()->del($name);
+    }
+}
+
+if (!function_exists('needAwsWafToken')) {
+    /**
+     * @return bool
+     */
+    function needAwsWafToken()
+    {
+        try {
+            $client = new Client([
+                'headers' => [
+                    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                    'Accept-Encoding' => 'gzip, deflate, br',
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+                ],
+                'timeout' => 6.2011,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_AUTOREFERER => true,
+                'verify' => config('verify_ssl'),
+                'proxy' => config('freenom_proxy'),
+            ]);
+            $res = $client->get('https://my.freenom.com/clientarea.php');
+
+            return $res->getStatusCode() != 200;
+        } catch (\Exception $e) {
+            return stripos($e->getMessage(), '405') !== false;
+        }
     }
 }
