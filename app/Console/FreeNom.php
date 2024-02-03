@@ -20,7 +20,7 @@ use GuzzleHttp\Cookie\SetCookie;
 
 class FreeNom extends Base
 {
-    const VERSION = 'v0.6.0';
+    const VERSION = 'v0.6.1';
 
     const TIMEOUT = 33;
 
@@ -93,7 +93,7 @@ class FreeNom extends Base
             'headers' => [
                 'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'Accept-Encoding' => 'gzip, deflate, br',
-                'User-Agent' => sprintf('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/%s Safari/537.36', get_random_user_agent()),
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
             ],
             'timeout' => self::TIMEOUT,
             CURLOPT_FOLLOWLOCATION => true,
@@ -435,6 +435,8 @@ class FreeNom extends Base
         $accounts = $this->getAccounts();
         $totalAccounts = count($accounts);
 
+        $awsWafToken = getAwsWafToken();
+
         system_log(sprintf(lang('100049'), $totalAccounts));
 
         foreach ($accounts as $index => $account) {
@@ -446,9 +448,9 @@ class FreeNom extends Base
                 system_log(sprintf(lang('100050'), get_local_num($num), $this->username, $num, $totalAccounts));
 
                 $this->jar = new CookieJar(); // 所有请求共用一个 CookieJar 实例
-
-                $awsWafToken = getAwsWafToken();
-                $this->jar->setCookie(buildAwsWafCookie($awsWafToken));
+                if ($awsWafToken !== '') {
+                    $this->jar->setCookie(buildAwsWafCookie($awsWafToken));
+                }
 
                 $this->login($this->username, $this->password);
 

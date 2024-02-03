@@ -27,6 +27,8 @@ return [
         '34520017' => 'The AWS_WAF_SOLVER_URL environment variable is not configured',
         '34520018' => 'Failed to get AWS WAF Token',
         '34520019' => '<light_green>Will automatically use the new AWS WAF Token</light_green>',
+        '34520020' => 'The OPEN_SOURCE_WAF_SOLVER_URL environment variable is not configured',
+        '34520021' => 'Waiting for the open source api to return the token for more than %d seconds, still unable to obtain a valid token, this time can not continue to execute',
     ],
     'messages' => [
         '100001' => 'The cookie value named WHMCSZH5eHTGhfvzP could not be obtained, so this login is not valid, please check if your account or password is correct',
@@ -161,6 +163,7 @@ return [
         '100136' => 'Pushplus',
         '100137' => 'Pushplus Failed to send message: <red>%s</red>',
         '100138' => '<light_green>%s login successfully</light_green>',
-        '100139' => '<light_green>AWS WAF token has been acquired: %s</light_green>',
+        '100139' => '<light_green>AWS WAF token has been acquired %s</light_green>',
+        '100140' => '<light_green>no need aws waf token</light_green>',
     ],
 ];
