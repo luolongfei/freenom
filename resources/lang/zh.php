@@ -164,5 +164,6 @@ return [
         '100137' => 'Pushplus 消息发送失败：<red>%s</red>',
         '100138' => '<light_green>%s 登录成功</light_green>',
         '100139' => '<light_green>已获取 aws waf token %s</light_green>',
+        '100140' => '<light_green>本次无需 aws waf token</light_green>',
     ],
 ];
