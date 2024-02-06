@@ -165,6 +165,6 @@ return [
         '100138' => '<light_green>%s 登录成功</light_green>',
         '100139' => '<light_green>已获取 aws waf token %s</light_green>',
         '100140' => '<light_green>本次无需 aws waf token</light_green>',
-        '100141' => '检测到 405 人机验证，将于 9 秒后尝试获取 aws waf token',
+        '100141' => '检测到 405 人机验证，将于 9 秒后再次尝试获取 aws waf token',
     ],
 ];

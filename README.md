@@ -29,7 +29,7 @@ Freenom 已经加上了 AWS WAF CAPTCHA 用于各个页面的验证，作为回�
 
 [📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
 
-[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)（请使用此方式部署 v0.6.0 版本，其它部署方式的文档后续更新）
+[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)
 
 [🐳 通过 Docker 方式部署](#-通过-docker-部署)（推荐，最简单的部署方式之一）
 
