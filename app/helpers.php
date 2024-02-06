@@ -371,9 +371,13 @@ if (!function_exists('autoRetry')) {
                     throw $e;
                 }
 
-                $sleepTime = getSleepTime($retryCount);
+                $sleepTime = getSleepTime($retryCount, 2, 10);
 
                 if (stripos($e->getMessage(), '405') !== false) {
+                    system_log(\lang('100141'));
+
+                    sleep(9);
+
                     // aws waf token 失效，将重新获取新的 token
                     $handleInvalidToken = false;
                     foreach ($params as &$param) {
@@ -388,6 +392,8 @@ if (!function_exists('autoRetry')) {
                     }
 
                     system_log($handleInvalidToken ? \lang('exception_msg.34520019') : sprintf(lang('exception_msg.34520015'), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
+
+                    continue;
                 } else {
                     system_log(sprintf(lang('exception_msg.34520016'), $e->getMessage(), $sleepTime, $maxRetryCount, $retryCount, $maxRetryCount));
                 }
