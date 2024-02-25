@@ -19,7 +19,7 @@ class LlfException extends \Exception
             if (is_array($additional)) {
                 array_unshift($additional, $message);
                 $message = call_user_func_array('sprintf', $additional);
-            } else if (is_string($additional)) {
+            } else if (is_string($additional) || is_numeric($additional)) {
                 $message = sprintf($message, $additional);
             }
         }

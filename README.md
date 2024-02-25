@@ -12,8 +12,11 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div>
 
-2024/02/07 Freenom 提供免费顶级域名的时代终结了，也不太可能会有替代品，江湖路远，有缘再见。更多消息可在热心网友的电报群内交流。
+<b>2024/02/07 Freenom 已被撤销域名相关执照，所有人的域名都被强制改为 peddling 状态，目前可以通过给 freenom 发邮件请求恢复域名，官方将帮你把域名续期到 9 年后，
+不过这个 9 年有可能只是暂时的，大概率后续会直接删域名，所以各位最好尽早使用付费域名替换之。江湖路远，后会有期。更多消息可在热心网友的电报群内交流。</b>
 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
+
+<b>On February 7, 2024, Freenom's domain-related licenses were revoked, and everyone's domains were forcibly changed to a peddling status. Currently, you can request to restore your domain by sending an email to Freenom. The official will help you renew your domain for 9 years. However, this 9-year period may only be temporary, and there is a high probability that the domain will be deleted later. Therefore, it is best for everyone to replace it with a paid domain as soon as possible. The road ahead is long, we will meet again. For more news, you can communicate in the Telegram group:</b> [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
 如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
 
