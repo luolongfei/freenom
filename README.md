@@ -12,8 +12,6 @@
 Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
 </div> 
 
-如果你需要一台高性价比的服务器，可以参考 [美国便宜 VPS](https://go.llfapp.com/cc)
-
 [📢 公告](#-公告)
 
 [🌿 特别感谢 Special Thanks](#-特别感谢-special-thanks)
