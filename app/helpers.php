@@ -97,7 +97,8 @@ if (!function_exists('system_log')) {
                 $file = $path . ($fileName ?: date('d')) . '.log';
 
                 if (!is_dir($path)) {
-                    mkdir($path, 0666, true); // 0666 所有用户可读写
+                    mkdir($path, 0766, true); // 0766 赋予所有用户读写
+                    chmod($path, 0766);    // 显式 chmod 确保权限设置正确
                 }
 
                 $handle = fopen($file, 'a'); // 追加而非覆盖
