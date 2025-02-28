@@ -555,7 +555,7 @@ if (!function_exists('getAwsWafToken')) {
 
                     $taskStatus = $body['data']['task_status'];
                     if ($taskStatus !== 'done') { // 任务进行中，继续等待
-                        sleep(3);
+                        sleep(2);
 
                         continue;
                     }
@@ -654,7 +654,7 @@ if (!function_exists('needAwsWafToken')) {
                     'Accept-Encoding' => 'gzip, deflate, br',
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
                 ],
-                'timeout' => 6.2011,
+                'timeout' => 4.2011,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_AUTOREFERER => true,
                 'verify' => config('verify_ssl'),
