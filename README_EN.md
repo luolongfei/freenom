@@ -14,8 +14,6 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 
 [📃 Why write this script](#-Why-write-this-script)
 
-[🌿 Special Thanks](#-special-thanks)
-
 [🍭 Demo](#-Demo)
 
 [🎁 Preparation](#-Preparation)
@@ -43,14 +41,6 @@ Documentation: English version | [中文版](https://github.com/luolongfei/freen
 As we all know, Freenom is the only merchant on the planet that provides free top-level domain names, but it needs to be
 renewed every year for up to one year at a time. Since I applied for a bunch of domain names, and not at the same time,
 So I felt frustrated every time I renewed, so I wrote this automatic renewal script.
-
-### 🌿 Special Thanks
-
-Thanks for non-commercial open source development authorization by JetBrains.
-
-<a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
-</a>
 
 ### 🍭 Demo
 
