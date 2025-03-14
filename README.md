@@ -14,8 +14,6 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [📢 公告](#-公告)
 
-[🌿 特别感谢 Special Thanks](#-特别感谢-special-thanks)
-
 [📃 引言](#-引言)
 
 [🍭 效果](#-效果)
@@ -63,16 +61,6 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 - 热心网友创建了`Freenom 续期事务局`群组，可供交流、测试、反馈， **加入可直接访问 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew) ，或者扫码加入：**
 
 <a href="https://t.me/freenom_auto_renew"><img src="https://s2.loli.net/2022/10/11/k4sSoXqMVfpIY3d.png" alt="freenom_tg_group.png" border="0" width="220px" height="280px" /></a>
-
-### 🌿 特别感谢 Special Thanks
-
-感谢 JetBrains 提供的非商业开源软件开发授权。
-
-Thanks for non-commercial open source development authorization by JetBrains.
-
-<a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width="200px" height="200px" alt="JetBrains Logo (Main) logo.">
-</a>
 
 ### 📃 引言
 
