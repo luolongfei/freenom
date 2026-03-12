@@ -5,7 +5,183 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 2.9.0 - 2026-03-10
+
+### Added
+
+- Added nested array expansion support to `MultipartStream`
+- Added `@return static` to `MessageTrait` methods
+
+### Changed
+
+- Updated MIME type mappings
+
+## 2.8.1 - 2026-03-10
+
+### Fixed
+
+- Encode `+` signs in `Uri::withQueryValue()` and `Uri::withQueryValues()` to prevent them being interpreted as spaces
+
+## 2.8.0 - 2025-08-23
+
+### Added
+
+- Allow empty lists as header values
+
+### Changed
+
+- PHP 8.5 support
+
+## 2.7.1 - 2025-03-27
+
+### Fixed
+
+- Fixed uppercase IPv6 addresses in URI
+
+### Changed
+
+- Improve uploaded file error message
+
+## 2.7.0 - 2024-07-18
+
+### Added
+
+- Add `Utils::redactUserInfo()` method
+- Add ability to encode bools as ints in `Query::build`
+
+## 2.6.3 - 2024-07-18
+
+### Fixed
+
+- Make `StreamWrapper::stream_stat()` return `false` if inner stream's size is `null` 
+
+### Changed
+
+- PHP 8.4 support
+
+## 2.6.2 - 2023-12-03
+
+### Fixed
+
+- Fixed another issue with the fact that PHP transforms numeric strings in array keys to ints
+
+### Changed
+
+- Updated links in docs to their canonical versions
+- Replaced `call_user_func*` with native calls
+
+## 2.6.1 - 2023-08-27
+
+### Fixed
+
+- Properly handle the fact that PHP transforms numeric strings in array keys to ints
+
+## 2.6.0 - 2023-08-03
+
+### Changed
+
+- Updated the mime type map to add some new entries, fix a couple of invalid entries, and remove an invalid entry
+- Fallback to `application/octet-stream` if we are unable to guess the content type for a multipart file upload
+
+## 2.5.1 - 2023-08-03
+
+### Fixed
+
+- Corrected mime type for `.acc` files to `audio/aac`
+
+### Changed
+
+- PHP 8.3 support
+
+## 2.5.0 - 2023-04-17
+
+### Changed
+
+- Adjusted `psr/http-message` version constraint to `^1.1 || ^2.0`
+
+## 2.4.5 - 2023-04-17
+
+### Fixed
+
+- Prevent possible warnings on unset variables in `ServerRequest::normalizeNestedFileSpec`
+- Fixed `Message::bodySummary` when `preg_match` fails
+- Fixed header validation issue
+
+## 2.4.4 - 2023-03-09
+
+### Changed
+
+- Removed the need for `AllowDynamicProperties` in `LazyOpenStream`
+
+## 2.4.3 - 2022-10-26
+
+### Changed
+
+- Replaced `sha1(uniqid())` by `bin2hex(random_bytes(20))`
+
+## 2.4.2 - 2022-10-25
+
+### Fixed
+
+- Fixed erroneous behaviour when combining host and relative path
+
+## 2.4.1 - 2022-08-28
+
+### Fixed
+
+- Rewind body before reading in `Message::bodySummary`
+
+## 2.4.0 - 2022-06-20
+
+### Added
+
+- Added provisional PHP 8.2 support
+- Added `UriComparator::isCrossOrigin` method
+
+## 2.3.0 - 2022-06-09
+
+### Fixed
+
+- Added `Header::splitList` method
+- Added `Utils::tryGetContents` method
+- Improved `Stream::getContents` method
+- Updated mimetype mappings
+
+## 2.2.2 - 2022-06-08
+
+### Fixed
+
+- Fix `Message::parseRequestUri` for numeric headers
+- Re-wrap exceptions thrown in `fread` into runtime exceptions
+- Throw an exception when multipart options is misformatted
+
+## 2.2.1 - 2022-03-20
+
+### Fixed
+
+- Correct header value validation
+
+## 2.2.0 - 2022-03-20
+
+### Added
+
+- A more compressive list of mime types
+- Add JsonSerializable to Uri
+- Missing return types
+
+### Fixed
+
+- Bug MultipartStream no `uri` metadata
+- Bug MultipartStream with filename for `data://` streams
+- Fixed new line handling in MultipartStream
+- Reduced RAM usage when copying streams
+- Updated parsing in `Header::normalize()`
+
+## 2.1.1 - 2022-03-20
+
+### Fixed
+
+- Validate header values properly
 
 ## 2.1.0 - 2021-10-06
 
@@ -45,7 +221,7 @@ Identical to the RC release.
 ### Removed
 
 - PHP < 7.2 support
-- All functions in the Guzzle\Psr7 namespace
+- All functions in the `GuzzleHttp\Psr7` namespace
 
 ## 1.8.1 - 2021-03-21
 

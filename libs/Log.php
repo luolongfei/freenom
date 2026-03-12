@@ -66,7 +66,9 @@ class Log extends Base
      */
     public static function debug($message, array $context = [])
     {
-        return self::logger()->addDebug($message, $context);
+        self::logger()->debug($message, $context);
+
+        return true;
     }
 
     /**
@@ -78,7 +80,9 @@ class Log extends Base
      */
     public static function info($message, array $context = [])
     {
-        return self::logger()->addInfo($message, $context);
+        self::logger()->info($message, $context);
+
+        return true;
     }
 
     /**
@@ -90,7 +94,9 @@ class Log extends Base
      */
     public static function notice($message, array $context = [])
     {
-        return self::logger()->addNotice($message, $context);
+        self::logger()->notice($message, $context);
+
+        return true;
     }
 
     /**
@@ -102,7 +108,9 @@ class Log extends Base
      */
     public static function warning($message, array $context = [])
     {
-        return self::logger()->addWarning($message, $context);
+        self::logger()->warning($message, $context);
+
+        return true;
     }
 
     /**
@@ -114,7 +122,9 @@ class Log extends Base
      */
     public static function error($message, array $context = [])
     {
-        return self::logger()->addError($message, $context);
+        self::logger()->error($message, $context);
+
+        return true;
     }
 
     /**
@@ -126,7 +136,9 @@ class Log extends Base
      */
     public static function alert($message, array $context = [])
     {
-        return self::logger()->addAlert($message, $context);
+        self::logger()->alert($message, $context);
+
+        return true;
     }
 
     /**
@@ -138,6 +150,8 @@ class Log extends Base
      */
     public static function emergency($message, array $context = [])
     {
-        return self::logger()->addEmergency($message, $context);
+        self::logger()->emergency($message, $context);
+
+        return true;
     }
 }

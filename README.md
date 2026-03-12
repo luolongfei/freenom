@@ -4,7 +4,7 @@
 
 <h3>Freenom：freenom域名自动续期</h3>
 
-[![PHP version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![PHP version](https://img.shields.io/badge/php-%3E=8.1-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Docker pulls](https://img.shields.io/docker/pulls/luolongfei/freenom.svg?style=for-the-badge)](https://hub.docker.com/r/luolongfei/freenom)
 [![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
@@ -74,7 +74,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 ### 🎁 事前准备
 
-- VPS：随便一台服务器都行，系统推荐`Debian`。`PHP`版本需在`php7.3`及以上，如果有`Docker`环境则可无视这个限制。如果你没有服务器，可参考本文档部署到各种免费环境中。
+- VPS：随便一台服务器都行，系统推荐`Debian`。`PHP`版本需在`php8.1`及以上，如果有`Docker`环境则可无视这个限制。如果你没有服务器，可参考本文档部署到各种免费环境中。
 - 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。

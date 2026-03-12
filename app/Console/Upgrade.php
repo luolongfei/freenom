@@ -43,6 +43,11 @@ class Upgrade extends Base
     public $pushedVerFile;
 
     /**
+     * @var Client
+     */
+    protected $client;
+
+    /**
      * @return Upgrade
      */
     public static function getInstance()

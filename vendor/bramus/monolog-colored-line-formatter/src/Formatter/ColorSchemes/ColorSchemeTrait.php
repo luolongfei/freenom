@@ -4,20 +4,22 @@ namespace Bramus\Monolog\Formatter\ColorSchemes;
 
 use Bramus\Ansi\Ansi;
 use Bramus\Ansi\Writers\BufferWriter;
+use Exception;
+use Monolog\Level;
 
 trait ColorSchemeTrait
 {
     /**
      * ANSI Wrapper which provides colors
-     * @var \Bramus\Ansi\Ansi
+     * @var Ansi
      */
-    protected $ansi = null;
+    protected Ansi $ansi;
 
     /**
      * The Color Scheme Array
      * @var array
      */
-    protected $colorScheme = array();
+    protected array $colorScheme = array();
 
     /*
      * Constructor
@@ -32,11 +34,10 @@ trait ColorSchemeTrait
      * Set the Color Scheme Array
      * @param array $colorScheme The Color Scheme Array
      */
-    public function setColorizeArray(array $colorScheme)
+    public function setColorizeArray(array $colorScheme): void
     {
         // Only store entries that exist as Monolog\Logger levels
-        $allowedLogLevels = array_values(\Monolog\Logger::getLevels());
-        $colorScheme = array_intersect_key($colorScheme, array_flip($allowedLogLevels));
+        $colorScheme = array_intersect_key($colorScheme, array_combine(Level::VALUES, Level::NAMES));
 
         // Store the filtered colorScheme
         $this->colorScheme = $colorScheme;
@@ -46,7 +47,7 @@ trait ColorSchemeTrait
      * Get the Color Scheme Array
      * @return array The Color Scheme Array
      */
-    public function getColorizeArray()
+    public function getColorizeArray(): array
     {
         return $this->colorScheme;
     }
@@ -56,16 +57,17 @@ trait ColorSchemeTrait
      * @param  int    $level The Logger Level
      * @return string The Color Scheme String
      */
-    public function getColorizeString($level)
+    public function getColorizeString($level): string
     {
-        return isset($this->colorScheme[$level]) ? $this->colorScheme[$level] : '';
+        return $this->colorScheme[$level] ?? '';
     }
 
     /**
      * Get the string identifier that closes/finishes the styling
      * @return string The reset string
+     * @throws Exception
      */
-    public function getResetString()
+    public function getResetString(): string
     {
         return $this->ansi->reset()->get();
     }

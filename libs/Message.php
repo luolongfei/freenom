@@ -41,14 +41,18 @@ abstract class Message extends Base
                 continue;
             }
 
-            $serviceInstance = self::getInstance($conf['class'], 'IS_MESSAGE_SERVICE');
+            try {
+                $serviceInstance = self::getInstance($conf['class'], 'IS_MESSAGE_SERVICE');
 
-            if (!$serviceInstance instanceof MessageServiceInterface) {
-                throw new \Exception(sprintf(lang('100056'), $conf['class']));
-            }
+                if (!$serviceInstance instanceof MessageServiceInterface) {
+                    throw new \Exception(sprintf(lang('100056'), $conf['class']));
+                }
 
-            if ($serviceInstance->$method(...$params) && !$result) { // 任一方式送信成功即为成功
-                $result = true;
+                if ($serviceInstance->$method(...$params) && !$result) { // 任一方式送信成功即为成功
+                    $result = true;
+                }
+            } catch (\Throwable $e) {
+                system_log(sprintf('%s送信失败：%s', $conf['name'], $e->getMessage()));
             }
         }
 

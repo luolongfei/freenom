@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,9 +20,7 @@ use Predis\Protocol\ProtocolException;
  * Handler for the bulk response type in the standard Redis wire protocol.
  * It translates the payload to a string or a NULL.
  *
- * @link http://redis.io/topics/protocol
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
+ * @see http://redis.io/topics/protocol
  */
 class BulkResponse implements ResponseHandlerInterface
 {
@@ -34,7 +33,7 @@ class BulkResponse implements ResponseHandlerInterface
 
         if ("$length" !== $payload) {
             CommunicationException::handle(new ProtocolException(
-                $connection, "Cannot parse '$payload' as a valid length for a bulk response."
+                $connection, "Cannot parse '$payload' as a valid length for a bulk response [{$connection->getParameters()}]"
             ));
         }
 
@@ -47,9 +46,7 @@ class BulkResponse implements ResponseHandlerInterface
         }
 
         CommunicationException::handle(new ProtocolException(
-            $connection, "Value '$payload' is not a valid length for a bulk response."
+            $connection, "Value '$payload' is not a valid length for a bulk response [{$connection->getParameters()}]"
         ));
-
-        return;
     }
 }

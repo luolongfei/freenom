@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,18 +16,34 @@ namespace Predis\Command;
  * Base class used to implement an higher level abstraction for commands based
  * on Lua scripting with EVAL and EVALSHA.
  *
- * @link http://redis.io/commands/eval
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
+ * @see http://redis.io/commands/eval
  */
-abstract class ScriptCommand extends ServerEvalSHA
+abstract class ScriptCommand extends Command
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'EVALSHA';
+    }
+
     /**
      * Gets the body of a Lua script.
      *
      * @return string
      */
     abstract public function getScript();
+
+    /**
+     * Calculates the SHA1 hash of the body of the script.
+     *
+     * @return string SHA1 hash.
+     */
+    public function getScriptHash()
+    {
+        return sha1($this->getScript());
+    }
 
     /**
      * Specifies the number of arguments that should be considered as keys.
@@ -55,16 +72,20 @@ abstract class ScriptCommand extends ServerEvalSHA
     /**
      * {@inheritdoc}
      */
-    protected function filterArguments(array $arguments)
+    public function setArguments(array $arguments)
     {
         if (($numkeys = $this->getKeysCount()) && $numkeys < 0) {
             $numkeys = count($arguments) + $numkeys;
         }
 
-        return array_merge(array(sha1($this->getScript()), (int) $numkeys), $arguments);
+        $arguments = array_merge([$this->getScriptHash(), (int) $numkeys], $arguments);
+
+        parent::setArguments($arguments);
     }
 
     /**
+     * Returns arguments for EVAL command.
+     *
      * @return array
      */
     public function getEvalArguments()
@@ -73,5 +94,15 @@ abstract class ScriptCommand extends ServerEvalSHA
         $arguments[0] = $this->getScript();
 
         return $arguments;
+    }
+
+    /**
+     * Returns the equivalent EVAL command as a raw command instance.
+     *
+     * @return RawCommand
+     */
+    public function getEvalCommand()
+    {
+        return new RawCommand('EVAL', $this->getEvalArguments());
     }
 }

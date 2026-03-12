@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,9 +20,7 @@ use Predis\Protocol\ProtocolException;
  * Handler for the multibulk response type in the standard Redis wire protocol.
  * It returns multibulk responses as PHP arrays.
  *
- * @link http://redis.io/topics/protocol
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
+ * @see http://redis.io/topics/protocol
  */
 class MultiBulkResponse implements ResponseHandlerInterface
 {
@@ -34,7 +33,7 @@ class MultiBulkResponse implements ResponseHandlerInterface
 
         if ("$length" !== $payload) {
             CommunicationException::handle(new ProtocolException(
-                $connection, "Cannot parse '$payload' as a valid length of a multi-bulk response."
+                $connection, "Cannot parse '$payload' as a valid length of a multi-bulk response [{$connection->getParameters()}]"
             ));
         }
 
@@ -42,10 +41,10 @@ class MultiBulkResponse implements ResponseHandlerInterface
             return;
         }
 
-        $list = array();
+        $list = [];
 
         if ($length > 0) {
-            $handlersCache = array();
+            $handlersCache = [];
             $reader = $connection->getProtocol()->getResponseReader();
 
             for ($i = 0; $i < $length; ++$i) {

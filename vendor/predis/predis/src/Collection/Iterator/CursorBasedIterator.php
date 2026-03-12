@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +12,10 @@
 
 namespace Predis\Collection\Iterator;
 
+use Iterator;
 use Predis\ClientInterface;
 use Predis\NotSupportedException;
+use ReturnTypeWillChange;
 
 /**
  * Provides the base implementation for a fully-rewindable PHP iterator that can
@@ -24,10 +27,8 @@ use Predis\NotSupportedException;
  * can change several times during the iteration process.
  *
  * @see http://redis.io/commands/scan
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
  */
-abstract class CursorBasedIterator implements \Iterator
+abstract class CursorBasedIterator implements Iterator
 {
     protected $client;
     protected $match;
@@ -65,8 +66,8 @@ abstract class CursorBasedIterator implements \Iterator
      */
     protected function requiredCommand(ClientInterface $client, $commandID)
     {
-        if (!$client->getProfile()->supportsCommand($commandID)) {
-            throw new NotSupportedException("The current profile does not support '$commandID'.");
+        if (!$client->getCommandFactory()->supports($commandID)) {
+            throw new NotSupportedException("'$commandID' is not supported by the current command factory.");
         }
     }
 
@@ -77,7 +78,7 @@ abstract class CursorBasedIterator implements \Iterator
     {
         $this->valid = true;
         $this->fetchmore = true;
-        $this->elements = array();
+        $this->elements = [];
         $this->cursor = 0;
         $this->position = -1;
         $this->current = null;
@@ -90,7 +91,7 @@ abstract class CursorBasedIterator implements \Iterator
      */
     protected function getScanOptions()
     {
-        $options = array();
+        $options = [];
 
         if (strlen(strval($this->match)) > 0) {
             $options['MATCH'] = $this->match;
@@ -117,7 +118,7 @@ abstract class CursorBasedIterator implements \Iterator
      */
     protected function fetch()
     {
-        list($cursor, $elements) = $this->executeCommand();
+        [$cursor, $elements] = $this->executeCommand();
 
         if (!$cursor) {
             $this->fetchmore = false;
@@ -137,9 +138,9 @@ abstract class CursorBasedIterator implements \Iterator
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         $this->reset();
@@ -147,48 +148,47 @@ abstract class CursorBasedIterator implements \Iterator
     }
 
     /**
-     * {@inheritdoc}
+     * @return mixed
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function current()
     {
         return $this->current;
     }
 
     /**
-     * {@inheritdoc}
+     * @return int|null
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function key()
     {
         return $this->position;
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function next()
     {
-        tryFetch: {
+        tryFetch:
             if (!$this->elements && $this->fetchmore) {
                 $this->fetch();
             }
 
-            if ($this->elements) {
-                $this->extractNext();
-            } elseif ($this->cursor) {
-                goto tryFetch;
-            } else {
-                $this->valid = false;
-            }
+        if ($this->elements) {
+            $this->extractNext();
+        } elseif ($this->cursor) {
+            goto tryFetch;
+        } else {
+            $this->valid = false;
         }
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return $this->valid;

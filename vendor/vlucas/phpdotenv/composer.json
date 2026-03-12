@@ -16,30 +16,45 @@
         }
     ],
     "require": {
-        "php": "^5.4 || ^7.0 || ^8.0",
-        "phpoption/phpoption": "^1.5.2",
-        "symfony/polyfill-ctype": "^1.17"
+        "php": "^7.2.5 || ^8.0",
+        "ext-pcre": "*",
+        "graham-campbell/result-type": "^1.1.4",
+        "phpoption/phpoption": "^1.9.5",
+        "symfony/polyfill-ctype": "^1.26",
+        "symfony/polyfill-mbstring": "^1.26",
+        "symfony/polyfill-php80": "^1.26"
     },
     "require-dev": {
         "ext-filter": "*",
-        "ext-pcre": "*",
-        "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.21"
+        "bamarni/composer-bin-plugin": "^1.8.2",
+        "phpunit/phpunit":"^8.5.34 || ^9.6.13 || ^10.4.2"
     },
     "autoload": {
         "psr-4": {
             "Dotenv\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Dotenv\\Tests\\": "tests/Dotenv/"
+        }
+    },
     "suggest": {
-        "ext-filter": "Required to use the boolean validator.",
-        "ext-pcre": "Required to use most of the library."
+        "ext-filter": "Required to use the boolean validator."
     },
     "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        },
         "preferred-install": "dist"
     },
     "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
+        },
         "branch-alias": {
-            "dev-master": "3.6-dev"
+            "dev-master": "5.6-dev"
         }
     }
 }

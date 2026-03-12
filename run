@@ -114,8 +114,8 @@ function huawei_handler($event, $context)
     $logger->info('设置环境变量');
     $allEnvKeys = array_keys((array)env());
     foreach ($allEnvKeys as $key) {
-        $value = $context->getUserData((string)$key);
-        if (strlen($value) > 0) {
+        $value = (string)($context->getUserData((string)$key) ?? '');
+        if ($value !== '') {
             $logger->info('从控制台发现环境变量：' . $key);
             putenv("{$key}={$value}");
         }
@@ -139,7 +139,7 @@ function run()
         $class::getInstance()->$fn();
 
         return IS_SCF ? lang('100007') : true;
-    } catch (\Exception $e) {
+    } catch (\Throwable $e) {
         system_log(sprintf(lang('100006'), $e->getMessage()), $e->getTrace());
         Message::send(lang('100004') . $e->getMessage(), lang('100005'));
     }
