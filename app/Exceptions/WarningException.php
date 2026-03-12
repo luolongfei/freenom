@@ -11,7 +11,7 @@ namespace Luolongfei\App\Exceptions;
 
 class WarningException extends \Exception
 {
-    public function __construct($code, $additional = null, \Exception $previous = null)
+    public function __construct($code, $additional = null, ?\Throwable $previous = null)
     {
         $message = lang('exception_msg.' . $code) ?: '';
 

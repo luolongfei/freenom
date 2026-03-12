@@ -37,7 +37,11 @@ class Env extends Base
      */
     private function setAllValues($filename, $overload)
     {
-        $this->allValues = $overload ? Dotenv::create(ROOT_PATH, $filename)->overload() : Dotenv::create(ROOT_PATH, $filename)->load();
+        $dotenv = $overload
+            ? Dotenv::createUnsafeMutable(ROOT_PATH, $filename)
+            : Dotenv::createUnsafeImmutable(ROOT_PATH, $filename);
+
+        $this->allValues = $dotenv->load();
     }
 
     /**

@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,44 +13,40 @@
 namespace Predis\Configuration;
 
 /**
- * Manages Predis options with filtering, conversion and lazy initialization of
- * values using a mini-DI container approach.
+ * Default client options container for Predis\Client.
+ *
+ * Pre-defined options have their specialized handlers that can filter, convert
+ * an lazily initialize values in a mini-DI container approach.
  *
  * {@inheritdoc}
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class Options implements OptionsInterface
 {
+    /** @var array */
+    protected $handlers = [
+        'aggregate' => Option\Aggregate::class,
+        'cluster' => Option\Cluster::class,
+        'replication' => Option\Replication::class,
+        'connections' => Option\Connections::class,
+        'commands' => Option\Commands::class,
+        'exceptions' => Option\Exceptions::class,
+        'prefix' => Option\Prefix::class,
+        'crc16' => Option\CRC16::class,
+        'upstream_driver' => Option\UpstreamDriver::class,
+    ];
+
+    /** @var array */
+    protected $options = [];
+
+    /** @var array */
     protected $input;
-    protected $options;
-    protected $handlers;
 
     /**
-     * @param array $options Array of options with their values
+     * @param array|null $options Named array of client options
      */
-    public function __construct(array $options = array())
+    public function __construct(?array $options = null)
     {
-        $this->input = $options;
-        $this->options = array();
-        $this->handlers = $this->getHandlers();
-    }
-
-    /**
-     * Ensures that the default options are initialized.
-     *
-     * @return array
-     */
-    protected function getHandlers()
-    {
-        return array(
-            'cluster' => 'Predis\Configuration\ClusterOption',
-            'connections' => 'Predis\Configuration\ConnectionFactoryOption',
-            'exceptions' => 'Predis\Configuration\ExceptionsOption',
-            'prefix' => 'Predis\Configuration\PrefixOption',
-            'profile' => 'Predis\Configuration\ProfileOption',
-            'replication' => 'Predis\Configuration\ReplicationOption',
-        );
+        $this->input = $options ?? [];
     }
 
     /**
@@ -71,8 +68,8 @@ class Options implements OptionsInterface
     public function defined($option)
     {
         return
-            array_key_exists($option, $this->options) ||
-            array_key_exists($option, $this->input)
+            array_key_exists($option, $this->options)
+            || array_key_exists($option, $this->input)
         ;
     }
 
@@ -82,8 +79,8 @@ class Options implements OptionsInterface
     public function __isset($option)
     {
         return (
-            array_key_exists($option, $this->options) ||
-            array_key_exists($option, $this->input)
+            array_key_exists($option, $this->options)
+            || array_key_exists($option, $this->input)
         ) && $this->__get($option) !== null;
     }
 
@@ -100,14 +97,12 @@ class Options implements OptionsInterface
             $value = $this->input[$option];
             unset($this->input[$option]);
 
-            if (is_object($value) && method_exists($value, '__invoke')) {
-                $value = $value($this, $option);
-            }
-
             if (isset($this->handlers[$option])) {
                 $handler = $this->handlers[$option];
                 $handler = new $handler();
                 $value = $handler->filter($this, $value);
+            } elseif (is_object($value) && method_exists($value, '__invoke')) {
+                $value = $value($this);
             }
 
             return $this->options[$option] = $value;
@@ -116,7 +111,13 @@ class Options implements OptionsInterface
         if (isset($this->handlers[$option])) {
             return $this->options[$option] = $this->getDefault($option);
         }
+    }
 
-        return;
+    /**
+     * {@inheritDoc}
+     */
+    public function __set($option, $value)
+    {
+        $this->options[$option] = $value;
     }
 }

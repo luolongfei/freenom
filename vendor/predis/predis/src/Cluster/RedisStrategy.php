@@ -3,7 +3,8 @@
 /*
  * This file is part of the Predis package.
  *
- * (c) Daniele Alessandri <suppakilla@gmail.com>
+ * (c) 2009-2020 Daniele Alessandri
+ * (c) 2021-2026 Till Krüss
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,17 +19,15 @@ use Predis\NotSupportedException;
 /**
  * Default class used by Predis to calculate hashes out of keys of
  * commands supported by redis-cluster.
- *
- * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class RedisStrategy extends ClusterStrategy
 {
     protected $hashGenerator;
 
     /**
-     * @param HashGeneratorInterface $hashGenerator Hash generator instance.
+     * @param HashGeneratorInterface|null $hashGenerator Hash generator instance.
      */
-    public function __construct(HashGeneratorInterface $hashGenerator = null)
+    public function __construct(?HashGeneratorInterface $hashGenerator = null)
     {
         parent::__construct();
 
@@ -41,9 +40,8 @@ class RedisStrategy extends ClusterStrategy
     public function getSlotByKey($key)
     {
         $key = $this->extractKeyTag($key);
-        $slot = $this->hashGenerator->hash($key) & 0x3FFF;
 
-        return $slot;
+        return $this->hashGenerator->hash($key) & 0x3FFF;
     }
 
     /**
@@ -51,8 +49,7 @@ class RedisStrategy extends ClusterStrategy
      */
     public function getDistributor()
     {
-        throw new NotSupportedException(
-            'This cluster strategy does not provide an external distributor'
-        );
+        $class = get_class($this);
+        throw new NotSupportedException("$class does not provide an external distributor");
     }
 }

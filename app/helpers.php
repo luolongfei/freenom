@@ -181,6 +181,9 @@ if (!function_exists('lock_task')) {
             }
 
             $handle = fopen($lock, 'a'); // 追加而非覆盖
+            if ($handle === false) {
+                throw new \RuntimeException(sprintf('Unable to open lock file: %s', $lock));
+            }
 
             if (!filesize($lock)) {
                 chmod($lock, 0666);
@@ -243,9 +246,9 @@ if (!function_exists('system_check')) {
      */
     function system_check()
     {
-        // 由于各种云函数目前支持的最大的 PHP 版本为 7.2，故此处暂时不强制要求升级 PHP 7.3 以获得更好的兼容性
-        if (version_compare(PHP_VERSION, '7.2.0') < 0) {
-            throw new LlfException(34520006, ['7.3', PHP_VERSION]);
+        // 当前依赖组合要求 PHP 8.1 及以上版本
+        if (version_compare(PHP_VERSION, '8.1.0') < 0) {
+            throw new LlfException(34520006, ['8.1', PHP_VERSION]);
         }
 
         // 特殊环境无需检查这几项

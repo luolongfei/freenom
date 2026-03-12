@@ -141,7 +141,8 @@ class FreeNom extends Base
             throw new LlfException(34520002, $e->getMessage());
         }
 
-        if (empty($this->jar->getCookieByName('WHMCSZH5eHTGhfvzP')->getValue())) {
+        $loginCookie = $this->jar->getCookieByName('WHMCSZH5eHTGhfvzP');
+        if (!$loginCookie instanceof SetCookie || $loginCookie->getValue() === '') {
             throw new LlfException(34520002, lang('100001'));
         }
 
@@ -356,10 +357,12 @@ class FreeNom extends Base
 
         $tmp = [];
         foreach ($array as $k => $items) {
-            $combinedKey = '';
+            $combinedValues = [];
             foreach ($keys as $key) {
-                $combinedKey .= $items[$key];
+                $combinedValues[$key] = $items[$key] ?? null;
             }
+
+            $combinedKey = json_encode($combinedValues, JSON_UNESCAPED_UNICODE);
 
             if (isset($tmp[$combinedKey])) {
                 unset($array[$k]);
@@ -413,7 +416,7 @@ class FreeNom extends Base
     /**
      * 发送异常报告
      *
-     * @param $e \Exception|LlfException
+     * @param \Throwable $e
      */
     private function sendExceptionReport($e)
     {
@@ -466,7 +469,7 @@ class FreeNom extends Base
             } catch (LlfException $e) {
                 system_log(sprintf(lang('100051'), $e->getMessage()));
                 $this->sendExceptionReport($e);
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 system_log(sprintf(lang('100052'), $e->getMessage()), $e->getTrace());
                 $this->sendExceptionReport($e);
             }

@@ -19,6 +19,9 @@ final class LimitStream implements StreamInterface
     /** @var int Limit the number of bytes that can be read */
     private $limit;
 
+    /** @var StreamInterface */
+    private $stream;
+
     /**
      * @param StreamInterface $stream Stream to wrap
      * @param int             $limit  Total number of bytes to allow to be read
@@ -60,9 +63,9 @@ final class LimitStream implements StreamInterface
             return null;
         } elseif ($this->limit === -1) {
             return $length - $this->offset;
-        } else {
-            return min($this->limit, $length - $this->offset);
         }
+
+        return min($this->limit, $length - $this->offset);
     }
 
     /**

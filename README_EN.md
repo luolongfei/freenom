@@ -4,7 +4,7 @@
 
 <h3>Freenom：Auto-renewal of freenom domain names.</h3>
 
-[![PHP version](https://img.shields.io/badge/php-%3E=7.3-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
+[![PHP version](https://img.shields.io/badge/php-%3E=8.1-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Docker pulls](https://img.shields.io/docker/pulls/luolongfei/freenom.svg?style=for-the-badge)](https://hub.docker.com/r/luolongfei/freenom)
 [![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
@@ -52,7 +52,7 @@ Whether the renewal is successful or unsuccessful or the script executes with an
 
 - Email of robot: Used to send notification emails.
 - Your email: Used to receive notification emails sent by robots.
-- VPS: Any server can be used. The system recommends `Debian`, and the PHP version must be` php7.3` or above.
+- VPS: Any server can be used. The system recommends `Debian`, and the PHP version must be `php8.1` or above.
 - No more
 
 ### 📪 Setting up Gmail

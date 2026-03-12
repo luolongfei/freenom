@@ -1,9 +1,9 @@
 # Monolog Colored Line Formatter
 
+[![Build Status](https://github.com/bramus/monolog-colored-line-formatter/workflows/CI/badge.svg)](https://github.com/bramus/monolog-colored-line-formatter/actions) [![Source](http://img.shields.io/badge/source-bramus/monolog--colored--line--formatter-blue.svg?style=flat-square)](https://github.com/bramus/monolog-colored-line-formatter) [![Supported PHP Versions](https://img.shields.io/packagist/php-v/bramus/monolog-colored-line-formatter)](https://github.com/bramus/monolog-colored-line-formatter) [![Version](https://img.shields.io/packagist/v/bramus/monolog-colored-line-formatter.svg?style=flat-square)](https://packagist.org/packages/bramus/monolog-colored-line-formatter) [![Downloads](https://img.shields.io/packagist/dt/bramus/monolog-colored-line-formatter.svg?style=flat-square)](https://packagist.org/packages/bramus/monolog-colored-line-formatter/stats) [![License](https://img.shields.io/packagist/l/bramus/monolog-colored-line-formatter.svg?style=flat-square)](https://github.com/bramus/monolog-colored-line-formatter/blob/master/LICENSE.txt)
+
 A Formatter for Monolog with color support
 Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
-
-[![Build Status](https://api.travis-ci.org/bramus/monolog-colored-line-formatter.png)](http://travis-ci.org/bramus/monolog-colored-line-formatter)
 
 ## About
 
@@ -13,13 +13,32 @@ Built by Bramus! - [https://www.bram.us/](https://www.bram.us/)
 
 ## Prerequisites/Requirements
 
-- PHP 5.4.0 or greater
+- PHP 8.1 or greater
+- Monolog 3.0 or greater
+
+_Looking for a version compatible with Monolog 1.x? Check out the `monolog-1.x` branch then. The version of `monolog-colored-line-formatter` that is compatible with Monolog 1.x, is `monolog-colored-line-formatter` version `~2.0`_
+
+_Looking for a version compatible with Monolog 2.x? Check out the `monolog-2.x` branch then. The version of `monolog-colored-line-formatter` that is compatible with Monolog 1.x, is `monolog-colored-line-formatter` version `~3.0.0`_
 
 ## Installation
 
-Installation is possible using Composer
+Installation is possible using Composer.
 
+Install `monolog-colored-line-formatter`, compatible with Monolog 3.x:
+
+```bash
+composer require bramus/monolog-colored-line-formatter ~3.1
 ```
+
+Install `monolog-colored-line-formatter`, compatible with Monolog 2.x:
+
+```bash
+composer require bramus/monolog-colored-line-formatter ~3.0.0
+```
+
+Install `monolog-colored-line-formatter`, compatible with Monolog 1.x:
+
+```bash
 composer require bramus/monolog-colored-line-formatter ~2.0
 ```
 
@@ -27,7 +46,7 @@ composer require bramus/monolog-colored-line-formatter ~2.0
 
 Create an instance of `\Bramus\Monolog\Formatter\ColoredLineFormatter` and set it as the formatter for the `\Monolog\Handler\StreamHandler` that you use with your `\Monolog\Logger` instance.
 
-```
+```php
 use \Monolog\Logger;
 use \Monolog\Handler\StreamHandler;
 use \Bramus\Monolog\Formatter\ColoredLineFormatter;
@@ -46,11 +65,11 @@ $log->addError('Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
 
 #### Color Scheme: DefaultScheme
 
-![Monolog Colored Line Formatter](https://raw.githubusercontent.com/bramus/monolog-colored-line-formatter/master/screenshots/colorscheme-default.gif)
+![Monolog Colored Line Formatter](https://user-images.githubusercontent.com/11269635/28756233-c9f63abe-756a-11e7-883f-a084f35c55e7.gif)
 
 #### Color Scheme: TrafficLight
 
-![Monolog Colored Line Formatter](https://raw.githubusercontent.com/bramus/monolog-colored-line-formatter/master/screenshots/colorscheme-trafficlight.gif)
+![Monolog Colored Line Formatter](https://user-images.githubusercontent.com/11269635/28756238-df0a5598-756a-11e7-929a-201bef89e6a2.gif)
 
 ### Activating a Color Scheme
 
@@ -58,7 +77,7 @@ Color Schemes are defined as classes. If you do not provide any color scheme the
 
 To activate a color scheme pass it as the first argument of the `ColoredLineFormatter` Constructor. All successive arguments are the ones as required by the `\Monolog\Formatter\LineFormatter` class.
 
-```
+```php
 use \Monolog\Logger;
 use \Monolog\Handler\StreamHandler;
 use \Bramus\Monolog\Formatter\ColoredLineFormatter;
@@ -76,10 +95,11 @@ Alternatively it's also possible to activate it using the `setColorScheme()` met
 
 To define your own color scheme make a class that implements the `\Bramus\Monolog\Formatter\ColorSchemes\ColorSchemeInterface` interface. To make things more easy a trait `ColorSchemeTrait` is defined.
 
-```
+```php
 namespace Bramus\Monolog\Formatter\ColorSchemes;
 
 use Monolog\Logger;
+use Monolog\Level;
 use Bramus\Ansi\Ansi;
 use Bramus\Ansi\ControlSequences\EscapeSequences\Enums\SGR;
 
@@ -102,14 +122,14 @@ class TrafficLight implements ColorSchemeInterface
 
         // Our Color Scheme
         $this->setColorizeArray(array(
-            Logger::DEBUG => $this->ansi->color(SGR::COLOR_FG_WHITE)->get(),
-            Logger::INFO => $this->ansi->color(SGR::COLOR_FG_GREEN)->get(),
-            Logger::NOTICE => $this->ansi->color(SGR::COLOR_FG_CYAN)->get(),
-            Logger::WARNING => $this->ansi->color(SGR::COLOR_FG_YELLOW)->get(),
-            Logger::ERROR => $this->ansi->color(SGR::COLOR_FG_RED)->get(),
-            Logger::CRITICAL => $this->ansi->color(SGR::COLOR_FG_RED)->underline()->get(),
-            Logger::ALERT => $this->ansi->color(array(SGR::COLOR_FG_WHITE, SGR::COLOR_BG_RED_BRIGHT))->get(),
-            Logger::EMERGENCY => $this->ansi->color(SGR::COLOR_BG_RED_BRIGHT)->blink()->color(SGR::COLOR_FG_WHITE)->get(),
+            Level::Debug => $this->ansi->color(SGR::COLOR_FG_WHITE)->get(),
+            Level::Info => $this->ansi->color(SGR::COLOR_FG_GREEN)->get(),
+            Level::Notice => $this->ansi->color(SGR::COLOR_FG_CYAN)->get(),
+            Level::Warning => $this->ansi->color(SGR::COLOR_FG_YELLOW)->get(),
+            Level::Error => $this->ansi->color(SGR::COLOR_FG_RED)->get(),
+            Level::Critical => $this->ansi->color(SGR::COLOR_FG_RED)->underline()->get(),
+            Level::Alert => $this->ansi->color([SGR::COLOR_FG_WHITE, SGR::COLOR_BG_RED_BRIGHT])->get(),
+            Level::Emergency => $this->ansi->color(SGR::COLOR_BG_RED_BRIGHT)->blink()->color(SGR::COLOR_FG_WHITE)->get(),
         ));
     }
 }
@@ -125,7 +145,7 @@ Please refer to [the `bramus/ansi-php` documentation](https://github.com/bramus/
 
 - If PHPUnit is not installed globally, install it locally through composer by running `composer install --dev`. Run the tests themselves by calling `vendor/bin/phpunit`.
 
-Unit tests are also automatically run [on Travis CI](http://travis-ci.org/bramus/monolog-colored-line-formatter)
+Unit tests are also automatically run [on GitHub Actions](https://github.com/bramus/monolog-colored-line-formatter/actions?query=workflow%3ACI)
 
 ## License
 

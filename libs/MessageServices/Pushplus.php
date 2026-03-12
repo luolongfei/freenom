@@ -15,6 +15,7 @@ use Luolongfei\Libs\Connector\MessageGateway;
 class Pushplus extends MessageGateway
 {
     const TIMEOUT = 33;
+    const API_URL = 'https://www.pushplus.plus/send';
 
     /**
      * @var string SendKey
@@ -184,7 +185,7 @@ class Pushplus extends MessageGateway
 
         try {
             $resp = $this->client->post(
-                'http://www.pushplus.plus/send',
+                self::API_URL,
                 [
                     'form_params' => [
                         'token' => $this->sendKey,

@@ -207,6 +207,89 @@ class TelegramBot extends MessageGateway
     }
 
     /**
+     * Escape Telegram MarkdownV2 text while preserving inline links.
+     *
+     * This favors delivery reliability over keeping arbitrary user-provided
+     * Markdown formatting intact.
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    protected function escapeMarkdownV2(string $content)
+    {
+        $entities = [];
+        $content = $this->preserveMarkdownV2Entities($content, $entities);
+
+        $content = $this->escapeMarkdownV2Text($content);
+
+        if (!$entities) {
+            return $content;
+        }
+
+        return strtr($content, $entities);
+    }
+
+    /**
+     * Escape Telegram MarkdownV2 body text.
+     *
+     * @param string $text
+     *
+     * @return string
+     */
+    protected function escapeMarkdownV2Text(string $text)
+    {
+        return preg_replace('/([\\\\_*\\[\\]()~`>#+\\-=|{}.!])/u', '\\\\$1', $text);
+    }
+
+    /**
+     * Preserve supported MarkdownV2 entities so only plain text gets escaped.
+     *
+     * @param string $content
+     * @param array $entities
+     *
+     * @return string
+     */
+    protected function preserveMarkdownV2Entities(string $content, array &$entities)
+    {
+        $patterns = [
+            '/```[\s\S]*?```/u',
+            '/`(?:\\\\.|[^`])+`/u',
+            '/\[(?:\\\\.|[^\]])+\]\((?:\\\\.|[^)])+\)/u',
+            '/__(?:\\\\.|[^_])+?__/u',
+            '/\*(?:\\\\.|[^*])+?\*/u',
+            '/(?<!_)_(?!_)(?:\\\\.|[^_])+?_(?!_)/u',
+            '/~(?:\\\\.|[^~])+?~/u',
+            '/\|\|(?:\\\\.|[^|])+?\|\|/u',
+        ];
+
+        foreach ($patterns as $pattern) {
+            $content = preg_replace_callback(
+                $pattern,
+                function (array $match) use (&$entities) {
+                    $placeholder = $this->buildMarkdownPlaceholder(count($entities));
+                    $entities[$placeholder] = $match[0];
+
+                    return $placeholder;
+                },
+                $content
+            );
+        }
+
+        return $content;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return string
+     */
+    protected function buildMarkdownPlaceholder(int $index)
+    {
+        return sprintf('TGENTITYPLACEHOLDER%sX', $index);
+    }
+
+    /**
      * 送信
      *
      * @param string $content 支持 markdown 语法，但记得对非标记部分进行转义
@@ -281,21 +364,7 @@ class TelegramBot extends MessageGateway
         }
 
         if ($isMarkdown) {
-            // 这几个比较容易在正常文本里出现，而我不想每次都手动转义传入，所以直接干掉了
-            $content = preg_replace('/([.>~_{}|`!+=#-])/u', '\\\\$1', $content);
-
-            // 转义非链接格式的 [] 以及 ()
-            $content = preg_replace_callback_array(
-                [
-                    '/(?<!\\\\)\[(?P<brackets>.*?)(?!\]\()(?<!\\\\)\]/' => function ($match) {
-                        return '\\[' . $match['brackets'] . '\\]';
-                    },
-                    '/(?<!\\\\)(?<!\])\((?P<parentheses>.*?)(?<!\\\\)\)/' => function ($match) {
-                        return '\\(' . $match['parentheses'] . '\\)';
-                    }
-                ],
-                $content
-            );
+            $content = $this->escapeMarkdownV2($content);
         }
 
         try {

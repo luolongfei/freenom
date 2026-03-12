@@ -1,6 +1,6 @@
 # PSR-7 Message Implementation
 
-This repository contains a full [PSR-7](http://www.php-fig.org/psr/psr-7/)
+This repository contains a full [PSR-7](https://www.php-fig.org/psr/psr-7/)
 message implementation, several stream decorators, and some helpful
 functionality like query string parsing.
 
@@ -8,10 +8,24 @@ functionality like query string parsing.
 ![Static analysis](https://github.com/guzzle/psr7/workflows/Static%20analysis/badge.svg)
 
 
-# Stream implementation
+## Features
 
 This package comes with a number of stream implementations and stream
 decorators.
+
+
+## Installation
+
+```shell
+composer require guzzlehttp/psr7
+```
+
+## Version Guidance
+
+| Version | Status              | PHP Version  |
+|---------|---------------------|--------------|
+| 1.x     | EOL (2024-06-30)    | >=5.4,<8.2   |
+| 2.x     | Latest              | >=7.2.5,<8.6 |
 
 
 ## AppendStream
@@ -245,6 +259,8 @@ class EofCallbackStream implements StreamInterface
 
     private $callback;
 
+    private $stream;
+
     public function __construct(StreamInterface $stream, callable $cb)
     {
         $this->stream = $stream;
@@ -257,7 +273,7 @@ class EofCallbackStream implements StreamInterface
 
         // Invoke the callback when EOF is hit.
         if ($this->eof()) {
-            call_user_func($this->callback);
+            ($this->callback)();
         }
 
         return $result;
@@ -380,9 +396,27 @@ of the header. When a parameter does not contain a value, but just
 contains a key, this function will inject a key with a '' string value.
 
 
-## `GuzzleHttp\Psr7\Header::normalize`
+## `GuzzleHttp\Psr7\Header::splitList`
+
+`public static function splitList(string|string[] $header): string[]`
+
+Splits a HTTP header defined to contain a comma-separated list into
+each individual value:
+
+```
+$knownEtags = Header::splitList($request->getHeader('if-none-match'));
+```
+
+Example headers include `accept`, `cache-control` and `if-none-match`.
+
+
+## `GuzzleHttp\Psr7\Header::normalize` (deprecated)
 
 `public static function normalize(string|array $header): array`
+
+`Header::normalize()` is deprecated in favor of [`Header::splitList()`](README.md#guzzlehttppsr7headersplitlist)
+which performs the same operation with a cleaned up API and improved
+documentation.
 
 Converts an array of header values that may contain comma separated
 headers into an array of headers with no comma separated values.
@@ -402,7 +436,7 @@ will be parsed into `['foo[a]' => '1', 'foo[b]' => '2'])`.
 
 ## `GuzzleHttp\Psr7\Query::build`
 
-`public static function build(array $params, int|false $encoding = PHP_QUERY_RFC3986): string`
+`public static function build(array $params, int|false $encoding = PHP_QUERY_RFC3986, bool $treatBoolsAsInts = true): string`
 
 Build a query string from an array of key value pairs.
 
@@ -464,9 +498,16 @@ a message.
 
 ## `GuzzleHttp\Psr7\Utils::readLine`
 
-`public static function readLine(StreamInterface $stream, int $maxLength = null): string`
+`public static function readLine(StreamInterface $stream, ?int $maxLength = null): string`
 
 Read a line from the stream up to the maximum allowed buffer length.
+
+
+## `GuzzleHttp\Psr7\Utils::redactUserInfo`
+
+`public static function redactUserInfo(UriInterface $uri): UriInterface`
+
+Redact the password in the user info part of a URI.
 
 
 ## `GuzzleHttp\Psr7\Utils::streamFor`
@@ -525,6 +566,17 @@ Safely opens a PHP stream resource using a filename.
 
 When fopen fails, PHP normally raises a warning. This function adds an
 error handler that checks for errors and throws an exception instead.
+
+
+## `GuzzleHttp\Psr7\Utils::tryGetContents`
+
+`public static function tryGetContents(resource $stream): string`
+
+Safely gets the contents of a given stream.
+
+When stream_get_contents fails, PHP normally raises a warning. This
+function adds an error handler that checks for errors and throws an
+exception instead.
 
 
 ## `GuzzleHttp\Psr7\Utils::uriFor`
@@ -592,7 +644,7 @@ this library also provides additional functionality when working with URIs as st
 An instance of `Psr\Http\Message\UriInterface` can either be an absolute URI or a relative reference.
 An absolute URI has a scheme. A relative reference is used to express a URI relative to another URI,
 the base URI. Relative references can be divided into several forms according to
-[RFC 3986 Section 4.2](https://tools.ietf.org/html/rfc3986#section-4.2):
+[RFC 3986 Section 4.2](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2):
 
 - network-path references, e.g. `//example.com/path`
 - absolute-path references, e.g. `/path`
@@ -629,7 +681,7 @@ termed a relative-path reference.
 
 ### `GuzzleHttp\Psr7\Uri::isSameDocumentReference`
 
-`public static function isSameDocumentReference(UriInterface $uri, UriInterface $base = null): bool`
+`public static function isSameDocumentReference(UriInterface $uri, ?UriInterface $base = null): bool`
 
 Whether the URI is a same-document reference. A same-document reference refers to a URI that is, aside from its
 fragment component, identical to the base URI. When no base URI is given, only an empty URI reference
@@ -651,14 +703,14 @@ or the standard port. This method can be used independently of the implementatio
 `public static function composeComponents($scheme, $authority, $path, $query, $fragment): string`
 
 Composes a URI reference string from its various components according to
-[RFC 3986 Section 5.3](https://tools.ietf.org/html/rfc3986#section-5.3). Usually this method does not need to be called
-manually but instead is used indirectly via `Psr\Http\Message\UriInterface::__toString`.
+[RFC 3986 Section 5.3](https://datatracker.ietf.org/doc/html/rfc3986#section-5.3). Usually this method does not need
+to be called manually but instead is used indirectly via `Psr\Http\Message\UriInterface::__toString`.
 
 ### `GuzzleHttp\Psr7\Uri::fromParts`
 
 `public static function fromParts(array $parts): UriInterface`
 
-Creates a URI from a hash of [`parse_url`](http://php.net/manual/en/function.parse-url.php) components.
+Creates a URI from a hash of [`parse_url`](https://www.php.net/manual/en/function.parse-url.php) components.
 
 
 ### `GuzzleHttp\Psr7\Uri::withQueryValue`
@@ -683,11 +735,21 @@ associative array of key => value.
 Creates a new URI with a specific query string value removed. Any existing query string values that exactly match the
 provided key are removed.
 
+## Cross-Origin Detection
+
+`GuzzleHttp\Psr7\UriComparator` provides methods to determine if a modified URL should be considered cross-origin.
+
+### `GuzzleHttp\Psr7\UriComparator::isCrossOrigin`
+
+`public static function isCrossOrigin(UriInterface $original, UriInterface $modified): bool`
+
+Determines if a modified URL should be considered cross-origin with respect to an original URL.
+
 ## Reference Resolution
 
 `GuzzleHttp\Psr7\UriResolver` provides methods to resolve a URI reference in the context of a base URI according
-to [RFC 3986 Section 5](https://tools.ietf.org/html/rfc3986#section-5). This is for example also what web browsers
-do when resolving a link in a website based on the current request URI.
+to [RFC 3986 Section 5](https://datatracker.ietf.org/doc/html/rfc3986#section-5). This is for example also what web
+browsers do when resolving a link in a website based on the current request URI.
 
 ### `GuzzleHttp\Psr7\UriResolver::resolve`
 
@@ -700,7 +762,7 @@ Converts the relative URI into a new URI that is resolved against the base URI.
 `public static function removeDotSegments(string $path): string`
 
 Removes dot segments from a path and returns the new path according to
-[RFC 3986 Section 5.2.4](https://tools.ietf.org/html/rfc3986#section-5.2.4).
+[RFC 3986 Section 5.2.4](https://datatracker.ietf.org/doc/html/rfc3986#section-5.2.4).
 
 ### `GuzzleHttp\Psr7\UriResolver::relativize`
 
@@ -726,7 +788,7 @@ echo UriResolver::relativize($base, new Uri('http://example.org/a/b/'));   // pr
 ## Normalization and Comparison
 
 `GuzzleHttp\Psr7\UriNormalizer` provides methods to normalize and compare URIs according to
-[RFC 3986 Section 6](https://tools.ietf.org/html/rfc3986#section-6).
+[RFC 3986 Section 6](https://datatracker.ietf.org/doc/html/rfc3986#section-6).
 
 ### `GuzzleHttp\Psr7\UriNormalizer::normalize`
 
@@ -812,9 +874,11 @@ equivalence or difference of relative references does not mean anything.
 
 If you discover a security vulnerability within this package, please send an email to security@tidelift.com. All security vulnerabilities will be promptly addressed. Please do not disclose security-related issues publicly until a fix has been announced. Please see [Security Policy](https://github.com/guzzle/psr7/security/policy) for more information.
 
+
 ## License
 
 Guzzle is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
+
 
 ## For Enterprise
 

@@ -18,6 +18,26 @@ use Luolongfei\Libs\Connector\MessageGateway;
 class Mail extends MessageGateway
 {
     /**
+     * @var string
+     */
+    private $language;
+
+    /**
+     * @var string
+     */
+    private $noticeTemplatePath;
+
+    /**
+     * @var string
+     */
+    private $successfulRenewalTemplatePath;
+
+    /**
+     * @var string
+     */
+    private $noRenewalRequiredTemplatePath;
+
+    /**
      * @var PHPMailer
      */
     private $phpMailerInstance;
@@ -91,7 +111,7 @@ class Mail extends MessageGateway
             $port = 465;
         } else if (stripos($username, '@outlook.com') !== false) {
             $host = 'smtp.office365.com';
-            $secure = 'starttls';
+            $secure = PHPMailer::ENCRYPTION_STARTTLS;
             $port = 587;
         } else {
             $host = config('message.mail.host');

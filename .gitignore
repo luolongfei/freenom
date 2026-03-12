@@ -4,3 +4,4 @@ app/num_limit/
 .idea/
 app/Data/
 .env.old
+.phpunit.cache/

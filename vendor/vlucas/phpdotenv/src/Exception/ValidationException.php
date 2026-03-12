@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dotenv\Exception;
 
 use RuntimeException;
 
-/**
- * This is the validation exception class.
- */
-class ValidationException extends RuntimeException implements ExceptionInterface
+final class ValidationException extends RuntimeException implements ExceptionInterface
 {
     //
 }
