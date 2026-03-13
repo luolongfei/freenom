@@ -2,219 +2,194 @@
 
 ![freenom logo](https://s1.ax1x.com/2022/03/10/bhzMG9.png)
 
-<h3>Freenom：freenom域名自动续期</h3>
+<h3>Freenom: automated renewal for Freenom domains</h3>
 
 [![PHP version](https://img.shields.io/badge/php-%3E=8.1-brightgreen.svg?style=for-the-badge)](https://secure.php.net/)
 [![Docker pulls](https://img.shields.io/docker/pulls/luolongfei/freenom.svg?style=for-the-badge)](https://hub.docker.com/r/luolongfei/freenom)
 [![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
-Documentation: [English version](https://github.com/luolongfei/freenom/blob/main/README_EN.md) | 中文版
-</div> 
+Documentation: English | [Chinese](./README_ZH.md)
+</div>
 
-[📢 公告](#-公告)
+[📢 Announcement](#-announcement)
 
-[📃 引言](#-引言)
+[📃 Why This Exists](#-why-this-exists)
 
-[🍭 效果](#-效果)
+[🍭 What Notifications Look Like](#-what-notifications-look-like)
 
-[🎁 事前准备](#-事前准备)
+[🎁 Before You Start](#-before-you-start)
 
-[📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
+[📪 Configure Notifications](#-configure-notifications) (Email / Telegram Bot / WeCom / ServerChan / Bark)
 
-[⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)
+[⛵ Docker Compose Deployment](#-docker-compose-deployment)
 
-[🐳 通过 Docker 方式部署](#-通过-docker-部署)（推荐，最简单的部署方式之一）
+[🐳 Docker Deployment](#-docker-deployment) (recommended, and usually the simplest option)
 
-[🧊 通过 Heroku 部署](#-通过-Heroku-部署)
+[🧊 Heroku Deployment](#-heroku-deployment)
 
-[🚈 通过 Railway 部署](#-通过-Railway-部署)
+[🚈 Railway Deployment](#-railway-deployment)
 
-[📦 通过 Koyeb 部署](#-通过-Koyeb-部署)（没有自己服务器的用户可使用此方案）
+[📦 Koyeb Deployment](#-koyeb-deployment) (a good fit if you do not have your own server)
 
-[🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（已不可行）
+[🧪 Mogenius Deployment](#-mogenius-deployment) (no longer viable)
 
-[☁ 通过 各种云函数 部署](#-通过各种云函数部署) （目前各平台已开启收费模式，已放弃支持）
+[☁ Cloud Function Deployment](#-cloud-function-deployment) (no longer actively supported)
 
-[🚧 直接拉取源码部署](#-直接拉取源码部署)
+[🚧 Deploy from Source](#-deploy-from-source)
 
-[📋 赞助名单 Donation List](#-赞助名单-donation-list)
+[📋 Donation List](#-donation-list)
 
-[❤ 赞助 Donation](#-赞助-donation)
+[❤ Support the Project](#-support-the-project)
 
-[🪓 信仰](#-信仰)
+[🪓 A Personal Note](#-a-personal-note)
 
-[🌚 作者](#-作者)
+[🌚 Author](#-author)
 
-[💖 所有贡献者](#-所有贡献者)
+[💖 All Contributors](#-all-contributors)
 
-[📝 TODO List](#-TODO-List)
+[📝 TODO List](#-todo-list)
 
-[🍅 本项目的其它语言实现](#-本项目的其它语言实现)
+[🍅 Other Language Ports](#-other-language-ports)
 
-[🎉 鸣谢](#-鸣谢)
+[🎉 Acknowledgements](#-acknowledgements)
 
-[🥝 开源协议](#-开源协议)
+[🥝 License](#-license)
 
-### 📢 公告
+### 📢 Announcement
 
-- 热心网友创建了`Freenom 续期事务局`群组，可供交流、测试、反馈， **加入可直接访问 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew) ，或者扫码加入：**
+- Community members created a Telegram group called `Freenom Renewal Bureau` for discussion, testing, and feedback. You can join directly here: [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew)
 
-<a href="https://t.me/freenom_auto_renew"><img src="https://s2.loli.net/2022/10/11/k4sSoXqMVfpIY3d.png" alt="freenom_tg_group.png" border="0" width="220px" height="280px" /></a>
+### 📃 Why This Exists
 
-### 📃 引言
+Freenom is the only provider I know of that offers free top-level domains, but those domains have to be renewed every year, and only one year at a time. I had a pile of domains registered at different times, and renewing them manually got old fast, so I wrote this script to automate the whole thing.
 
-众所周知，Freenom是地球上唯一一个提供免费顶级域名的商家，不过需要每年续期，每次续期最多一年。由于我申请了一堆域名，而且不是同一时段申请的， 所以每次续期都觉得折腾，于是就写了这个自动续期的脚本。
+### 🍭 What Notifications Look Like
 
-### 🍭 效果
+The script sends a notification whether renewal succeeds, fails, or crashes. Renewal-related notifications also include details like how many days remain before an unrenewed domain expires. The screenshot below shows the email version of that message.
 
-无论是续期成败或者程序执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是通知邮件的内容。*
+<a href="https://s4.ax1x.com/2022/02/26/bZrtz9.png"><img src="https://s4.ax1x.com/2022/02/26/bZrtz9.png" alt="Example notification email" border="0" width="95%" height="100%" /></a>
 
-<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="95%" height="100%" /></a>
+### 🎁 Before You Start
 
-### 🎁 事前准备
+- A VPS or server. Any box will do, although `Debian` is the easiest path. If you deploy without Docker, you need `PHP 8.1` or newer. If you do not have a server, the hosted options later in this README may be a better fit.
+- A sender mailbox, if you want email notifications. The script knows how to auto-configure `Gmail`, `QQ Mail`, `163 Mail`, and `Outlook`. If you want to use another provider or your own mail server, check the email-related comments in [`.env.example`](./.env.example).
+- A recipient mailbox, if you want to receive email notifications.
+- Both mailbox fields are optional because the project also supports `Telegram Bot`, `WeCom`, `ServerChan`, and `Bark`. You only need `MAIL_USERNAME`, `MAIL_PASSWORD`, and `TO` if you choose email notifications.
+- A little patience.
 
-- VPS：随便一台服务器都行，系统推荐`Debian`。`PHP`版本需在`php8.1`及以上，如果有`Docker`环境则可无视这个限制。如果你没有服务器，可参考本文档部署到各种免费环境中。
-- 送信邮箱（可选）：为了方便理解又称机器人邮箱，用于发送通知邮件。目前针对`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，程序会自动判断送信邮箱类型并使用合适的配置。
-  如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
-  文件中与邮件配置相关的注释进行配置。
-- 收信邮箱（可选）：用于接收机器人发出的通知邮件。
-- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`等送信方式，仅当你使用`邮件送信`的时候，`送信邮箱`和`收信邮箱`
-  才是必须的，其它送信方式所需请参考下面的 [配置送信功能](#-配置送信功能) 。
-- 耐心。
+### 📪 Configure Notifications
 
-### 📪 配置送信功能
+This project supports `Email`, `Telegram Bot`, `WeCom`, `ServerChan`, and `Bark`. Pick one and configure only that path. If you are on iOS, `Bark` is usually the cleanest option. For most other users, use whichever channel you are already comfortable with. I generally do not recommend `ServerChan`: the daily message cap is restrictive, and some content is hidden behind its paid tier. The same basic setup effort usually goes further with `WeCom`, and those notifications show up directly in the standard WeChat client.
 
-此处会分别介绍`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`送信方式的配置方法，以及其所需的资料，你可以任选一种送信方式进行配置，直接跳到对应的文档查看即可。 如果你是 IOS
-用户，推荐使用 `Bark`
-送信方式，其它平台的用户根据自己喜好选择可接受的送信方式即可。不太推荐使用`Server 酱`送信，`Server 酱`每日送信条数的限制，以及需要开会员才能直接看到送信内容，否则需要跳到 `Server 酱`
-网站才能查看内容，都是不推荐的原因。同样的配置完全可以直接使用`企业微信`送信方式，`企业微信`送信直接在普通微信客户端就能看到信件内容。
+*Jump straight to a section:*
 
-*快速到文档指定位置：*
+[Email Notifications](#email-notifications)
 
-[邮件送信](#邮件送信)
+[Telegram Bot](#telegram-bot)
 
-[Telegram Bot](#Telegram-Bot)
+[WeCom](#wecom)
 
-[企业微信](#企业微信)
+[ServerChan](#serverchan)
 
-[Server 酱](#Server-酱)
+[Bark](#bark)
 
-[Bark 送信](#Bark-送信)
+#### Email Notifications
 
-#### 邮件送信
+This section covers `Gmail`, `QQ Mail`, and `163 Mail`. Only read the provider you actually use. `QQ Mail` and `163 Mail` both use your mailbox plus an authorization code. `Gmail` now effectively means your mailbox plus an app password.
 
-下面分别介绍`Gmail`、`QQ邮箱`以及`163邮箱`的设置，你只用看自己需要的部分。注意，`QQ邮箱`与`163邮箱`均使用`账户加授权码`的方式登录，
-`谷歌邮箱`使用`账户加密码`或者`账户加授权码`的方式登录，请知悉。另外还想吐槽一下，国产邮箱你得花一毛钱给邮箱提供方发一条短信才能拿到授权码。
-
-*（点击即可展开或收起）*
+*(Click to expand or collapse each provider.)*
 
 <details>
-    <summary>设置Gmail</summary>
+    <summary>Gmail</summary>
 <br>
 
-*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+*If you use multiple Gmail accounts, open the settings page in a private or incognito window first. That makes it much easier to land on the right account.*
 
-1、在`设置>转发和POP/IMAP`中，勾选
+1. In `Settings > Forwarding and POP/IMAP`, enable:
 
-- 对所有邮件启用 POP
-- 启用 IMAP
+- `Enable POP for all mail`
+- `Enable IMAP`
 
-![gmail配置01](https://s2.ax1x.com/2020/01/31/13tKsg.png "gmail配置01")
+![gmail Configuration 01](https://s2.ax1x.com/2020/02/01/1GDsMR.png "gmail Configuration 01")
 
-然后保存更改。
+Then save the change.
 
-2、开启两步验证
+2. Turn on 2-Step Verification.
 
-参考官方文档：[开启两步验证](https://support.google.com/accounts/answer/185839)
+Official guide: [Turn on 2-Step Verification](https://support.google.com/accounts/answer/185839?hl=en)
 
-3、配置使用应用专用密码登录邮箱
+3. Create an app password for this script.
 
-参考官方文档：[使用应用专用密码登录](https://support.google.com/mail/answer/185833?hl=zh-Hans)
+Official guide: [Sign in with App Passwords](https://support.google.com/mail/answer/185833?hl=en)
 
-**由于 Gmail 已不再支持“不安全的登录方式”，故目前只能使用账户加应用专用密码的方式登录。**
+**Gmail no longer supports "less secure app" logins. Use your account plus an app password.**
 
 ***
 
 </details>
 
 <details>
-    <summary>设置QQ邮箱</summary>
+    <summary>QQ Mail</summary>
 <br>
 
-在`设置>账户>POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务`下，开启`POP3/SMTP服务`
+In `Settings > Accounts > POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV Service`, enable `POP3/SMTP Service`.
 
-![qq邮箱配置01](https://s2.ax1x.com/2020/01/31/13cIKA.png "qq邮箱配置01")
-
-此时坑爹的QQ邮箱会要求你用手机发送一条短信给腾讯，发送完了点一下`我已发送`
-
-![qq邮箱配置02](https://s2.ax1x.com/2020/01/31/13c4vd.png "qq邮箱配置02")
-
-然后你就能看到你的邮箱授权码了，使用邮箱账户加授权码即可登录，记下授权码
-
-![qq邮箱配置03](https://s2.ax1x.com/2020/01/31/13cTbt.png "qq邮箱配置03")
-
-![qq邮箱配置04](https://s2.ax1x.com/2020/01/31/13coDI.png "qq邮箱配置04")
+QQ Mail will ask you to send an SMS to Tencent. After that, it will display an authorization code. Use your mailbox account plus that authorization code to sign in, and keep the code for your `.env` configuration.
 
 ***
 
 </details>
 
 <details>
-    <summary>设置163邮箱</summary>
+    <summary>163 Mail</summary>
 <br>
 
-在`设置>POP3/SMTP/IMAP`下，开启`POP3/SMTP服务`和`IMAP/SMTP服务`并保存
+In `Settings > POP3/SMTP/IMAP`, enable both `POP3/SMTP Service` and `IMAP/SMTP Service`, then save the change.
 
-![163邮箱配置01](https://s2.ax1x.com/2020/01/31/13WKZn.png "163邮箱配置01")
+Next, open the `Client Authorization Password` section and generate an authorization code. The UI may look different from the screenshot in the Chinese README depending on whether you have already created one. Like QQ Mail, 163 Mail may also require an SMS step before it will issue the code.
 
-![163邮箱配置02](https://s2.ax1x.com/2020/01/31/13WQI0.png "163邮箱配置02")
-
-现在点击侧边栏的`客户端授权密码`，并获取授权码，你看到画面可能和我不一样，因为我已经获取了授权码，所以只有`重置授权码`按钮，这里自己根据网站提示申请获取授权码，网易和腾讯一样恶心，需要你用手机给它发一条短信才能拿到授权码
-
-![163邮箱配置03](https://s2.ax1x.com/2020/01/31/13WMaq.png "163邮箱配置03")
-
-163 邮箱送信后，接收方如果没收到可以在垃圾邮件里面找一下。
+If the recipient does not see messages from a 163 mailbox, check the spam folder first.
 
 ***
 
 </details>
 
-上面的动作完成后，在`.env`文件中，将`MAIL_USERNAME`和`MAIL_PASSWORD`设置为你的邮箱和密码（或令牌），将`TO`设置为你的收信邮箱，然后将`MAIL_ENABLE`的值设为`1`以启用邮箱送信功能。
+After that, set `MAIL_USERNAME` and `MAIL_PASSWORD` to your mailbox and password or token, set `TO` to the mailbox that should receive notifications, and set `MAIL_ENABLE=1` in `.env`.
 
-上面介绍了三种邮箱的设置方法，如果你不想使用邮件送信，将根目录下的`.env`文件中的`MAIL_ENABLE`的值改为`0`即可关闭邮件推送方式。
+If you do not want email notifications at all, set `MAIL_ENABLE=0` in the root `.env` file.
 
-*邮件 送信部分完。*
+*That is it for email notifications.*
 
 #### Telegram Bot
 
-有关 【Telegram Bot】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Telegram-Bot)
+For the full Telegram Bot setup flow, see the wiki: [Telegram Bot](https://github.com/luolongfei/freenom/wiki/Telegram-Bot)
 
-#### 企业微信
+#### WeCom
 
-有关 【企业微信】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1)
+For the full WeCom setup flow, see the wiki: [WeCom](https://github.com/luolongfei/freenom/wiki/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1)
 
-#### Server 酱
+#### ServerChan
 
-有关 【Server 酱】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Server-%E9%85%B1)
+For the full ServerChan setup flow, see the wiki: [ServerChan](https://github.com/luolongfei/freenom/wiki/Server-%E9%85%B1)
 
-#### Bark 送信
+#### Bark
 
-有关 【Bark 送信】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
-
-***
-
-*与 配置送信功能 相关的篇幅完。下面开始讲本项目的几种使用方式。推荐使用 Docker 方式，无需纠结环境。*
+For the full Bark setup flow, see the wiki: [Bark](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
 
 ***
 
-### ⛵ 通过 Docker Compose 部署
+*That covers notifications. Next up are the supported deployment options. Docker is still the path I recommend for most people because it removes nearly all environment drift.*
 
-**注意，目前是 beta 版本，只支持在 amd64 架构的机器上安装，arm 或其它架构的用户请稍安勿躁，等后续更新。或者如果你需要一台服务器，可以考虑** [美国便宜 VPS](https://go.llfapp.com/cc)
+***
 
-#### 1、一键安装 docker 和 docker compose
+### ⛵ Docker Compose Deployment
 
-Debian / Ubuntu（推荐）
+**Note:** this path is currently marked beta and only supports `amd64`. If you are on `arm` or another architecture, wait for a later update. If you need a server, one option is [cheap US VPS](https://go.llfapp.com/cc).
+
+#### 1. Install Docker and Docker Compose
+
+Debian / Ubuntu (recommended)
 
 ```shell
 apt-get update -y;
@@ -250,96 +225,91 @@ sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose;
 docker compose version;
 ```
 
-#### 2、下载本项目
+#### 2. Clone the Repository
 
 ```shell
 git clone https://github.com/luolongfei/freenom.git && cd freenom
 ```
 
-#### 3、配置
+#### 3. Configure the Project
 
-##### 3.1、申请 wit.ai 的 token
+##### 3.1 Get a Wit.ai Token
 
-3.1.1 访问 https://wit.ai
+1. Open [https://wit.ai](https://wit.ai).
+2. Sign in with Facebook or create an account with email only.
+3. Go to [https://wit.ai/apps](https://wit.ai/apps) and create a new app.
+4. Choose `English` as the language, pick any name you want, set the app to `Private`, and create it.
+5. Open `Management > Settings` (`https://wit.ai/apps/<App ID>/settings`).
+6. Copy the `Client Access Token` and put it in `.env` as `WIT_AI_KEY='your Client Access Token'`.
 
-3.1.2 使用 Facebook 账户登录或者使用邮箱注册账户登录，只需要邮箱就可以注册
+##### 3.2 Edit `.env`
 
-3.1.3 前往 https://wit.ai/apps 画面，创建一个新的 app
-
-3.1.4 语言选择 English，名字随意，类型选择私有，创建之
-
-3.1.5 前往 Management > Settings (https://wit.ai/apps/<App ID>/settings) 画面
-
-3.1.6 复制 Client Access Token，下面需要写入 .env 文件中，WIT_AI_KEY='你复制的 Client Access Token'
-
-##### 3.2、修改 .env 配置文件
-
-将 .env 配置文件中的内容修改为你自己的配置，如果是从旧版升级，也可以直接把旧版 .env 复制到新版项目根目录，脚本会自动更新它。配置含义参考 .env.example 文件中的注解。
+Replace the sample values in `.env` with your own configuration. If you are upgrading from an older release, you can also copy your previous `.env` into the new project root and let the script update it for you. Field-by-field explanations live in [`.env.example`](./.env.example).
 
 ```shell
 cp .env.example .env;
 vim .env;
 ```
 
-修改完成后，输入 `:wq` 保存并退出。
+When you are done, save and quit.
 
-#### 4、启动
+#### 4. Start the Stack
 
-注意：以下命令均需要在 docker-compose.yml 所在目录执行才有效。
-
-```shell
-make up
-```
-
-没错，就是这么简单。然后可以执行 `make logs` 查看实时日志。
-
-##### 4.1、常用命令
-
-启动或者更新到最新版
+Run these commands from the directory that contains `docker-compose.yml`.
 
 ```shell
 make up
 ```
 
-停止
+That is the whole startup flow. Use `make logs` if you want to tail the live logs.
+
+##### 4.1 Common Commands
+
+Start the stack or update to the latest version
+
+```shell
+make up
+```
+
+Stop the stack
 
 ```shell
 make down
 ```
 
-查看实时日志
+View live logs
 
 ```shell
 make logs
 ```
 
-清理容器占用的空间
+Clean up disk space used by containers
 
 ```shell
 make clear
 ```
 
-重启容器
+Restart the containers
 
 ```shell
 make restart
 ```
 
-*通过 docker compose 部署部分结束。*
+*That is the end of the Docker Compose section.*
 
-### 🐳 通过 Docker 部署
+### 🐳 Docker Deployment
 
-*如果你有自己的服务器，这是最推荐的部署方式。*
+*If you have your own server, this is the deployment mode I recommend most.*
 
-Docker 仓库地址为： [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom) ，同样欢迎 star 。
-此镜像支持的架构为`linux/amd64`，`linux/arm64`，`linux/ppc64le`，`linux/s390x`，`linux/386`，`linux/arm/v7`，`linux/arm/v6`， 理论上支持`群晖`
-、`威联通`、`树莓派`以及各种类型的`VPS`。
+Docker Hub: [https://hub.docker.com/r/luolongfei/freenom](https://hub.docker.com/r/luolongfei/freenom)
 
-#### 1、安装 Docker
+The image supports `linux/amd64`, `linux/arm64`, `linux/ppc64le`, `linux/s390x`, `linux/386`, `linux/arm/v7`, and `linux/arm/v6`, so it should work on most VPS platforms as well as NAS devices and Raspberry Pi-class hardware.
 
-##### 1.1 以 root 用户登录，执行一键脚本安装 Docker
+#### 1. Install Docker
 
-升级源并安装软件（下面两行命令二选一，根据你自己的系统）
+##### 1.1 Log in as `root` and run the one-line installer
+
+Update packages and install the basic tools first. Pick the command that matches your OS.
 
 Debian / Ubuntu
 
@@ -353,248 +323,236 @@ CentOS
 yum update && yum install -y wget vim make
 ```
 
-执行此命令等候自动安装 Docker
+Then install Docker:
 
 ```shell
 wget -qO- get.docker.com | bash
 ```
 
-说明：请使用 KVM 架构的 VPS，OpenVZ 架构的 VPS 不支持安装 Docker，另外 CentOS 8 不支持用此脚本来安装 Docker。 更多关于 Docker
-安装的内容参考 [Docker 官方安装指南](https://docs.docker.com/engine/install/) 。
+Notes:
 
-##### 1.2 针对 Docker 执行以下命令
+- Use a KVM-based VPS. OpenVZ does not support Docker installation.
+- CentOS 8 is not supported by this installer script.
+- For anything more advanced, use the [official Docker installation guide](https://docs.docker.com/engine/install/).
 
-启动 Docker 服务
+##### 1.2 Start and enable Docker
+
+Start the Docker service
 
 ```shell
 systemctl start docker
 ```
 
-查看 Docker 运行状态
+Check Docker status
 
 ```shell
 systemctl status docker
 ```
 
-将 Docker 服务加入开机自启动
+Enable Docker at boot
 
 ```shell
 systemctl enable docker
 ```
 
-#### 2、通过 Docker 部署域名续期脚本
+#### 2. Run the Container
 
-##### 2.1 用 Docker 创建并启动容器
+##### 2.1 Create and start the container
 
-命令如下
+Basic command:
 
 ```shell
 docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom
 ```
 
-或者，如果你想自定义脚本执行时间，则命令如下
+If you want to set a custom run time:
 
 ```shell
 docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs -e RUN_AT="11:24" luolongfei/freenom
 ```
 
-上面这条命令只比上上条命令多了个` -e RUN_AT="11:24"`，其中`11:24`表示在北京时间每天的 11:24 执行续期任务，你可以自定义这个时间。 这里的`RUN_AT`参数同时也支持 CRON
-命令里的时间形式，比如，` -e RUN_AT="9 11 * * *"`，表示每天北京时间 11:09 执行续期任务， 如果你不想每天执行任务，只想隔几天执行，只用修改`RUN_AT`的值即可。
+That command is identical except for `-e RUN_AT="11:24"`, which tells the container to run the renewal task every day at `11:24` China Standard Time (Beijing time). `RUN_AT` also accepts cron-style expressions. For example, `-e RUN_AT="9 11 * * *"` means `11:09` China Standard Time every day. If you want to run less often than daily, change the cron expression accordingly.
 
-**注意：不推荐自定义脚本执行时间。因为你可能跟很多人定义的是同一个时间点，这样可能导致所有人都是同一时间向 Freenom 的服务器发起请求， 使得 Freenom 无法稳定提供服务。而如果你不自定义时间，程序会自动指定北京时间 06 ~
-23 点全时段随机的一个时间点作为执行时间， 每次重启容器都会自动重新指定。**
+**I do not recommend setting a custom schedule unless you have a real reason to do it. If a large number of users all pick the same timestamp, everyone ends up hitting Freenom at once and service quality gets worse for everybody. If you leave `RUN_AT` unset, the container automatically chooses a random time between 06:00 and 23:00 China Standard Time, and it re-rolls that time on each restart.**
 
 <details>
-    <summary>点我查看上方 Docker 命令的参数解释</summary>
+    <summary>Click to see what the Docker flags mean</summary>
 <br>
 
-| 命令 | 含义 |
+| Flag | Meaning |
 | :--- | :--- |
-| docker run | 开始运行一个容器 |
-| -d 参数 | 容器以后台运行并输出容器 ID |
-| --name 参数 | 给容器分配一个识别符，方便将来的启动，停止，删除等操作 |
-| --restart 参数 | 配置容器启动类型，always 即为 docker 服务重新启动时自动启动本容器 |
-| -v 参数 | 挂载卷（volume），冒号后面是容器的路径，冒号前面是宿主机的路径（只支持绝对路径），`$(pwd)`表示当前目录，如果是 Windows 系统，则可用`${PWD}`替换此处的`$(pwd)` |
-| -e 参数 | 指定容器中的环境变量 |
-| luolongfei/freenom | 这是从 docker hub 下载回来的镜像完整路径名 |
+| `docker run` | Starts a new container |
+| `-d` | Runs the container in the background and prints the container ID |
+| `--name` | Gives the container a stable name so you can start, stop, and remove it later |
+| `--restart` | Sets the restart policy; `always` means Docker starts the container again when the Docker service comes back |
+| `-v` | Mounts a volume. The path after the colon is the container path, and the path before the colon is the host path. Only absolute host paths are supported. `$(pwd)` means the current directory. On Windows, use `${PWD}` instead. |
+| `-e` | Sets an environment variable inside the container |
+| `luolongfei/freenom` | The full image name pulled from Docker Hub |
 
 </details>
 
-至此，你的自动续期容器就跑起来了，执行`ls -a`后你就可以看到在你的当前目录下，有一个`.env`文件和一个`logs`目录，`logs`目录里面存放的是程序日志， 而`.env`则是配置文件，现在直接执行`vim .env`
-将`.env`文件里的所有配置项改为你自己的并保存即可。然后重启容器，如果配置正确的话，便很快可以收到相关邮件。
+After the container starts, run `ls -a` in the current directory and you should see a `.env` file plus a `logs` directory. `logs` stores runtime logs, and `.env` is the configuration file. Edit `.env`, replace the sample values with your own, save it, and restart the container. If the config is valid, you should start receiving notifications quickly.
 
 <details>
-    <summary>点我查看 .env 文件中部分配置项的含义</summary>
+    <summary>Click to see what some `.env` variables mean</summary>
 <br>
 
-| 变量名 | 含义 | 默认值 | 是否必须 |                                             备注                                              |
-| :---: | :---: |:---:|:----:|:-------------------------------------------------------------------------------------------:|
-| FREENOM_USERNAME | Freenom 账户 |  -  |  是   |                只支持邮箱账户，如果你是使用第三方社交账户登录的用户，请在 Freenom 管理页面绑定邮箱，绑定后即可使用邮箱账户登录                 |
-| FREENOM_PASSWORD | Freenom 密码 |  -  |  是   |                                 某些特殊字符可能需要转义，详见`.env`文件内注释                                  |
-| MULTIPLE_ACCOUNTS | 多账户支持 |  -  |  否   |                                 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`”，注意不要省略“<>”符号，否则无法正确匹配。如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
-| MAIL_USERNAME | 机器人邮箱账户 |  -  |  否   |                            支持`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`                            |
-| MAIL_PASSWORD | 机器人邮箱密码 |  -  |  否   |                              `Gmail`填应用专用密码，`QQ邮箱`或`163邮箱`填授权码                              |
-| TO | 接收通知的邮箱 |  -  |  否   |                                你自己最常用的邮箱，用来接收机器人邮箱发出的域名相关邮件                                 |
-| MAIL_ENABLE | 是否启用邮件推送功能 | `0` |  否   | `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为必填项 |
-| TELEGRAM_CHAT_ID | 你的`chat_id` |  -  |  否   |                           通过发送`/start`给`@userinfobot`可以获取自己的`id`                            |
-| TELEGRAM_BOT_TOKEN | 你的`Telegram bot`的`token` |  -  |  否   ||
-| TELEGRAM_BOT_ENABLE | 是否启用`Telegram Bot`推送功能 | `0` |  否   |    `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，则必须设置上面的`TELEGRAM_CHAT_ID`和`TELEGRAM_BOT_TOKEN`变量     |
-| NOTICE_FREQ | 通知频率 | `1` |  否   |                                 `0`：仅当有续期操作的时候<br>`1`：每次执行                                  |
-| NEZHA_SERVER | 哪吒探针服务端的 IP 或域名 |  -  |  否   ||
-| NEZHA_PORT | 哪吒探针服务端的端口 |  -  |  否   ||
-| NEZHA_KEY | 哪吒探针客户端专用 Key |  -  |  否   ||
-| NEZHA_TLS | 哪吒客户SSL/TLS加密 |  -  |  否   |  `1`：启用<br>`0`：不启用  |
+| Variable | Meaning | Default | Required | Notes |
+| :--- | :--- | :---: | :---: | :--- |
+| `FREENOM_USERNAME` | Freenom account email | - | Yes | Only email-based Freenom logins are supported. If you currently sign in through a third-party social account, bind an email inside the Freenom dashboard first. |
+| `FREENOM_PASSWORD` | Freenom password | - | Yes | Some special characters may need escaping. See the comments in `.env`. |
+| `MULTIPLE_ACCOUNTS` | Multiple-account support | - | No | Format must be `<account1>@<password1>\|<account2>@<password2>\|<account3>@<password3>`. Do not remove the angle brackets. If this is set, `FREENOM_USERNAME` and `FREENOM_PASSWORD` become optional. |
+| `MAIL_USERNAME` | Sender mailbox account | - | No | Supports `Gmail`, `QQ Mail`, `163 Mail`, and `Outlook`. |
+| `MAIL_PASSWORD` | Sender mailbox password | - | No | Use a Gmail app password, or the authorization code from QQ Mail / 163 Mail. |
+| `TO` | Recipient mailbox | - | No | The mailbox that receives the notification emails sent by the script. |
+| `MAIL_ENABLE` | Enable email notifications | `0` | No | `1` enables email notifications. `0` disables them. If enabled, `MAIL_USERNAME`, `MAIL_PASSWORD`, and `TO` all become required. |
+| `TELEGRAM_CHAT_ID` | Your `chat_id` | - | No | Send `/start` to `@userinfobot` to retrieve it. |
+| `TELEGRAM_BOT_TOKEN` | Your Telegram bot token | - | No | |
+| `TELEGRAM_BOT_ENABLE` | Enable Telegram Bot notifications | `0` | No | `1` enables Telegram notifications. If enabled, `TELEGRAM_CHAT_ID` and `TELEGRAM_BOT_TOKEN` are required. |
+| `NOTICE_FREQ` | Notification frequency | `1` | No | `0` only when a renewal operation happens. `1` on every run. |
+| `NEZHA_SERVER` | Nezha probe server IP or domain | - | No | |
+| `NEZHA_PORT` | Nezha probe server port | - | No | |
+| `NEZHA_KEY` | Nezha client key | - | No | |
+| `NEZHA_TLS` | Enable SSL/TLS for Nezha | - | No | `1` enables TLS. `0` disables it. |
 
-**更多配置项含义，请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example) 文件中的注释。**
+**For the full set of variables, see the comments in [`.env.example`](./.env.example).**
 
 </details>
 
-> 如何验证你的配置是否正确呢？
+> How do I know whether my config is correct?
 >
+> After you save `.env`, run `docker restart freenom`, wait about five seconds, then run `docker logs freenom`. If the output includes a success message, your configuration is in good shape. If you have not configured email yet, disable mail delivery first.
 
-修改并保存`.env`文件后，执行`docker restart freenom`重启容器，等待 5 秒钟左右，然后执行`docker logs freenom`查看输出内容， 观察输出内容中有`执行成功`
-字样，则表示配置无误。如果你还来不及配置送信邮箱等内容，可先停用邮件功能。
-
-> 如何升级到最新版或者重新部署呢？
+> How do I upgrade to the latest version or redeploy from scratch?
 >
+> From the directory that contains `.env`, delete the existing container with `docker rm -f freenom`, remove the old image with `docker rmi -f luolongfei/freenom`, and run the `docker run` command again. That redeploys the latest image. If the new release changes `.env`, the program will update the file and migrate your existing settings automatically.
 
-在`.env`所在目录，执行`docker rm -f freenom`删除现有容器，然后再执行 `docker rmi -f luolongfei/freenom`
-删除旧的镜像，然后再执行上面的 `docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom`
-重新部署即可，这样部署后就是最新的代码了。当然，新版对应的`.env`文件可能有变动，不必担心，程序会自动更新`.env`文件内容，并将已有的配置迁移过去。
-
-一句话操作，即在`.env`文件所在目录下执行以下命令，即可完成更新升级：
+One-line upgrade command:
 
 ```shell
 docker rm -f freenom && docker rmi -f luolongfei/freenom && docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/app/logs luolongfei/freenom
 ```
 
-##### 2.2 后期容器管理以及 Docker 常用命令
+##### 2.2 Common container management commands
 
-查看容器在线状态及大小
+Show container status and size
 
 ```shell
 docker ps -as
 ```
 
-查看容器的运行输出日志
+Show container logs
 
 ```shell
 docker logs freenom
 ```
 
-重新启动容器
+Restart the container
 
 ```shell
 docker restart freenom
 ```
 
-停止容器的运行
+Stop the container
 
 ```shell
 docker stop freenom
 ```
 
-移除容器
+Remove the container
 
 ```shell
 docker rm -f freenom
 ```
 
-查看 docker 容器占用 CPU，内存等信息
+Show container CPU and memory usage
 
 ```shell
 docker stats --no-stream
 ```
 
-查看 Docker 安装版本等信息
+Show Docker version details
 
 ```shell
 docker version
 ```
 
-重启 Docker（非容器）
+Restart Docker itself (not just the container)
 
 ```shell
 systemctl restart docker
 ```
 
-*有关容器部署的内容结束。*
+*That wraps up the container deployment section.*
 
 ***
 
-### 🧊 通过 Heroku 部署
+### 🧊 Heroku Deployment
 
-**Heroku 已于 2022-11-28 停止提供免费服务，所以，忘掉本文吧。官方通告：[https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
+**Heroku ended its free tier on November 28, 2022, so this route is effectively dead. Official announcement: [https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
 
-有关 【通过 Heroku 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2)
-
-***
-
-### 🚈 通过 Railway 部署
-
-*Railway 已更新服务条款，每月增加了使用时长限制，新的服务条款导致每月最多只能运行 21 天左右， **除非你验证了信用卡，则没有这个限制** 。详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。*
-
-有关 【通过 Railway 部署】
-的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
+If you still want the historical deployment guide, it lives in the wiki: [Deploy via Heroku](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2)
 
 ***
 
-### 📦 通过 Koyeb 部署
+### 🚈 Railway Deployment
 
-*推荐没有自己服务器的用户使用此方案部署。此方案完全免费。*
+*Railway's pricing model adds a monthly execution-time limit. In practice, that means the service runs for roughly 21 days per month unless you verify a credit card. Details: [Railway pricing](https://docs.railway.app/reference/pricing#execution-time-limit).*
 
-有关 【通过 Koyeb 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
-
-**在看完上行文档的具体内容，并且你确定你行后**，便可点击下方按钮，尝试一键部署：
-
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[MAX_REQUEST_RETRY_COUNT]=200&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&env[NEZHA_SERVER]=[OPTION]%20Nezha%20server&env[NEZHA_PORT]=[OPTION]%20Nezha%20port&env[NEZHA_KEY]=[OPTION]%20Nezha%20key&env[NEZHA_TLS]=[OPTION]%20Enable%20tls&image=docker.io/luolongfei/freenom:koyeb)
+The step-by-step Railway guide is in the wiki: [Deploy via Railway](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
 
 ***
 
-### 🧪 通过 Mogenius 部署
+### 📦 Koyeb Deployment
 
-已下线免费套餐，不再可用。 [https://github.com/luolongfei/freenom/discussions/208](https://github.com/luolongfei/freenom/discussions/208) 
+*If you do not have your own server, this is one of the better options. It was designed to be fully free.*
+
+The step-by-step Koyeb guide is in the wiki: [Deploy via Koyeb](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
+
+After you read that guide and you are comfortable with the setup, you can try the one-click deploy link here:
+
+[Deploy on Koyeb](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[MAX_REQUEST_RETRY_COUNT]=200&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&env[NEZHA_SERVER]=[OPTION]%20Nezha%20server&env[NEZHA_PORT]=[OPTION]%20Nezha%20port&env[NEZHA_KEY]=[OPTION]%20Nezha%20key&env[NEZHA_TLS]=[OPTION]%20Enable%20tls&image=docker.io/luolongfei/freenom:koyeb)
 
 ***
 
-### ☁ 通过各种云函数部署
+### 🧪 Mogenius Deployment
 
-所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
+Mogenius removed its free plan, so this option is no longer usable. Background: [discussion #208](https://github.com/luolongfei/freenom/discussions/208)
+
+***
+
+### ☁ Cloud Function Deployment
+
+All cloud-function targets use the same ZIP package, which was prepared for cross-platform compatibility:
 [https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip)
-。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
-下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到各种云函数。
+When a new release is published, this README is updated to point at the corresponding package, so you can treat that download as the current one documented for this path.
 
-有关 【通过腾讯云函数部署】
-的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+After downloading it, place the ZIP anywhere convenient on your machine. The deployment flow for each provider uploads that ZIP directly.
 
-有关 【通过阿里云函数部署】
-的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+This deployment style is no longer actively supported because the major platforms have moved to paid pricing, but the old wiki pages are still here if you need them:
 
-有关 【通过华为云函数部署】
-的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E5%8D%8E%E4%B8%BA%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+- [Deploy via Tencent Cloud Functions](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E8%85%BE%E8%AE%AF%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+- [Deploy via Alibaba Cloud Functions](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E9%98%BF%E9%87%8C%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+- [Deploy via Huawei Cloud Functions](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87%E5%8D%8E%E4%B8%BA%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
 
 ***
 
-### 🚧 直接拉取源码部署
+### 🚧 Deploy from Source
 
-有关 【直接拉取源码部署】
-的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E7%9B%B4%E6%8E%A5%E6%8B%89%E5%8F%96%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2)
+The source-based deployment guide lives in the wiki: [Deploy from Source](https://github.com/luolongfei/freenom/wiki/%E7%9B%B4%E6%8E%A5%E6%8B%89%E5%8F%96%E6%BA%90%E7%A0%81%E9%83%A8%E7%BD%B2)
 
 ***
 
-遇到任何问题或 Bug 欢迎提 [issue](https://github.com/luolongfei/freenom/issues) （请按模板格式提`issue`，以便我快速复现你的问题，否则问题会被忽略）， 如果`Freenom`
-改变算法导致此项目失效，请提 [issue](https://github.com/luolongfei/freenom/issues) 告知，我会及时修复，本项目长期维护。 欢迎`star`~
+If you run into a bug, please open an [issue](https://github.com/luolongfei/freenom/issues) and follow the template so the problem is easy to reproduce. If Freenom changes its algorithm and breaks the project, open an issue and let me know. I maintain this repository for the long haul, and stars are always appreciated.
 
-### 📋 赞助名单 Donation List
+### 📋 Donation List
 
-非常感谢「 [这些用户](https://github.com/luolongfei/freenom/wiki/Donation-List) 」对本项目的赞助支持！
+Huge thanks to [these supporters](https://github.com/luolongfei/freenom/wiki/Donation-List) for backing the project.
 
-### ❤ 赞助 Donation
+### ❤ Support the Project
 
-如果你觉得本项目对你有帮助，请考虑赞助本项目，以激励我投入更多的时间进行维护与开发。
-If you find this project helpful, please consider supporting the project going forward. Your support is greatly
-appreciated.
+If this project saves you time, consider supporting it. Support makes it much easier to keep maintaining and improving the codebase.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X7X8CA7S1)
 
@@ -602,28 +560,24 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 > Every time you spend money, you're casting a vote for the kind of world you want. -- Anna Lappe
 
-![pay](https://images.llfapp.com/pay.png "Donation")
+![Every time you spend your money, you are voting for the world you want.](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
 
-![每一次你花的钱都是在为你想要的世界投票。](https://s2.ax1x.com/2020/01/31/13P8cF.jpg)
+If you leave a message with your donation, it will be shown on the [Donation List](https://github.com/luolongfei/freenom/wiki/Donation-List).
 
-题外话：赞助的时候可以留言，留言内容将被展示在 [赞助列表画面](https://github.com/luolongfei/freenom/wiki/Donation-List) 。如果赞助图片未能正常显示，请访问： [https://images.llfapp.com/pay.png](https://images.llfapp.com/pay.png)
+**Every `star` and every donation helps keep this project alive. Thank you to everyone who has supported it. Recommending the project to other people helps too. The more people use it, the easier it is to justify spending time on updates.**
 
-**你的`star`或者`赞助`是我长期维护此项目的动力所在，由衷感谢每一位支持者，“每一次你花的钱都是在为你想要的世界投票”。 另外，将本项目推荐给更多的人，也是一种支持的方式，用的人越多更新的动力越足。**
+### 🪓 A Personal Note
 
-### 🪓 信仰
+Believe in the future. Stay rational.
 
-相信未来，保持“理智”。
+> Taking things seriously is how we participate in society, and how we change it. -- Li Zhi
 
-> 认真是我们参与这个社会的方式，认真是我们改变这个社会的方式。 ——李志
+### 🌚 Author
 
-![南京市民李先生](https://s1.ax1x.com/2022/03/10/bhP7FO.jpg "南京市民李先生")
+- Main program and framework: [@luolongfei](https://github.com/luolongfei)
+- English documentation: [@肖阿姨](#)
 
-### 🌚 作者
-
-- 主程序以及框架：[@luolongfei](https://github.com/luolongfei)
-- 英文版文档：[@肖阿姨](#)
-
-### 💖 所有贡献者
+### 💖 All Contributors
 
 <a href="https://github.com/luolongfei/freenom/graphs/contributors">
   <img alt="All Contributors" src="https://contrib.rocks/image?repo=luolongfei/freenom" />
@@ -633,23 +587,23 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 ### 📝 TODO List
 
-- 支持交互式安装，免去手动修改配置的繁琐操作
-- 支持自动升级
-- 多个账户的续期结果通知合并为同一条消息
+- Add an interactive installer so users do not have to edit config files by hand
+- Support automatic upgrades
+- Merge multi-account renewal results into a single notification
 
-### 🍅 本项目的其它语言实现
+### 🍅 Other Language Ports
 
-- [https://github.com/PencilNavigator/Freenom-Workers](https://github.com/PencilNavigator/Freenom-Workers) （JavaScript）
-- [https://github.com/Oreomeow/freenom-py](https://github.com/Oreomeow/freenom-py) （Python） 
+- [https://github.com/PencilNavigator/Freenom-Workers](https://github.com/PencilNavigator/Freenom-Workers) (JavaScript)
+- [https://github.com/Oreomeow/freenom-py](https://github.com/Oreomeow/freenom-py) (Python)
 
-*(更多其它语言欢迎提交 PR 更新此列表)*
+*(If you have another implementation in a different language, feel free to open a PR and add it to this list.)*
 
-### 🎉 鸣谢
+### 🎉 Acknowledgements
 
-- 项目依赖 [PHPMailer](https://github.com/PHPMailer/PHPMailer/) 、 [guzzle](https://github.com/guzzle/guzzle) 等第三方库
-- 本项目 Docker 相关文档有参考 [秋水逸冰](https://teddysun.com/569.html) 的文章
-- [@anjumrafidofficial](https://github.com/anjumrafidofficial) 完善英文版邮件内容
+- This project depends on third-party libraries such as [PHPMailer](https://github.com/PHPMailer/PHPMailer/) and [guzzle](https://github.com/guzzle/guzzle).
+- Some of the Docker-related documentation was informed by [this article](https://teddysun.com/569.html).
+- [@anjumrafidofficial](https://github.com/anjumrafidofficial) improved the English mail content.
 
-### 🥝 开源协议
+### 🥝 License
 
 [MIT](https://opensource.org/licenses/mit-license.php)

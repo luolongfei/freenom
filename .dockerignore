@@ -4,7 +4,7 @@
 .env.old
 logs
 README.md
-README_EN.md
+README_ZH.md
 LICENSE
 .github
 app/Data/pushed_version.txt
