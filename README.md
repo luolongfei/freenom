@@ -9,7 +9,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/luolongfei/freenom?color=brightgreen&style=for-the-badge)](https://github.com/luolongfei/freenom/stargazers)
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
-Documentation: English | [Chinese](./README_ZH.md)
+Documentation: English | [中文版](./README_ZH.md)
+Changelog: [CHANGELOG.md](./CHANGELOG.md)
 </div>
 
 [📢 Announcement](#-announcement)
@@ -20,7 +21,7 @@ Documentation: English | [Chinese](./README_ZH.md)
 
 [🎁 Before You Start](#-before-you-start)
 
-[📪 Configure Notifications](#-configure-notifications) (Email / Telegram Bot / WeCom / ServerChan / Bark)
+[📪 Configure Notifications](#-configure-notifications) (Email / Telegram Bot / WeCom / ServerChan / Bark / Pushplus)
 
 [⛵ Docker Compose Deployment](#-docker-compose-deployment)
 
@@ -75,12 +76,12 @@ The script sends a notification whether renewal succeeds, fails, or crashes. Ren
 - A VPS or server. Any box will do, although `Debian` is the easiest path. If you deploy without Docker, you need `PHP 8.1` or newer. If you do not have a server, the hosted options later in this README may be a better fit.
 - A sender mailbox, if you want email notifications. The script knows how to auto-configure `Gmail`, `QQ Mail`, `163 Mail`, and `Outlook`. If you want to use another provider or your own mail server, check the email-related comments in [`.env.example`](./.env.example).
 - A recipient mailbox, if you want to receive email notifications.
-- Both mailbox fields are optional because the project also supports `Telegram Bot`, `WeCom`, `ServerChan`, and `Bark`. You only need `MAIL_USERNAME`, `MAIL_PASSWORD`, and `TO` if you choose email notifications.
+- Both mailbox fields are optional because the project also supports `Telegram Bot`, `WeCom`, `ServerChan`, `Bark`, and `Pushplus`. You only need `MAIL_USERNAME`, `MAIL_PASSWORD`, and `TO` if you choose email notifications.
 - A little patience.
 
 ### 📪 Configure Notifications
 
-This project supports `Email`, `Telegram Bot`, `WeCom`, `ServerChan`, and `Bark`. Pick one and configure only that path. If you are on iOS, `Bark` is usually the cleanest option. For most other users, use whichever channel you are already comfortable with. I generally do not recommend `ServerChan`: the daily message cap is restrictive, and some content is hidden behind its paid tier. The same basic setup effort usually goes further with `WeCom`, and those notifications show up directly in the standard WeChat client.
+This project supports `Email`, `Telegram Bot`, `WeCom`, `ServerChan`, `Bark`, and `Pushplus`. Pick one and configure only that path. If you are on iOS, `Bark` is usually the cleanest option. For most other users, use whichever channel you are already comfortable with. I generally do not recommend `ServerChan`: the daily message cap is restrictive, and some content is hidden behind its paid tier. The same basic setup effort usually goes further with `WeCom`, and those notifications show up directly in the standard WeChat client.
 
 *Jump straight to a section:*
 
@@ -93,6 +94,8 @@ This project supports `Email`, `Telegram Bot`, `WeCom`, `ServerChan`, and `Bark`
 [ServerChan](#serverchan)
 
 [Bark](#bark)
+
+[Pushplus](#pushplus)
 
 #### Email Notifications
 
@@ -176,6 +179,10 @@ For the full ServerChan setup flow, see the wiki: [ServerChan](https://github.co
 #### Bark
 
 For the full Bark setup flow, see the wiki: [Bark](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
+
+#### Pushplus
+
+`Pushplus` is also supported. Set `PUSHPLUS_KEY` to your token in `.env`, then set `PUSHPLUS_ENABLE=1` to turn it on. If Pushplus is the only channel you want to use, leave the other notification methods disabled.
 
 ***
 
@@ -497,7 +504,7 @@ If you still want the historical deployment guide, it lives in the wiki: [Deploy
 
 ### 🚈 Railway Deployment
 
-*Railway's pricing model adds a monthly execution-time limit. In practice, that means the service runs for roughly 21 days per month unless you verify a credit card. Details: [Railway pricing](https://docs.railway.app/reference/pricing#execution-time-limit).*
+*Railway's pricing changes often. Whether it is a good long-running deployment target depends on the plan you are on and the current billing rules, so check the official docs before you deploy: [Railway pricing](https://docs.railway.com/pricing), [Railway plans](https://docs.railway.com/reference/pricing/plans).*
 
 The step-by-step Railway guide is in the wiki: [Deploy via Railway](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
 
@@ -505,7 +512,7 @@ The step-by-step Railway guide is in the wiki: [Deploy via Railway](https://gith
 
 ### 📦 Koyeb Deployment
 
-*If you do not have your own server, this is one of the better options. It was designed to be fully free.*
+*If you do not have your own server, Koyeb can still be a reasonable option. Free allowances and whether a card is required can change with Koyeb's plan policy, so check the current pricing before you deploy: [Koyeb pricing](https://www.koyeb.com/pricing/).*
 
 The step-by-step Koyeb guide is in the wiki: [Deploy via Koyeb](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
 

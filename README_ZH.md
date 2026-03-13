@@ -10,6 +10,7 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](https://github.com/luolongfei/freenom/blob/main/LICENSE)
 
 Documentation: [English](./README.md) | 中文版
+更新日志：[CHANGELOG.md](./CHANGELOG.md)
 </div> 
 
 [📢 公告](#-公告)
@@ -20,7 +21,7 @@ Documentation: [English](./README.md) | 中文版
 
 [🎁 事前准备](#-事前准备)
 
-[📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark 等送信方式）
+[📪 配置送信功能](#-配置送信功能)（支持 邮件送信 / Telegram Bot / 企业微信 / Server 酱 / Bark / Pushplus 等送信方式）
 
 [⛵ 通过 Docker Compose 方式部署](#-通过-docker-compose-部署)
 
@@ -79,13 +80,13 @@ Documentation: [English](./README.md) | 中文版
   如果你使用的是其它第三方邮箱或者自建邮件服务，那么请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example)
   文件中与邮件配置相关的注释进行配置。
 - 收信邮箱（可选）：用于接收机器人发出的通知邮件。
-- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`等送信方式，仅当你使用`邮件送信`的时候，`送信邮箱`和`收信邮箱`
+- 上面的`送信邮箱`和`收信邮箱`是可选项，因为目前程序已支持`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark` / `Pushplus`等送信方式，仅当你使用`邮件送信`的时候，`送信邮箱`和`收信邮箱`
   才是必须的，其它送信方式所需请参考下面的 [配置送信功能](#-配置送信功能) 。
 - 耐心。
 
 ### 📪 配置送信功能
 
-此处会分别介绍`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark`送信方式的配置方法，以及其所需的资料，你可以任选一种送信方式进行配置，直接跳到对应的文档查看即可。 如果你是 IOS
+此处会分别介绍`邮件送信` / `Telegram Bot` / `企业微信` / `Server 酱` / `Bark` / `Pushplus`送信方式的配置方法，以及其所需的资料，你可以任选一种送信方式进行配置，直接跳到对应的文档查看即可。 如果你是 IOS
 用户，推荐使用 `Bark`
 送信方式，其它平台的用户根据自己喜好选择可接受的送信方式即可。不太推荐使用`Server 酱`送信，`Server 酱`每日送信条数的限制，以及需要开会员才能直接看到送信内容，否则需要跳到 `Server 酱`
 网站才能查看内容，都是不推荐的原因。同样的配置完全可以直接使用`企业微信`送信方式，`企业微信`送信直接在普通微信客户端就能看到信件内容。
@@ -101,6 +102,8 @@ Documentation: [English](./README.md) | 中文版
 [Server 酱](#Server-酱)
 
 [Bark 送信](#Bark-送信)
+
+[Pushplus](#Pushplus)
 
 #### 邮件送信
 
@@ -201,6 +204,10 @@ Documentation: [English](./README.md) | 中文版
 #### Bark 送信
 
 有关 【Bark 送信】 的具体配置步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/Bark-%E9%80%81%E4%BF%A1)
+
+#### Pushplus
+
+如果你想使用 `Pushplus` 送信，在 `.env` 文件中将 `PUSHPLUS_KEY` 设置为你的 token，再将 `PUSHPLUS_ENABLE` 的值设为 `1` 即可启用。如果你只想使用 Pushplus，其它送信方式保持关闭即可。
 
 ***
 
@@ -532,7 +539,7 @@ systemctl restart docker
 
 ### 🚈 通过 Railway 部署
 
-*Railway 已更新服务条款，每月增加了使用时长限制，新的服务条款导致每月最多只能运行 21 天左右， **除非你验证了信用卡，则没有这个限制** 。详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。*
+*Railway 的价格和套餐规则变动较频繁，是否适合长期部署取决于你当前使用的 plan 和实时计费规则。部署前请先查看官方文档：[Pricing](https://docs.railway.com/pricing) 、 [Plans](https://docs.railway.com/reference/pricing/plans) 。*
 
 有关 【通过 Railway 部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
@@ -541,11 +548,11 @@ systemctl restart docker
 
 ### 📦 通过 Koyeb 部署
 
-*推荐没有自己服务器的用户使用此方案部署。此方案完全免费。*
+*推荐没有自己服务器的用户优先了解此方案。Koyeb 目前仍提供免费额度，但免费资源范围以及是否需要绑定信用卡会随套餐策略调整，部署前请先查看官方定价：[Koyeb Pricing](https://www.koyeb.com/pricing/)。*
 
 有关 【通过 Koyeb 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
 
-**在看完上行文档的具体内容，并且你确定你行后**，便可点击下方按钮，尝试一键部署：
+**在看完上行文档的具体内容，并且你确认自己可以接受当前套餐规则后**，便可点击下方按钮，尝试一键部署：
 
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[MAX_REQUEST_RETRY_COUNT]=200&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&env[NEZHA_SERVER]=[OPTION]%20Nezha%20server&env[NEZHA_PORT]=[OPTION]%20Nezha%20port&env[NEZHA_KEY]=[OPTION]%20Nezha%20key&env[NEZHA_TLS]=[OPTION]%20Enable%20tls&image=docker.io/luolongfei/freenom:koyeb)
 
