@@ -30,7 +30,7 @@ A clear and concise description of what the bug is.
 **环境信息**
 
 - 系统：  *（例如 debian11 x64）*
-- PHP 版本：  *（例如 php8.0）*
+- PHP 版本：  *（例如 php8.1）*
 - 脚本版本：  *（例如 v0.4.5）*
 - 是否 Docker：  *（例如 是）*
 
