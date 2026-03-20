@@ -533,7 +533,7 @@ Mogenius removed its free plan, so this option is no longer usable. Background: 
 All cloud-function targets use the same ZIP package, which was prepared for cross-platform compatibility:
 [https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip)
 
-When a new release is published, this README is updated to point at the corresponding package, so you can treat that download as the current one documented for this path.
+Cloud-function deployment is no longer actively maintained, so this historical package remains the reference artifact for this path.
 
 After downloading it, place the ZIP anywhere convenient on your machine. The deployment flow for each provider uploads that ZIP directly.
 

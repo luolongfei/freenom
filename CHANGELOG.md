@@ -2,6 +2,13 @@
 
 此处包含了自脚本发布以来的所有更新日志。以前的日志只记录了比较大的变更，以后的日志会尽可能详尽一些。
 
+#### [v0.7.0](https://github.com/luolongfei/freenom/releases/tag/v0.7.0) - 2026-03-20
+
+- 将运行基线提升到 PHP 8.1+，同步升级 Docker 基础镜像与核心依赖
+- 修复日志权限、环境变量迁移和云函数环境变量读取等兼容性问题，增强异常捕获与文件写入容错
+- 优化消息通知链路：单个渠道失败不再中断整体发送，改进 Telegram MarkdownV2 转义，Pushplus 切换为 HTTPS，完善 Outlook SMTP 兼容
+- 新增 PHPUnit 测试体系，补充核心模块、工具函数与消息服务测试
+
 #### [v0.5.4](https://github.com/luolongfei/freenom/releases/tag/v0.5.4) - 2023-12-13
 
 - 将重试次数默认强制改为 200 次
