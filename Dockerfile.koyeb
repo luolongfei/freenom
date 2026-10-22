@@ -1,4 +1,4 @@
-FROM php:8.5.3-fpm-alpine3.23
+FROM php:8.5.12-fpm-alpine3.23
 
 LABEL author="mybsdc <mybsdc@gmail.com>" \
     maintainer="luolongfei <luolongf@gmail.com>"
